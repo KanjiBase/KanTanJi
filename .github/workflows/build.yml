@@ -36,16 +36,6 @@ jobs:
           mkdir -p anki
           mv *.csv anki/
 
-      - name: Generate list of PDFs and update README.md
-        run: |
-          pdf_list=$(find docs -name "*.pdf" | awk '{print "- [" $1 "](" $1 ")"}')
-          awk -v pdf_list="$pdf_list" '
-              BEGIN { in_section = 0 }
-              /^[[:space:]]*<!--[[:space:]]*PDF-LIST-START[[:space:]]*-->/ { print; print pdf_list; in_section = 1; next }
-              /^[[:space:]]*<!--[[:space:]]*PDF-LIST-END[[:space:]]*-->/ { in_section = 0; print; next }
-              !in_section { print }
-          ' README.md > README.tmp && mv README.tmp README.md
-
       - name: Commit and push generated PDF to GitHub Pages
         run: |
           git config --local user.email "actions@github.com"
