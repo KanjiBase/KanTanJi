@@ -31,18 +31,18 @@ jobs:
           mkdir -p pdf
           mv output.pdf pdf/
 
-      - name: Generate list of PDFs and update HTML
+      - name: Generate list of PDFs and update README.md
         run: |
-          # Find all PDF files and format them as a JavaScript array
-          pdfArray=$(find pdf -name "*.pdf" | sed 's/^/"/; s/$/",/' | tr '\n' ' ')
-          # Insert the array into index.html
-          sed -i "s|const pdfFiles = \[\];|const pdfFiles = [${pdfArray}];|" pdf/index.html
+          # Generate the list of PDF links
+          pdf_list=$(find pdf -name "*.pdf" | awk '{print "- [" $1 "](" $1 ")"}')
+          # Insert the list into README.md
+          sed -i '/<!-- PDF-LIST-START -->/,/<!-- PDF-LIST-END -->/c\<!-- PDF-LIST-START -->\n'"$pdf_list"'\n<!-- PDF-LIST-END -->' README.md
 
       - name: Commit and push generated PDF to GitHub Pages
         run: |
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Actions"
-          git add pdf/index.html pdf/*.pdf
+          git add README.md pdf/*.pdf
           git commit -m "Add generated PDF"
           git push
         env:
