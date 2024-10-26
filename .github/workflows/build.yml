@@ -50,6 +50,11 @@ jobs:
           git config --local user.name "GitHub Actions"
           git add README.md pdf/*.pdf anki/* misc/update_guard.json
           git commit -m "Add generated PDF"
-          git push
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+          else
+            git commit -m "Update files"
+            git push
+          fi
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
