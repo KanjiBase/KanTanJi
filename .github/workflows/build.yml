@@ -1,0 +1,42 @@
+name: Generate PDF and Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main  # Runs the workflow when changes are pushed to the main branch
+
+jobs:
+  generate_pdf:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install fpdf  # Add other dependencies if needed
+
+      - name: Run Python script to generate PDF
+        run: python generate_pdf.py
+
+      - name: Move PDF to GitHub Pages directory
+        run: |
+          mkdir -p docs
+          mv output.pdf docs/
+
+      - name: Commit and push generated PDF to GitHub Pages
+        run: |
+          git config --local user.email "actions@github.com"
+          git config --local user.name "GitHub Actions"
+          git add docs/output.pdf
+          git commit -m "Add generated PDF"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
