@@ -486,11 +486,19 @@ def generate_pdf(key, data):
 data = read_sheets_in_folder()
 data = parse_data(data)
 
+readme = """
+#Kan<sup>Tan</sup>Ji &nbsp; 漢<sup>単</sup>字
+Jednoduchá aplikace na trénování Kanji - pomocí PDF souborů a přidružených Anki balíčků.
+<br><br>
+## Sady Kanji:
+<br>
+"""
+
 
 for key in data:
     try:
         anki = read_kanji_csv(key, data[key])
-        write_anki_csv(f"anki-kanji-{key}.csv", anki, '|')
+        write_anki_csv(f"anki-kanji-{key}", anki, '|')
         print(f"Anki cards have been successfully saved to anki-kanji-{key}.")
     except Exception as e:
         print(f"Failed to write file anki-kanji-{key}", e)
@@ -500,7 +508,12 @@ for key in data:
 for key in data:
     try:
         generate_pdf(key, data[key])
+        readme += "<a href=\"pdf/Kanji_{key}.pdf\">Kanji {key}</a>"
         print(f"PDF file generated: Kanji_{key}.pdf")
     except Exception as e:
         print(f"Failed to write file Kanji_{key}.pdf", e)
         print(traceback.format_exc())
+
+
+with open("README.md", mode='w', encoding='utf-8') as file:
+    file.write(readme)
