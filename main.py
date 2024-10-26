@@ -7,7 +7,7 @@ import hashlib
 
 my_secret = os.environ.get("GOOGLE_SERVICE")
 folder_id = os.environ.get("FOLDER_ID")
-my_secret = json.loads(my_secret)
+my_secret = json.loads(my_secret) if my_secret else None
 
 
 import gspread
@@ -68,7 +68,7 @@ def read_sheets_in_folder():
     if drive_service is None:
         # test demo
         print("Google services not set up: using local test demo data.")
-        with open('misc/test-data-json', 'r') as f:
+        with open('misc/test-data.json', 'r', encoding='utf-8') as f:
             return json.load(f)
         raise Exception("Could not load test data!")
     
@@ -98,8 +98,6 @@ def read_sheets_in_folder():
                     continue
                 previous_hashes[sheet_id] = current_hash
                 
-                # Extract the headers (keys) for the first row
-                headers = list(records[0].keys())
                 # Extract each row's values in order
                 rows = [list(row.values()) for row in records]
                 # Combine headers and rows
@@ -129,7 +127,6 @@ def generate_furigana(text):
     # Match exactly one character followed by furigana in <> or ＜＞ (supports both half-width and full-width)
     return re.sub(r'([^\s<>]{1})[<>＜＞]([^<>＜＞]+)[<>＜＞]', r'<ruby>\1<rt style="visibility: hidden">\2</rt></ruby>', text)
 
-
 # Function to remove furigana, leaving only the main character
 def remove_furigana(text):
     # Match exactly one character followed by furigana in <> or ＜＞ and remove the furigana part
@@ -138,7 +135,6 @@ def remove_furigana(text):
 def process_row(row):
     item = {"onyomi": [], "kunyomi": [], "pdf-onyomi": [], "pdf-kunyomi": [], "url": [], "usage": [], "pdf-usage": [], "extra": [], "type": ""}
     import_kanji = False
-    
     for i in range(0, len(row), 2):
         key = row[i]
         if type(key) == "string":

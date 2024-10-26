@@ -1,0 +1,7 @@
+*
+
+# Ignore all except things meant to be modified.
+!.gitignore
+!.github/
+!misc/
+!main.py

@@ -1,5 +1,6 @@
 {
     "test-kanji": [
+        ["ID", 181, "kanji", "図", "onyomi", "ズ", "imi", "mapa, kresba, plán", "onyomi-", "ト", "kunyomi", "はか・る"],
         ["ID", 181, "tango", "地<ち>図<ず>", "imi", "mapa", "", "", "", "", "", ""],
         ["ID", 181, "tango", "図<ず>柄<がら>", "imi", "návrh (design), vzor (pattern)", "", "", "", "", "", ""],
         ["ID", 181, "tango", "図<と>書＜しょ＞館＜かん＞", "imi", "knihovna", "", "", "", "", "", ""],
@@ -26,6 +27,6 @@
         ["ID", 186, "kanji", "考", "imi", "zvážit", "onyomi", "コウ", "kunyomi", "かんが・える", "", ""],
         ["ID", 186, "tango", "考<かんが>える", "imi", "myslet, přemýšlet (racionální), odvodit", "tsukaikata", "考<がんが>えすぎないでください。Příliš si s tím nelamte hlavu.", "", "", "", ""],
         ["ID", 186, "tango", "考<かんが>え", "imi", "myšlenka, nápad, představa", "", "", "", "", "", ""],
-        ["ID", 186, "tango", "参＜さん＞考＜こう＞", "imi", "příklad, odkaz", "tsukaikata", "皆<みな>様<さん>の参<さん>考<こう>に成<な>れ幸<さい>いです。Doufám, že vám to bude příkladem.", "tsukaikata", "何<なん>の参<さん>考<こう>にもならない。Toto nelze použít jako referenci (příklad).", "", ""],
+        ["ID", 186, "tango", "参＜さん＞考＜こう＞", "imi", "příklad, odkaz", "tsukaikata", "皆<みな>様<さん>の参<さん>考<こう>に成<な>れ幸<さい>いです。Doufám, že vám to bude příkladem.", "tsukaikata", "何<なん>の参<さん>考<こう>にもならない。Toto nelze použít jako referenci (příklad).", "", ""]
     ]
 }
