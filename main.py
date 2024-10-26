@@ -394,7 +394,7 @@ def generate_furigana_paragraph(text, style, aditional=''):
     return Paragraph(formatted_text, style)
 
 
-font = 'font.ttf'
+font = 'misc/font.ttf'
 pdfmetrics.registerFont(TTFont('NotoSans', font))
 pdfmetrics.registerFont(TTFont('NotoSans-Bold', font))
 
