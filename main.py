@@ -136,9 +136,9 @@ def process_row(row):
     for i in range(0, len(row), 2):
         key = row[i]
         if type(key) == "string":
-            key = (row[i]).strip()
+            key = (row[i]).strip().lower()
         else:
-            key = f"{key}"
+            key = f"{key}".lower()
         if len(key) < 1:
             continue
         if key[0] == "$":
@@ -160,7 +160,7 @@ def process_row(row):
             import_kanji = True
             item["url"] = f"https://app.kanjialive.com/{remove_furigana(value)}"
             item["guid"] = 'k' + str( hash(value))
-        elif key == 'ID':
+        elif key == 'id':
             item["id"] = value
         elif key == 'onyomi':
             item["onyomi"].append(value)
