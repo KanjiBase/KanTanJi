@@ -4,4 +4,4 @@ Jednoduchá aplikace na trénování Kanji - pomocí PDF souborů a přidružen�
 <br><br>
 ## Sady Kanji:
 <br>
-<a href="pdf/Kanji_181-200.pdf">Kanji 181-200</a>
+ - <a href="pdf/Kanji_181-200.pdf">Set Kanji_181-200</a><br>
