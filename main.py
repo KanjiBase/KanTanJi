@@ -351,12 +351,16 @@ def parse_data(data):
         output = []
         reader = data[key]
         for row in reader:
-            item, import_kanji = process_row(row)
+            try:
+                item, import_kanji = process_row(row)
 
-            if not item:
-                continue
+                if not item:
+                    continue
 
-            output.append((item, import_kanji))
+                output.append((item, import_kanji))
+            except Exception as e:
+                print(f"Error on line {row}", e)
+                print(traceback.format_exc())
         result[key] = output
     return result
 
