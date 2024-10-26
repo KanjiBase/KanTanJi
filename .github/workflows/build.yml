@@ -32,9 +32,11 @@ jobs:
       - name: Move PDF to GitHub Pages directory
         run: |
           mkdir -p pdf
-          mv *.pdf pdf/
+          mv -f *.pdf pdf/ 2>/dev/null || true
+
           mkdir -p anki
-          mv *.apkg anki/
+          mv -f *.apkg anki/ 2>/dev/null || true
+          mv -f *.csv anki/ 2>/dev/null || true
 
       - name: Commit and push generated PDF to GitHub Pages
         run: |
