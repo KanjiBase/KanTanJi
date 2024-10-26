@@ -365,36 +365,6 @@ def parse_data(data):
 
 import genanki
 
-# Define a unique model and deck ID
-MODEL_ID = 1234567890
-DECK_ID = 987654321
-DECK_NAME = "KanTanJi"
-
-# Create a model for the Anki deck (template) with HTML support for custom fields
-model = genanki.Model(
-    MODEL_ID,
-    'HTML Kanji Model',
-    fields=[
-        {'name': 'Question'},
-        {'name': 'Answer'},
-        {'name': 'Guid'},    # To store GUID for Anki notes
-        {'name': 'Deck'},     # To store subdeck information if needed
-    ],
-    templates=[
-        {
-            'name': 'Card 1',
-            'qfmt': '{{Question}}',  # Front of the card
-            'afmt': '{{FrontSide}}<hr id="answer">{{Answer}}',  # Back of the card
-        },
-    ],
-    css="""
-    .card { font-family: Arial; }
-    ruby { font-size: 28pt; }
-    """
-)
-
-
-
 # Function to create a GUID based on content (useful for avoiding duplicate cards)
 def create_guid(text):
     return hashlib.md5(text.encode('utf-8')).hexdigest()
@@ -639,7 +609,6 @@ if directory.is_dir():
 if len(files):
     readme += """
 ## Sady Kanji:
-<br>
 """
     files.sort()
     
@@ -651,7 +620,7 @@ if len(files):
             if file_name in existing_set:
                 continue
             existing_set.add(file_name)
-            readme += f" - <a href=\"{directory}/{pdf_file.name}\">Set {file_name}</a><br>\n"
+            readme += f" - <a href=\"{directory}/{pdf_file.name}\">Set {file_name}</a>\n"
             print(f"PDF file found and linked: {pdf_file.name}")
         except Exception as e:
             print(f"Failed to process file {pdf_file.name}", e)
@@ -684,7 +653,7 @@ if len(files):
             if file_name in existing_set:
                 continue
             existing_set.add(file_name)
-            readme += f" - <a href=\"{directory}/{anki_file.name}\">Package {file_name}</a><br>\n"
+            readme += f" - <a href=\"{directory}/{anki_file.name}\">Package {file_name}</a>\n"
             print(f"PDF file found and linked: {anki_file.name}")
         except Exception as e:
             print(f"Failed to process file {anki_file.name}", e)
