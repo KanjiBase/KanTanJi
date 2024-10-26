@@ -498,7 +498,7 @@ Jednoduchá aplikace na trénování Kanji - pomocí PDF souborů a přidružen�
 for key in data:
     try:
         anki = read_kanji_csv(key, data[key])
-        write_anki_csv(f"anki-kanji-{key}", anki, '|')
+        write_anki_csv(f"anki-kanji-{key}.csv", anki, '|')
         print(f"Anki cards have been successfully saved to anki-kanji-{key}.")
     except Exception as e:
         print(f"Failed to write file anki-kanji-{key}", e)
