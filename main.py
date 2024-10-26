@@ -627,18 +627,30 @@ for key in data:
 
 
 # Directory where the PDF files are stored
-directory = Path("pdf")
+directory = Path(".")
+files = directory.glob("*.pdf")
+files = list(files)
 
+directory = Path("pdf")
 # Ensure the PDF directory exists
 if directory.is_dir():
+    files.extend(list(directory.glob("*.pdf")))
+
+if len(files):
     readme += """
 ## Sady Kanji:
 <br>
 """
-    for pdf_file in directory.glob("*.pdf"):
+    files.sort()
+    
+    existing_set = set()
+    for pdf_file in files:
         try:
             # Generate a link for each PDF file found
             file_name = pdf_file.stem  # Get the file name without the extension
+            if file_name in existing_set:
+                continue
+            existing_set.add(file_name)
             readme += f" - <a href=\"{directory}/{pdf_file.name}\">Set {file_name}</a><br>\n"
             print(f"PDF file found and linked: {pdf_file.name}")
         except Exception as e:
@@ -648,16 +660,30 @@ else:
     print(f"Directory {directory} does not exist.")
 
 
-directory = Path("anki")
+directory = Path(".")
+files = directory.glob("*.apkg")
+files = list(files)
 
+directory = Path("anki")
+# Ensure the PDF directory exists
 if directory.is_dir():
+    files.extend(list(directory.glob("*.apkg")))
+
+if len(files):
     readme += """
 ## Anki Packs
 """
-    for anki_file in directory.glob("*.apkg"):
+    files.sort()
+    
+    existing_set = set()
+    for anki_file in files:
         try:
             # Generate a link for each PDF file found
             file_name = anki_file.stem  # Get the file name without the extension
+            
+            if file_name in existing_set:
+                continue
+            existing_set.add(file_name)
             readme += f" - <a href=\"{directory}/{anki_file.name}\">Package {file_name}</a><br>\n"
             print(f"PDF file found and linked: {anki_file.name}")
         except Exception as e:
@@ -666,8 +692,12 @@ if directory.is_dir():
 else:
     print(f"Directory {directory} does not exist.")
 
-# Write the README.md with links to the PDF files
-with open("README.md", mode='w+', encoding='utf-8') as file:
-    file.write(readme)
-print("README.md updated with PDF links.")
+if my_secret:
+    # Write the README.md with links to the PDF files
+    with open("README.md", mode='w+', encoding='utf-8') as file:
+        file.write(readme)
+    print("README.md updated with PDF links.")
+else:
+    print("Skipping writing README.md: test mode.")
+    print(readme)
 
