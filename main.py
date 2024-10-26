@@ -85,7 +85,7 @@ def read_sheets_in_folder():
         print(f"\nReading '{sheet['name']}'...")
         for worksheet in google_sheet.worksheets():
             print(f"  Worksheet: {worksheet.title}")
-            records = worksheet.get_all_records()
+            records = worksheet.get_all_values()
 
             # Convert the list of dictionaries to an array of arrays format
             if records:
