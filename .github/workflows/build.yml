@@ -32,7 +32,9 @@ jobs:
       - name: Move PDF to GitHub Pages directory
         run: |
           mkdir -p pdf
-          mv output.pdf pdf/
+          mv *.pdf pdf/
+          mkdir -p anki
+          mv *.csv anki/
 
       - name: Generate list of PDFs and update README.md
         run: |
@@ -45,7 +47,7 @@ jobs:
         run: |
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Actions"
-          git add README.md pdf/*.pdf
+          git add README.md pdf/*.pdf anki/*.csv
           git commit -m "Add generated PDF"
           git push
         env:
