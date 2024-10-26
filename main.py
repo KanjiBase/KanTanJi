@@ -4,6 +4,7 @@ import traceback
 import os
 import json
 import hashlib
+from pathlib import Path
 
 my_secret = os.environ.get("GOOGLE_SERVICE")
 folder_id = os.environ.get("FOLDER_ID")
@@ -97,11 +98,8 @@ def read_sheets_in_folder():
                     print("  Skip: hash matches previous version.")
                     continue
                 previous_hashes[sheet_id] = current_hash
-                
-                # Extract each row's values in order
-                rows = [list(row.values()) for row in records]
                 # Combine headers and rows
-                output[sheet['name']] = rows
+                output[sheet['name']] = records
             else:
                 output[sheet['name']] = None
     with open(hash_file_path, 'w+') as f:
@@ -513,6 +511,11 @@ def generate_pdf(key, data):
 
 
 data = read_sheets_in_folder()
+
+if not data:
+    print("No data found to process: all is up to date.")
+    exit(0)
+
 data = parse_data(data)
 
 readme = """
@@ -522,7 +525,6 @@ Jednoduchá aplikace na trénování Kanji - pomocí PDF souborů a přidružen�
 ## Sady Kanji:
 <br>
 """
-
 
 for key in data:
     try:
@@ -537,12 +539,31 @@ for key in data:
 for key in data:
     try:
         generate_pdf(key, data[key])
-        readme += f"<a href=\"pdf/Kanji_{key}.pdf\">Kanji {key}</a>"
         print(f"PDF file generated: Kanji_{key}.pdf")
     except Exception as e:
         print(f"Failed to write file Kanji_{key}.pdf", e)
         print(traceback.format_exc())
 
 
-with open("README.md", mode='w', encoding='utf-8') as file:
+# Directory where the PDF files are stored
+pdf_directory = Path("pdf")
+
+# Ensure the PDF directory exists
+if pdf_directory.is_dir():
+    for pdf_file in pdf_directory.glob("*.pdf"):
+        try:
+            # Generate a link for each PDF file found
+            file_name = pdf_file.stem  # Get the file name without the extension
+            readme += f" - <a href=\"{pdf_directory}/{pdf_file.name}\">Set {file_name}</a><br>\n"
+            print(f"PDF file found and linked: {pdf_file.name}")
+        except Exception as e:
+            print(f"Failed to process file {pdf_file.name}", e)
+            print(traceback.format_exc())
+else:
+    print(f"Directory {pdf_directory} does not exist.")
+
+# Write the README.md with links to the PDF files
+with open("README.md", mode='w+', encoding='utf-8') as file:
     file.write(readme)
+print("README.md updated with PDF links.")
+
