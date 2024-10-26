@@ -3,6 +3,7 @@ import re
 import traceback
 import os
 import json
+import hashlib
 
 my_secret = os.environ.get("GOOGLE_SERVICE")
 folder_id = os.environ.get("FOLDER_ID")
@@ -23,6 +24,16 @@ creds = Credentials.from_service_account_info(my_secret, scopes=SCOPES)
 # Initialize gspread and Google Drive API clients
 client = gspread.authorize(creds)
 drive_service = build('drive', 'v3', credentials=creds)
+
+
+def compute_hash(records):
+    hash_obj = hashlib.md5()
+    for row in records:
+        # Convert each row to a string and encode it
+        hash_obj.update(str(row).encode('utf-8'))
+    return hash_obj.hexdigest()
+
+
 
 # Function to find a folder in Google Drive by name and return its ID
 def find_folder_id(folder_name):
@@ -53,6 +64,12 @@ def list_sheets_in_folder(folder_id):
 
 # Function to read and print content of all sheets in a folder
 def read_sheets_in_folder():
+    
+    previous_hashes = {}
+    hash_file_path = 'misc/update_guard.json'
+    if os.path.exists(hash_file_path):
+        with open(hash_file_path, 'r') as f:
+            previous_hashes = json.load(f)
     output = {}
     sheets = list_sheets_in_folder(folder_id)
     for sheet in sheets:
@@ -65,6 +82,15 @@ def read_sheets_in_folder():
 
             # Convert the list of dictionaries to an array of arrays format
             if records:
+                
+                hash = previous_hashes.get(sheet_id, None)
+                if hash:
+                    current_hash = compute_hash(records)
+                    if hash == current_hash:
+                        print("  Skip: hash matches previous version.")
+                        continue
+                    previous_hashes[sheet_id] = current_hash
+                
                 # Extract the headers (keys) for the first row
                 headers = list(records[0].keys())
                 # Extract each row's values in order
@@ -73,13 +99,12 @@ def read_sheets_in_folder():
                 output[sheet['name']] = rows
             else:
                 output[sheet['name']] = None
+    with open(hash_file_path, 'w') as f:
+        json.dump(previous_hashes, f)
     return output
             
 # Specify the folder name and read sheets
 
-
-
- 
 
 ### Function to generate furigana in HTML format (only one character can have furigana)
 ##def generate_furigana(text):
@@ -172,6 +197,7 @@ def process_row(row):
         else:
             item["extra"].append(f"<div style=\"color: gray; font-size: 14pt;\"><b>{generate_furigana(key)}</b>: {generate_furigana(value)}</div>")  # Store unexpected fields in extra
     if not item.get("guid", False):
+        print("IGNORES: invalid data:", row)
         return None, False
     item["guid"] += item["id"]
 
