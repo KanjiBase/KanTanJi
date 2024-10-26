@@ -21,11 +21,12 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install fpdf  # Add other dependencies if needed
+          pip install  gspread google-auth google-auth-oauthlib google-auth-httplib2 google-api-python-client reportlab
 
       - name: Run Python script to generate PDF
         env:
-            MY_SECRET_KEY: ${{ secrets.GOOGLE_SERVICE }}
+            GOOGLE_SERVICE: ${{ secrets.GOOGLE_SERVICE }}
+            FOLDER_ID: ${{ secrets.FOLDER_ID }}
         run: python main.py
 
       - name: Move PDF to GitHub Pages directory
