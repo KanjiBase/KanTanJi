@@ -24,6 +24,8 @@ jobs:
           pip install fpdf  # Add other dependencies if needed
 
       - name: Run Python script to generate PDF
+        env:
+            MY_SECRET_KEY: ${{ secrets.GOOGLE_SERVICE }}
         run: python main.py
 
       - name: Move PDF to GitHub Pages directory
