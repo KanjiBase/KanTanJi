@@ -1,6 +1,7 @@
+# Ignore everything by default
 *
 
-# Ignore all except things meant to be modified.
+# Allow specific files and folders
 !.gitignore
 !.github/
 !misc/
@@ -8,3 +9,8 @@
 !pdf/
 !main.py
 !README.md
+
+# Ensure all files within specific folders are not ignored
+!misc/*
+!anki/*
+!pdf/*
