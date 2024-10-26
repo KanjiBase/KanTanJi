@@ -99,7 +99,7 @@ def read_sheets_in_folder():
                 output[sheet['name']] = rows
             else:
                 output[sheet['name']] = None
-    with open(hash_file_path, 'w') as f:
+    with open(hash_file_path, 'w+') as f:
         json.dump(previous_hashes, f)
     return output
             
