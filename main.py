@@ -487,7 +487,7 @@ data = read_sheets_in_folder()
 data = parse_data(data)
 
 readme = """
-#Kan<sup>Tan</sup>Ji &nbsp; 漢<sup>単</sup>字
+# Kan<sup>Tan</sup>Ji &nbsp; 漢<sup>単</sup>字
 Jednoduchá aplikace na trénování Kanji - pomocí PDF souborů a přidružených Anki balíčků.
 <br><br>
 ## Sady Kanji:
@@ -508,7 +508,7 @@ for key in data:
 for key in data:
     try:
         generate_pdf(key, data[key])
-        readme += "<a href=\"pdf/Kanji_{key}.pdf\">Kanji {key}</a>"
+        readme += f"<a href=\"pdf/Kanji_{key}.pdf\">Kanji {key}</a>"
         print(f"PDF file generated: Kanji_{key}.pdf")
     except Exception as e:
         print(f"Failed to write file Kanji_{key}.pdf", e)
