@@ -4,4 +4,7 @@
 !.gitignore
 !.github/
 !misc/
+!anki/
+!pdf/
 !main.py
+!README.md
