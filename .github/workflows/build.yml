@@ -38,10 +38,8 @@ jobs:
 
       - name: Generate list of PDFs and update README.md
         run: |
-          # Generate the list of PDF links
-          pdf_list=$(find pdf -name "*.pdf" | awk '{print "- [" $1 "](" $1 ")"}')
-          # Insert the list into README.md
-          sed -i '/<!-- PDF-LIST-START -->/,/<!-- PDF-LIST-END -->/c\<!-- PDF-LIST-START -->\n'"$pdf_list"'\n<!-- PDF-LIST-END -->' README.md
+          pdf_list=$(find docs -name "*.pdf" | awk '{print "- [" $1 "](" $1 ")"}')
+          sed -i "s|<!-- PDF-LIST-START -->.*<!-- PDF-LIST-END -->|<!-- PDF-LIST-START -->\n${pdf_list}\n<!-- PDF-LIST-END -->|" README.md
 
       - name: Commit and push generated PDF to GitHub Pages
         run: |
