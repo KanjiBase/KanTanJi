@@ -2,10 +2,11 @@ import csv
 import re
 import traceback
 import os
-
+import json
 
 my_secret = os.environ.get("GOOGLE_SERVICE")
 folder_id = os.environ.get("FOLDER_ID")
+my_secret = json.loads(my_secret)
 
 
 import gspread
