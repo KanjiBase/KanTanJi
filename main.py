@@ -19,11 +19,11 @@ SCOPES = [
     "https://www.googleapis.com/auth/spreadsheets.readonly",
     "https://www.googleapis.com/auth/drive.metadata.readonly"
 ]
-creds = Credentials.from_service_account_info(my_secret, scopes=SCOPES)
+creds = Credentials.from_service_account_info(my_secret, scopes=SCOPES) if my_secret else None
 
 # Initialize gspread and Google Drive API clients
-client = gspread.authorize(creds)
-drive_service = build('drive', 'v3', credentials=creds)
+client = gspread.authorize(creds) if creds else None
+drive_service = build('drive', 'v3', credentials=creds) if client else None
 
 
 def compute_hash(records):
@@ -65,6 +65,13 @@ def list_sheets_in_folder(folder_id):
 # Function to read and print content of all sheets in a folder
 def read_sheets_in_folder():
     
+    if drive_service is None:
+        # test demo
+        print("Google services not set up: using local test demo data.")
+        with open('misc/test-data-json', 'r') as f:
+            return json.load(f)
+        raise Exception("Could not load test data!")
+    
     previous_hashes = {}
     hash_file_path = 'misc/update_guard.json'
     if os.path.exists(hash_file_path):
@@ -77,19 +84,19 @@ def read_sheets_in_folder():
         google_sheet = client.open_by_key(sheet_id)
         print(f"\nReading '{sheet['name']}'...")
         for worksheet in google_sheet.worksheets():
-            print(f"Worksheet: {worksheet.title}")
+            print(f"  Worksheet: {worksheet.title}")
             records = worksheet.get_all_records()
 
             # Convert the list of dictionaries to an array of arrays format
             if records:
                 
                 hash = previous_hashes.get(sheet_id, None)
-                if hash:
-                    current_hash = compute_hash(records)
-                    if hash == current_hash:
-                        print("  Skip: hash matches previous version.")
-                        continue
-                    previous_hashes[sheet_id] = current_hash
+                current_hash = compute_hash(records)
+
+                if hash and hash == current_hash:
+                    print("  Skip: hash matches previous version.")
+                    continue
+                previous_hashes[sheet_id] = current_hash
                 
                 # Extract the headers (keys) for the first row
                 headers = list(records[0].keys())
