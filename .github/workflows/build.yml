@@ -28,14 +28,14 @@ jobs:
 
       - name: Move PDF to GitHub Pages directory
         run: |
-          mkdir -p docs
-          mv output.pdf docs/
+          mkdir -p pdf
+          mv output.pdf pdf/
 
       - name: Commit and push generated PDF to GitHub Pages
         run: |
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Actions"
-          git add output.pdf
+          git add pdf/output.pdf
           git commit -m "Add generated PDF"
           git push
         env:
