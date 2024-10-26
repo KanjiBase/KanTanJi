@@ -363,8 +363,90 @@ def parse_data(data):
 
 
 
+import genanki
+
+# Define a unique model and deck ID
+MODEL_ID = 1234567890
+DECK_ID = 987654321
+DECK_NAME = "KanTanJi"
+
+# Create a model for the Anki deck (template) with HTML support for custom fields
+model = genanki.Model(
+    MODEL_ID,
+    'HTML Kanji Model',
+    fields=[
+        {'name': 'Question'},
+        {'name': 'Answer'},
+        {'name': 'Guid'},    # To store GUID for Anki notes
+        {'name': 'Deck'},     # To store subdeck information if needed
+    ],
+    templates=[
+        {
+            'name': 'Card 1',
+            'qfmt': '{{Question}}',  # Front of the card
+            'afmt': '{{FrontSide}}<hr id="answer">{{Answer}}',  # Back of the card
+        },
+    ],
+    css="""
+    .card { font-family: Arial; }
+    ruby { font-size: 28pt; }
+    """
+)
 
 
+
+# Function to create a GUID based on content (useful for avoiding duplicate cards)
+def create_guid(text):
+    return hashlib.md5(text.encode('utf-8')).hexdigest()
+
+import uuid
+def generate_numeric_id_from_text(text, max_digits=16):
+    # Generate a UUID from text (use SHA-256 if you want more robustness for long arbitrary text)
+    namespace_uuid = uuid.uuid5(uuid.NAMESPACE_DNS, text)  # Generate UUID
+    sha_hash = hashlib.sha256(namespace_uuid.bytes + text.encode("utf-8")).hexdigest()
+    
+    # Convert hash to integer, then truncate to desired digit length
+    numeric_id = int(sha_hash, 16) % (10 ** max_digits)
+    return numeric_id
+
+def save_deck(filename, deck):
+    # Export the deck to a .apkg file
+    genanki.Package(deck).write_to_file(filename)
+    print("Anki deck created", filename)
+
+def create_anki_deck(key, reader):
+    deck = None
+    deck_name = None
+    decks = 0
+    for row in reader:
+        
+        if deck_name != row[3]:
+            if deck:
+                # todo consider error...
+                print("WARNING: new deck created in the middle of dataset!")
+                decks += 1
+                save_deck(f"kanji_{key}-{decks}.apkg", deck)
+            deck_name = f"KanTanJi::{key}"
+            # Create the Anki deck
+            deck = genanki.Deck(
+                generate_numeric_id_from_text(deck_name),
+                deck_name
+            )   
+        
+        question_html = row[0]  # Front of the card
+        answer_html = row[1]    # Back of the card
+
+        # Create a note (card) with front and back content using the built-in model
+        note = genanki.Note(
+            model=genanki.BASIC_MODEL,  # Use Anki's built-in Basic model with a reverse card
+            fields=[question_html, answer_html],
+            guid=row[2]
+        )
+        
+        # Add the note to the deck
+        deck.add_note(note)
+    if deck:
+        save_deck(f"kanji_{key}.apkg", deck)
 
 
 
@@ -522,14 +604,13 @@ readme = """
 # Kan<sup>Tan</sup>Ji &nbsp; 漢<sup>単</sup>字
 Jednoduchá aplikace na trénování Kanji - pomocí PDF souborů a přidružených Anki balíčků.
 <br><br>
-## Sady Kanji:
-<br>
 """
 
 for key in data:
     try:
         anki = read_kanji_csv(key, data[key])
-        write_anki_csv(f"anki-kanji-{key}.csv", anki, '|')
+        #write_anki_csv(f"anki-kanji-{key}.csv", anki, '|')
+        create_anki_deck(key, anki)
         print(f"Anki cards have been successfully saved to anki-kanji-{key}.")
     except Exception as e:
         print(f"Failed to write file anki-kanji-{key}", e)
@@ -546,21 +627,44 @@ for key in data:
 
 
 # Directory where the PDF files are stored
-pdf_directory = Path("pdf")
+directory = Path("pdf")
 
 # Ensure the PDF directory exists
-if pdf_directory.is_dir():
-    for pdf_file in pdf_directory.glob("*.pdf"):
+if directory.is_dir():
+    readme += """
+## Sady Kanji:
+<br>
+"""
+    for pdf_file in directory.glob("*.pdf"):
         try:
             # Generate a link for each PDF file found
             file_name = pdf_file.stem  # Get the file name without the extension
-            readme += f" - <a href=\"{pdf_directory}/{pdf_file.name}\">Set {file_name}</a><br>\n"
+            readme += f" - <a href=\"{directory}/{pdf_file.name}\">Set {file_name}</a><br>\n"
             print(f"PDF file found and linked: {pdf_file.name}")
         except Exception as e:
             print(f"Failed to process file {pdf_file.name}", e)
             print(traceback.format_exc())
 else:
-    print(f"Directory {pdf_directory} does not exist.")
+    print(f"Directory {directory} does not exist.")
+
+
+directory = Path("anki")
+
+if directory.is_dir():
+    readme += """
+## Anki Packs
+"""
+    for anki_file in directory.glob("*.apkg"):
+        try:
+            # Generate a link for each PDF file found
+            file_name = anki_file.stem  # Get the file name without the extension
+            readme += f" - <a href=\"{directory}/{anki_file.name}\">Package {file_name}</a><br>\n"
+            print(f"PDF file found and linked: {anki_file.name}")
+        except Exception as e:
+            print(f"Failed to process file {anki_file.name}", e)
+            print(traceback.format_exc())
+else:
+    print(f"Directory {directory} does not exist.")
 
 # Write the README.md with links to the PDF files
 with open("README.md", mode='w+', encoding='utf-8') as file:
