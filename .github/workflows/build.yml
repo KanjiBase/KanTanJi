@@ -24,7 +24,7 @@ jobs:
           pip install fpdf  # Add other dependencies if needed
 
       - name: Run Python script to generate PDF
-        run: python generate_pdf.py
+        run: python main.py
 
       - name: Move PDF to GitHub Pages directory
         run: |
@@ -35,7 +35,7 @@ jobs:
         run: |
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Actions"
-          git add docs/output.pdf
+          git add sheet.pdf
           git commit -m "Add generated PDF"
           git push
         env:
