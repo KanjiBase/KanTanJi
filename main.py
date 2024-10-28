@@ -83,6 +83,10 @@ def read_sheets_in_folder():
     for sheet in sheets:
         sheet_id = sheet['id']
         google_sheet = client.open_by_key(sheet_id)
+        
+        if sheet['name'] == "Publish":
+            continue
+        
         print(f"\nReading '{sheet['name']}'...")
         for worksheet in google_sheet.worksheets():
             print(f"  Worksheet: {worksheet.title}")
