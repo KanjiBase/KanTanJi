@@ -9,6 +9,7 @@
 !pdf/
 !main.py
 !README.md
+!POLicy_TERMS.md
 
 # Ensure all files within specific folders are not ignored
 !misc/*
