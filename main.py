@@ -96,12 +96,17 @@ def read_sheets_in_folder():
             if records:
                 
                 hash = previous_hashes.get(sheet_id, None)
+                if type(hash) != str:
+                    hash = hash.get("hash", None)
                 current_hash = compute_hash(records)
 
                 if hash and hash == current_hash:
                     print("  Skip: hash matches previous version.")
                     continue
-                previous_hashes[sheet_id] = current_hash
+                previous_hashes[sheet_id] = {
+                    "name": sheet['name'], 
+                    "hash": current_hash
+                }
                 # Combine headers and rows
                 output[sheet['name']] = records
             else:
