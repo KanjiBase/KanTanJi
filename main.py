@@ -356,9 +356,9 @@ def write_anki_csv(output_file, output, separator='§'):
 
 def parse_data(data):
     result = {}
-    for key in data:
+    for dataset_name in data:
         output = []
-        reader = data[key]
+        reader = data[dataset_name]
         for row in reader:
             try:
                 item, import_kanji = process_row(row)
@@ -370,9 +370,9 @@ def parse_data(data):
             except Exception as e:
                 print(f"Error on line {row}", e)
                 print(traceback.format_exc())
-        result[key] = output
+        output.sort(key=lambda x: str(x[0]["id"]) + x[0]["type"])
+        result[dataset_name] = output
     return result
-
 
 
 
@@ -543,6 +543,8 @@ def generate_pdf(key, data):
                     if len(usage_list) < 1:
                         usage_list.append("")  # trigger insertion of the word
                     
+                    usage_extra_rows = 0
+                    start_position = len(table_data)
                     for usage in usage_list:
                         usage = generate_furigana_paragraph(usage, styles['NormalNoto'], meaning) if usage else Paragraph(meaning, styles['NormalNoto'])
                         current_pos = len(table_data)
@@ -553,12 +555,17 @@ def generate_pdf(key, data):
                             word = ''
                             meaning = ''
                         elif usage:
-                            table_data.append([usage, '', ''])
-                            table_style.append(('SPAN', (0, current_pos), (2, current_pos)))
+                            usage_extra_rows += 1
+                            table_data.append(['', usage, ''])
+                            table_style.append(('SPAN', (1, current_pos), (2, current_pos)))
                         
                     (item,_) = next(item_gen)
             except StopIteration:
                 pass
+            
+            if usage_extra_rows > 0:
+                table_style.append(('SPAN', (0, start_position), (0, start_position + usage_extra_rows)))
+
 
             # Create a table with the kanji on the left and information on the right
             table = Table(table_data, colWidths=[3*cm, 2*cm, 15*cm])
