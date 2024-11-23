@@ -558,13 +558,11 @@ def generate_pdf(key, data):
                             usage_extra_rows += 1
                             table_data.append(['', usage, ''])
                             table_style.append(('SPAN', (1, current_pos), (2, current_pos)))
-                        
+                    if usage_extra_rows > 0:
+                        table_style.append(('SPAN', (0, start_position), (0, start_position + usage_extra_rows)))
                     (item,_) = next(item_gen)
             except StopIteration:
                 pass
-            
-            if usage_extra_rows > 0:
-                table_style.append(('SPAN', (0, start_position), (0, start_position + usage_extra_rows)))
 
 
             # Create a table with the kanji on the left and information on the right
