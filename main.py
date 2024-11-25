@@ -96,7 +96,7 @@ def read_sheets_in_folder():
             if records:
                 
                 hash = previous_hashes.get(sheet_id, None)
-                if type(hash) != str:
+                if hash is not None and type(hash) != str:
                     hash = hash.get("hash", None)
                 current_hash = compute_hash(records)
 
