@@ -7,6 +7,7 @@
 !misc/
 !anki/
 !pdf/
+!src/
 !main.py
 !README.md
 !POLicy_TERMS.md
@@ -15,3 +16,4 @@
 !misc/*
 !anki/*
 !pdf/*
+!src/*

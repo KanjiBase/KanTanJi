@@ -1,5 +1,8 @@
 {
     "test-kanji": [
+        ["ID", 12, "kanji", "大", "imi", "velký", "kunyomi", "おお", "onyomi", "ダイ", "onyomi", "タイ"],
+        ["ID", 12, "tango", "大<だい＞学＜がく＞", "imi", "univerzita", "tsukaikata", "日<に>本<ほん>の大<だい＞学＜がく＞に通<かよ>っています。 Chodím na japonskou univerzitu.", "", "", "", ""],
+        ["ID", 12, "tango", "<大人><おとな＞", "imi", "dospělý", "", "", "", "", "", ""],
         ["ID", 181, "tango", "図<ず>柄<がら>", "imi", "návrh (design), vzor (pattern)", "", "", "", "", "", ""],
         ["ID", 182, "kanji", "工", "onyomi", "コウ", "imi", "řemeslo, stavba (ne budova!)", "", "", "", ""],
         ["ID", 181, "kanji", "図", "onyomi", "ズ", "imi", "mapa, kresba, plán", "onyomi-", "ト", "kunyomi", "はか・る"],
