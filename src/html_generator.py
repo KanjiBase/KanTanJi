@@ -15,6 +15,7 @@ def get_word_html(word):
     global id_dealer
     id_dealer += 1
 
+
     def get_usage(usage_element):
         if not usage_element or len(usage_element) < 1:
             return ""
@@ -35,32 +36,34 @@ def get_word_html(word):
     usage_examples = ''.join(map(get_usage, word['usage']))
     if not usage_examples:
         return f"""
-    <div class="vocabulary-container">
-        <div class="vocabulary-content">
-            <div class="vocabulary-paragraph">
-                <strong>
-                    {generate_furigana(word['word'])}
-                </strong>
-                : {word['meaning']}
-            </div>
+    <div class="bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg shadow p-4 flex flex-col gap-2">
+        <div class="flex justify-between items-center">
+          <div>
+            <p class="text-lg text-2xl text-gray-800">{generate_furigana(word['word'])}</p>
+            <p class="text-sm text-gray-600">{word['meaning']}</p>
+          </div>
         </div>
     </div>
     """
 
     return f"""
-    <div class="vocabulary-container">
-        <div class="vocabulary-content">
-            <div class="vocabulary-paragraph">
-                <strong>
-                    {generate_furigana(word['word'])}
-                </strong>
-                : {word['meaning']}
-            </div>
+    
+    <div class="bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg shadow p-4 flex flex-col gap-2">
+        <div class="flex justify-between items-center">
+          <div>
+            <p class="text-lg text-2xl text-gray-800">{generate_furigana(word['word'])}</p>
+            <p class="text-sm text-gray-600">{word['meaning']}</p>
+          </div>
             <!-- Arrow with onclick -->
-            <span id="arrowGreen{id_dealer}" class="expand-button" onclick="toggleExample('green{id_dealer}', 'arrowGreen{id_dealer}')">▼</span>
+            <button
+            class="button-vocab-toggle text-gray-600 hover:text-gray-900 transform transition-transform duration-200"
+            onclick="toggleExample('vocab{id_dealer}', this)"
+              >
+                ▼
+              </button>
         </div>
-        <div id="green{id_dealer}" class="vocabulary-detail">
-            {usage_examples}
+        <div id="vocab{id_dealer}" class="button-vocab-example hidden mt-2 p-2 rounded bg-white text-gray-700 shadow">
+          {usage_examples}
         </div>
     </div>
     """
@@ -85,219 +88,217 @@ def read_kanji_csv(key, data):
         # document.head.appendChild(link);
         # < / script >
         output[item['kanji']] = (f"""
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap" rel="stylesheet">        
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 <style>
-body {{
-font-family: "Noto Sans JP", sans-serif;
-  font-optical-sizing: auto;
-  font-style: normal;
+@media screen and (min-width: 1450px) {{
+  .note-container {{
+    min-width: 575px;
+  }}
 }}
-.expand-button {{
-transition: transform 0.3s; cursor: pointer; user-select: none;     padding: 5px 17px;
-}}
-.vocabulary-container {{
-    padding: 15px;
-    border-radius: 10px;
-    margin-bottom: 10px;
-    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 8px;
-    transition: transform 0.3s, background-color 0.3s;
-    cursor: default;
-    transform: scale(1);
-    background: linear-gradient(175deg, #e0f8fa, #cdd3f6);
-}}
-.vocabulary-content {{
-display: flex; justify-content: space-between; align-items: center;
-}}
-.vocabulary-paragraph {{
-margin-bottom: 0; display: inline-flex; align-items: baseline; gap: 5px;
-}}
-.vocabulary-detail {{
-    display: none; 
+@media screen and (max-width: 1450px) {{
+  .note-container {{
+    min-width: 95%;
+  }}
+}} 
+  /* Parent container */
+  .image-container {{
+    position: relative;
+    padding: 1em;
+    display: flex;
+    width: 200px;
+    align-items: center;
+    justify-content: center;
     border-radius: 8px;
-    background: white;
-    padding: 8px;
-    opacity: 60%;
-    margin-top: 8px;
-}}
-.kanji-container {{
-    background: linear-gradient(175deg, #dadaff, #f6cde6); padding: 15px; border-radius: 10px; margin-bottom: 20px; display: flex; align-items: center; box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    flex-wrap: wrap;
-}}
-.note-container {{
-min-width: max-content;
+    background: linear-gradient(135deg, #d4d4ff, #e0c4ff); /* Placeholder background */
+    overflow: hidden;
+  }}
 
-flex: 1;
-padding: 15px;
-    border-radius: 10px;
-    flex: 1;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    font-style: italic;
-    color: #656565;
-    background: linear-gradient(45deg, #ececec, transparent);
-}}
-.kanji-subtitle {{
-    color: black;
-    display: inline-block;
-    width: 100px;
-    font-size: small;
-    font-weight: 100;
-}}
-.kanji-detail {{
+  /* Placeholder styling */
+  .image-container::before {{
+    content: "";
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border: 4px solid #e0e0e0;
+    border-top-color: #7c7cfd;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }}
+  .image-container.image-loaded::before {{
+    display: none;
+  }}
+
+  /* Image */
+  .image-container img {{
     display: block;
-    font-size: 16pt;
-    font-weight: 700;
-}}
-.kanji-column {{
-    flex: 1;
-    min-width: fit-content;
-}}
-.kanji-column-row {{
-    margin: 7px 5px 7px 11px;
-}}
-.kanji-glyph-container {{
-    margin-left: 20px; padding: 15px; text-align: center;
-}}
-.kanji-glyph {{
-    width: 200px; height: 200px;
-    mix-blend-mode: darken;
-}}
-.h3-title-separator {{
-    margin-top: 0;
-    margin-bottom: 15px;
-    padding-bottom: 5px;
-}}
-.h3-title {{
-    font-size: 20pt;
-}}
-.vocab-column {{
-flex: 1;
-min-width: max-content;
-}}
-.vocabulary-outer-container {{
-display: flex; gap: 20px; justify-content: space-between; align-items: flex-start;
-flex-wrap: wrap;
-}}
-@media only screen and (max-width: 645px){{
-}}
-</style>
-<div>
-<label for="showFurigana"><input type="checkbox" id="showFurigana" onchange="toggleShowFurigana(this.checked)"> Ukazovat furiganu </label>
-</div>
-<!-- Kanji Info Section --><h4 dir="ltr">
-<div class="kanji-container">
-<!-- Kanji Stroke Order with green border -->
-     <div class="kanji-glyph-container kanji-column">
-         <img src="https://github.com/jcsirot/kanji.gif/blob/master/kanji/gif/150x150/{item['kanji']}.gif?raw=true" alt="" class="kanji-glyph"
-         role="presentation" class="img-fluid atto_image_button_middle">
-     </div>    
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.3s ease-in-out;
+  }}
 
-    <div class="kanji-column">
-         
-         <div class="kanji-column-row"><span class="kanji-subtitle">Onyomi</span> <span class="kanji-detail">{get_onyomi(item)}</span></div>
-         <div class="kanji-column-row"><span class="kanji-subtitle">Kunyomi</span> <span class="kanji-detail">{get_kunyomi(item)}</span></div>
-         <div class="kanji-column-row"><span class="kanji-subtitle">Význam</span> <span class="kanji-detail">{item['meaning']}</span></div>
-    </div>
-    
-    <div class="kanji-column">
-         <div class="kanji-column-row"><span class="kanji-subtitle">Radikál</span> <span class="kanji-detail">not supported</span></div>
-    
-        <!-- Radicals as Interactive Elements todo
-    <div style="margin-left: 20px; display: flex; gap: 10px; align-items: flex-start;">
-         <span class="kanji-component" style="position: relative; color: #4b7d57; font-weight: bold; cursor: pointer; padding: 5px 10px; background-color: #e0f7e0; border-radius: 5px; border: 1px solid #4b7d57; transition: all 0.3s; transform-origin: center;">氺
-    
-    <span class="tooltip" style="visibility: hidden; opacity: 0; position: absolute; bottom: 120%; left: 50%; transform: translateX(-50%); background-color: #333; color: #fff; padding: 5px; border-radius: 5px; white-space: nowrap; font-size: 12px; transition: visibility 0.2s, opacity 0.2s;">
-      Voda (したみず) - Radikál #85
+  /* Reveal the image after loading */
+  .image-container img:loaded {{
+    opacity: 1;
+  }}
 
-      </span>
-    </span>
-     </div>-->
-    
-    </div>
-   </div>
-</h4>
-
-<!-- JavaScript for Tooltip Hover Effect -->
-<script>    
-    // Tooltip visibility and hover effects for enlarging
-    document.querySelectorAll('.kanji-component').forEach(function(element) {{
-        element.addEventListener('mouseenter', function() {{
-            const tooltip = this.querySelector('.tooltip');
-            tooltip.style.visibility = 'visible';
-            tooltip.style.opacity = '1';
-            this.style.backgroundColor = '#c8e6c9'; // Slightly darker background on hover
-            this.style.transform = 'scale(1.1)'; // Increase size on hover
-            this.style.zIndex = '1'; // Ensure the element "pops out" on hover
-        }});
-        element.addEventListener('mouseleave', function() {{
-            const tooltip = this.querySelector('.tooltip');
-            tooltip.style.visibility = 'hidden';
-            tooltip.style.opacity = '0';
-            this.style.backgroundColor = '#e0f7e0'; // Reset background color
-            this.style.transform = 'scale(1)'; // Reset size on hover out
-            this.style.zIndex = '0'; // Reset stacking order on hover out
-        }});
-    }});
-    
-    function toggleShowFurigana(value) {{
-        if (value === undefined) {{
-            value = (localStorage.getItem('showFurigana') || 'true') === true;
-        }} else {{
-            localStorage.setItem('showFurigana', value ? 'true' : 'false')
-        }}
-        document.querySelectorAll('ruby rt').forEach(function(element) {{
-            element.style.visibility = value ? 'visible' : 'hidden';
-        }});
-        return value;
+  /* Spinning animation */
+  @keyframes spin {{
+    0% {{
+      transform: rotate(0deg);
     }}
+    100% {{
+      transform: rotate(360deg);
+    }}
+  }}
+</style>
 
-    document.getElementById('showFurigana').checked = toggleShowFurigana();
-</script>
-
-
-<!-- Divider and Vocabulary Row -->
-<h3 class="h3-title-separator">
-    <strong class="h3-title">Slovní zásoba</strong>
-</h3>
-
-<div class="vocabulary-outer-container">
-
-    <!-- Green Vocabulary Column -->
-    <div class="vocab-column">
-        {''.join(map(get_word_html, item['vocabulary']))}
+<div class="min-h-screen bg-gradient-to-r from-blue-50 to-indigo-100 p-6 space-y-10">
+<div class="p-4 bg-gradient-to-r from-gray-50 to-gray-100 rounded-lg shadow mb-4">
+  <div class="flex justify-between items-center flex-row-reverse">
+    <!-- Label and Checkbox -->
+    <div id="controls">
+      <label for="showFurigana" class="flex items-center gap-2">
+        <input 
+          type="checkbox" 
+          id="showFurigana" 
+          class="w-5 h-5 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
+          onchange="toggleShowFurigana(this.checked)"
+        >
+        <span class="text-gray-700 font-medium">Ukazovat furiganu</span>
+      </label>
+      <label for="showSentences" class="flex items-center gap-2">
+        <input 
+          type="checkbox" 
+          id="showSentences" 
+          class="w-5 h-5 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
+          onchange="showSentences(this.checked)"
+        >
+        <span class="text-gray-700 font-medium">Vždy ukazovat věty</span>
+      </label>
     </div>
 
+    <!-- Hide/Show Button -->
+    <button
+      onclick="toggleControls(document.getElementById('controls').style.display === 'none')"
+      class="px-4 py-2 bg-indigo-600 text-white rounded-lg shadow hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+    >
+      Přepnout ovládací prvky
+    </button>
+  </div>
+</div>
+<!-- Kanji Info Section -->
+<div class="bg-white shadow-lg rounded-lg overflow-hidden md:flex">
+    <!-- Stroke Order Image -->
+<div class="image-container">
+  <img
 
-    <!-- Historical Note Section -->
-    <div class="note-container">
-        <p><strong>Poznámka: </strong> Not supported.
-        </p>
+        src="https://github.com/jcsirot/kanji.gif/blob/master/kanji/gif/150x150/{item['kanji']}.gif?raw=true"
+alt="Kanji Stroke Order"
+    onload="this.style.opacity='1'; this.parentElement.classList.add('image-loaded')"
+  />
     </div>
+    
+    <!-- Kanji Details -->
+    <div class="p-6 flex-1 space-y-4">
+        <h2 class="text-2xl font-bold text-gray-700">大</h2>
+        <div class="grid grid-cols-2 gap-4">
+            <div>
+                <p class="text-sm text-gray-500">Onyomi</p>
+                <p class="text-lg font-semibold text-gray-800">{get_onyomi(item)}</p>
+            </div>
+            <div>
+                <p class="text-sm text-gray-500">Význam</p>
+                <p class="text-lg font-semibold text-gray-800">{item['meaning']}</p>
+            </div>
+            <div>
+                <p class="text-sm text-gray-500">Kunyomi</p>
+                <p class="text-lg font-semibold text-gray-800">{get_kunyomi(item)}</p>
+            </div>
+            <div>
+                <p class="text-sm text-gray-500">Radikál</p>
+                <p class="text-lg font-semibold text-gray-800">Not Supported</p>
+            </div>
+        </div>
+    </div>
+</div>
 
-    <!-- JavaScript for Toggle Functionality -->
-    <script>
-        function toggleExample(exampleId, arrowId) {{
-            const example = document.getElementById(exampleId);
-            const arrow = document.getElementById(arrowId);
-
-            if (example.style.display === "none" || !example.style.display) {{
-                example.style.display = "block";
-                arrow.textContent = "▲";
-            }} else {{
-                example.style.display = "none";
-                arrow.textContent = "▼";
-            }}
-        }}
-    </script>
+<!-- Vocabulary Section -->
+<div>
+    <h3 class="text-2xl font-bold text-gray-800 mb-4">Slovní zásoba</h3>
+    <div class="flex flex-col lg:flex-row gap-6 flex-wrap">
+        <div 
+          class="flex-1 grid gap-4"
+          style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); align-items: start;"
+        >   
+            {''.join(map(get_word_html, item['vocabulary']))}
+        </div>
+        <!-- Historical Note Section -->
+        <div class="note-container flex-1 lg:max-w-sm lg:ml-6 p-4 bg-green-100 rounded-lg shadow">
+            <p class="text-gray-800">
+                <strong>Poznámka:</strong> Not supported.
+            </p>
+        </div>
+    </div>
 </div>
 <br>
 <!-- Bonus Materials Section -->
-<h3 class="h3-title-separator">
-    <strong class="h3-title">Bonusové materiály</strong>
-</h3>
-
 <div>
-    ...
+    <h3 class="text-2xl font-bold text-gray-800 mb-4">Bonusové materiály</h3>
+    <div class="p-6 bg-gradient-to-br from-green-100 to-green-50 rounded-lg shadow">
+      <p class="text-gray-700">Additional study resources and materials will appear here!</p>
+    </div>
 </div>
+
+<script>
+    function toggleExample(exampleId, button) {{
+        const example = document.getElementById(exampleId);
+        if (example.style.display === "none" || !example.style.display) {{
+            example.style.display = "block";
+            button.textContent = "▲";
+        }} else {{
+            example.style.display = "none";
+            button.textContent = "▼";
+        }}
+    }}
+    function toggleShowFurigana(value) {{
+        value = rememberValue('showFurigana', value) === 'true';
+        document.querySelectorAll('ruby rt').forEach(element => {{
+            element.style.visibility = value ? 'visible' : 'hidden';
+        }});
+    }}
+    function toggleControls(isHidden) {{
+        const controls = document.getElementById('controls');
+        isHidden = rememberValue('hideControls', isHidden) === 'true';
+    
+        if (isHidden) {{
+          controls.style.display = 'block';
+        }} else {{
+          controls.style.display = 'none'; 
+        }}
+    }}
+    function showSentences(doShow) {{
+        doShow = rememberValue('showSentences', doShow) === 'true';
+        document.querySelectorAll('.button-vocab-toggle').forEach(element => {{
+            element.textContent = doShow ? "▲" : "▼";
+        }});
+        document.querySelectorAll('.button-vocab-example').forEach(element => {{
+            element.style.display = doShow ? "block" : "none";
+        }});
+    }}
+    function rememberValue(key, value, defaultValue='true') {{
+        if (value === undefined) {{
+            value = (localStorage.getItem(key) || defaultValue);
+        }} else {{
+            localStorage.setItem('showFurigana', value);
+        }}
+        return String(value);
+    }}
+    toggleShowFurigana();
+    toggleControls();
+    showSentences();
+</script>
         """)
     return output
 
