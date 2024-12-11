@@ -2,24 +2,47 @@ from utils import structure_data_vocabulary_below_kanji, generate_furigana
 
 
 def get_onyomi(item):
-    return ", ".join(item.get("onyomi", [])) + ", ".join(item.get("onyomi-", []))
+    return item.get("onyomi").join(", ")
 
 
 def get_kunyomi(item):
-    return ", ".join(item.get("kunyomi", [])) + ", ".join(item.get("kunyomi-", []))
+    return item.get("kunyomi").join(", ")
 
+
+def wrap_html(title, head, content):
+    return f"""
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{title}</title>
+    {head}
+</head>
+<body>
+{content}
+</body>
+</html>
+    """
+
+
+def inline_html(title, head, content):
+    return f"""
+{head}    
+{content}
+"""
 
 
 id_dealer = 0
-def get_word_html(word):
+
+
+def get_word_html(word, color='blue'):
     global id_dealer
     id_dealer += 1
 
-
     def get_usage(usage_element):
-        if not usage_element or len(usage_element) < 1:
+        if not usage_element:
             return ""
-        parts = usage_element.split("。")
+        parts = str(usage_element).split("。")
         if len(parts) == 2:
             return f"""
             <div>
@@ -36,7 +59,7 @@ def get_word_html(word):
     usage_examples = ''.join(map(get_usage, word['usage']))
     if not usage_examples:
         return f"""
-    <div class="bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg shadow p-4 flex flex-col gap-2">
+    <div class="bg-gradient-to-r from-{color}-50 to-{color}-100 rounded-lg shadow p-4 flex flex-col my-2">
         <div class="flex justify-between items-center">
           <div>
             <p class="text-lg text-2xl text-gray-800">{generate_furigana(word['word'])}</p>
@@ -48,7 +71,7 @@ def get_word_html(word):
 
     return f"""
     
-    <div class="bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg shadow p-4 flex flex-col gap-2">
+    <div class="bg-gradient-to-r from-{color}-50 to-{color}-100 rounded-lg shadow p-4 flex flex-col my-2">
         <div class="flex justify-between items-center">
           <div>
             <p class="text-lg text-2xl text-gray-800">{generate_furigana(word['word'])}</p>
@@ -56,7 +79,7 @@ def get_word_html(word):
           </div>
             <!-- Arrow with onclick -->
             <button
-            class="button-vocab-toggle text-gray-600 hover:text-gray-900 transform transition-transform duration-200"
+            class="button-vocab-toggle text-gray-600 hover:text-gray-900 transform transition-transform duration-200 px-2"
             onclick="toggleExample('vocab{id_dealer}', this)"
               >
                 ▼
@@ -67,6 +90,19 @@ def get_word_html(word):
         </div>
     </div>
     """
+
+
+def get_vocab_entries(item):
+    return ''.join([f"""
+        <div 
+          class="flex-1 gap-4"
+          style="min-width: 350px; max-width: 500px;"
+        >   
+            {''.join(map(lambda x: get_word_html(x, color), filter(lambda x: getattr(x, handler)('word', level), item['vocabulary'])))}
+        </div>
+        """ for (level, color, handler) in [(0, 'green', 'get_equal'), (1, 'blue', 'get_equal'), (2, 'purple', 'get_below')]
+    ])
+
 
 def read_kanji_csv(key, data):
     import_kanji = False
@@ -88,75 +124,9 @@ def read_kanji_csv(key, data):
         # document.head.appendChild(link);
         # < / script >
         output[item['kanji']] = (f"""
-<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-<style>
-@media screen and (min-width: 1450px) {{
-  .note-container {{
-    min-width: 575px;
-  }}
-}}
-@media screen and (max-width: 1450px) {{
-  .note-container {{
-    min-width: 95%;
-  }}
-}} 
-  /* Parent container */
-  .image-container {{
-    position: relative;
-    padding: 1em;
-    display: flex;
-    width: 200px;
-    align-items: center;
-    justify-content: center;
-    border-radius: 8px;
-    background: linear-gradient(135deg, #d4d4ff, #e0c4ff); /* Placeholder background */
-    overflow: hidden;
-  }}
-
-  /* Placeholder styling */
-  .image-container::before {{
-    content: "";
-    position: absolute;
-    width: 40px;
-    height: 40px;
-    border: 4px solid #e0e0e0;
-    border-top-color: #7c7cfd;
-    border-radius: 50%;
-    animation: spin 1s linear infinite;
-  }}
-  .image-container.image-loaded::before {{
-    display: none;
-  }}
-
-  /* Image */
-  .image-container img {{
-    display: block;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: 0;
-    transition: opacity 0.3s ease-in-out;
-  }}
-
-  /* Reveal the image after loading */
-  .image-container img:loaded {{
-    opacity: 1;
-  }}
-
-  /* Spinning animation */
-  @keyframes spin {{
-    0% {{
-      transform: rotate(0deg);
-    }}
-    100% {{
-      transform: rotate(360deg);
-    }}
-  }}
-</style>
-
 <div class="min-h-screen bg-gradient-to-r from-blue-50 to-indigo-100 p-6 space-y-10">
 <div class="p-4 bg-gradient-to-r from-gray-50 to-gray-100 rounded-lg shadow mb-4">
-  <div class="flex justify-between items-center flex-row-reverse">
+  <div class="flex justify-between items-center flex-row-reverse flex-wrap">
     <!-- Label and Checkbox -->
     <div id="controls">
       <label for="showFurigana" class="flex items-center gap-2">
@@ -182,7 +152,7 @@ def read_kanji_csv(key, data):
     <!-- Hide/Show Button -->
     <button
       onclick="toggleControls(document.getElementById('controls').style.display === 'none')"
-      class="px-4 py-2 bg-indigo-600 text-white rounded-lg shadow hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+      class="my-3 mx-2 px-4 py-2 bg-indigo-600 text-white rounded-lg shadow hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
     >
       Přepnout ovládací prvky
     </button>
@@ -191,18 +161,17 @@ def read_kanji_csv(key, data):
 <!-- Kanji Info Section -->
 <div class="bg-white shadow-lg rounded-lg overflow-hidden md:flex">
     <!-- Stroke Order Image -->
-<div class="image-container">
-  <img
-
+    <div class="bg-gradient-to-br from-indigo-100 to-purple-100 p-6 flex items-center justify-center">
+        <img
         src="https://github.com/jcsirot/kanji.gif/blob/master/kanji/gif/150x150/{item['kanji']}.gif?raw=true"
-alt="Kanji Stroke Order"
-    onload="this.style.opacity='1'; this.parentElement.classList.add('image-loaded')"
-  />
+        alt="Kanji Stroke Order"
+        class="w-44 h-44 rounded-lg border border-gray-200 shadow"
+        />
     </div>
     
     <!-- Kanji Details -->
     <div class="p-6 flex-1 space-y-4">
-        <h2 class="text-2xl font-bold text-gray-700">大</h2>
+        <h2 class="text-2xl font-bold text-gray-700">{item['kanji']}</h2>
         <div class="grid grid-cols-2 gap-4">
             <div>
                 <p class="text-sm text-gray-500">Onyomi</p>
@@ -228,12 +197,7 @@ alt="Kanji Stroke Order"
 <div>
     <h3 class="text-2xl font-bold text-gray-800 mb-4">Slovní zásoba</h3>
     <div class="flex flex-col lg:flex-row gap-6 flex-wrap">
-        <div 
-          class="flex-1 grid gap-4"
-          style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); align-items: start;"
-        >   
-            {''.join(map(get_word_html, item['vocabulary']))}
-        </div>
+        {get_vocab_entries(item)}
         <!-- Historical Note Section -->
         <div class="note-container flex-1 lg:max-w-sm lg:ml-6 p-4 bg-green-100 rounded-lg shadow">
             <p class="text-gray-800">
@@ -277,6 +241,7 @@ alt="Kanji Stroke Order"
         }} else {{
           controls.style.display = 'none'; 
         }}
+        sendHeightToParent();
     }}
     function showSentences(doShow) {{
         doShow = rememberValue('showSentences', doShow) === 'true';
@@ -286,6 +251,7 @@ alt="Kanji Stroke Order"
         document.querySelectorAll('.button-vocab-example').forEach(element => {{
             element.style.display = doShow ? "block" : "none";
         }});
+        sendHeightToParent();
     }}
     function rememberValue(key, value, defaultValue='true') {{
         if (value === undefined) {{
@@ -298,11 +264,24 @@ alt="Kanji Stroke Order"
     toggleShowFurigana();
     toggleControls();
     showSentences();
+    function sendHeightToParent() {{
+      const height = document.documentElement.scrollHeight;
+      window.parent && window.parent.postMessage({{ iframeHeight: height, test: "true" }}, "https://elf.phil.muni.cz");
+    }}
+
+    // Call the function when the iframe is loaded
+    window.addEventListener("load", sendHeightToParent);
+
+    // Call the function when the iframe content changes (optional for dynamic content)
+    window.addEventListener("resize", sendHeightToParent);
 </script>
         """)
     return output
 
+
 import os
+
+
 def generate_html(key, data):
     output = read_kanji_csv(key, data)
 
@@ -316,5 +295,22 @@ def generate_html(key, data):
 
         # Write the string content to the HTML file
         with open(file_path, 'w', encoding='utf-8') as file:
-            file.write(v)
+            # Todo: choose between inline-html and wrap-html
+
+            file.write(wrap_html(k, f"""
+<meta charset="UTF-8">
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+<style>
+@media screen and (min-width: 1450px) {{
+  .note-container {{
+    min-width: 575px;
+  }}
+}}
+@media screen and (max-width: 1450px) {{
+  .note-container {{
+    min-width: 95%;
+  }}
+}} 
+</style> 
+            """, v))
         print(f"Saved: {file_path}")

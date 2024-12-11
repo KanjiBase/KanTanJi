@@ -38,7 +38,7 @@ def read_kanji_csv(key, data):
         if extra:
             extra = "<br>" + extra
 
-        usage_lines = "".join([f"<div style=\"color: gray; font-size: 14pt;\">{generate_furigana(usage)}</div>" for usage in item.get("usage", [])])
+        usage_lines = "".join([f"<div style=\"color: gray; font-size: 14pt;\">{generate_furigana(usage)}</div>" for usage in item.get("usage")])
         if usage_lines:
             usage_lines = "<br>" + usage_lines
         if extra or usage_lines:
@@ -46,10 +46,10 @@ def read_kanji_csv(key, data):
             usage_lines = separator + usage_lines
                 
         if ttype == "kanji":
-            onyomi = "　".join(item.get("onyomi", []))  # Concatenate onyomi with a long space
-            onyomi += "  ".join(f"<span style=\"color: gray; font-size: 14pt;\">{x}</span>" for x in item.get("onyomi-", []))
-            kunyomi = "　".join(item.get("kunyomi", []))  # Concatenate kunyomi with a long space
-            kunyomi += "  ".join(f"<span style=\"color: gray; font-size: 14pt;\">{x}</span>" for x in item.get("kunyomi-", []))
+            onyomi = item.get("onyomi").get_equal(0).join("  ")
+            onyomi += "  ".join(f"<span style=\"color: gray; font-size: 14pt;\">{x}</span>" for x in item.get("onyomi").get_below(1))
+            kunyomi = item.get("kunyomi").get_equal(0).join("　")
+            kunyomi += "  ".join(f"<span style=\"color: gray; font-size: 14pt;\">{x}</span>" for x in item.get("kunyomi").get_below(1))
 
             if onyomi:
                 onyomi = f"<span>Onyomi: {onyomi}</span>"

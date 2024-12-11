@@ -11,7 +11,7 @@ from reportlab.lib.fonts import addMapping
 from reportlab.lib import fonts
 from reportlab.platypus import Spacer
 
-from utils import retrieve_row_kanjialive_url
+from utils import retrieve_row_kanjialive_url, Value
 
 
 # Function to create inline furigana using <sup> tags in a Paragraph
@@ -20,10 +20,10 @@ def generate_furigana_paragraph(text, style, aditional=''):
     pattern = r'([^\s<>]{1})[<>＜＞]([^<>＜＞]+)[<>＜＞]'
 
     # Replace kanji-furigana pairs with a <sup> (superscript) structure
-    formatted_text = re.sub(pattern, r'\1<sup size="5">\2</sup>', text)
+    formatted_text = re.sub(pattern, r'\1<sup size="5">\2</sup>', str(text))
 
     if aditional:
-        formatted_text = aditional + '<br/><br/>&nbsp;&nbsp;&nbsp;' + formatted_text
+        formatted_text = str(aditional) + '<br/><br/>&nbsp;&nbsp;&nbsp;' + formatted_text
 
     # Return a formatted Paragraph with furigana and kanji inline
     return Paragraph(formatted_text, style)
@@ -66,15 +66,17 @@ def generate_pdf(key, data):
             kanji_paragraph = Paragraph(f"<font size=40>{item['kanji']}</font>", styles['KanjiHeader'])
 
             # Onyomi, Kunyomi, and Meaning in separate rows
-            onyomi = item.get("onyomi", [])
-            onyomi.extend([f"<font color=\"gray\" size=\"10\"> {x} </font>" for x in item.get("onyomi-", [])])
-            kunyomi = item.get("kunyomi", [])
-            kunyomi.extend([f"<font color=\"gray\" size=\"10\"> {x} </font>" for x in item.get("kunyomi-", [])])
+            onyomi_values = item.get("onyomi")
+            onyomi = onyomi_values.get_equal(0)
+            onyomi.extend([f"<font color=\"gray\" size=\"10\"> {x} </font>" for x in onyomi_values.get_below(1)])
+            kunyomi_values = item.get("kunyomi", [])
+            kunyomi = kunyomi_values.get_equal(0)
+            kunyomi.extend([f"<font color=\"gray\" size=\"10\"> {x} </font>" for x in kunyomi_values.get_below(1)])
 
             meaning = f"<div style=\"font-size: 26pt;\">{item['meaning']}</div>"
 
-            onyomi_paragraph = Paragraph("&nbsp;&nbsp;&nbsp;&nbsp;".join(onyomi), styles['NormalNoto'])
-            kunyomi_paragraph = Paragraph("&nbsp;&nbsp;&nbsp;&nbsp;".join(kunyomi), styles['NormalNoto'])
+            onyomi_paragraph = Paragraph(onyomi.join("&nbsp;&nbsp;&nbsp;&nbsp;"), styles['NormalNoto'])
+            kunyomi_paragraph = Paragraph(kunyomi.join("&nbsp;&nbsp;&nbsp;&nbsp;"), styles['NormalNoto'])
             meaning_paragraph = Paragraph(meaning, styles['NormalNoto'])
 
             # KanjiAlive URL as a clickable link
@@ -111,24 +113,24 @@ def generate_pdf(key, data):
                     word = generate_furigana_paragraph(item['word'], styles['NormalNoto'])
                     meaning = item['meaning']
 
-                    usage_list = item.get("pdf-usage", [])
+                    usage_list = item.get("usage").copy()
                     if len(usage_list) < 1:
-                        usage_list.append("")  # trigger insertion of the word
+                        usage_list.append(Value(False))  # trigger insertion of the word
                     
                     usage_extra_rows = 0
                     start_position = len(table_data)
                     for usage in usage_list:
-                        usage = generate_furigana_paragraph(usage, styles['NormalNoto'], meaning) if usage else Paragraph(meaning, styles['NormalNoto'])
+                        usage = generate_furigana_paragraph(usage, styles['NormalNoto'], meaning) if usage else Paragraph(str(meaning), styles['NormalNoto'])
                         current_pos = len(table_data)
                         # first row contains also word and meaning, the rest joined cells
                         if word and meaning:
-                            table_data.append([word, usage, ''])
+                            table_data.append([word, str(usage), ''])
                             table_style.append(('SPAN', (1, current_pos), (2, current_pos)))
                             word = ''
                             meaning = ''
                         elif usage:
                             usage_extra_rows += 1
-                            table_data.append(['', usage, ''])
+                            table_data.append(['', str(usage), ''])
                             table_style.append(('SPAN', (1, current_pos), (2, current_pos)))
                     if usage_extra_rows > 0:
                         table_style.append(('SPAN', (0, start_position), (0, start_position + usage_extra_rows)))

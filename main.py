@@ -4,9 +4,12 @@ from pathlib import Path
 from src.pdf_generator import generate_pdf
 from src.anki_generator import generate_anki
 from src.html_generator import generate_html
+from src.utils import Value, ValueList, Entry
+
 
 def process_row(row):
-    item = {"onyomi": [], "kunyomi": [], "onyomi-": [], "kunyomi-": [], "usage": [], "pdf-usage": [], "extra": {}, "type": ""}
+    # Todo solve extra
+    item = Entry({"onyomi": ValueList(), "kunyomi": ValueList(), "usage": ValueList(), "extra": {}, "type": ""})
     import_kanji = False
     for i in range(0, len(row), 2):
         key = row[i]
@@ -24,42 +27,52 @@ def process_row(row):
         else:
             value = f"{value}"
 
+
+        key_significance = 0
+        if key.endswith("-"):
+            temp = key.rstrip('-')
+            key_significance = len(key) - len(temp)
+            key = temp
+
+
         if key == 'kanji':
             if len(value) != 1:
                 print(f"ERROR kanji value '{value}' longer than 1")
-            item["type"] = 'kanji'
-            item["kanji"] = value
-            import_kanji = True
-            item["guid"] = 'k' + str( hash(value))
+            if item.get("kanji", False):
+                print(f"ERROR kanji redefinition, only one value allowed!")
+            else:
+                item["type"] = 'kanji'
+                item["kanji"] = Value(value, key_significance)
+                import_kanji = True
+                item["guid"] = 'k' + str(hash(value))
         elif key == 'id':
-            item["id"] = value
+            if key_significance > 0:
+                print("Warning: ID cannot have lesser significance! Ignoring the property.", value)
+            item["id"] = Value(value, key_significance)
+
         elif key == 'onyomi':
-            item["onyomi"].append(value)
-        elif key == 'onyomi-':
-            item["onyomi-"].append(value)
+            item["onyomi"].append(Value(value, key_significance))
         elif key == 'kunyomi':
-            item["kunyomi"].append(value)
-        elif key == 'kunyomi-':
-            item["kunyomi"].append(value)
+            item["kunyomi"].append(Value(value, key_significance))
         elif key == 'imi':
-            item["meaning"] = value
+            item["meaning"] = Value(value, key_significance)
         elif key == 'tango':
             item["type"] = 'tango'
-            item["word"] = value
+            item["word"] = Value(value, key_significance)
 
             import_kanji = False
             item["guid"] = 'w' + str(hash(value))
-            
         elif key == 'tsukaikata':
-            item["usage"].append(value)
+            item["usage"].append(Value(value, key_significance))
 
         else:
-            item["extra"][key] = value
+            # TODO does not support chaining
+            item["extra"][key] = Value(value, key_significance)
 
     if not item.get("guid", False):
         print("IGNORES: invalid data:", row)
         return None, False
-    item["guid"] += item["id"]
+    item["guid"] += str(item["id"])
 
     return item, import_kanji
 

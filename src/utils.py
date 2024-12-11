@@ -1,5 +1,59 @@
 import re
 import hashlib
+from copy import copy
+
+
+class Entry(dict):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+    def get_equal(self, target, significance_level=0):
+        target = self[target]
+        if type(target) == ValueList:
+            return target.get_equal(significance_level)
+        if type(target) == Value and target.significance == significance_level:
+            return Value
+        return None
+
+    def get_below(self, target, below_significance):
+        target = self[target]
+        if type(target) == ValueList:
+            return target.get_equal(below_significance)
+        if type(target) == Value and target.significance >= below_significance:
+            return Value
+        return None
+
+class Value:
+    def __init__(self, value, significance=0):
+        self.value = value
+        self.significance = significance
+
+    def __str__(self):
+        return str(self.value)
+
+    def __repr__(self):
+        return f"Value({repr(self.value)})"
+
+    def __bool__(self):
+        return bool(self.value)
+
+
+class ValueList(list):
+    def __init__(self, values=None):
+        # Initialize the list with optional values
+        super().__init__(values or [])
+
+    def get_equal(self, significance_level=0):
+        return ValueList(filter(lambda x: x.significance == significance_level, self))
+
+    def get_below(self, below_significance):
+        return ValueList(filter(lambda x: x.significance >= below_significance, self))
+
+    def join(self, separator):
+        return separator.join(str(x) for x in self)
+
+    def __copy__(self):
+        return self.__class__(copy(self))
 
 
 def compute_hash(records):
@@ -13,15 +67,15 @@ def compute_hash(records):
 # Function to generate furigana in HTML format (support both > and ＞ for furigana)
 def generate_furigana(text):
     # First match any pairs and replace them as whole
-    text = re.sub(r'[<＜]([一-龠ぁ-ゔ\s]+)[>＞][<＜]([一-龠ぁ-ゔ\s]+)[>＞]', r'<ruby>\1<rt style="visibility: hidden">\2</rt></ruby>', text)
+    text = re.sub(r'[<＜]([一-龠ぁ-ゔ\s]+)[>＞][<＜]([一-龠ぁ-ゔ\s]+)[>＞]', r'<ruby>\1<rt style="visibility: hidden">\2</rt></ruby>', str(text))
     # Match exactly one character followed by furigana in <> or ＜＞ (supports both half-width and full-width)
-    return  re.sub(r'([一-龠ぁ-ゔ\s]{1})[<＜]([一-龠ぁ-ゔ\s]+)[>＞]', r'<ruby>\1<rt style="visibility: hidden">\2</rt></ruby>', text)
+    return  re.sub(r'([一-龠ぁ-ゔ\s]{1})[<＜]([一-龠ぁ-ゔ\s]+)[>＞]', r'<ruby>\1<rt style="visibility: hidden">\2</rt></ruby>', str(text))
 
 
 # Function to remove furigana, leaving only the main character
 def remove_furigana(text):
     # Match exactly one character followed by furigana in <> or ＜＞ and remove the furigana part
-    return re.sub(r'[<>＜＞]([^/<>＜＞]+)[<>＜＞]', r'\1', text)
+    return re.sub(r'[<>＜＞]([^/<>＜＞]+)[<>＜＞]', r'\1', str(text))
 
 
 def retrieve_row_kanjialive_url(item):
@@ -68,10 +122,12 @@ def structure_data_vocabulary_below_kanji(data):
         if not item:
             continue
 
-        node = get_or_crete_entry(structured_data, item["id"], {})
+        id = str(item["id"])
+
+        node = get_or_crete_entry(structured_data, id, {})
         ttype = item.get("type")
         if ttype == "kanji":
-            structured_data[item["id"]] = {**node, **item}
+            structured_data[id] = {**node, **item}
         else:
             vocab = get_or_crete_entry(node, "vocabulary", [])
             vocab.append(item)
