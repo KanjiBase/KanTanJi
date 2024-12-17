@@ -1,6 +1,7 @@
 import traceback
 from pathlib import Path
 import os
+import shutil
 
 from src.pdf_generator import generate_pdf
 from src.anki_generator import generate_anki
@@ -78,7 +79,6 @@ def process_row(row):
         print("IGNORES: invalid data:", row)
         return None, False
     item["guid"] += str(item["id"])
-
     return item, import_kanji
 
 
@@ -205,7 +205,9 @@ def clean_files(item, outdated):
             Path(target).unlink(missing_ok=True)
         else:
             target_dir = os.path.dirname(target)
-            if target_dir:  # Non-empty path
+            if os.path.exists(target) and os.path.isdir(target):
+                shutil.rmtree(target)
+            if target_dir:
                 os.makedirs(target_dir, exist_ok=True)
             os.replace(source, target)
     except Exception as e:
