@@ -10,7 +10,8 @@
 !src/
 !main.py
 !README.md
-!POLicy_TERMS.md
+!POLICY_TERMS.md
+!DATA_INPUT.md
 
 # Ensure all files within specific folders are not ignored
 !misc/*
