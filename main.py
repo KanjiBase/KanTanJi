@@ -190,76 +190,11 @@ for key in data:
         print(traceback.format_exc())
 
 
-# Directory where the PDF files are stored
-directory = Path(".")
-files = directory.glob("*.pdf")
-files = list(files)
-
-directory = Path("pdf")
-# Ensure the PDF directory exists
-if directory.is_dir():
-    files.extend(list(directory.glob("*.pdf")))
-
-if len(files):
-    readme += """
-## Sady Kanji:
-"""
-    files.sort()
-    
-    existing_set = set()
-    for pdf_file in files:
-        try:
-            # Generate a link for each PDF file found
-            file_name = pdf_file.stem  # Get the file name without the extension
-            if file_name in existing_set:
-                continue
-            existing_set.add(file_name)
-            readme += f" - <a href=\"{directory}/{pdf_file.name}\">Set {file_name}</a>\n"
-            print(f"PDF file found and linked: {pdf_file.name}")
-        except Exception as e:
-            print(f"Failed to process file {pdf_file.name}", e)
-            print(traceback.format_exc())
-else:
-    print(f"Directory {directory} does not exist.")
-
-
-directory = Path(".")
-files = directory.glob("*.apkg")
-files = list(files)
-
-directory = Path("anki")
-# Ensure the PDF directory exists
-if directory.is_dir():
-    files.extend(list(directory.glob("*.apkg")))
-
-if len(files):
-    readme += """
-## Anki Packs
-"""
-    files.sort()
-    
-    existing_set = set()
-    for anki_file in files:
-        try:
-            # Generate a link for each PDF file found
-            file_name = anki_file.stem  # Get the file name without the extension
-            
-            if file_name in existing_set:
-                continue
-            existing_set.add(file_name)
-            readme += f" - <a href=\"{directory}/{anki_file.name}\">Package {file_name}</a>\n"
-            print(f"PDF file found and linked: {anki_file.name}")
-        except Exception as e:
-            print(f"Failed to process file {anki_file.name}", e)
-            print(traceback.format_exc())
-else:
-    print(f"Directory {directory} does not exist.")
-
-
 target_folder_to_output = None
 
 def clean_files(item, outdated):
     global target_folder_to_output
+    target_folder_to_output = ".temp"
     try:
         name = item["name"]
         source = filepath_dealer(name)
@@ -279,18 +214,75 @@ def clean_files(item, outdated):
         print(traceback.format_exc())
 
 
+def get_readme_content():
+    global target_folder_to_output
+    readme = ""
+
+    pdf_files = []
+    anki_files = []
+    html_files = []
+    directory_list = [Path(x) for x in Path(target_folder_to_output).rglob('*') if x.is_dir()]
+    for dir in directory_list:
+        pdf_files.append(dir.glob("*.pdf"))
+        anki_files.append(dir.glob("*.apkg"))
+        html_files.append({
+            "parent": dir.name,
+            "data": dir.glob("*.html")
+        })
+
+    if len(pdf_files):
+        readme += """
+## PDF Sady Kanji:
+"""
+        files = [item for row in pdf_files for item in row]
+        files.sort()
+
+        for pdf_file in files:
+            readme += f" - <a href=\"{target_folder_to_output}/{pdf_file.parent.name}/{pdf_file.name}\">Sada {pdf_file.parent.name}</a>\n"
+
+    if len(anki_files):
+        readme += """
+## Anki Balíčky
+"""
+        files = [item for row in anki_files for item in row]
+        files.sort()
+
+        for anki_file in files:
+            readme += f" - <a href=\"{target_folder_to_output}/{anki_file.parent.name}/{anki_file.name}\">Balíček {anki_file.parent.name}</a>\n"
+
+    if len(html_files):
+        readme += """
+## HTML Materiály
+"""
+        html_files.sort(key=lambda x: x["parent"])
+
+        for item in html_files:
+            files = item["data"]
+            readme += f"""
+- <details>
+  <summary>
+  Sada {item["parent"]}
+  </summary>
+"""
+            for file in files:
+                readme += f"   - <a href=\"{target_folder_to_output}/{file.parent.name}/{file.name}\">Kanji {file.name}</a>\n"
+            readme += "  </details>"
+    return readme
+
+
 hash_guard.save()
 if not uses_test_data:
-    # Write the README.md with links to the PDF files
-    with open("README.md", mode='w+', encoding='utf-8') as file:
-        file.write(readme)
-    print("README.md updated with PDF links.")
     target_folder_to_output = "static"
     hash_guard.for_entries(clean_files)
+
+    # Write the README.md with links to the PDF files
+    with open("README.md", mode='w+', encoding='utf-8') as file:
+        file.write(readme + get_readme_content())
+    print("README.md updated with PDF links.")
 else:
     target_folder_to_output = ".test"
     hash_guard.for_entries(clean_files)
     print("Skipping writing README.md: test mode.")
-    print(readme)
+    print(readme + get_readme_content())
 
 os.remove(".temp")
