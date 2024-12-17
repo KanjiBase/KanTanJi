@@ -201,7 +201,12 @@ def read_kanji_csv(key, data):
         <!-- Historical Note Section -->
         <div class="note-container flex-1 lg:max-w-sm lg:ml-6 p-4 bg-green-100 rounded-lg shadow">
             <p class="text-gray-800">
-                <strong>Poznámka:</strong> Not supported.
+                {
+"".join([
+    f"<div><strong><i>{generate_furigana(key)}<i></strong>: {generate_furigana(value)}</div>"
+    for key, value in item.get("extra", {}).items()
+])
+                }
             </p>
         </div>
     </div>
