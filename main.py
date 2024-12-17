@@ -194,7 +194,6 @@ target_folder_to_output = None
 
 def clean_files(item, outdated):
     global target_folder_to_output
-    target_folder_to_output = ".temp"
     try:
         name = item["name"]
         source = filepath_dealer(name)
