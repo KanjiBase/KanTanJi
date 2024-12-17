@@ -3,12 +3,17 @@
 Jednoduchá aplikace na trénování Kanji - pomocí PDF souborů a přidružených Anki balíčků.
 <br><br>
 
-## Sady Kanji:
- - <a href="pdf/Kanji_181-200.pdf">Set Kanji_181-200</a>
- - <a href="pdf/Kanji_1-20.pdf">Set Kanji_1-20</a>
- - <a href="pdf/Kanji_201-220.pdf">Set Kanji_201-220</a>
+## PDF Sady Kanji:
+ - <a href="static/1-20/1-20.pdf">Sada 1-20</a>
 
-## Anki Packs
- - <a href="anki/kanji_1-20.apkg">Package kanji_1-20</a>
- - <a href="anki/kanji_181-200.apkg">Package kanji_181-200</a>
- - <a href="anki/kanji_201-220.apkg">Package kanji_201-220</a>
+## Anki Balíčky
+ - <a href="static/1-20/1-20.apkg">Balíček 1-20</a>
+
+## HTML Materiály
+
+- <details>
+  <summary>
+  Sada 1-20
+  </summary>
+   - <a href="static/1-20/押.html">Kanji 押.html</a>
+  </details>
