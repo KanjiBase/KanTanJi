@@ -166,25 +166,25 @@ os.makedirs(".temp", exist_ok=True)
 for key in data:
     try:
         generate_anki(key, data, filepath_dealer)
-        print(f"Anki cards have been successfully saved to anki-kanji-{key}.")
+        print(f"Anki cards have been successfully saved:", key)
     except Exception as e:
-        print(f"Failed to write file anki-kanji-{key}", e)
+        print(f"Failed to write file", key, e)
         print(traceback.format_exc())
 
 
 for key in data:
     try:
         generate_pdf(key, data[key], filepath_dealer)
-        print(f"PDF file generated: Kanji_{key}.pdf")
+        print(f"PDF file generated:", key)
     except Exception as e:
-        print(f"Failed to write file Kanji_{key}.pdf", e)
+        print(f"Failed to write file", key, e)
         print(traceback.format_exc())
 
 
 for key in data:
     try:
         generate_html(key, data[key], filepath_dealer)
-        print(f"HTML files generated: Kanji_{key}.pdf")
+        print(f"HTML files generated:   ", key)
     except Exception as e:
         print(f"Failed to write HTML for dataset", key, e)
         print(traceback.format_exc())
@@ -284,5 +284,3 @@ else:
     hash_guard.for_entries(clean_files)
     print("Skipping writing README.md: test mode.")
     print(readme + get_readme_content())
-
-os.remove(".temp")
