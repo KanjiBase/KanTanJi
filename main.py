@@ -258,14 +258,14 @@ def get_readme_content():
         for item in html_files:
             files = item["data"]
             readme += f"""
-- <details>
+<details>
   <summary>
   Sada {item["parent"]}
   </summary>
 """
             for file in files:
-                readme += f"   - <a href=\"{target_folder_to_output}/{file.parent.name}/{file.name}\">Kanji {file.name}</a>\n"
-            readme += "  </details>"
+                readme += f"  - <a href=\"{target_folder_to_output}/{file.parent.name}/{file.name}\">Kanji {file.stem}</a>\n"
+            readme += "</details>"
     return readme
 
 
