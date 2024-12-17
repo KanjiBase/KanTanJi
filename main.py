@@ -277,7 +277,7 @@ if not uses_test_data:
     # Write the README.md with links to the PDF files
     with open("README.md", mode='w+', encoding='utf-8') as file:
         file.write(readme + get_readme_content())
-    print("README.md updated with PDF links.")
+    print("README.md updated with links.")
 else:
     target_folder_to_output = ".test"
     hash_guard.for_entries(clean_files)

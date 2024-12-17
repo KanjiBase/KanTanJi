@@ -6,6 +6,10 @@ on:
       - main  # Runs the workflow when changes are pushed to the main branch
   repository_dispatch:
     types: [manual_drive_trigger]
+  workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
   generate_pdf:
@@ -13,7 +17,9 @@ jobs:
 
     steps:
       - name: Check out repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
+        with:
+          persist-credentials: true
 
       - name: Set up Python
         uses: actions/setup-python@v2
