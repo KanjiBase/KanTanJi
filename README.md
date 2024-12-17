@@ -11,9 +11,9 @@ Jednoduchá aplikace na trénování Kanji - pomocí PDF souborů a přidružen�
 
 ## HTML Materiály
 
-- <details>
+<details>
   <summary>
   Sada 1-20
   </summary>
-   - <a href="static/1-20/押.html">Kanji 押.html</a>
-  </details>
+  - <a href="static/1-20/押.html">Kanji 押</a>
+</details>
