@@ -147,10 +147,12 @@ class HashGuard:
             self.hashes = {}
         self.stamp = time.time()
 
-    def get(self, key):
+    def get(self, key, name):
         item = self.hashes.get(key, None)
         if item is not None:
             item["stamp"] = self.stamp
+            if item["name"] != name:
+                item["hash"] = ""
         return item
 
     def update(self, key, name, hash_value):

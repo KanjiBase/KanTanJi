@@ -124,13 +124,13 @@ def generate_pdf(key, data, path_getter):
                         current_pos = len(table_data)
                         # first row contains also word and meaning, the rest joined cells
                         if word and meaning:
-                            table_data.append([word, str(usage), ''])
+                            table_data.append([word, usage, ''])
                             table_style.append(('SPAN', (1, current_pos), (2, current_pos)))
                             word = ''
                             meaning = ''
                         elif usage:
                             usage_extra_rows += 1
-                            table_data.append(['', str(usage), ''])
+                            table_data.append(['', usage, ''])
                             table_style.append(('SPAN', (1, current_pos), (2, current_pos)))
                     if usage_extra_rows > 0:
                         table_style.append(('SPAN', (0, start_position), (0, start_position + usage_extra_rows)))

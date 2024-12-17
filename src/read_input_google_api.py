@@ -83,7 +83,7 @@ def read_sheets_google_api():
 
             # Convert the list of dictionaries to an array of arrays format
             if records:
-                hash_record = hash_guard.get(sheet_id)
+                hash_record = hash_guard.get(sheet_id, sheet['name'])
                 if hash_record is not None and type(hash_record) != str:
                     hash_record = hash_record.get("hash", None)
                 current_hash = compute_hash(records)
