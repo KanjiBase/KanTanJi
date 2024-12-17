@@ -15,6 +15,5 @@
 !POLICY_TERMS.md
 !DATA_INPUT.md
 
-# Ensure all files within specific folders are not ignored
-!misc/*
-!static/*
+# Ensure all output files are not ignored
+!static/**/*
