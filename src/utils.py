@@ -154,6 +154,15 @@ class HashGuard:
         return item
 
     def update(self, key, name, hash_value):
+        item = self.hashes.get(key, None)
+        if item and item["name"] != name:
+            # If exists & renamed, add outdated entry so it gets cleaned
+            self.hashes[f"{key}_{time.time()}"] = {
+                "name": item["name"],
+                "hash": item["hash"],
+                "stamp": 0
+            }
+
         self.hashes[key] = {
             "name": name,
             "hash": hash_value,
