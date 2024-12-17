@@ -39,6 +39,10 @@ def find_folder_id(folder_name):
 
 # Function to list all Google Sheets in a specific folder
 def list_sheets_in_folder(folder_id):
+    folder_metadata = drive_service.files().get(fileId=folder_id, fields="id, name, mimeType").execute()
+    if folder_metadata['mimeType'] != 'application/vnd.google-apps.folder':
+        raise ValueError(f"The provided ID '{folder_id}' is not a folder.")
+
     query = f"'{folder_id}' in parents and mimeType='application/vnd.google-apps.spreadsheet'"
     results = drive_service.files().list(q=query, fields="files(id, name)").execute()
     sheets = results.get('files', [])
