@@ -8,6 +8,7 @@
 !anki/
 !pdf/
 !src/
+!static/
 !main.py
 !src/static.py
 !README.md
@@ -15,5 +16,5 @@
 !DATA_INPUT.md
 
 # Ensure all files within specific folders are not ignored
-!/misc/*
-!/static/*
+!misc/*
+!static/*
