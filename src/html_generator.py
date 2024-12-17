@@ -282,16 +282,14 @@ def read_kanji_csv(key, data):
 import os
 
 
-def generate_html(key, data):
+def generate_html(key, data, path_getter):
     output = read_kanji_csv(key, data)
 
-    folder_path = f"html-{key}"
-    os.makedirs(folder_path, exist_ok=True)
-
+    file_root = path_getter(key)
     for k, v in output.items():
         # Create a file name for each HTML file
-        file_name = f"file_{k}.html"
-        file_path = os.path.join(folder_path, file_name)
+        file_name = f"{k}.html"
+        file_path = os.path.join(file_root, file_name)
 
         # Write the string content to the HTML file
         with open(file_path, 'w', encoding='utf-8') as file:

@@ -129,7 +129,7 @@ def save_deck(filename, deck):
     genanki.Package(deck).write_to_file(filename)
     print("Anki deck created", filename)
 
-def create_anki_deck(key, reader):
+def create_anki_deck(key, reader, filename):
     deck = None
     deck_name = None
     decks = 0
@@ -137,10 +137,7 @@ def create_anki_deck(key, reader):
         
         if deck_name != row[3]:
             if deck:
-                # todo consider error...
-                print("WARNING: new deck created in the middle of dataset!")
-                decks += 1
-                save_deck(f"kanji_{key}-{decks}.apkg", deck)
+                raise ValueError("New anki deck created in the middle of table!")
             deck_name = f"KanTanJi::{key}"
             # Create the Anki deck
             deck = genanki.Deck(
@@ -161,9 +158,9 @@ def create_anki_deck(key, reader):
         # Add the note to the deck
         deck.add_note(note)
     if deck:
-        save_deck(f"kanji_{key}.apkg", deck)
+        save_deck(filename, deck)
 
 
-def generate_anki(key, data):
+def generate_anki(key, data, folder_getter):
     anki = read_kanji_csv(key, data[key])
-    create_anki_deck(key, anki)
+    create_anki_deck(key, anki, f"{folder_getter(key)}/{key}.apkg")

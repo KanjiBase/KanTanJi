@@ -34,8 +34,8 @@ pdfmetrics.registerFont(TTFont('NotoSans', font))
 pdfmetrics.registerFont(TTFont('NotoSans-Bold', font))
 
 # Generate a PDF file with kanji, on'yomi, kun'yomi, and example words
-def generate_pdf(key, data):
-    doc = SimpleDocTemplate(f"Kanji_{key}.pdf", pagesize=letter, topMargin=12, bottomMargin=10)
+def generate_pdf(key, data, path_getter):
+    doc = SimpleDocTemplate(f"{path_getter(key)}/{key}.pdf", pagesize=letter, topMargin=12, bottomMargin=10)
     elements = []
 
     # Map bold font

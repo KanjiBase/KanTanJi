@@ -10,7 +10,7 @@ import gspread
 from google.oauth2.service_account import Credentials
 from googleapiclient.discovery import build
 
-from utils import compute_hash
+from utils import compute_hash, HashGuard
 
 # Set up Google API credentials
 SCOPES = [
@@ -60,12 +60,9 @@ def read_sheets_google_api():
     
     if drive_service is None:
         raise FileNotFoundError("Google Sheets API not configured.")
-    
-    previous_hashes = {}
-    hash_file_path = 'misc/update_guard.json'
-    if os.path.exists(hash_file_path):
-        with open(hash_file_path, 'r') as f:
-            previous_hashes = json.load(f)
+
+    hash_guard = HashGuard("google_api")
+
     output = {}
     sheets = list_sheets_in_folder(folder_id)
     for sheet in sheets:
@@ -82,23 +79,17 @@ def read_sheets_google_api():
 
             # Convert the list of dictionaries to an array of arrays format
             if records:
-                
-                hash = previous_hashes.get(sheet_id, None)
-                if hash is not None and type(hash) != str:
-                    hash = hash.get("hash", None)
+                hash_record = hash_guard.get(sheet_id)
+                if hash_record is not None and type(hash_record) != str:
+                    hash_record = hash_record.get("hash", None)
                 current_hash = compute_hash(records)
 
-                if hash and hash == current_hash:
+                if hash_record and hash_record == current_hash:
                     print("  Skip: hash matches previous version.")
                     continue
-                previous_hashes[sheet_id] = {
-                    "name": sheet['name'], 
-                    "hash": current_hash
-                }
+                hash_guard.update(sheet_id, sheet['name'], current_hash)
                 # Combine headers and rows
                 output[sheet['name']] = records
             else:
                 output[sheet['name']] = None
-    with open(hash_file_path, 'w+') as f:
-        json.dump(previous_hashes, f)
-    return output
+    return output, hash_guard

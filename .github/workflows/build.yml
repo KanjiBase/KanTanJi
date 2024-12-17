@@ -31,26 +31,11 @@ jobs:
             FOLDER_ID: ${{ secrets.FOLDER_ID }}
         run: python main.py
 
-      - name: Move PDF to GitHub Pages directory
-        run: |
-          mkdir -p pdf
-          if compgen -G "*.pdf" > /dev/null; then
-            mv *.pdf pdf/
-          fi
-
-          mkdir -p anki
-          if compgen -G "*.apkg" > /dev/null; then
-            mv *.apkg anki/
-          fi
-          if compgen -G "*.csv" > /dev/null; then
-            mv *.csv anki/
-          fi
-
       - name: Commit and push generated PDF to GitHub Pages
         run: |
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Actions"
-          git add README.md pdf/*.pdf anki/* misc/update_guard.json
+          git add README.md static/* misc/update_guard_*.json
           if git diff --cached --quiet; then
             echo "No changes to commit."
           else

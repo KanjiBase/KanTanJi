@@ -1,4 +1,7 @@
 import re
+import os
+import json
+import time
 import hashlib
 from copy import copy
 
@@ -132,3 +135,40 @@ def structure_data_vocabulary_below_kanji(data):
             vocab = get_or_crete_entry(node, "vocabulary", [])
             vocab.append(item)
     return structured_data
+
+
+class HashGuard:
+    def __init__(self, context_name):
+        self.hash_file_path = f"misc/update_guard_{context_name}.json"
+        if os.path.exists(self.hash_file_path):
+            with open(self.hash_file_path, 'r') as f:
+                self.hashes = json.load(f)
+        else:
+            self.hashes = {}
+        self.stamp = time.time()
+
+    def get(self, key):
+        item = self.hashes.get(key, None)
+        if item is not None:
+            item["stamp"] = self.stamp
+        return item
+
+    def update(self, key, name, hash_value):
+        self.hashes[key] = {
+            "name": name,
+            "hash": hash_value,
+            "stamp": self.stamp
+        }
+
+    def for_entries(self, clbck):
+        for key in self.hashes:
+            item = self.hashes[key]
+            if item["stamp"] != self.stamp:
+                clbck(item, True)
+                del self.hashes[key]
+            else:
+                clbck(item, False)
+
+    def save(self):
+        with open(self.hash_file_path, "w") as f:
+            json.dump(self.hashes, f)

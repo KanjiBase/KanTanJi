@@ -1,5 +1,6 @@
 import traceback
 from pathlib import Path
+import os
 
 from src.pdf_generator import generate_pdf
 from src.anki_generator import generate_anki
@@ -11,6 +12,10 @@ def process_row(row):
     # Todo solve extra
     item = Entry({"onyomi": ValueList(), "kunyomi": ValueList(), "usage": ValueList(), "extra": {}, "type": ""})
     import_kanji = False
+    
+    if len(row) < 1:
+        return None, False
+    
     for i in range(0, len(row), 2):
         key = row[i]
         if type(key) == "string":
@@ -98,14 +103,15 @@ def parse_data(data):
     return result
 
 
-def try_read_data(getter, message, old_data, success_read):
+def try_read_data(getter, message, output, hash_guard, success_read):
     if not success_read:
         try:
             print(message)
-            return getter(), True
+            output, hash_guard = getter()
+            return output, hash_guard, True
         except FileNotFoundError:
             pass
-    return old_data, success_read
+    return output, hash_guard, success_read
 
 
 
@@ -114,16 +120,17 @@ from src.read_input_test_data import read_local_data
 
 
 success_read = False
+hash_guard = None
 data = None
 # Read data provides in desired order here
-data, success_read = try_read_data(read_sheets_google_api,
-                                   "Google Services: Reading data...", data, success_read)
+data, hash_guard, success_read = try_read_data(read_sheets_google_api,
+                                   "Google Services: Reading data...", data, hash_guard, success_read)
 
 
 # Fallback test data
 uses_test_data = not success_read
-data, success_read = try_read_data(read_local_data,
-                                   "No data provider configured: using local test demo data.", data, success_read)
+data, hash_guard, success_read = try_read_data(read_local_data,
+                                   "No data provider configured: using local test demo data.", data, hash_guard, success_read)
 
 if not success_read:
     print("Error: Unable to read input data!")
@@ -133,6 +140,9 @@ if not data:
     print("No data found to process: all is up to date.")
     exit(0)
 
+if not hash_guard:
+    raise ValueError("HashGuard must be provided by the input logics!")
+
 data = parse_data(data)
 
 readme = """
@@ -141,11 +151,21 @@ Jednoduchá aplikace na trénování Kanji - pomocí PDF souborů a přidružen�
 <br><br>
 """
 
+def filepath_dealer(key):
+    folder_path = f".temp/{key}/"
+    os.makedirs(folder_path, exist_ok=True)
+    return folder_path
 
+def move_file_path_dealer(key, parent_folder):
+    folder_path = f"{parent_folder}/{key}/"
+    return folder_path
+
+
+os.makedirs(".temp", exist_ok=True)
 
 for key in data:
     try:
-        generate_anki(key, data)
+        generate_anki(key, data, filepath_dealer)
         print(f"Anki cards have been successfully saved to anki-kanji-{key}.")
     except Exception as e:
         print(f"Failed to write file anki-kanji-{key}", e)
@@ -154,7 +174,7 @@ for key in data:
 
 for key in data:
     try:
-        generate_pdf(key, data[key])
+        generate_pdf(key, data[key], filepath_dealer)
         print(f"PDF file generated: Kanji_{key}.pdf")
     except Exception as e:
         print(f"Failed to write file Kanji_{key}.pdf", e)
@@ -163,7 +183,7 @@ for key in data:
 
 for key in data:
     try:
-        generate_html(key, data[key])
+        generate_html(key, data[key], filepath_dealer)
         print(f"HTML files generated: Kanji_{key}.pdf")
     except Exception as e:
         print(f"Failed to write HTML for dataset", key, e)
@@ -235,12 +255,42 @@ if len(files):
 else:
     print(f"Directory {directory} does not exist.")
 
+
+target_folder_to_output = None
+
+def clean_files(item, outdated):
+    global target_folder_to_output
+    try:
+        name = item["name"]
+        source = filepath_dealer(name)
+        target = move_file_path_dealer(name, target_folder_to_output)
+        print("Moving ", name, source, target)
+
+        if outdated:
+            Path(source).unlink(missing_ok=True)
+            Path(target).unlink(missing_ok=True)
+        else:
+            target_dir = os.path.dirname(target)
+            if target_dir:  # Non-empty path
+                os.makedirs(target_dir, exist_ok=True)
+            os.replace(source, target)
+    except Exception as e:
+        print(f"ERROR: Could not clean files for {item}", e)
+        print(traceback.format_exc())
+
+
+hash_guard.save()
 if not uses_test_data:
     # Write the README.md with links to the PDF files
     with open("README.md", mode='w+', encoding='utf-8') as file:
         file.write(readme)
     print("README.md updated with PDF links.")
+    target_folder_to_output = "static"
+    hash_guard.for_entries(clean_files)
 else:
+    target_folder_to_output = ".test"
+    hash_guard.for_entries(clean_files)
     print("Skipping writing README.md: test mode.")
     print(readme)
 
+os.remove(".temp")

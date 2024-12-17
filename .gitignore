@@ -9,12 +9,11 @@
 !pdf/
 !src/
 !main.py
+!src/static.py
 !README.md
 !POLICY_TERMS.md
 !DATA_INPUT.md
 
 # Ensure all files within specific folders are not ignored
-!misc/*
-!anki/*
-!pdf/*
-!src/*
+!/misc/*
+!/static/*
