@@ -124,7 +124,7 @@ def read_kanji_csv(key, data):
         # document.head.appendChild(link);
         # < / script >
         output[item['kanji']] = (f"""
-<div class="min-h-screen bg-gradient-to-r from-blue-50 to-indigo-100 p-6 space-y-10">
+<div class="min-h-screen space-y-10">
 <div class="p-4 bg-gradient-to-r from-gray-50 to-gray-100 rounded-lg shadow mb-4">
   <div class="flex justify-between items-center flex-row-reverse flex-wrap">
     <!-- Label and Checkbox -->
@@ -212,14 +212,6 @@ def read_kanji_csv(key, data):
     </div>
 </div>
 <br>
-<!-- Bonus Materials Section -->
-<div>
-    <h3 class="text-2xl font-bold text-gray-800 mb-4">Bonusové materiály</h3>
-    <div class="p-6 bg-gradient-to-br from-green-100 to-green-50 rounded-lg shadow">
-      <p class="text-gray-700">Additional study resources and materials will appear here!</p>
-    </div>
-</div>
-
 <script>
     function toggleExample(exampleId, button) {{
         const example = document.getElementById(exampleId);
