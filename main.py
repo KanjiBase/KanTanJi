@@ -20,9 +20,11 @@ def process_row(row):
     for i in range(0, len(row), 2):
         key = row[i]
         if type(key) == "string":
-            key = (row[i]).strip().lower()
+            key = (row[i]).strip()
         else:
-            key = f"{key}".lower()
+            key = f"{key}"
+        original_key = key
+        key = key.lower()
         if len(key) < 1:
             continue
         if key[0] == "$":
@@ -73,7 +75,7 @@ def process_row(row):
 
         else:
             # TODO does not support chaining
-            item["extra"][key] = Value(value, key_significance)
+            item["extra"][original_key] = Value(value, key_significance)
 
     if not item.get("guid", False):
         print("IGNORES: invalid data:", row)

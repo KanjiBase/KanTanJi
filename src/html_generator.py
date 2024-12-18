@@ -163,7 +163,7 @@ def read_kanji_csv(key, data):
     <!-- Stroke Order Image -->
     <div class="bg-gradient-to-br from-indigo-100 to-purple-100 p-6 flex items-center justify-center">
         <img
-        src="https://github.com/jcsirot/kanji.gif/blob/master/kanji/gif/150x150/{item['kanji']}.gif?raw=true"
+        src="https://raw.githubusercontent.com/KanjiBase/kanji.gif/refs/heads/master/kanji/gif/150x150/{item['kanji']}.gif"
         alt="Kanji Stroke Order"
         class="w-44 h-44 rounded-lg border border-gray-200 shadow"
         />

@@ -61,3 +61,12 @@ ID     184     tango       晴<ha>れる       imi     vyčasit se, vyjasnit    
 ```
 TODO: Screenshot
 
+
+
+## Google Sheets
+To integrate wit google sheets and GitHub actions, you have to:
+
+ - Create Project
+ - Enable services: Goole Sheets API & Google Drive API
+ - Create Service Account
+ - Share the folder that hosts files with the target service account email

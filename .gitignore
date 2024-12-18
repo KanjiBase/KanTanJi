@@ -17,3 +17,6 @@
 
 # Ensure all output files are not ignored
 !static/**/*
+!misc/**/*
+# Ignore test guard
+misc/update_guard_test.json
