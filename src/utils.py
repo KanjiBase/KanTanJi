@@ -231,7 +231,7 @@ def process_row(row):
     :return: parsed row ready for further processing
     """
     # Todo solve extra
-    item = Entry({"onyomi": ValueList(), "kunyomi": ValueList(), "usage": ValueList(), "extra": {}, "type": ""})
+    item = Entry({"onyomi": ValueList(), "kunyomi": ValueList(), "usage": ValueList(), "extra": {}, "references": {}, "type": ""})
 
     if len(row) < 1:
         return None, False
@@ -282,6 +282,21 @@ def process_row(row):
             if key_significance > 0:
                 print("Warning: ID cannot have lesser significance! Ignoring the property.", value)
             item["id"] = Value(value, key_significance)
+        elif key == 'ref':
+            # todo parse ref from its syntax
+            values = value.split("-")
+            if len(values) != 2:
+                print(f"ERROR reference '{value}' invalid syntax - ignoring!")
+                continue
+
+            name = values[0]
+            id = values[1]
+
+            ref = item["references"].get(name)
+            if not ref:
+                ref = []
+                item["references"][name] = ref
+            ref.append(id)
 
         elif key == 'onyomi':
             item["onyomi"].append(Value(value, key_significance))

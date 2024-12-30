@@ -105,24 +105,39 @@ def get_vocab_entries(item):
 
 
 def read_kanji_csv(key, data, radicals):
-    import_kanji = False
-    reveal_furigana = "<script>['click', 'touchstart'].forEach(event => document.addEventListener(event, () => document.querySelectorAll('ruby rt').forEach(rt => rt.style.visibility = 'visible')));</script>"
-
     structured_data = structure_data_vocabulary_below_kanji(data)
     output = {}
 
+    def find_radical(id):
+        for radical in radicals:
+            if str(radical["id"]) == id:
+                return radical
+        return {}
+
     for id in structured_data:
         item = structured_data[id]
-        # < link
-        # type = "text/css"
-        # href = "https://cdnjs.cloudflare.com/ajax/libs/Primer/21.1.1/primer.css" >
-        # < script >
-        # var
-        # link = document.createElement("link");
-        # link.rel = "stylesheet";
-        # link.href = "https://cdnjs.cloudflare.com/ajax/libs/Primer/21.1.1/primer.css";
-        # document.head.appendChild(link);
-        # < / script >
+
+        radical_exists = False
+        radical_html = """
+        <div>
+            <p class="text-sm text-gray-500">Radikál</p>
+            <p class="text-lg font-semibold text-gray-800">
+        """
+        rad_ref = item["references"].get("radical")
+        if rad_ref:
+            for ref in rad_ref:
+                rad_value = find_radical(ref)
+                if rad_value:
+                    radical_html += f"<span>{rad_value.get('radical')} &emsp; {rad_value.get('meaning')}</span>"
+                    radical_exists = True
+        if radical_exists:
+            radical_html += """
+            </p>
+        </div>
+        """
+        else:
+            radical_html = ""
+
         output[item['kanji']] = (f"""
 <div class="min-h-screen space-y-10">
 <div class="p-4 bg-gradient-to-r from-gray-50 to-gray-100 rounded-lg shadow mb-4">
@@ -185,10 +200,7 @@ def read_kanji_csv(key, data, radicals):
                 <p class="text-sm text-gray-500">Kunyomi</p>
                 <p class="text-lg font-semibold text-gray-800">{get_kunyomi(item)}</p>
             </div>
-            <div>
-                <p class="text-sm text-gray-500">Radikál</p>
-                <p class="text-lg font-semibold text-gray-800">Not Supported</p>
-            </div>
+            {radical_html}
         </div>
     </div>
 </div>
@@ -288,9 +300,7 @@ def generate(key, data, metadata, path_getter):
     if not data["modified"] and not radicals["modified"]:
         return
 
-    data = data["content"]
-
-    output = read_kanji_csv(key, data, radicals)
+    output = read_kanji_csv(key, data["content"], radicals["content"])
 
     file_root = path_getter(key)
     for k, v in output.items():

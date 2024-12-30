@@ -1,7 +1,7 @@
 # Kanji Input
 
 Input for kanji is defined in rows, where odd rows carry the key (~ what to do with the value) and even rows carry the value itself.
-Each row must have `ID` key with numeric ID value of the entry.
+Each row must have `ID` key with numeric ID value of the entry. 
 
 Each row must also define **exactly one** one of the following keys:
 
@@ -17,7 +17,8 @@ ID   1   tango   思＜おも＞う  imi    myslet, věřit (něčemu)
 
 ### Key definitions - Data
 Always, when some key is required, it can be present only once in the row. Optional keys can be present multiple times.
-It is also not important what order the keys are defined in.
+It is also not important what order the keys are defined in. With kanjis, ID rows must be unique. Each tango (word)
+then uses the same ID as kanji it belongs to.
 
 Dependening on the keys mentioned above, the row also can or must define other keys:
  - kanji
@@ -32,18 +33,28 @@ You can also define arbitrary key-value pairs you wish, these will be included i
 
 ### Key definitions - Metadata
 ``kanji`` and `tango` types are present in the _data_ used to generate output files. However, 
-the app also supports arbitrary _metadata_. So, if you want to for example use radicals you can
+the app also supports arbitrary _metadata_. Each metadata row must be unique ID and type, there can
+be two rows with the same ID if they differ in ``type``.
+
+So, if you want to for example use radicals you can
 define them in the very same way as you would other items, and if your desired generator
 respects this metadata, it will be used along the data to enhance the outputs! Following
-rows are supported:
+row keys - ``type``s - are supported:
 
  - radical
+   - imi - **required**, the meaning of the kanji symbol
+   - kunyomi
+ 
 
 Unlike data, these metadata entries are available across all data items - they can be defined
 once _anywhere_. We recommend therefore defining such data in separate sheets to not
 to mix them with data entries - they will be later hard to find! KanTanJi can in this case
 respect the type as a filename: if you do not put any _data_ rows in some file, such file
 will not be treated as a daat source file, and thus it will not generate any direct outputs (pdf learning materials, anki decks...).
+
+### Referencing Metadata
+Any row can reference another row by the ``type`` and `ID` values. Referencing radical thus works
+like key-value pair: ``ref`` - ``redical-3``, which says that given row references radical with ID 3.
 
 ### Furigana
 Firugana is crucial part of learning kanji. Here, any value (except the 'kanji' value itself) and also custom keys support furigana in the following way:
