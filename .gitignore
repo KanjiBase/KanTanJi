@@ -19,4 +19,4 @@
 !static/**/*
 !misc/**/*
 # Ignore test guard
-misc/update_guard_test.json
+misc/*read_local_data*.json

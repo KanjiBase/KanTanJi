@@ -15,7 +15,7 @@ ID   1   kanji   思   　　　　 imi    myslet (emotivní)
 ID   1   tango   思＜おも＞う  imi    myslet, věřit (něčemu)
 ```
 
-### Key definitions
+### Key definitions - Data
 Always, when some key is required, it can be present only once in the row. Optional keys can be present multiple times.
 It is also not important what order the keys are defined in.
 
@@ -28,9 +28,22 @@ Dependening on the keys mentioned above, the row also can or must define other k
    - imi - **required**, the meaning of the vocabulary entry
    - tsukaikata - an example usage sentence, optional
 
-That's it! 
+You can also define arbitrary key-value pairs you wish, these will be included in 'other', 'notes' etc. sections.
 
-Though, you can also define arbitrary key-value pairs you wish, these will be included in 'other', 'notes' etc. sections.
+### Key definitions - Metadata
+``kanji`` and `tango` types are present in the _data_ used to generate output files. However, 
+the app also supports arbitrary _metadata_. So, if you want to for example use radicals you can
+define them in the very same way as you would other items, and if your desired generator
+respects this metadata, it will be used along the data to enhance the outputs! Following
+rows are supported:
+
+ - radical
+
+Unlike data, these metadata entries are available across all data items - they can be defined
+once _anywhere_. We recommend therefore defining such data in separate sheets to not
+to mix them with data entries - they will be later hard to find! KanTanJi can in this case
+respect the type as a filename: if you do not put any _data_ rows in some file, such file
+will not be treated as a daat source file, and thus it will not generate any direct outputs (pdf learning materials, anki decks...).
 
 ### Furigana
 Firugana is crucial part of learning kanji. Here, any value (except the 'kanji' value itself) and also custom keys support furigana in the following way:
@@ -62,6 +75,9 @@ ID     184     tango       晴<ha>れる       imi     vyčasit se, vyjasnit    
 TODO: Screenshot
 
 
+# Data Providers
+The following data providers are supported. Some might need additional setup to use - they just provide
+the data and might behave in very different ways.
 
 ## Google Sheets
 To integrate wit google sheets and GitHub actions, you have to:
@@ -70,3 +86,47 @@ To integrate wit google sheets and GitHub actions, you have to:
  - Enable services: Goole Sheets API & Google Drive API
  - Create Service Account
  - Share the folder that hosts files with the target service account email
+
+## Test Data
+Test data is meant for testing. Such data is stored in ``/misc`` folder
+and is used when no other source is configured. In that case, the application
+does not overwrite any files it would normally generate (update README etc.), 
+but creates only ``.test`` folder with test output & prints readme contents to stdout.
+
+# Advanced: Writing New Data Source
+To provide new data source, one must ensure that the data comes in tabular form 
+described above. Such data must be then returned in the following dictionary (shown one entry,
+all sheets must be attached like this):
+
+````python
+data_name = "name used for the output files, typicall range of kanji characters it provides info about"
+output[data_name] = {
+     "data": the_tabular_data,
+     "id": the_unique_data_id_unchanged_even_when_data_name_changes,
+     "name": data_name
+}
+````
+
+# Advanced: Writing new Output Generator
+Output generator needs to implement one function (`generate`):
+
+````python
+def generate(key, data, metadata, folder_getter):
+    # First, check whether any data was modified, and if not, exit to spare resources
+    data_modified = data["modified"]
+    radicals = metadata.get["radical"] # Note that metadata is not guaranteed to be present, only if at least one radical entry was present in the data!
+    radicals_set_modified = radicals is not None and radicals["modified"]
+    
+    if not data_modified or not radicals or not radicals_set_modified:
+       return
+    
+    # Use folder_getter to generate proper output location. In this folder, output a file suitable for your output type
+    output_filename = f"{folder_getter(key)}/{key}.apkg"  # example for anki deck
+
+    # Now, generate your output and store it in output_filename. You can also create multiple files if it is desirable.
+    ...
+````
+``folder_getter(key)`` is folder where all files of the same key (~dataset) remain.
+
+Integration of this function is not yet automatic, therefore ``main.py`` must be modified
+accordingly. This is going to be changed in the future.

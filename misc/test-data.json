@@ -29,5 +29,7 @@
     ["ID", 186, "kanji", "考", "imi", "zvážit", "onyomi", "コウ", "kunyomi", "かんが・える", "", ""],
     ["ID", 186, "tango", "考<かんが>える", "imi", "myslet, přemýšlet (racionální), odvodit", "tsukaikata", "考<がんが>えすぎないでください。Příliš si s tím nelamte hlavu.", "", "", "", ""],
     ["ID", 186, "tango", "考<かんが>え", "imi", "myšlenka, nápad, představa", "", "", "", "", "", ""],
-    ["ID", 186, "tango", "参＜さん＞考＜こう＞", "imi", "příklad, odkaz", "tsukaikata", "皆<みな>様<さん>の参<さん>考<こう>に成<な>れ幸<さい>いです。Doufám, že vám to bude příkladem.", "tsukaikata", "何<なん>の参<さん>考<こう>にもならない。Toto nelze použít jako referenci (příklad).", "", ""]
+    ["ID", 186, "tango", "参＜さん＞考＜こう＞", "imi", "příklad, odkaz", "tsukaikata", "皆<みな>様<さん>の参<さん>考<こう>に成<な>れ幸<さい>いです。Doufám, že vám to bude příkladem.", "tsukaikata", "何<なん>の参<さん>考<こう>にもならない。Toto nelze použít jako referenci (příklad).", "", ""],
+    ["ID", 4, "strokes", 1, "radical", "⼃", "imi", "diagonal sweeping stroke", "kunyomi", "の"],
+    ["ID", 5, "strokes", 1, "radical", "", "imi", "diagonal sweeping stroke", "kunyomi", "のかんむり"]
 ]

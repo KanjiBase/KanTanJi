@@ -8,7 +8,6 @@ from utils import generate_furigana, retrieve_row_kanjialive_url
 # Function to read the CSV data
 def read_kanji_csv(key, data):
 
-    import_kanji = False
     reveal_furigana = "<script>['click', 'touchstart'].forEach(event => document.addEventListener(event, () => document.querySelectorAll('ruby rt').forEach(rt => rt.style.visibility = 'visible')));</script>"
     separator = f"<br><hr style=\"border: 1px solid gray\"><b style=\"font-size: 14pt; color: gray;\">{generate_furigana('使＜つか＞い方＜かた＞')}:</b><br>"
 
@@ -17,15 +16,14 @@ def read_kanji_csv(key, data):
     cards_translation = []
     name = f"KanTanJi::{key}"
     for row in data:
-        (item, import_kanji) = row
+        item = row
 
         if not item:
             continue
             
         ttype = item.get("type")
 
-        #mingle cards together
-        if import_kanji:
+        if ttype == 'kanji' and len(cards):
             # Move first kanji -> translation and then others to the output
             output.extend(cards)
             output.extend(cards_translation)
@@ -161,6 +159,9 @@ def create_anki_deck(key, reader, filename):
         save_deck(filename, deck)
 
 
-def generate_anki(key, data, folder_getter):
-    anki = read_kanji_csv(key, data[key])
+def generate(key, data, metadata, folder_getter):
+    # Anki packs only read data, so if not modified do not re-generate
+    if not data["modified"]:
+        return
+    anki = read_kanji_csv(key, data["content"])
     create_anki_deck(key, anki, f"{folder_getter(key)}/{key}.apkg")

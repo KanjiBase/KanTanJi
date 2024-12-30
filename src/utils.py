@@ -67,6 +67,11 @@ def compute_hash(records):
     return hash_obj.hexdigest()
 
 
+def get_item_id(item):
+    type = item['type']
+    return str(item["id"]) + str(type) + str(item["guid"])
+
+
 # Function to generate furigana in HTML format (support both > and ＞ for furigana)
 def generate_furigana(text):
     # First match any pairs and replace them as whole
@@ -78,7 +83,7 @@ def generate_furigana(text):
 # Function to remove furigana, leaving only the main character
 def remove_furigana(text):
     # Match exactly one character followed by furigana in <> or ＜＞ and remove the furigana part
-    return re.sub(r'[<>＜＞]([^/<>＜＞]+)[<>＜＞]', r'\1', str(text))
+    return re.sub(r'[<＜]([一-龠ぁ-ゔ\s]+)[>＞][<＜]([一-龠ぁ-ゔ\s]+)[>＞]', r'\1', str(text))
 
 
 def retrieve_row_kanjialive_url(item):
@@ -121,7 +126,7 @@ def get_or_crete_entry(ddict, key, default):
 def structure_data_vocabulary_below_kanji(data):
     structured_data = {}
     for row in data:
-        (item, _) = row
+        item = row
         if not item:
             continue
 
@@ -171,15 +176,130 @@ class HashGuard:
             "stamp": self.stamp
         }
 
-    def for_entries(self, clbck):
+    def invalidate_all(self):
+        for key in self.hashes:
+            item = self.hashes[key]
+            item["stamp"] = ""
+
+    def for_outdated_entries(self, clbck):
+        outdated_hashes = []
         for key in self.hashes:
             item = self.hashes[key]
             if item["stamp"] != self.stamp:
-                clbck(item, True)
-                del self.hashes[key]
+                outdated_hashes.append(key)
             else:
                 clbck(item, False)
+
+        print("Cleaning outdatad", outdated_hashes)
+        for key in outdated_hashes:
+            item = self.hashes[key]
+            clbck(item, True)
+            del self.hashes[key]
 
     def save(self):
         with open(self.hash_file_path, "w") as f:
             json.dump(self.hashes, f)
+
+
+
+def check_records_need_update(id, name, record_list, guard_instance):
+    """
+    Check whether record list of values
+    :param id: the record ID used to identify what record list to compare against in the hash guard history
+    :param name: name stored in the guard, for convenience
+    :param record_list: any value that, when stringified, properly captures the data contents (e.g. it is not
+       serialized as Class object at <...> etc.)
+    :param guard_instance: instance of the HashGuard that is used to store the hashes
+    :return:
+    """
+    hash_record = guard_instance.get(id, name)
+    if hash_record is not None and type(hash_record) != str:
+        hash_record = hash_record.get("hash", None)
+    current_hash = compute_hash(record_list)
+
+    if hash_record and hash_record == current_hash:
+        print("  Skip: hash matches previous version.")
+        return False
+    guard_instance.update(id, name, current_hash)
+    return True
+
+
+def process_row(row):
+    """
+    Process data row that comes in
+    :param row: even-length row with data items to process: key-value column pairs
+    :return: parsed row ready for further processing
+    """
+    # Todo solve extra
+    item = Entry({"onyomi": ValueList(), "kunyomi": ValueList(), "usage": ValueList(), "extra": {}, "type": ""})
+
+    if len(row) < 1:
+        return None, False
+
+    for i in range(0, len(row), 2):
+        key = row[i]
+        if type(key) == "string":
+            key = (row[i]).strip()
+        else:
+            key = f"{key}"
+        original_key = key
+        key = key.lower()
+        if len(key) < 1:
+            continue
+        if key[0] == "$":
+            key = key[1:len(key)]
+        value = row[i + 1]
+        if type(value) == "string":
+            value = value.strip()
+        else:
+            value = f"{value}"
+
+        key_significance = 0
+        if key.endswith("-"):
+            temp = key.rstrip('-')
+            key_significance = len(key) - len(temp)
+            key = temp
+
+        if key == 'kanji':
+            if len(value) != 1:
+                print(f"ERROR kanji value '{value}' longer than 1")
+            if item.get("kanji", False):
+                print(f"ERROR kanji redefinition, only one value allowed!")
+            else:
+                item["type"] = 'kanji'
+                item["kanji"] = Value(value, key_significance)
+                item["guid"] = str(hash(value))
+        elif key == 'tango':
+            item["type"] = 'tango'
+            item["word"] = Value(value, key_significance)
+            item["guid"] = str(hash(value))
+        elif key == 'radical':
+            item["type"] = 'radical'
+            item["radical"] = Value(value, key_significance)
+            item["guid"] = str(hash(value))
+
+        elif key == 'id':
+            if key_significance > 0:
+                print("Warning: ID cannot have lesser significance! Ignoring the property.", value)
+            item["id"] = Value(value, key_significance)
+
+        elif key == 'onyomi':
+            item["onyomi"].append(Value(value, key_significance))
+        elif key == 'kunyomi':
+            item["kunyomi"].append(Value(value, key_significance))
+        elif key == 'imi':
+            item["meaning"] = Value(value, key_significance)
+
+        elif key == 'tsukaikata':
+            item["usage"].append(Value(value, key_significance))
+
+        else:
+            # TODO does not support chaining
+            item["extra"][original_key] = Value(value, key_significance)
+
+    if not item.get("guid", False):
+        print("IGNORES: invalid data:", row)
+        return None, False
+
+    item["guid"] = get_item_id(item)
+    return item

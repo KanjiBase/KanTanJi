@@ -34,7 +34,13 @@ pdfmetrics.registerFont(TTFont('NotoSans', font))
 pdfmetrics.registerFont(TTFont('NotoSans-Bold', font))
 
 # Generate a PDF file with kanji, on'yomi, kun'yomi, and example words
-def generate_pdf(key, data, path_getter):
+def generate(key, data, radicals, path_getter):
+    # Anki packs only read data, so if not modified do not re-generate
+    if not data["modified"]:
+        return
+
+    data = data["content"]
+
     doc = SimpleDocTemplate(f"{path_getter(key)}/{key}.pdf", pagesize=letter, topMargin=12, bottomMargin=10)
     elements = []
 
@@ -56,10 +62,10 @@ def generate_pdf(key, data, path_getter):
     item_gen = item_generator(data)
 
     try:
-        (item,_) = next(item_gen)
+        item = next(item_gen)
         while True:
             if 'kanji' not in item:
-                (item,_) = next(item_gen)
+                item = next(item_gen)
                 continue  # Ensure the item contains the necessary fields
             
             # Kanji in large font
@@ -104,10 +110,10 @@ def generate_pdf(key, data, path_getter):
             ]
 
             try:
-                (item,_) = next(item_gen)
+                item = next(item_gen)
                 while 'kanji' not in item:
                     if not item['type']:
-                        (item,_) = next(item_gen)
+                        item = next(item_gen)
                         continue
                     
                     word = generate_furigana_paragraph(item['word'], styles['NormalNoto'])
@@ -134,7 +140,7 @@ def generate_pdf(key, data, path_getter):
                             table_style.append(('SPAN', (1, current_pos), (2, current_pos)))
                     if usage_extra_rows > 0:
                         table_style.append(('SPAN', (0, start_position), (0, start_position + usage_extra_rows)))
-                    (item,_) = next(item_gen)
+                    item = next(item_gen)
             except StopIteration:
                 pass
 

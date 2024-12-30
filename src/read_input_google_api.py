@@ -10,8 +10,6 @@ import gspread
 from google.oauth2.service_account import Credentials
 from googleapiclient.discovery import build
 
-from utils import compute_hash, HashGuard
-
 # Set up Google API credentials
 SCOPES = [
     "https://www.googleapis.com/auth/spreadsheets.readonly",
@@ -65,17 +63,14 @@ def read_sheets_google_api():
     if drive_service is None:
         raise FileNotFoundError("Google Sheets API not configured.")
 
-    hash_guard = HashGuard("google_api")
-
     output = {}
     sheets = list_sheets_in_folder(folder_id)
+
+
     for sheet in sheets:
         sheet_id = sheet['id']
         google_sheet = client.open_by_key(sheet_id)
-        
-        if sheet['name'] == "Publish":
-            continue
-        
+
         print(f"\nReading '{sheet['name']}'...")
         for worksheet in google_sheet.worksheets():
             print(f"  Worksheet: {worksheet.title}")
@@ -83,17 +78,20 @@ def read_sheets_google_api():
 
             # Convert the list of dictionaries to an array of arrays format
             if records:
-                hash_record = hash_guard.get(sheet_id, sheet['name'])
-                if hash_record is not None and type(hash_record) != str:
-                    hash_record = hash_record.get("hash", None)
-                current_hash = compute_hash(records)
-
-                if hash_record and hash_record == current_hash:
-                    print("  Skip: hash matches previous version.")
-                    continue
-                hash_guard.update(sheet_id, sheet['name'], current_hash)
                 # Combine headers and rows
-                output[sheet['name']] = records
+                output[sheet['name']] = {
+                    "data": records,
+                    "id": sheet['id'],
+                    "name": sheet['name']
+                }
             else:
-                output[sheet['name']] = None
-    return output, hash_guard
+                output[sheet['name']] = {
+                    "data": None,
+                    "id": None,
+                    "name": None
+                }
+
+            # Right now support only single worksheet, the first one
+            continue
+
+    return output

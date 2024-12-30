@@ -1,13 +1,25 @@
 import json
 
-from utils import HashGuard
-
 def read_local_data():
-    guard = HashGuard("test")
+
+    out = {}
     with open('misc/test-data.json', 'r', encoding='utf-8') as f:
         data = json.load(f)
-        key = "test-kanji"
-        guard.update(key, key, "test")
-        return {
-            key: data
-        }, guard
+        key = "kanji"
+        out[key] = {
+            "data": data,
+            "id": key,
+            "name": key
+        }
+
+    # radicals table
+    with open('misc/test-radicals.json', 'r', encoding='utf-8') as f:
+        data = json.load(f)
+        key = "radical"
+        out[key] = {
+            "data": data,
+            "id": key,
+            "name": key
+        }
+
+    return out

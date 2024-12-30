@@ -104,7 +104,7 @@ def get_vocab_entries(item):
     ])
 
 
-def read_kanji_csv(key, data):
+def read_kanji_csv(key, data, radicals):
     import_kanji = False
     reveal_furigana = "<script>['click', 'touchstart'].forEach(event => document.addEventListener(event, () => document.querySelectorAll('ruby rt').forEach(rt => rt.style.visibility = 'visible')));</script>"
 
@@ -279,8 +279,18 @@ def read_kanji_csv(key, data):
 import os
 
 
-def generate_html(key, data, path_getter):
-    output = read_kanji_csv(key, data)
+def generate(key, data, metadata, path_getter):
+    radicals = metadata.get("radical")
+    if not radicals:
+        print("Warning: Radicals not defined. Skipping HTML outputs!")
+        return
+
+    if not data["modified"] and not radicals["modified"]:
+        return
+
+    data = data["content"]
+
+    output = read_kanji_csv(key, data, radicals)
 
     file_root = path_getter(key)
     for k, v in output.items():

@@ -3,138 +3,42 @@ from pathlib import Path
 import os
 import shutil
 
-from src.pdf_generator import generate_pdf
-from src.anki_generator import generate_anki
-from src.html_generator import generate_html
-from src.utils import Value, ValueList, Entry
-
-
-def process_row(row):
-    # Todo solve extra
-    item = Entry({"onyomi": ValueList(), "kunyomi": ValueList(), "usage": ValueList(), "extra": {}, "type": ""})
-    import_kanji = False
-    
-    if len(row) < 1:
-        return None, False
-    
-    for i in range(0, len(row), 2):
-        key = row[i]
-        if type(key) == "string":
-            key = (row[i]).strip()
-        else:
-            key = f"{key}"
-        original_key = key
-        key = key.lower()
-        if len(key) < 1:
-            continue
-        if key[0] == "$":
-            key = key[1:len(key)]
-        value = row[i+1]
-        if type(value) == "string":
-            value = value.strip()
-        else:
-            value = f"{value}"
-
-
-        key_significance = 0
-        if key.endswith("-"):
-            temp = key.rstrip('-')
-            key_significance = len(key) - len(temp)
-            key = temp
-
-
-        if key == 'kanji':
-            if len(value) != 1:
-                print(f"ERROR kanji value '{value}' longer than 1")
-            if item.get("kanji", False):
-                print(f"ERROR kanji redefinition, only one value allowed!")
-            else:
-                item["type"] = 'kanji'
-                item["kanji"] = Value(value, key_significance)
-                import_kanji = True
-                item["guid"] = 'k' + str(hash(value))
-        elif key == 'id':
-            if key_significance > 0:
-                print("Warning: ID cannot have lesser significance! Ignoring the property.", value)
-            item["id"] = Value(value, key_significance)
-
-        elif key == 'onyomi':
-            item["onyomi"].append(Value(value, key_significance))
-        elif key == 'kunyomi':
-            item["kunyomi"].append(Value(value, key_significance))
-        elif key == 'imi':
-            item["meaning"] = Value(value, key_significance)
-        elif key == 'tango':
-            item["type"] = 'tango'
-            item["word"] = Value(value, key_significance)
-
-            import_kanji = False
-            item["guid"] = 'w' + str(hash(value))
-        elif key == 'tsukaikata':
-            item["usage"].append(Value(value, key_significance))
-
-        else:
-            # TODO does not support chaining
-            item["extra"][original_key] = Value(value, key_significance)
-
-    if not item.get("guid", False):
-        print("IGNORES: invalid data:", row)
-        return None, False
-    item["guid"] += str(item["id"])
-    return item, import_kanji
-
-
-def parse_data(data):
-    result = {}
-    for dataset_name in data:
-        output = []
-        reader = data[dataset_name]
-        for row in reader:
-            try:
-                item, import_kanji = process_row(row)
-
-                if not item:
-                    continue
-
-                output.append((item, import_kanji))
-            except Exception as e:
-                print(f"Error on line {row}", e)
-                print(traceback.format_exc())
-        output.sort(key=lambda x: str(x[0]["id"]) + x[0]["type"])
-        result[dataset_name] = output
-    return result
-
-
-def try_read_data(getter, message, output, hash_guard, success_read):
-    if not success_read:
-        try:
-            print(message)
-            output, hash_guard = getter()
-            return output, hash_guard, True
-        except FileNotFoundError:
-            pass
-    return output, hash_guard, success_read
-
-
+from src.pdf_generator import generate as generate_pdf
+from src.anki_generator import generate as generate_anki
+from src.html_generator import generate as generate_html
+from src.utils import process_row, HashGuard, check_records_need_update
 
 from src.read_input_google_api import read_sheets_google_api
 from src.read_input_test_data import read_local_data
 
 
-success_read = False
-hash_guard = None
-data = None
+def try_read_data(getter, message, output, success_read):
+    if not success_read:
+        try:
+            print(message)
+            out = getter()
+            return out, getter.__name__
+        except FileNotFoundError:
+            pass
+    return output, success_read
+
+
 # Read data provides in desired order here
-data, hash_guard, success_read = try_read_data(read_sheets_google_api,
-                                   "Google Services: Reading data...", data, hash_guard, success_read)
+
+success_read_method = None
+data = None
+
+# Google Sheets API
+data, success_read_method = try_read_data(read_sheets_google_api,
+                                   "Google Services: Reading data...", data, success_read_method)
 
 
 # Fallback test data
-uses_test_data = not success_read
-data, hash_guard, success_read = try_read_data(read_local_data,
-                                   "No data provider configured: using local test demo data.", data, hash_guard, success_read)
+uses_test_data = not success_read_method
+data, success_read_method = try_read_data(read_local_data,
+                                   "No data provider configured: using local test demo data.", data, success_read_method)
 
-if not success_read:
+if not success_read_method:
     print("Error: Unable to read input data!")
     exit(1)
 
@@ -142,10 +46,61 @@ if not data:
     print("No data found to process: all is up to date.")
     exit(0)
 
-if not hash_guard:
-    raise ValueError("HashGuard must be provided by the input logics!")
 
-data = parse_data(data)
+# Create hash guard in the context of method that succeeded reading the input data
+data_modification_guard = HashGuard(success_read_method)
+parsed_data = {}
+parsed_metadata = {}
+for dataset_name in data:
+    output = []
+    entry = data[dataset_name]
+
+    # Publish object ignored
+    if dataset_name.lower() == "publish":
+        continue
+
+    for row in entry["data"]:
+        try:
+            item = process_row(row)
+
+            if not item:
+                continue
+
+            ttype = item['type']
+            if ttype == 'kanji' or ttype == 'tango':
+                output.append(item)
+            else:
+                # custom type, add to the dataset
+                dataset = parsed_metadata.get(ttype)
+                if not dataset:
+                    dataset = []
+                    parsed_metadata[ttype] = dataset
+                dataset.append(item)
+
+        except Exception as e:
+            print(f"Error on line {row}", e)
+            print(traceback.format_exc())
+
+    if len(output):
+        output.sort(key=lambda x: str(x["id"]) + x["type"])
+        parsed_data[dataset_name] = {
+            "name": entry["name"],
+            "content": output,
+            "modified": check_records_need_update(entry["id"], entry["name"], output, data_modification_guard)
+        }
+data = parsed_data
+del parsed_data
+
+metadata = {}
+# Compute guard also for metadata
+for name in parsed_metadata:
+    metadata_entries = parsed_metadata[name]
+    metadata[name] = {
+        "name": name,
+        "content": metadata_entries,
+        "modified": check_records_need_update(name, name, metadata_entries, data_modification_guard)
+    }
+del parsed_metadata
 
 readme = """
 # Kan<sup>Tan</sup>Ji &nbsp; 漢<sup>単</sup>字
@@ -167,7 +122,7 @@ os.makedirs(".temp", exist_ok=True)
 
 for key in data:
     try:
-        generate_anki(key, data, filepath_dealer)
+        generate_anki(key, data[key], metadata, filepath_dealer)
         print(f"Anki cards have been successfully saved:", key)
     except Exception as e:
         print(f"Failed to write file", key, e)
@@ -176,7 +131,7 @@ for key in data:
 
 for key in data:
     try:
-        generate_pdf(key, data[key], filepath_dealer)
+        generate_pdf(key, data[key], metadata, filepath_dealer)
         print(f"PDF file generated:", key)
     except Exception as e:
         print(f"Failed to write file", key, e)
@@ -185,7 +140,7 @@ for key in data:
 
 for key in data:
     try:
-        generate_html(key, data[key], filepath_dealer)
+        generate_html(key, data[key], metadata, filepath_dealer)
         print(f"HTML files generated:   ", key)
     except Exception as e:
         print(f"Failed to write HTML for dataset", key, e)
@@ -194,23 +149,33 @@ for key in data:
 
 target_folder_to_output = None
 
+
+def delete_filesystem_node(node):
+    if os.path.exists(node):
+        if os.path.isdir(node):
+            shutil.rmtree(node)
+        else:
+            os.remove(node)
+
 def clean_files(item, outdated):
-    global target_folder_to_output
+    global target_folder_to_output, metadata
     try:
         name = item["name"]
+        if not outdated and name not in data:
+            return
+
         source = filepath_dealer(name)
         target = move_file_path_dealer(name, target_folder_to_output)
         print("Moving ", name, source, target)
 
         if outdated:
-            Path(source).unlink(missing_ok=True)
-            Path(target).unlink(missing_ok=True)
+            delete_filesystem_node(source)
+            delete_filesystem_node(target)
         else:
-            target_dir = os.path.dirname(target)
-            if os.path.exists(target) and os.path.isdir(target):
-                shutil.rmtree(target)
-            if target_dir:
-                os.makedirs(target_dir, exist_ok=True)
+            delete_filesystem_node(target)
+            # target_dir = os.path.dirname(target)
+            # if target_dir:
+            #     os.makedirs(target_dir, exist_ok=True)
             os.replace(source, target)
     except Exception as e:
         print(f"ERROR: Could not clean files for {item}", e)
@@ -273,10 +238,9 @@ def get_readme_content():
     return readme
 
 
-hash_guard.save()
 if not uses_test_data:
     target_folder_to_output = "static"
-    hash_guard.for_entries(clean_files)
+    data_modification_guard.for_outdated_entries(clean_files)
 
     # Write the README.md with links to the PDF files
     with open("README.md", mode='w+', encoding='utf-8') as file:
@@ -284,6 +248,8 @@ if not uses_test_data:
     print("README.md updated with links.")
 else:
     target_folder_to_output = ".test"
-    hash_guard.for_entries(clean_files)
+    data_modification_guard.for_outdated_entries(clean_files)
     print("Skipping writing README.md: test mode.")
     print(readme + get_readme_content())
+
+data_modification_guard.save()
