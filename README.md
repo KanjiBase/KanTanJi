@@ -4,10 +4,8 @@ Jednoduchá aplikace na trénování Kanji - pomocí PDF souborů a přidružen�
 <br><br>
 
 ## PDF Sady Kanji:
- - <a href="static/1-21/1-21.pdf">Sada 1-21</a>
 
 ## Anki Balíčky
- - <a href="static/1-21/1-21.apkg">Balíček 1-21</a>
 
 ## HTML Materiály
 
