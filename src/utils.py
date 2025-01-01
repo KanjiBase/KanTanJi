@@ -214,11 +214,12 @@ def check_records_need_update(id, name, record_list, guard_instance):
     """
     hash_record = guard_instance.get(id, name)
     if hash_record is not None and type(hash_record) != str:
+        print("FETCH record", hash_record)
         hash_record = hash_record.get("hash", None)
     current_hash = compute_hash(record_list)
+    print("current", current_hash)
 
     if hash_record and hash_record == current_hash:
-        print("  Skip: hash matches previous version.")
         return False
     guard_instance.update(id, name, current_hash)
     return True
