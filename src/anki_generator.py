@@ -162,6 +162,7 @@ def create_anki_deck(key, reader, filename):
 def generate(key, data, metadata, folder_getter):
     # Anki packs only read data, so if not modified do not re-generate
     if not data["modified"]:
-        return
+        return False
     anki = read_kanji_csv(key, data["content"])
     create_anki_deck(key, anki, f"{folder_getter(key)}/{key}.apkg")
+    return True

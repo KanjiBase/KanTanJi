@@ -37,7 +37,7 @@ pdfmetrics.registerFont(TTFont('NotoSans-Bold', font))
 def generate(key, data, radicals, path_getter):
     # Anki packs only read data, so if not modified do not re-generate
     if not data["modified"]:
-        return
+        return False
 
     data = data["content"]
 
@@ -156,5 +156,7 @@ def generate(key, data, radicals, path_getter):
         pass        
     if elements:  # Only build the document if there are elements
         doc.build(elements)
-    else:
-        print("No content to add to the PDF.")
+        return True
+
+    print("No content to add to the PDF.")
+    return False

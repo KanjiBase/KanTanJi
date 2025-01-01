@@ -129,13 +129,16 @@ def generate(key, data, metadata, folder_getter):
     radicals_set_modified = radicals is not None and radicals["modified"]
     
     if not data_modified or not radicals or not radicals_set_modified:
-       return
+       return False
     
     # Use folder_getter to generate proper output location. In this folder, output a file suitable for your output type
     output_filename = f"{folder_getter(key)}/{key}.apkg"  # example for anki deck
 
     # Now, generate your output and store it in output_filename. You can also create multiple files if it is desirable.
     ...
+
+    # Return True if files were created, False if nothing was generated for some reason
+    return True
 ````
 ``folder_getter(key)`` is folder where all files of the same key (~dataset) remain.
 

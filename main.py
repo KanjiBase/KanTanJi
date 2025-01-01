@@ -6,7 +6,7 @@ import shutil
 from src.pdf_generator import generate as generate_pdf
 from src.anki_generator import generate as generate_anki
 from src.html_generator import generate as generate_html
-from src.utils import process_row, HashGuard, check_records_need_update
+from src.utils import process_row, HashGuard, check_records_need_update, delete_filesystem_node, merge_trees
 
 from src.read_input_google_api import read_sheets_google_api
 from src.read_input_test_data import read_local_data
@@ -129,8 +129,8 @@ os.makedirs(".temp", exist_ok=True)
 
 for key in data:
     try:
-        generate_anki(key, data[key], metadata, filepath_dealer)
-        print(f"Anki cards have been successfully saved:", key)
+        if generate_anki(key, data[key], metadata, filepath_dealer):
+            print(f"Anki cards have been successfully saved:", key)
     except Exception as e:
         print(f"Failed to write file", key, e)
         print(traceback.format_exc())
@@ -138,8 +138,8 @@ for key in data:
 
 for key in data:
     try:
-        generate_pdf(key, data[key], metadata, filepath_dealer)
-        print(f"PDF file generated:", key)
+        if generate_pdf(key, data[key], metadata, filepath_dealer):
+            print(f"PDF file generated:", key)
     except Exception as e:
         print(f"Failed to write file", key, e)
         print(traceback.format_exc())
@@ -147,8 +147,8 @@ for key in data:
 
 for key in data:
     try:
-        generate_html(key, data[key], metadata, filepath_dealer)
-        print(f"HTML files generated:   ", key)
+        if generate_html(key, data[key], metadata, filepath_dealer):
+            print(f"HTML files generated:", key)
     except Exception as e:
         print(f"Failed to write HTML for dataset", key, e)
         print(traceback.format_exc())
@@ -156,13 +156,6 @@ for key in data:
 
 target_folder_to_output = None
 
-
-def delete_filesystem_node(node):
-    if os.path.exists(node):
-        if os.path.isdir(node):
-            shutil.rmtree(node)
-        else:
-            os.remove(node)
 
 def clean_files(item, outdated):
     global target_folder_to_output, metadata
@@ -179,11 +172,7 @@ def clean_files(item, outdated):
             delete_filesystem_node(target)
             print("Removing ", name, source, target)
         else:
-            delete_filesystem_node(target)
-            # target_dir = os.path.dirname(target)
-            # if target_dir:
-            #     os.makedirs(target_dir, exist_ok=True)
-            os.replace(source, target)
+            merge_trees(source, target)
             print("Moving ", name, source, target)
     except Exception as e:
         print(f"ERROR: Could not clean files for {item}", e)

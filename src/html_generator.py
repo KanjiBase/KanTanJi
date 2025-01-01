@@ -295,13 +295,14 @@ def generate(key, data, metadata, path_getter):
     radicals = metadata.get("radical")
     if not radicals:
         print("Warning: Radicals not defined. Skipping HTML outputs!")
-        return
+        return False
 
     if not data["modified"] and not radicals["modified"]:
-        return
+        return False
 
     output = read_kanji_csv(key, data["content"], radicals["content"])
 
+    did_save = False
     file_root = path_getter(key)
     for k, v in output.items():
         # Create a file name for each HTML file
@@ -328,4 +329,5 @@ def generate(key, data, metadata, path_getter):
 }} 
 </style> 
             """, v))
-        print(f"Saved: {file_path}")
+        did_save = True
+    return did_save
