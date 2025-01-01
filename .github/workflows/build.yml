@@ -12,7 +12,7 @@ permissions:
   contents: write
 
 jobs:
-  generate_pdf:
+  generate_contents:
     runs-on: ubuntu-latest
 
     steps:

@@ -83,11 +83,17 @@ for dataset_name in data:
 
     if len(output):
         output.sort(key=lambda x: str(x["id"]) + x["type"])
+
+        modified = check_records_need_update(entry["id"], entry["name"], output, data_modification_guard)
+        print(f"Loaded dataset {dataset_name} - {'needs update' if modified else 'unchanged'}.")
         parsed_data[dataset_name] = {
             "name": entry["name"],
             "content": output,
-            "modified": check_records_need_update(entry["id"], entry["name"], output, data_modification_guard)
+            "modified": modified
         }
+    else:
+        print(f"Skipping {dataset_name} - not a data source.")
+
 data = parsed_data
 del parsed_data
 
