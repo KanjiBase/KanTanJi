@@ -166,17 +166,18 @@ def clean_files(item, outdated):
 
         source = filepath_dealer(name)
         target = move_file_path_dealer(name, target_folder_to_output)
-        print("Moving ", name, source, target)
 
         if outdated:
             delete_filesystem_node(source)
             delete_filesystem_node(target)
+            print("Removing ", name, source, target)
         else:
             delete_filesystem_node(target)
             # target_dir = os.path.dirname(target)
             # if target_dir:
             #     os.makedirs(target_dir, exist_ok=True)
             os.replace(source, target)
+            print("Moving ", name, source, target)
     except Exception as e:
         print(f"ERROR: Could not clean files for {item}", e)
         print(traceback.format_exc())
