@@ -150,7 +150,6 @@ class HashGuard:
                 self.hashes = json.load(f)
         else:
             self.hashes = {}
-        print(self.hashes)
         self.stamp = time.time()
 
     def get(self, key, name):

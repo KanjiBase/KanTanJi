@@ -82,9 +82,10 @@ for dataset_name in data:
             print(traceback.format_exc())
 
     if len(output):
-        output.sort(key=lambda x: str(x["id"]) + x["type"])
+        # Checking on 'output' never yields the same hash, there is dynamic content
+        modified = check_records_need_update(entry["id"], entry["name"], entry["data"], data_modification_guard)
 
-        modified = check_records_need_update(entry["id"], entry["name"], output, data_modification_guard)
+        output.sort(key=lambda x: str(x["id"]) + x["type"])
         print(f"Loaded dataset {dataset_name} - {'needs update' if modified else 'unchanged'}.")
         parsed_data[dataset_name] = {
             "name": entry["name"],
