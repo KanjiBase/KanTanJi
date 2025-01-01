@@ -170,11 +170,13 @@ class HashGuard:
                 "stamp": 0
             }
 
+        print("UPDATE", key, name, hash_value)
         self.hashes[key] = {
             "name": name,
             "hash": hash_value,
             "stamp": self.stamp
         }
+        print(self.hashes)
 
     def invalidate_all(self):
         for key in self.hashes:
@@ -198,6 +200,7 @@ class HashGuard:
 
     def save(self):
         with open(self.hash_file_path, "w") as f:
+            print("SAVE", self.hashes, self.hash_file_path)
             json.dump(self.hashes, f)
 
 
