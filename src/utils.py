@@ -150,6 +150,7 @@ class HashGuard:
                 self.hashes = json.load(f)
         else:
             self.hashes = {}
+        print(self.hashes)
         self.stamp = time.time()
 
     def get(self, key, name):
@@ -170,13 +171,11 @@ class HashGuard:
                 "stamp": 0
             }
 
-        print("UPDATE", key, name, hash_value)
         self.hashes[key] = {
             "name": name,
             "hash": hash_value,
             "stamp": self.stamp
         }
-        print(self.hashes)
 
     def invalidate_all(self):
         for key in self.hashes:
@@ -200,7 +199,6 @@ class HashGuard:
 
     def save(self):
         with open(self.hash_file_path, "w") as f:
-            print("SAVE", self.hashes, self.hash_file_path)
             json.dump(self.hashes, f)
 
 
@@ -217,10 +215,8 @@ def check_records_need_update(id, name, record_list, guard_instance):
     """
     hash_record = guard_instance.get(id, name)
     if hash_record is not None and type(hash_record) != str:
-        print("FETCH record", hash_record)
         hash_record = hash_record.get("hash", None)
     current_hash = compute_hash(record_list)
-    print("current", current_hash)
 
     if hash_record and hash_record == current_hash:
         return False
@@ -266,9 +262,9 @@ def process_row(row):
 
         if key == 'kanji':
             if len(value) != 1:
-                print(f"ERROR kanji value '{value}' longer than 1")
+                print(f" --parse-- ERROR kanji value '{value}' longer than 1")
             if item.get("kanji", False):
-                print(f"ERROR kanji redefinition, only one value allowed!")
+                print(f" --parse-- ERROR kanji redefinition, only one value allowed!")
             else:
                 item["type"] = 'kanji'
                 item["kanji"] = Value(value, key_significance)
@@ -284,13 +280,13 @@ def process_row(row):
 
         elif key == 'id':
             if key_significance > 0:
-                print("Warning: ID cannot have lesser significance! Ignoring the property.", value)
+                print(" --parse-- Warning: ID cannot have lesser significance! Ignoring the property.", value)
             item["id"] = Value(value, key_significance)
         elif key == 'ref':
             # todo parse ref from its syntax
             values = value.split("-")
             if len(values) != 2:
-                print(f"ERROR reference '{value}' invalid syntax - ignoring!")
+                print(f" --parse-- ERROR reference '{value}' invalid syntax - ignoring!")
                 continue
 
             name = values[0]
@@ -317,7 +313,7 @@ def process_row(row):
             item["extra"][original_key] = Value(value, key_significance)
 
     if not item.get("guid", False):
-        print("IGNORES: invalid data:", row)
+        print(" --parse-- IGNORES: invalid data:", row)
         return None, False
 
     item["guid"] = get_item_id(item)
