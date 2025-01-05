@@ -21,7 +21,15 @@ tailwindScript.onload = () => {
 // Append the script to the <head> or <body>
 parent.appendChild(tailwindScript);
 
-const targetPage = currentScript.dataset.target;
+let targetPage = currentScript.dataset.target.trim();
+if (!targetPage.startsWith("http")) {
+    const thisUrl = new URL(currentScript.src);
+    const rootPath = thisUrl.pathname.substring(0, thisUrl.pathname.indexOf("misc/embed.js"));
+    targetPage = `${thisUrl.protocol}//${thisUrl.hostname}${rootPath}static/${targetPage}`;
+    if (!targetPage.endsWith(".html")) {
+        targetPage = targetPage + ".html";
+    }
+}
 const iframe = document.createElement("iframe");
 iframe.src = targetPage;
 iframe.style.width = '100%';
