@@ -22,8 +22,9 @@ tailwindScript.onload = () => {
 parent.appendChild(tailwindScript);
 
 const embedCSS = document.createElement('link');
+embedCSS.rel = 'stylesheet';
 embedCSS.href = currentScript.src.slice(0, currentScript.src.length - 2) + "css";
-parent.appendChild(embedCSS);
+document.head.appendChild(embedCSS);
 
 let targetPage = currentScript.dataset.target.trim();
 if (!targetPage.startsWith("http")) {
