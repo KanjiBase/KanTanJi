@@ -21,6 +21,10 @@ tailwindScript.onload = () => {
 // Append the script to the <head> or <body>
 parent.appendChild(tailwindScript);
 
+const embedCSS = document.createElement('link');
+embedCSS.href = currentScript.src.slice(0, currentScript.src.length - 2) + "css";
+parent.appendChild(embedCSS);
+
 let targetPage = currentScript.dataset.target.trim();
 if (!targetPage.startsWith("http")) {
     const thisUrl = new URL(currentScript.src);
