@@ -1,4 +1,6 @@
-from utils import structure_data_vocabulary_below_kanji, generate_furigana
+from utils import structure_data_vocabulary_below_kanji, generate_furigana, InputFormat
+
+import markdown
 
 
 def get_onyomi(item):
@@ -215,7 +217,8 @@ def read_kanji_csv(key, data, radicals):
             <p class="text-gray-800">
                 {
 "".join([
-    f"<div><strong><i>{generate_furigana(key)}<i></strong>: {generate_furigana(value)}</div>"
+    f"<div><strong><i>{generate_furigana(key)}<i></strong>: {generate_furigana(value)}</div>" if value.format == InputFormat.PLAINTEXT
+    else f"<div>{markdown.markdown(generate_furigana(value))}</div>"
     for key, value in item.get("extra", {}).items()
 ])
                 }

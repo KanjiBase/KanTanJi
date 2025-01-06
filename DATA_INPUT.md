@@ -8,6 +8,10 @@ Each row must also define **exactly one** one of the following keys:
  - kanji - the row is a kanji definition, the row must be defined exactly once per unique ID
  - tango - the row carries a vocabulary entry for a kanji, e.g. there must exist a row with the same ID that has 'kanji' definition
 
+> **SPARSE SUPPORT** Note: input supports many features like significance levels, formats.. but for output to truly respect
+> given feature, it must implement its usage. That means you can for example use markdown or significance 
+> level on a kanji 'imi' value, but it will not likely change anything in the output, since
+> kanji packs nor PDFs nor any other output generator expects you to adjust kanji meaning with these.
 
 ### Minimal Example:
 ```
@@ -85,6 +89,12 @@ ID     184     tango       晴<ha>れる       imi     vyčasit se, vyjasnit    
 ```
 TODO: Screenshot
 
+## Formats
+Data input is by default a plaintext intput. Keys can encode also format in case the value is not a plaintext.
+The usage is: ``[format]key`` followed by `value` in the given format.
+Supported formats are:
+ - plaintext (default)
+ - markdown ``[md]``
 
 # Data Providers
 The following data providers are supported. Some might need additional setup to use - they just provide

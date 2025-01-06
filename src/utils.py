@@ -5,7 +5,7 @@ import time
 import shutil
 import hashlib
 from copy import copy
-
+from enum import Enum
 
 class Entry(dict):
     def __init__(self, *args, **kwargs):
@@ -27,9 +27,16 @@ class Entry(dict):
             return Value
         return None
 
+
+class InputFormat(Enum):
+    PLAINTEXT = 1
+    MARKDOWN = 2
+
+
 class Value:
-    def __init__(self, value, significance=0):
+    def __init__(self, value, significance=0, format=InputFormat.PLAINTEXT):
         self.value = value
+        self.format = format
         self.significance = significance
 
     def __str__(self):
@@ -260,6 +267,22 @@ def process_row(row):
             key_significance = len(key) - len(temp)
             key = temp
 
+        data_format = InputFormat.PLAINTEXT
+
+        if key.startswith("["):
+            match = re.match(r'^\s*\[([^\]]*?)\]\s*', key)
+            if match:
+                cur_format = match.group(1).strip().lower()
+                key = key[match.end():]
+                original_key = original_key[match.end():]
+
+                if cur_format == "md" or cur_format == "markdown":
+                    data_format = InputFormat.MARKDOWN
+                else:
+                    print(f" --parse-- ERROR unsupported format {data_format} for {key}")
+            else:
+                print(f" --parse-- WARNING key starts with '[' but match format not found {key}")
+
         if key == 'kanji':
             if len(value) != 1:
                 print(f" --parse-- ERROR kanji value '{value}' longer than 1")
@@ -267,21 +290,21 @@ def process_row(row):
                 print(f" --parse-- ERROR kanji redefinition, only one value allowed!")
             else:
                 item["type"] = 'kanji'
-                item["kanji"] = Value(value, key_significance)
+                item["kanji"] = Value(value, key_significance, data_format)
                 item["guid"] = str(hash(value))
         elif key == 'tango':
             item["type"] = 'tango'
-            item["word"] = Value(value, key_significance)
+            item["word"] = Value(value, key_significance, data_format)
             item["guid"] = str(hash(value))
         elif key == 'radical':
             item["type"] = 'radical'
-            item["radical"] = Value(value, key_significance)
+            item["radical"] = Value(value, key_significance, data_format)
             item["guid"] = str(hash(value))
 
         elif key == 'id':
             if key_significance > 0:
                 print(" --parse-- Warning: ID cannot have lesser significance! Ignoring the property.", value)
-            item["id"] = Value(value, key_significance)
+            item["id"] = Value(value, key_significance, data_format)
         elif key == 'ref':
             # todo parse ref from its syntax
             values = value.split("-")
@@ -299,18 +322,18 @@ def process_row(row):
             ref.append(id)
 
         elif key == 'onyomi':
-            item["onyomi"].append(Value(value, key_significance))
+            item["onyomi"].append(Value(value, key_significance, data_format))
         elif key == 'kunyomi':
-            item["kunyomi"].append(Value(value, key_significance))
+            item["kunyomi"].append(Value(value, key_significance, data_format))
         elif key == 'imi':
-            item["meaning"] = Value(value, key_significance)
+            item["meaning"] = Value(value, key_significance, data_format)
 
         elif key == 'tsukaikata':
-            item["usage"].append(Value(value, key_significance))
+            item["usage"].append(Value(value, key_significance, data_format))
 
         else:
             # TODO does not support chaining
-            item["extra"][original_key] = Value(value, key_significance)
+            item["extra"][original_key] = Value(value, key_significance, data_format)
 
     if not item.get("guid", False):
         print(" --parse-- IGNORES: invalid data:", row)
