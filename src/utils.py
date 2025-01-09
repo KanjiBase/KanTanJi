@@ -49,6 +49,23 @@ class Value:
         return bool(self.value)
 
 
+class Version:
+    def __init__(self, value):
+        # TODO nice printing fails reference comparison on IDs :/
+        # self.value = str(value).split(".")
+        self.value = value
+
+    def __str__(self):
+        return str(self.value)
+        #return ". ".join(self.value)
+
+    def __repr__(self):
+        return f"Version({repr(self.value)})"
+
+    def __bool__(self):
+        return bool(len(self.value))
+
+
 class ValueList(list):
     def __init__(self, values=None):
         # Initialize the list with optional values
@@ -304,7 +321,7 @@ def process_row(row):
         elif key == 'id':
             if key_significance > 0:
                 print(" --parse-- Warning: ID cannot have lesser significance! Ignoring the property.", value)
-            item["id"] = Value(value, key_significance, data_format)
+            item["id"] = Value(Version(value), key_significance, data_format)
         elif key == 'ref':
             # todo parse ref from its syntax
             values = value.split("-")

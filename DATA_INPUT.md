@@ -1,7 +1,7 @@
 # Kanji Input
 
 Input for kanji is defined in rows, where odd rows carry the key (~ what to do with the value) and even rows carry the value itself.
-Each row must have `ID` key with numeric ID value of the entry. 
+Each row must have `ID` key with numeric ID value of the entry (it can also be versioned by dots if you want to use hierarchies). 
 
 Each row must also define **exactly one** one of the following keys:
 

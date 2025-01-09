@@ -1,5 +1,6 @@
 [
   ["ID", 1, "strokes", 1, "radical", "⼀", "imi", "one, horizontal stroke", "kunyomi", "いち"],
   ["ID", 2, "strokes", 1, "radical", "⼁", "imi", "vertical stroke", "kunyomi", "たてぼう"],
-  ["ID", 3, "strokes", 1, "radical", "⼂", "imi", "dot", "kunyomi", "てん"]
+  ["ID", 3, "strokes", 1, "radical", "⼂", "imi", "dot", "kunyomi", "てん"],
+  ["ID", 3.1, "strokes", 1, "radical", "⼂", "imi", "dot", "kunyomi", "てん"]
 ]
