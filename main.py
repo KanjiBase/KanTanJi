@@ -190,6 +190,8 @@ Jednoduchá aplikace na trénování Kanji - pomocí PDF souborů a přidružen�
 <br><br>
 """
 
+print()
+print("Processing started...")
 os.makedirs(".temp", exist_ok=True)
 # First process the default data
 data.process(metadata=metadata, guard=data_modification_guard)
