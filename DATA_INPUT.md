@@ -33,7 +33,29 @@ Dependening on the keys mentioned above, the row also can or must define other k
    - imi - **required**, the meaning of the vocabulary entry
    - tsukaikata - an example usage sentence, optional
 
+
 You can also define arbitrary key-value pairs you wish, these will be included in 'other', 'notes' etc. sections.
+
+ ### Key definitions - Datasets
+
+All datasets by default create learning content ``sets`` based on files they are stored in.
+If you need to have two kanji order learning datasets, you can define the other one by using
+
+ - setto
+   - ids - **optional**, the ID set to compose a new dataset from, if missing
+   it is the name of the dataset itself (see example)
+
+Example:
+````
+ID    1   setto    My Awesome Dataset
+ID    1   setto    1-20                     ids      184,181
+````
+Will create dataset _My Awesome Dataset_ with 1-20 kanji set name that contain two kanjis: 184 and 181.
+
+It won't create a dataset by the file name
+it occurs in. Rather, the dataset name comes from the value of the key `setto` and it defines
+by ``ids`` what kanji IDs are to be included. These can be defined as `1,2,3,8,15` comma separated
+list of **existing kanji** references.
 
 ### Key definitions - Metadata
 ``kanji`` and `tango` types are present in the _data_ used to generate output files. However, 

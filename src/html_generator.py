@@ -1,4 +1,4 @@
-from utils import structure_data_vocabulary_below_kanji, generate_furigana, InputFormat
+from utils import generate_furigana, InputFormat
 
 import markdown
 
@@ -100,14 +100,13 @@ def get_vocab_entries(item):
           class="flex-1 gap-4"
           style="min-width: 350px; max-width: 500px;"
         >   
-            {''.join(map(lambda x: get_word_html(x, color), filter(lambda x: getattr(x, handler)('word', level), item['vocabulary'])))}
+            {''.join(map(lambda x: get_word_html(x, color), filter(lambda x: getattr(x, handler)('word', level), item.vocabulary())))}
         </div>
         """ for (level, color, handler) in [(0, 'green', 'get_equal'), (1, 'blue', 'get_equal'), (2, 'purple', 'get_below')]
     ])
 
 
 def read_kanji_csv(key, data, radicals):
-    structured_data = structure_data_vocabulary_below_kanji(data)
     output = {}
 
     def find_radical(id):
@@ -116,8 +115,10 @@ def read_kanji_csv(key, data, radicals):
                 return radical
         return {}
 
-    for id in structured_data:
-        item = structured_data[id]
+    keys = data["order"]
+    content = data["content"]
+    for id in keys:
+        item = content[id]
 
         radical_exists = False
         radical_html = """
@@ -303,7 +304,7 @@ def generate(key, data, metadata, path_getter):
     if not data["modified"] and not radicals["modified"]:
         return False
 
-    output = read_kanji_csv(key, data["content"], radicals["content"])
+    output = read_kanji_csv(key, data, radicals["content"])
 
     did_save = False
     file_root = path_getter(key)

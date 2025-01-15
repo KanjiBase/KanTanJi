@@ -18,7 +18,7 @@
     ["ID", 183, "tango", "教<きょう＞師＜し＞", "imi", "učitel", "tsukaikata", "教<きょう>師<し>の給<きゅう>料<りょう>は2000円<えん>ぐらいだったんですよ、月<つき>に。  Víte, plat učitele byl zhruba 2000 jenů za měsíc.", "", "", "", ""],
     ["ID", 184, "kanji", "晴", "imi", "uklidnit, vyjasnit", "onyomi", "セイ", "kunyomi", "は", "", ""],
     ["ID", 182, "tango", "大＜だい＞工＜く＞", "imi", "tesař", "", "", "", "", "", ""],
-    ["ID", 184, "tango", "晴<ha>れる", "imi", "vyčasit se, vyjasnit", "備<び>考<こう>", "晴<は>れ je \"slunečno\"", "", "", "", ""],
+    ["ID", 184, "tango", "晴<は>れる", "imi", "vyčasit se, vyjasnit", "備<び>考<こう>", "晴<は>れ je \"slunečno\"", "", "", "", ""],
     ["ID", 184, "tango", "晴<せい>天<てん>", "imi", "pěkné počasí, čistá obloha", "tsukaikata", "晴<せい>天<てん>で海<うみ>へ出<で>ると暑<あつ>すぎる。Když je pěkně, je příliš horko na to vyjet na moře .", "", "", "", ""],
     ["ID", 185, "kanji", "思", "imi", "myslet (emotivní)", "onyomi", "シ", "kunyomi", "おも・う", "", ""],
     ["ID", 185, "tango", "思＜おも＞う", "imi", "myslet, věřit (něčemu)", "", "", "", "", "", ""],

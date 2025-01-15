@@ -1,11 +1,19 @@
+import datetime
 import re
 import os
 import json
 import time
 import shutil
+import traceback
 import hashlib
 from copy import copy
 from enum import Enum
+from datetime import datetime
+
+from config import VERSION
+
+import hashlib
+
 
 class Entry(dict):
     def __init__(self, *args, **kwargs):
@@ -57,7 +65,7 @@ class Version:
 
     def __str__(self):
         return str(self.value)
-        #return ". ".join(self.value)
+        # return ". ".join(self.value)
 
     def __repr__(self):
         return f"Version({repr(self.value)})"
@@ -84,12 +92,79 @@ class ValueList(list):
         return self.__class__(copy(self))
 
 
+class KanjiEntry(dict):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self._vocab = []
+
+    def add_vocabulary_entry(self, value):
+        if not isinstance(value, dict) or not value.get("word"):
+            raise ValueError("Argument must be a tango dict.")
+        self._vocab.append(value)
+
+    def vocabulary(self):
+        return self._vocab
+
+    def sort_vocabulary(self):
+        self._vocab.sort(key=lambda x: str(x["id"]) + str(x["word"]))
+
+    def set_kanji(self, other_dict):
+        """Extends the dictionary with key-value pairs from another dictionary."""
+        if not isinstance(other_dict, dict) or not other_dict.get("kanji"):
+            raise TypeError("Argument must be a kanji dict.")
+        for key, value in other_dict.items():
+            self[key] = value
+
+
+class DataSet:
+    _processors = []
+
+    def __init__(self, context_name=None):
+        if context_name is None:
+            self.context_name = datetime.now()
+        else:
+            self.context_name = context_name
+        self.data = {}
+        self.default = False
+
+    def set_is_default(self):
+        self.default = True
+
+    @staticmethod
+    def register_processor(name: str, processor):
+        DataSet._processors.append((name, processor))
+
+    def process(self, metadata, guard):
+        for proc_name, processor in DataSet._processors:
+            for key in self.data:
+                data_spec = self.data[key]
+                name = data_spec["name"]
+                output_path = guard.processing_file_root(data_spec["id"]) \
+                    if self.default else \
+                    guard.complementary_processing_file_root(data_spec["id"])
+
+                try:
+                    if processor(name, data_spec, metadata, lambda _: output_path):
+                        print(f"[{name}]  {proc_name} - generated.")
+                    else:
+                        print(f"[{name}]  {proc_name} - unchanged.")
+                except Exception as e:
+                    print(f"Failed to write file to ", output_path, e)
+                    print(traceback.format_exc())
+
+
 def compute_hash(records):
     hash_obj = hashlib.md5()
     for row in records:
         # Convert each row to a string and encode it
         hash_obj.update(str(row).encode('utf-8'))
     return hash_obj.hexdigest()
+
+
+def hash_id(name: str):
+    m = hashlib.md5()
+    m.update(name.encode("UTF8"))
+    return str(int(m.hexdigest(), 16))[0:12]
 
 
 def get_item_id(item):
@@ -100,9 +175,18 @@ def get_item_id(item):
 # Function to generate furigana in HTML format (support both > and ＞ for furigana)
 def generate_furigana(text):
     # First match any pairs and replace them as whole
-    text = re.sub(r'[<＜]([一-龠ぁ-ゔ\s]+)[>＞][<＜]([一-龠ぁ-ゔ\s]+)[>＞]', r'<ruby>\1<rt style="visibility: hidden">\2</rt></ruby>', str(text))
+    text = re.sub(r'[<＜]([一-龠ぁ-ゔ\s]+)[>＞][<＜]([一-龠ぁ-ゔ\s]+)[>＞]',
+                  r'<ruby>\1<rt style="visibility: hidden">\2</rt></ruby>', str(text))
     # Match exactly one character followed by furigana in <> or ＜＞ (supports both half-width and full-width)
-    return  re.sub(r'([一-龠ぁ-ゔ\s]{1})[<＜]([一-龠ぁ-ゔ\s]+)[>＞]', r'<ruby>\1<rt style="visibility: hidden">\2</rt></ruby>', str(text))
+    return re.sub(r'([一-龠ぁ-ゔ\s]{1})[<＜]([一-龠ぁ-ゔ\s]+)[>＞]',
+                  r'<ruby>\1<rt style="visibility: hidden">\2</rt></ruby>', str(text))
+
+
+def generate_furigana_custom(text, replaces):
+    # First match any pairs and replace them as whole
+    text = re.sub(r'[<＜]([一-龠ぁ-ゔ\s]+)[>＞][<＜]([一-龠ぁ-ゔ\s]+)[>＞]',  replaces, str(text))
+    # Match exactly one character followed by furigana in <> or ＜＞ (supports both half-width and full-width)
+    return re.sub(r'([一-龠ぁ-ゔ\s]{1})[<＜]([一-龠ぁ-ゔ\s]+)[>＞]', replaces, str(text))
 
 
 # Function to remove furigana, leaving only the main character
@@ -186,19 +270,27 @@ class HashGuard:
         return item
 
     def update(self, key, name, hash_value):
+        """
+        Update the hash record of source file, this has no 'context_name'
+        for complementary datasets, set_complementary_record is to be used.
+        """
         item = self.hashes.get(key, None)
         if item and item["name"] != name:
             # If exists & renamed, add outdated entry so it gets cleaned
             self.hashes[f"{key}_{time.time()}"] = {
                 "name": item["name"],
+                "context_name": None,
                 "hash": item["hash"],
-                "stamp": 0
+                "stamp": 0,
+                "version": VERSION
             }
 
         self.hashes[key] = {
             "name": name,
+            "context_name": None,
             "hash": hash_value,
-            "stamp": self.stamp
+            "stamp": self.stamp,
+            "version": VERSION
         }
 
     def invalidate_all(self):
@@ -206,7 +298,7 @@ class HashGuard:
             item = self.hashes[key]
             item["stamp"] = ""
 
-    def for_outdated_entries(self, clbck):
+    def for_each_entry(self, clbck):
         outdated_hashes = []
         for key in self.hashes:
             item = self.hashes[key]
@@ -215,7 +307,7 @@ class HashGuard:
             else:
                 clbck(item, False)
 
-        print("Cleaning outdatad", outdated_hashes)
+        print("Cleaning outdated:", outdated_hashes)
         for key in outdated_hashes:
             item = self.hashes[key]
             clbck(item, True)
@@ -225,37 +317,128 @@ class HashGuard:
         with open(self.hash_file_path, "w") as f:
             json.dump(self.hashes, f)
 
+    def set_record_and_check_if_modified(self, id: str, name: str, record_list: list):
+        """
+        Check if data has changed on dataset that is not complementary. Records also existence of the record,
+        which is necessary due to file maintenance.
+        :param id: the record ID used to identify what record list to compare against in the hash guard history
+        :param name: name stored in the guard, for convenience
+        :param record_list: any value that, when stringified, properly captures the data contents (e.g. it is not
+           serialized as Class object at <...> etc.)
+        :return:
+        """
+        hash_record = self.get(id, name)
+        hash_value = False
+        if hash_record is not None and type(hash_record) != str:
+            hash_value = hash_record.get("hash", None)
+        current_hash = compute_hash(record_list)
+
+        if hash_record is not None and hash_value == current_hash:
+            # Return False if not modified (false if versions equal)
+            return hash_record.get("version", "") != VERSION
+        self.update(id, name, current_hash)
+        return True
+
+    def get_complementary_id(self, id):
+        return f"c-rec-{id}"
+
+    def set_complementary_record(self, id: str, name: str, context_name: str):
+        """
+        Record existence of complementary dataset - these have no native data and thus
+        do not support set_record_and_check_if_modified()
+        :param id: the record ID used to identify what record list to compare against in the hash guard history
+        :param name: name stored in the guard, for convenience
+        :param context_name: name of the complementary dataset context (parent name)
+        :return:
+        """
+        key = self.get_complementary_id(id)
+        item = self.hashes.get(key, None)
+        modified = not bool(item)  # return True even if item does not exist --> change in name, needs to be updated too
+        if item and (item["name"] != name or item["context_name"] != context_name):
+            # If exists & renamed, add outdated entry so it gets cleaned
+            self.hashes[f"{key}_{time.time()}"] = {
+                "name": item["name"],
+                "context_name": item["context_name"],
+                "hash": item["hash"],
+                "stamp": 0,
+                "version": VERSION
+            }
+            modified = True
+        self.hashes[key] = {
+            "name": name,
+            "context_name": context_name,
+            "hash": "__helper__",
+            "stamp": self.stamp,
+            "version": VERSION
+        }
+        return modified
+
+    def complementary_processing_file_root(self, id):
+        return self.processing_file_root(self.get_complementary_id(id))
+
+    def complementary_saving_file_root(self, id, parent_folder):
+        return self.saving_file_root(self.get_complementary_id(id), parent_folder)
+
+    def processing_file_root(self, id_or_item):
+        return self.saving_file_root(id_or_item, ".temp")
+
+    def saving_file_root(self, id_or_item, parent_folder):
+        item = self.hashes[id_or_item] if type(id_or_item) != dict else id_or_item
+        context_name = item.get("context_name")
+        folder_path = parent_folder if context_name is None else f"{parent_folder}/{context_name}"
+        folder_path = f"{folder_path}/{item['name']}/"
+        os.makedirs(folder_path, exist_ok=True)
+        return folder_path
 
 
-def check_records_need_update(id, name, record_list, guard_instance):
-    """
-    Check whether record list of values
-    :param id: the record ID used to identify what record list to compare against in the hash guard history
-    :param name: name stored in the guard, for convenience
-    :param record_list: any value that, when stringified, properly captures the data contents (e.g. it is not
-       serialized as Class object at <...> etc.)
-    :param guard_instance: instance of the HashGuard that is used to store the hashes
-    :return:
-    """
-    hash_record = guard_instance.get(id, name)
-    if hash_record is not None and type(hash_record) != str:
-        hash_record = hash_record.get("hash", None)
-    current_hash = compute_hash(record_list)
-
-    if hash_record and hash_record == current_hash:
-        return False
-    guard_instance.update(id, name, current_hash)
-    return True
+def sort_kanji_keys(structured_dataset):
+    keys = list(structured_dataset.keys())
+    keys.sort(key=lambda x: x)
+    return keys
 
 
-def process_row(row):
+def sort_kanji_set(structured_dataset):
+    # Actually, do not sort vocabulary, prefer the entry order in the data
+    # for id in structured_dataset:
+    #     data = structured_dataset[id]
+    #     data.sort_vocabulary()
+    return sort_kanji_keys(structured_dataset)
+
+
+def find_kanji(all_data: dict, id: str):
+    for dataset_name in all_data:
+        dataset = all_data[dataset_name]
+        kanji = dataset["content"].get(id)
+        if kanji:
+            return kanji, dataset
+    return None, None
+
+
+def parse_ids(ids: str):
+    id_list = ids.split(',')
+
+    output = []
+    for uid in id_list:
+        output.append(uid.strip())
+    return output
+
+
+def dict_read_create(ddict, key, default):
+    node = ddict.get(key)
+    if node is None:
+        node = default
+        ddict[key] = node
+    return node
+
+def process_row(row: list):
     """
     Process data row that comes in
     :param row: even-length row with data items to process: key-value column pairs
     :return: parsed row ready for further processing
     """
     # Todo solve extra
-    item = Entry({"onyomi": ValueList(), "kunyomi": ValueList(), "usage": ValueList(), "extra": {}, "references": {}, "type": ""})
+    item = Entry({"onyomi": ValueList(), "kunyomi": ValueList(), "usage": ValueList(), "extra": {}, "references": {},
+                  "type": ""})
 
     if len(row) < 1:
         return None, False
@@ -317,11 +500,19 @@ def process_row(row):
             item["type"] = 'radical'
             item["radical"] = Value(value, key_significance, data_format)
             item["guid"] = str(hash(value))
+        elif key == 'setto':
+            item["type"] = 'dataset'
+            item["dataset"] = Value(value, key_significance, data_format)
+            item["guid"] = str(hash(value))
 
         elif key == 'id':
             if key_significance > 0:
                 print(" --parse-- Warning: ID cannot have lesser significance! Ignoring the property.", value)
             item["id"] = Value(Version(value), key_significance, data_format)
+        elif key == "ids":
+            if key_significance > 0:
+                print(" --parse-- Warning: IDS cannot have lesser significance! Ignoring the property.", value)
+            item["ids"] = Value(Version(value), key_significance, data_format)
         elif key == 'ref':
             # todo parse ref from its syntax
             values = value.split("-")
