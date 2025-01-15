@@ -243,12 +243,7 @@ def get_readme_contents():
 
     abs_target_folder_to_output = os.path.abspath(target_folder_to_output)
 
-    def create_dataset_readme(path_root, file_list, set_name, item_name):
-        if not path_root or path_root == ".":
-            path_root = target_folder_to_output
-        else:
-            path_root = f"{target_folder_to_output}/{path_root}"
-
+    def create_dataset_readme(file_list, set_name, item_name):
         if len(file_list) > 1:
             output = f"""
 <details>
@@ -257,12 +252,12 @@ def get_readme_contents():
   </summary>
             """
             for file in file_list:
-                output += f"\n  - <a href=\"{path_root}/{file}\">{item_name} {Path(file).stem}</a>\n"
+                output += f"\n  - <a href=\"{file}\">{item_name} {Path(file).stem}</a>\n"
 
             output += "</details>"
             return output
         if len(file_list) == 1:
-            return f" - <a href=\"{path_root}/{file_list[0]}\">{set_name} {Path(file_list[0]).stem}</a>\n"
+            return f" - <a href=\"{file_list[0]}\">{set_name} {Path(file_list[0]).stem}</a>\n"
         raise ValueError("Invalid Dataset!")
 
     # todo move file iteration to generators too
@@ -273,24 +268,21 @@ def get_readme_contents():
         anki_files_readme = dict_read_create(anki_file_entries, dataset_name, [])
         html_files_readme = dict_read_create(html_file_entries, dataset_name, [])
 
-        path_roots = [os.path.relpath(
-            abs_target_folder_to_output, os.path.commonpath([abs_target_folder_to_output, os.path.abspath(x)])
-        ) for x in paths]
         pdf_files = [list(Path(x).glob('**/*.pdf')) for x in paths]
         anki_files = [list(Path(x).glob('**/*.apkg')) for x in paths]
         html_files = [list(Path(x).glob('**/*.html')) for x in paths]
 
         if len(pdf_files):
-            for i in range(len(path_roots)):
-                pdf_files_readme.append(create_dataset_readme(path_roots[i], pdf_files[i], "Sada", ""))
+            for file_list in pdf_files:
+                pdf_files_readme.append(create_dataset_readme(file_list, "Sada", ""))
 
         if len(anki_files):
-            for i in range(len(path_roots)):
-                anki_files_readme.append(create_dataset_readme(path_roots[i], anki_files[i], "Balíček", ""))
+            for file_list in anki_files:
+                anki_files_readme.append(create_dataset_readme(file_list, "Balíček", ""))
 
         if len(html_files):
-            for i in range(len(path_roots)):
-                html_files_readme.append(create_dataset_readme(path_roots[i], html_files[i], "Sada", "Kanji"))
+            for file_list in html_files:
+                html_files_readme.append(create_dataset_readme(file_list, "Sada", "Kanji"))
 
     output_readme = {}
     for dataset_name in readme_contents:

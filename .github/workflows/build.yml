@@ -1,4 +1,4 @@
-name: Generate PDF and Deploy to GitHub Pages
+name: Generate DataSets and Deploy to GitHub Pages
 
 on:
   push:
@@ -31,13 +31,13 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Run Python script to generate PDF
+      - name: Run Python script to generate DataSets
         env:
             GOOGLE_SERVICE: ${{ secrets.GOOGLE_SERVICE }}
             FOLDER_ID: ${{ secrets.FOLDER_ID }}
         run: python main.py
 
-      - name: Commit and push generated PDF to GitHub Pages
+      - name: Commit and push generated DataSets to GitHub Pages
         run: |
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Actions"
