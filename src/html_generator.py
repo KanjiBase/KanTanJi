@@ -1,4 +1,4 @@
-from utils import generate_furigana, InputFormat
+from utils import generate_furigana, InputFormat, verb_prop_html
 
 import markdown
 
@@ -41,6 +41,9 @@ def get_word_html(word, color='blue'):
     global id_dealer
     id_dealer += 1
 
+    props = word["properties"]
+    props_html = "&nbsp;".join(map(verb_prop_html, props.get("verb", [])))
+
     def get_usage(usage_element):
         if not usage_element:
             return ""
@@ -58,7 +61,7 @@ def get_word_html(word, color='blue'):
             </div>
             """
 
-    usage_examples = ''.join(map(get_usage, word['usage']))
+    usage_examples = props_html + ''.join(map(get_usage, word['usage']))
     if not usage_examples:
         return f"""
     <div class="bg-gradient-to-r from-{color}-50 to-{color}-100 rounded-lg shadow p-4 flex flex-col my-2">

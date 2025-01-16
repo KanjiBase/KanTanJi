@@ -73,6 +73,9 @@ class Version:
     def __bool__(self):
         return bool(len(self.value))
 
+    def __eq__(self, other):
+        return str(self.value) == str(other)
+
 
 class ValueList(list):
     def __init__(self, values=None):
@@ -430,6 +433,7 @@ def dict_read_create(ddict, key, default):
         ddict[key] = node
     return node
 
+
 def process_row(row: list):
     """
     Process data row that comes in
@@ -438,7 +442,7 @@ def process_row(row: list):
     """
     # Todo solve extra
     item = Entry({"onyomi": ValueList(), "kunyomi": ValueList(), "usage": ValueList(), "extra": {}, "references": {},
-                  "type": ""})
+                  "properties": {}, "type": ""})
 
     if len(row) < 1:
         return None, False
@@ -504,6 +508,13 @@ def process_row(row: list):
             item["type"] = 'dataset'
             item["dataset"] = Value(value, key_significance, data_format)
             item["guid"] = str(hash(value))
+
+        elif key == 'doushi':
+            if value not in ["ichidan", "godan", "tadoushi", "jidoushi"]:
+                print(" --parse-- Invalid value for verb property: ", value)
+            else:
+                verb_props = dict_read_create(item["properties"], "verb", [])
+                verb_props.append(Value(value, key_significance, data_format))
 
         elif key == 'id':
             if key_significance > 0:
@@ -583,3 +594,28 @@ def merge_trees(source, target):
         for dir_name in dirs:
             target_subdir = os.path.join(target_root, dir_name)
             os.makedirs(target_subdir, exist_ok=True)
+
+
+
+def get_smart_label(title, details, color="#d73a49"):
+    return f"""
+<span onclick="this.querySelector('span').style.display = (this.querySelector('span').style.display === 'none' || this.querySelector('span').style.display === '') ? 'block' : 'none';" style="display: inline-block; background-color: {color}; color: white; padding: 4px 8px; border-radius: 12px; font-size: 12px; font-weight: bold; font-family: Arial, sans-serif; cursor: pointer; position: relative; margin-right: 8px;">
+    {title}
+    <span style="display: none; position: absolute; top: 120%; left: 0; background-color: white; color: black; border: 1px solid {color}; padding: 4px 8px; border-radius: 6px; font-size: 12px; font-family: Arial, sans-serif; z-index: 10; min-width: 150px;">
+        {details}
+    </span>
+</span>    
+"""
+
+
+def verb_prop_html(prop):
+    match str(prop):
+        case "ichidan":
+            return get_smart_label("ichidan (る)", "Sloveso má pouze jeden tvar, při skloňování většinou odpadá ~る přípona.")
+        case "godan":
+            return get_smart_label("godan (..う)", "Sloveso má pět tvarů jako je pět samohlášek, pro skloňování mají dle typu koncovky různá pravidla.")
+        case "jidoushi":
+            return get_smart_label("tranzitivní", "neboli 'tadoushi', sloveso může popisovat předmět (postavili budovu)")
+        case "tadoushi":
+            return get_smart_label("netranzitivní", "neboli 'jidoushi', sloveso popisuje podmět (budova byla postavena)")
+    raise ValueError(f"Property does not allowed in verbs: {prop}")

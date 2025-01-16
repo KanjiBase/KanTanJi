@@ -1,5 +1,6 @@
 [
     ["ID", 12, "kanji", "大", "imi", "velký", "kunyomi", "おお", "onyomi", "ダイ", "onyomi", "タイ", "ref", "radical-1", "[md]note", "##README\nSupports readme **formatted** _text_."],
+    ["ID", 12, "tango", "大＜だい＞事＜じ＞にする", "imi", "vážit si", "doushi", "godan", "doushi", "tadoushi"],
     ["ID", 12, "tango", "大<だい＞学＜がく＞", "imi", "univerzita", "tsukaikata", "日<に>本<ほん>の大<だい＞学＜がく＞に通<かよ>っています。 Chodím na japonskou univerzitu.", "", "", "", ""],
     ["ID", 12, "tango", "<大人><おとな＞", "imi", "dospělý", "", "", "", "", "", ""],
     ["ID", 181, "tango", "図<ず>柄<がら>", "imi", "návrh (design), vzor (pattern)", "", "", "", "", "", ""],
@@ -21,7 +22,7 @@
     ["ID", 184, "tango", "晴<は>れる", "imi", "vyčasit se, vyjasnit", "備<び>考<こう>", "晴<は>れ je \"slunečno\"", "", "", "", ""],
     ["ID", 184, "tango", "晴<せい>天<てん>", "imi", "pěkné počasí, čistá obloha", "tsukaikata", "晴<せい>天<てん>で海<うみ>へ出<で>ると暑<あつ>すぎる。Když je pěkně, je příliš horko na to vyjet na moře .", "", "", "", ""],
     ["ID", 185, "kanji", "思", "imi", "myslet (emotivní)", "onyomi", "シ", "kunyomi", "おも・う", "", ""],
-    ["ID", 185, "tango", "思＜おも＞う", "imi", "myslet, věřit (něčemu)", "", "", "", "", "", ""],
+    ["ID", 185, "tango", "思＜おも＞う", "imi", "myslet, věřit (něčemu)", "doushi", "godan", "doushi", "tadoushi", "", ""],
     ["ID", 185, "tango", "思＜おも＞い出＜だ＞す", "imi", "vzpomínat", "", "", "", "", "", ""],
     ["ID", 185, "tango", "思＜おも＞い出＜で＞", "imi", "vzpomínky", "tsukaikata", "ほんの少<すこ>しでも つらい思<おも>い出<で>の中<なか>に 楽<たの>しい思<おも>い出<で>も作<つく>れたら良<よ>いと思<おも>います。Myslím si, že by bylo dobré, kdybychom alespoň trochu uměli tvořit šťastné vzpomínky mezi všemi těmi bolestnými.", "", "", "", ""],
     ["ID", 185, "tango-", "思＜し＞想＜そう＞", "imi", "nápad, myšlenka, ideologie", "tsukaikata", "その思<し>想<そう>が京<きょう>都<と>にある。Tato ideologie v Kyótu existuje.", "", "", "", ""],
