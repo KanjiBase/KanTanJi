@@ -3,8 +3,9 @@ from pathlib import Path
 import os
 import copy
 
+from src.config import OVERRIDE_VOCAB_SIGNIFICANCE
 from src.utils import (process_row, HashGuard, delete_filesystem_node, merge_trees, hash_id, dict_read_create,
-                       sort_kanji_set, KanjiEntry, parse_ids, find_kanji, DataSet, sort_kanji_keys)
+                       sort_kanji_set, KanjiEntry, parse_ids, find_kanji, DataSet, sort_kanji_keys, Value)
 from src.read_input_google_api import read_sheets_google_api
 from src.read_input_test_data import read_local_data
 
@@ -58,6 +59,7 @@ _data_.set_is_default()
 default_dataset = _data_.data
 parsed_metadata = {}
 complementary_datasets = {}
+kanji_dictionary = {}
 for dataset_name in data:
     structured_output = {}
     entry = data[dataset_name]
@@ -83,13 +85,15 @@ for dataset_name in data:
 
                 if ttype == "kanji":
                     node.set_kanji(item)
+                    kanji_dictionary[str(item["kanji"])] = node
+                    node.set_context_id("default", int(id))
                 else:
                     node.add_vocabulary_entry(item)
 
             elif ttype == 'dataset':
                 node = complementary_datasets.get(id)
                 if node is None:
-                    node = DataSet()
+                    node = DataSet(id)
                     complementary_datasets[id] = node
                 ids = item.get("ids")
                 set_name = str(item.get("dataset"))
@@ -98,7 +102,7 @@ for dataset_name in data:
                     continue
 
                 if ids is not None:
-                    node.data[hash_id(set_name)] = item
+                    node.data[hash_id(set_name)] = item, row
                 else:
                     node.context_name = set_name
 
@@ -138,37 +142,45 @@ for did in complementary_datasets:
 
     incremental_id = 1
     for dsid in dataset.data:
-        data_subset = dataset.data[dsid]
+        data_subset, original_row = dataset.data[dsid]
         subset_name = str(data_subset["dataset"])
-        modified = False
+        kanjis_modified = False
         output = {}
+
         try:
             order = parse_ids(str(data_subset["ids"]))
             for kanji_id in order:
                 kanji, parent_set = find_kanji(default_dataset, kanji_id)
                 if kanji is None:
                     raise ValueError(f"Invalid kanji ID {kanji_id} in dataset {name} > {subset_name}.")
-                modified = modified or parent_set["modified"]
+                kanjis_modified = kanjis_modified or parent_set["modified"]
+
+                # Kanji is linked to kanji_dictionary, set globally shared context ID
+                kanji.set_context_id(did, incremental_id)
 
                 # Updates are consistent, e.g. anki packs use GUID which does not change. Here we create
                 # IDs that follow definition order in the dataset.
-                kanji_copy = copy.copy(kanji)
-                kanji_copy["id"] = incremental_id
+                kanji_copy = copy.deepcopy(kanji)
+                kanji_copy["id"] = Value(incremental_id)
                 output[str(kanji_copy["id"])] = kanji_copy
+
                 incremental_id += 1
 
             # Modification can also be caused by name change
-            modified = data_modification_guard.set_complementary_record(dsid, subset_name, name) or modified
+            modified = data_modification_guard.set_complementary_record_and_check_if_updated(dsid, subset_name, name,
+                                                                                             original_row)
             dataset.data[dsid] = {
                 "id": dsid,
                 "name": subset_name,
                 "content": output,
                 "order": sort_kanji_keys(output),
-                "modified": modified
+                "modified": modified or kanjis_modified
             }
 
         except Exception as e:
+            del complementary_datasets[did]
             print(f" --parse dataset-- Error: dataset {subset_name} ignored", e)
+            raise e
 
 data = _data_
 del default_dataset, _data_
@@ -194,10 +206,15 @@ print()
 print("Processing started...")
 os.makedirs(".temp", exist_ok=True)
 # First process the default data
+if OVERRIDE_VOCAB_SIGNIFICANCE:
+    data.adjust_vocabulary_significance(kanji_dictionary)
 data.process(metadata=metadata, guard=data_modification_guard)
 # Then process all datasets
 for dataset in complementary_datasets:
-    complementary_datasets[dataset].process(metadata=metadata, guard=data_modification_guard)
+    compl_data = complementary_datasets[dataset]
+    if OVERRIDE_VOCAB_SIGNIFICANCE:
+        compl_data.adjust_vocabulary_significance(kanji_dictionary)
+    compl_data.process(metadata=metadata, guard=data_modification_guard)
 
 target_folder_to_output = None
 readme_contents = {}

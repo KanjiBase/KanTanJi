@@ -1,4 +1,3 @@
-import datetime
 import re
 import os
 import json
@@ -8,11 +7,8 @@ import traceback
 import hashlib
 from copy import copy
 from enum import Enum
-from datetime import datetime
 
 from config import VERSION
-
-import hashlib
 
 
 class Entry(dict):
@@ -35,6 +31,9 @@ class Entry(dict):
             return Value
         return None
 
+    def __repr__(self):
+        return f"Entry({super().__repr__()})"
+
 
 class InputFormat(Enum):
     PLAINTEXT = 1
@@ -51,7 +50,7 @@ class Value:
         return str(self.value)
 
     def __repr__(self):
-        return f"Value({repr(self.value)})"
+        return f"Value{'-' * self.significance}({repr(self.value)})"
 
     def __bool__(self):
         return bool(self.value)
@@ -108,6 +107,12 @@ class KanjiEntry(dict):
     def vocabulary(self):
         return self._vocab
 
+    def set_context_id(self, context_id, id):
+        self[f"_id-{context_id}_"] = id
+
+    def get_context_id(self, context_id):
+        return self.get(f"_id-{context_id}_")
+
     def sort_vocabulary(self):
         self._vocab.sort(key=lambda x: str(x["id"]) + str(x["word"]))
 
@@ -118,15 +123,23 @@ class KanjiEntry(dict):
         for key, value in other_dict.items():
             self[key] = value
 
+    # def __copy__(self):
+    #     new_instance = type(self)(self)
+    #     # Ensure vocab is also copied, we will modify the significance levels
+    #     new_instance._vocab = [copy(vocab_entry) for vocab_entry in self._vocab]
+    #     return new_instance
+
 
 class DataSet:
     _processors = []
 
-    def __init__(self, context_name=None):
+    def __init__(self, parent_context_id, context_name=None):
         if context_name is None:
-            self.context_name = datetime.now()
+            self.parent_context_id = parent_context_id
+            self.context_name = parent_context_id
         else:
             self.context_name = context_name
+            self.parent_context_id = parent_context_id
         self.data = {}
         self.default = False
 
@@ -136,6 +149,54 @@ class DataSet:
     @staticmethod
     def register_processor(name: str, processor):
         DataSet._processors.append((name, processor))
+
+    def adjust_vocabulary_significance(self, kanji_dictionary):
+        # Here we deduct significance levels automatically for vocabulary entries, these
+        # are dependent on whether they contain already learnt kanji
+        kanji_regex = r'[\u4e00-\u9faf]|[\u3400-\u4dbf]'
+        for dataset_name in self.data:
+            dataset_spec = self.data[dataset_name]
+            dataset = dataset_spec["content"]
+            for kanji_id in dataset:
+                kanji = dataset[kanji_id]
+
+                kanji_id = kanji.get_context_id(self.parent_context_id)
+                # Find last in this set
+                last_kanji_id = dataset_spec["order"][-1]
+                last_kanji_id = int(str(dataset[last_kanji_id]["id"]))
+
+                for vocab in kanji.vocabulary():
+                    try:
+                        match_len = 0
+                        match = re.findall(kanji_regex, str(vocab["word"]))
+                        for m in match:
+                            contains_kanji = kanji_dictionary.get(m)
+                            contains_kanji_id = None if contains_kanji is None \
+                                else contains_kanji.get_context_id(self.parent_context_id)
+
+                            if contains_kanji_id is None:
+                                match_len = None
+                                break
+                            if contains_kanji_id <= kanji_id:
+                                match_len = match_len + 1
+                            elif contains_kanji_id > last_kanji_id:
+                                match_len = None
+                                break
+
+                        if match_len is None:
+                            vocab["word"].significance = 2
+                        elif match_len == len(match):
+                            vocab["word"].significance = 0
+                        else:
+                            vocab["word"].significance = 1
+
+                    except Exception as e:
+                        vocab["_used_kanjis_"] = []
+                        print("Error when dealing with vocab item in Kanji", kanji_id,
+                              "skipping significance modification...",
+                              e)
+
+
 
     def process(self, metadata, guard):
         for proc_name, processor in DataSet._processors:
@@ -345,7 +406,7 @@ class HashGuard:
     def get_complementary_id(self, id):
         return f"c-rec-{id}"
 
-    def set_complementary_record(self, id: str, name: str, context_name: str):
+    def set_complementary_record_and_check_if_updated(self, id: str, name: str, context_name: str, definition_list: list):
         """
         Record existence of complementary dataset - these have no native data and thus
         do not support set_record_and_check_if_modified()
@@ -356,7 +417,9 @@ class HashGuard:
         """
         key = self.get_complementary_id(id)
         item = self.hashes.get(key, None)
-        modified = not bool(item)  # return True even if item does not exist --> change in name, needs to be updated too
+        # Modified if item missing (=> force generate) or version changed
+        modified = True if item is None else item.get("version", "") != VERSION
+
         if item and (item["name"] != name or item["context_name"] != context_name):
             # If exists & renamed, add outdated entry so it gets cleaned
             self.hashes[f"{key}_{time.time()}"] = {
@@ -367,10 +430,15 @@ class HashGuard:
                 "version": VERSION
             }
             modified = True
+
+        current_hash = compute_hash(definition_list)
+        if not modified and item.get("hash") != current_hash:
+            modified = True
+
         self.hashes[key] = {
             "name": name,
             "context_name": context_name,
-            "hash": "__helper__",
+            "hash": current_hash,
             "stamp": self.stamp,
             "version": VERSION
         }
