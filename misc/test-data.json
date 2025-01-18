@@ -2,7 +2,7 @@
     ["ID", 12, "kanji", "大", "imi", "velký", "kunyomi", "おお", "onyomi", "ダイ", "onyomi", "タイ", "ref", "radical-1", "[md]note", "##README\nSupports readme **formatted** _text_."],
     ["ID", 12, "tango", "大＜だい＞事＜じ＞にする", "imi", "vážit si", "raberu", "godan", "raberu", "tadoushi"],
     ["ID", 12, "tango", "大<だい＞学＜がく＞", "imi", "univerzita", "tsukaikata", "日<に>本<ほん>の大<だい＞学＜がく＞に通<かよ>っています。 Chodím na japonskou univerzitu.", "", "", "", ""],
-    ["ID", 12, "tango", "<大人><おとな＞", "imi", "dospělý", "raberu", "na", "", "", "", ""],
+    ["ID", 12, "tango", "<大人><おとな＞", "imi", "dospělý", "", "", "", ""],
     ["ID", 12, "tango", "大＜だい＞工＜く＞", "imi", "tesař", "", "", "", "", "", ""],
     ["ID", 181, "tango", "図<ず>柄<がら>", "imi", "návrh (design), vzor (pattern)", "", "", "", "", "", ""],
     ["ID", 182, "kanji", "工", "onyomi", "コウ", "imi", "řemeslo, stavba (ne budova!)", "", "", "", ""],

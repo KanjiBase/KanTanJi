@@ -102,12 +102,19 @@ def get_word_html(word, color='blue'):
     """
 
 
+def vocab_col_title(level):
+    if level > 2:
+        level = 2
+    return ["Povinná slovíčka", "Objeví se v sadě", "Rozšiřující"][level]
+
+
 def get_vocab_entries(item):
     return ''.join([f"""
         <div 
           class="flex-1 gap-4"
           style="min-width: 350px; max-width: 500px;"
         >   
+            <span class="text-xl font-bold text-gray-800 mb-4">{vocab_col_title(level)}</span>
             {''.join(map(lambda x: get_word_html(x, color), filter(lambda x: getattr(x, handler)('word', level), item.vocabulary())))}
         </div>
         """ for (level, color, handler) in [(0, 'green', 'get_equal'), (1, 'blue', 'get_equal'), (2, 'purple', 'get_below')]
@@ -246,7 +253,6 @@ def read_kanji_csv(key, data, radicals):
 
 <!-- Vocabulary Section -->
 <div>
-    <h3 class="text-2xl font-bold text-gray-800 mb-4">Slovní zásoba</h3>
     <div class="flex flex-col lg:flex-row gap-6 flex-wrap">
         {get_vocab_entries(item)}
         {get_notes(item)}

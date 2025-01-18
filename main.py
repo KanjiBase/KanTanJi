@@ -320,7 +320,9 @@ PDF Soubory obsahují seznam znaků kanji a přidružených slovíček.
 
 ### ANKI Balíčky
 Balíčky lze importovat opakovaně do ANKI aplikace. Balíčky se řadí do kolekce 'KanTanJi' 
-a umožňují chytré a interaktivní procvičování kanji.
+a umožňují chytré a interaktivní procvičování kanji. Balíček obsahuje jak kanji (poznáš podle
+toho, že karta otázky obsahuje link na KanjiAlive), tak slovní zásobu ke kanji.
+Furiganu zobrazíš kliknutím / tapnutím na kartičku.
 {ankis}
 
 ### HTML
