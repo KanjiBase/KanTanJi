@@ -5,4 +5,4 @@ Jednoduchá aplikace na trénování Kanji - pomocí PDF souborů a přidružen�
 
 
  ## Dostupné Sady 
-- <a href="static/1.md">Neoborová Japonština</a>
+- <a href="1.md">Neoborová Japonština</a>
