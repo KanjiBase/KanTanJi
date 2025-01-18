@@ -38,7 +38,7 @@ jobs:
         run: |
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Actions"
-          git add README.md static/* misc/update_guard_*.json
+          git add *.md static/* misc/update_guard_*.json
           git status
           if git diff --cached --quiet; then
             echo "No changes to commit."
