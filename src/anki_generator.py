@@ -4,9 +4,9 @@ import hashlib
 import uuid
 import markdown
 
-from utils import generate_furigana, retrieve_row_kanjialive_url, InputFormat, verb_prop_html
-
-
+from utils import generate_furigana, retrieve_row_kanjialive_url
+from utils_data_entitites import InputFormat
+from utils_html import parse_item_props_html
 
 
 # Function to read the CSV data
@@ -109,8 +109,7 @@ def read_kanji_csv(key, data):
 
             word = f"<div style=\"font-size: 28pt;\">{generate_furigana(vocab_item['word'])}</div>"
 
-            props = vocab_item["properties"]
-            props_html = "&nbsp;".join(map(verb_prop_html, props.get("verb", [])))
+            props_html = parse_item_props_html(vocab_item)
 
             # Word to translation card
             cards.append([

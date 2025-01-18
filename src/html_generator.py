@@ -1,6 +1,8 @@
-from utils import generate_furigana, InputFormat, verb_prop_html
-
 import markdown
+
+from utils import generate_furigana
+from utils_data_entitites import InputFormat
+from utils_html import parse_item_props_html
 
 
 def get_onyomi(item):
@@ -41,8 +43,9 @@ def get_word_html(word, color='blue'):
     global id_dealer
     id_dealer += 1
 
-    props = word["properties"]
-    props_html = "&nbsp;".join(map(verb_prop_html, props.get("verb", [])))
+    props_html = parse_item_props_html(word)
+    if props_html:
+        props_html = f"<div class='my-2 vocab-properties'>{props_html}</div>"
 
     def get_usage(usage_element):
         if not usage_element:
@@ -61,7 +64,7 @@ def get_word_html(word, color='blue'):
             </div>
             """
 
-    usage_examples = props_html + ''.join(map(get_usage, word['usage']))
+    usage_examples = ''.join(map(get_usage, word['usage']))
     if not usage_examples:
         return f"""
     <div class="bg-gradient-to-r from-{color}-50 to-{color}-100 rounded-lg shadow p-4 flex flex-col my-2">
@@ -71,6 +74,7 @@ def get_word_html(word, color='blue'):
             <p class="text-sm text-gray-600">{word['meaning']}</p>
           </div>
         </div>
+        {props_html}
     </div>
     """
 
@@ -90,6 +94,7 @@ def get_word_html(word, color='blue'):
                 ▼
               </button>
         </div>
+        {props_html}
         <div id="vocab{id_dealer}" class="button-vocab-example hidden mt-2 p-2 rounded bg-white text-gray-700 shadow">
           {usage_examples}
         </div>
@@ -107,6 +112,22 @@ def get_vocab_entries(item):
         </div>
         """ for (level, color, handler) in [(0, 'green', 'get_equal'), (1, 'blue', 'get_equal'), (2, 'purple', 'get_below')]
     ])
+
+
+def get_notes(item):
+    notes = "".join([
+        f"<div><strong><i>{generate_furigana(key)}<i></strong>: {generate_furigana(value)}</div>" if value.format == InputFormat.PLAINTEXT
+        else f"<div>{markdown.markdown(generate_furigana(value))}</div>"
+        for key, value in item.get("extra", {}).items()
+    ])
+
+    if notes:
+        return f"""
+         <div class="note-container flex-1 lg:max-w-sm lg:ml-6 p-4 bg-green-100 rounded-lg shadow">
+            <p class="text-gray-800">{notes}</p>
+         </div>
+        """
+    return "<div></div>"
 
 
 def read_kanji_csv(key, data, radicals):
@@ -149,7 +170,7 @@ def read_kanji_csv(key, data, radicals):
 <div class="p-4 bg-gradient-to-r from-gray-50 to-gray-100 rounded-lg shadow mb-4">
   <div class="flex justify-between items-center flex-row-reverse flex-wrap">
     <!-- Label and Checkbox -->
-    <div id="controls">
+    <div id="controls" style="display: none">
       <label for="showFurigana" class="flex items-center gap-2">
         <input 
           type="checkbox" 
@@ -168,19 +189,31 @@ def read_kanji_csv(key, data, radicals):
         >
         <span class="text-gray-700 font-medium">Vždy ukazovat věty</span>
       </label>
+      <label for="showVocabProperties" class="flex items-center gap-2">
+        <input 
+          type="checkbox" 
+          id="showVocabProperties" 
+          class="w-5 h-5 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
+          onchange="showVocabProperties(this.checked)"
+        >
+        <span class="text-gray-700 font-medium">Ukazovat vlastnosti slovíček</span>
+      </label>
     </div>
-
-    <!-- Hide/Show Button -->
-    <button
-      onclick="toggleControls(document.getElementById('controls').style.display === 'none')"
-      class="my-3 mx-2 px-4 py-2 bg-indigo-600 text-white rounded-lg shadow hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
-    >
-      Přepnout ovládací prvky
-    </button>
   </div>
 </div>
 <!-- Kanji Info Section -->
-<div class="bg-white shadow-lg rounded-lg overflow-hidden md:flex">
+<div class="bg-white shadow-lg rounded-lg overflow-hidden md:flex relative">
+    <!-- Hide/Show Button -->
+    <button
+      id="toggleControls"
+      onclick="toggleControls(document.getElementById('controls').style.display !== 'none')"
+      class="my-3 mx-2 px-4 py-3 right-0 absolute bg-indigo-600 text-white rounded-lg shadow hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+    >
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-gear-fill" viewBox="0 0 16 16">
+            <path d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z"/>
+        </svg>
+    </button>
+
     <!-- Stroke Order Image -->
     <div class="bg-gradient-to-br from-indigo-100 to-purple-100 p-6 flex items-center justify-center">
         <img
@@ -216,18 +249,7 @@ def read_kanji_csv(key, data, radicals):
     <h3 class="text-2xl font-bold text-gray-800 mb-4">Slovní zásoba</h3>
     <div class="flex flex-col lg:flex-row gap-6 flex-wrap">
         {get_vocab_entries(item)}
-        <!-- Historical Note Section -->
-        <div class="note-container flex-1 lg:max-w-sm lg:ml-6 p-4 bg-green-100 rounded-lg shadow">
-            <p class="text-gray-800">
-                {
-"".join([
-    f"<div><strong><i>{generate_furigana(key)}<i></strong>: {generate_furigana(value)}</div>" if value.format == InputFormat.PLAINTEXT
-    else f"<div>{markdown.markdown(generate_furigana(value))}</div>"
-    for key, value in item.get("extra", {}).items()
-])
-                }
-            </p>
-        </div>
+        {get_notes(item)}
     </div>
 </div>
 <br>
@@ -247,15 +269,16 @@ def read_kanji_csv(key, data, radicals):
         document.querySelectorAll('ruby rt').forEach(element => {{
             element.style.visibility = value ? 'visible' : 'hidden';
         }});
+        document.getElementById("showFurigana").checked = value;
     }}
     function toggleControls(isHidden) {{
         const controls = document.getElementById('controls');
         isHidden = rememberValue('hideControls', isHidden) === 'true';
     
         if (isHidden) {{
-          controls.style.display = 'block';
+            controls.style.display = 'none';
         }} else {{
-          controls.style.display = 'none'; 
+            controls.style.display = 'block'; 
         }}
         sendHeightToParent();
     }}
@@ -267,22 +290,37 @@ def read_kanji_csv(key, data, radicals):
         document.querySelectorAll('.button-vocab-example').forEach(element => {{
             element.style.display = doShow ? "block" : "none";
         }});
+        document.getElementById("showSentences").checked = doShow;
         sendHeightToParent();
     }}
-    function rememberValue(key, value, defaultValue='true') {{
-        if (value === undefined) {{
-            value = (localStorage.getItem(key) || defaultValue);
-        }} else {{
-            localStorage.setItem('showFurigana', value);
-        }}
-        return String(value);
+    function showVocabProperties(doShow) {{
+        doShow = rememberValue('showVocabProperties', doShow) === 'true';
+        document.querySelectorAll('.vocab-properties').forEach(element => {{
+            element.style.display = doShow ? "block" : "none";
+        }});
+        document.getElementById("showVocabProperties").checked = doShow;
+        sendHeightToParent();
     }}
+    // Call functions to initialize state
     toggleShowFurigana();
     toggleControls();
     showSentences();
+    showVocabProperties();
+    
+    // Helper functions
+    function rememberValue(key, value, defaultValue='true') {{
+        if (value === undefined) {{
+            return (localStorage.getItem(key) || defaultValue);
+        }} 
+        value = String(value);
+        localStorage.setItem(key, value);
+        return value;
+    }}
     function sendHeightToParent() {{
-      const height = document.documentElement.scrollHeight;
-      window.parent && window.parent.postMessage({{ iframeHeight: height, test: "true" }}, "https://elf.phil.muni.cz");
+      setTimeout(() => {{
+          const height = document.documentElement.scrollHeight;
+          window.parent && window.parent.postMessage({{ iframeHeight: height, test: "true" }}, "https://elf.phil.muni.cz");
+      }});
     }}
 
     // Call the function when the iframe is loaded

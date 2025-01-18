@@ -3,15 +3,18 @@ from pathlib import Path
 import os
 import copy
 
+from src.hash_guard import HashGuard
 from src.config import OVERRIDE_VOCAB_SIGNIFICANCE
-from src.utils import (process_row, HashGuard, delete_filesystem_node, merge_trees, hash_id, dict_read_create,
-                       sort_kanji_set, KanjiEntry, parse_ids, find_kanji, DataSet, sort_kanji_keys, Value)
+from src.utils import (process_row, hash_id, dict_read_create,
+                       sort_kanji_set, parse_ids, find_kanji, sort_kanji_keys)
 from src.read_input_google_api import read_sheets_google_api
 from src.read_input_test_data import read_local_data
 
 from src.pdf_generator import generate as generate_pdf
 from src.anki_generator import generate as generate_anki
 from src.html_generator import generate as generate_html
+from utils_data_entitites import DataSet, KanjiEntry, Value
+from utils_filesystem import merge_trees, delete_filesystem_node
 
 DataSet.register_processor("Anki Decks", generate_anki)
 DataSet.register_processor("PDF Materials", generate_pdf)

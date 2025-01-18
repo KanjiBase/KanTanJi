@@ -32,9 +32,10 @@ Dependening on the keys mentioned above, the row also can or must define other k
  - tango
    - imi - **required**, the meaning of the vocabulary entry
    - tsukaikata - an example usage sentence, optional
-   - doushi - verb property, optional, useful for verbs:
+   - doushi - verb property, optional, useful for verb description:
      - supports one of: ``tadoushi`` (transitive), `jidoushi` (intransitive), `ichidan` (る-verb, 1 form) or `godan` (5 forms)
-
+   - keiyoushi - adjective property, optional:
+     - supports one of: ``na`` (na-adjective), `i` (i-adjective)  
 
 You can also define arbitrary key-value pairs you wish, these will be included in 'other', 'notes' etc. sections.
 
