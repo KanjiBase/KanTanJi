@@ -145,7 +145,8 @@ for did in complementary_datasets:
                 if kanji is None:
                     raise ValueError(f"Invalid kanji ID {kanji_id} in dataset {name} > {subset_name}.")
 
-                kanjis_modified = kanjis_modified or kanji.get_was_modified(data_modification_guard)
+                # Do not optimize! get_was_modified must run to create entires!
+                kanjis_modified = kanji.get_was_modified(data_modification_guard) or kanjis_modified
 
                 # Kanji is linked to kanji_dictionary by the kanji letter, store context-dependent shared ID
                 kanji.set_context_id(did, incremental_id)
