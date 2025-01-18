@@ -124,7 +124,7 @@ class CustomEncoder(json.JSONEncoder):
 
 def compute_hash(records):
     hash_obj = hashlib.md5()
-    serial = json.dumps(records, sort_keys=True, cls=CustomEncoder)
+    serial = json.dumps(records, sort_keys=True, ensure_ascii=False, cls=CustomEncoder)
     hash_obj.update(serial.encode('utf-8'))
     return hash_obj.hexdigest()
 
@@ -133,7 +133,7 @@ class HashGuard:
     def __init__(self, context_name):
         self.hash_file_path = f"misc/update_guard_{context_name}.json"
         if os.path.exists(self.hash_file_path):
-            with open(self.hash_file_path, 'r') as f:
+            with open(self.hash_file_path, 'r', encoding='utf-8') as f:
                 self.hashes = json.load(f)
         else:
             self.hashes = {}
@@ -180,8 +180,8 @@ class HashGuard:
             del self.hashes[key]
 
     def save(self):
-        with open(self.hash_file_path, "w") as f:
-            json.dump(self.hashes, f)
+        with open(self.hash_file_path, "w", encoding='utf-8') as f:
+            json.dump(self.hashes, f, ensure_ascii=False)
 
     def set_kanji_record_and_check_if_modified(self, kanji):
         return self.set_record_and_check_if_modified(kanji["kanji"], "", kanji)
@@ -268,6 +268,7 @@ class KanjiEntry(Entry):
         super().__init__(*args, **kwargs)
         self["_vocab_"] = []
         self._modif_flag = None
+        self._context_ids = {}
 
     def add_vocabulary_entry(self, value):
         if not isinstance(value, VocabEntry):
@@ -278,10 +279,10 @@ class KanjiEntry(Entry):
         return self.get("_vocab_")
 
     def set_context_id(self, context_id, id):
-        self[f"_id-{context_id}_"] = id
+        self._context_ids[context_id] = id
 
     def get_context_id(self, context_id):
-        return self.get(f"_id-{context_id}_")
+        return self._context_ids.get(context_id)
 
     def get_was_modified(self, guard: HashGuard):
         return self._modif_flag if self._modif_flag is not None else guard.set_kanji_record_and_check_if_modified(self)
@@ -298,6 +299,9 @@ class KanjiEntry(Entry):
         self["imi"] = other_dict.get("imi")
         self["onyomi"] = ValueList(other_dict.get("onyomi", []))
         self["kunyomi"] = ValueList(other_dict.get("kunyomi", []))
+
+        if isinstance(other_dict, KanjiEntry):
+            self._modif_flag = other_dict._modif_flag
 
         self["guid"] = str(self["kanji"])
 
@@ -321,7 +325,7 @@ class VocabEntry(Entry):
         self["tsukaikata"] = ValueList(other_dict.get("tsukaikata", []))
         self["raberu"] = ValueList(other_dict.get("raberu", []))
 
-        self["guid"] = hash(self["kanji"] + "." + self["tango"])
+        self["guid"] = self["kanji"] + "." + self["tango"]
 
 
 class RadicalEntry(Entry):
@@ -336,7 +340,7 @@ class RadicalEntry(Entry):
         self["imi"] = other_dict.get("imi")
         self["kunyomi"] = ValueList(other_dict.get("kunyomi", []))
 
-        self["guid"] = str(hash(self["radical"]))
+        self["guid"] = self["radical"]
 
 
 class DatasetEntry(Entry):
@@ -350,7 +354,7 @@ class DatasetEntry(Entry):
         self["id"] = other_dict.get("id")
         self["ids"] = other_dict.get("ids", None)
 
-        self["guid"] = str(hash(self["setto"]))
+        self["guid"] = self["setto"]
 
 
 

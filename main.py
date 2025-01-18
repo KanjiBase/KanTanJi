@@ -160,7 +160,7 @@ for did in complementary_datasets:
                 incremental_id += 1
 
             # Modification can also be caused by name change
-            modified = data_modification_guard.set_complementary_record_and_check_if_updated(dsid, subset_name, name,
+            modified = data_modification_guard.set_complementary_record_and_check_if_updated(dsid, subset_name, did,
                                                                                              original_row)
             dataset.data[dsid] = {
                 "id": dsid,
@@ -287,14 +287,17 @@ def get_readme_contents():
                 html_files_readme.append(create_dataset_readme(file_list, "Sada", "Kanji"))
 
     output_readme = {}
-    for dataset_name in readme_contents:
-        pdfs = '\n'.join(pdf_file_entries[dataset_name])
-        ankis = '\n'.join(anki_file_entries[dataset_name])
-        htmls = '\n'.join(html_file_entries[dataset_name])
-        dataset_name_title = f"## {dataset_name}" if dataset_name else ""
+    for dataset_id in readme_contents:
+        dataset = complementary_datasets[dataset_id]
+        dataset_name = dataset.context_name
 
-        output_readme[dataset_name] = f"""
-{dataset_name_title}
+        pdfs = '\n'.join(pdf_file_entries[dataset_id])
+        ankis = '\n'.join(anki_file_entries[dataset_id])
+        htmls = '\n'.join(html_file_entries[dataset_id])
+        dataset_title = f"## {dataset_name}" if dataset_name else dataset_id
+
+        output_readme[dataset_id] = f"""
+{dataset_title}
 
 ### PDF Materiály
 PDF Soubory obsahují seznam znaků kanji a přidružených slovíček.
@@ -321,14 +324,17 @@ if not uses_test_data:
     contents = get_readme_contents()
     readme_output = []
 
-    for dataset_name in contents:
-        dataset_readme = target_folder_to_output + "/" + dataset_name + ".md"
+    for dataset_id in contents:
+        dataset_readme = target_folder_to_output + "/" + dataset_id + ".md"
+        dataset = complementary_datasets[dataset_id]
+        dataset_name = dataset.context_name
+
         with open(dataset_readme, mode='w+', encoding='utf-8') as file:
-            file.write(readme + contents[dataset_name])
+            file.write(readme + contents[dataset_id])
         readme_output.append(f"- <a href=\"{dataset_readme}\">{dataset_name}</a>")
 
     if len(readme_output):
-        readme_output = "\n\n ## Dostupné Sady \n Trénování Kanji\n" + "\n".join(readme_output)
+        readme_output = "\n\n ## Dostupné Sady \n" + "\n".join(readme_output)
     else:
         readme_output = "Nejsou žádné dostupné sady. Dataset není definován!"
 
@@ -344,10 +350,13 @@ else:
 
     contents = get_readme_contents()
     readme_output = []
-    for dataset_name in contents:
-        dataset_readme = target_folder_to_output + "/" + dataset_name + ".md"
+    for dataset_id in contents:
+        dataset_readme = target_folder_to_output + "/" + dataset_id + ".md"
+        dataset = complementary_datasets[dataset_id]
+        dataset_name = dataset.context_name
+
         with open(dataset_readme, mode='w+', encoding='utf-8') as file:
-            file.write(readme + contents[dataset_name])
+            file.write(readme + contents[dataset_id])
         readme_output.append(f"- <a href=\"{dataset_readme}\">{dataset_name}</a>")
 
     if len(readme_output):
