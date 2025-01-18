@@ -206,6 +206,8 @@ class HashGuard:
             # Return False if not modified (false if versions equal)
             return hash_record.get("version", "") != VERSION
         self.update(id, name, current_hash)
+        if not name:
+            print("DEBUG", hash_record, hash_value, current_hash)
         return True
 
     def get_complementary_id(self, id):
