@@ -330,14 +330,18 @@ if not uses_test_data:
         dataset = complementary_datasets[dataset_id]
         dataset_name = dataset.context_name
 
-        with open(dataset_readme, mode='w+', encoding='utf-8') as file:
-            file.write(readme + contents[dataset_id])
-        readme_output.append(f"- <a href=\"{dataset_readme}\">{dataset_name}</a>")
+        # Github pages renders nicely by default only README.md :/ cram into one file
 
-    if len(readme_output):
-        readme_output = "\n\n ## Dostupné Sady \n" + "\n".join(readme_output)
-    else:
-        readme_output = "Nejsou žádné dostupné sady. Dataset není definován!"
+        # with open(dataset_readme, mode='w+', encoding='utf-8') as file:
+        #     file.write(readme + contents[dataset_id])
+        # readme_output.append(f"- <a href=\"{dataset_readme}\">{dataset_name}</a>")
+        readme_output.append(contents[dataset_id])
+
+    # if len(readme_output):
+    #     readme_output = "\n\n ## Dostupné Sady \n" + "\n".join(readme_output)
+    # else:
+    #     readme_output = "Nejsou žádné dostupné sady. Dataset není definován!"
+    readme_output = "\n\n\n".join(readme_output)
 
     # Write the README.md with links to the PDF files
     with open("README.md", mode='w+', encoding='utf-8') as file:
