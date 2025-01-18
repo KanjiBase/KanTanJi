@@ -152,7 +152,7 @@ def process_row(row: list):
     """
     # Todo solve extra
     item = Entry({"onyomi": ValueList(), "kunyomi": ValueList(), "usage": ValueList(), "extra": {}, "references": {},
-                  "properties": {}, "type": ""})
+                  "properties": [], "type": ""})
 
     if len(row) < 1:
         return None, False
@@ -219,19 +219,11 @@ def process_row(row: list):
             item["dataset"] = Value(value, key_significance, data_format)
             item["guid"] = str(hash(value))
 
-        elif key == 'doushi':
-            if value not in ["ichidan", "godan", "tadoushi", "jidoushi"]:
-                print(" --parse-- Invalid value for verb property: ", value)
+        elif key == 'raberu':
+            if value not in ["ichidan", "godan", "tadoushi", "jidoushi", "i", "na"]:
+                print(" --parse-- Invalid value for vocab property: ", value)
             else:
-                verb_props = dict_read_create(item["properties"], "verb", [])
-                verb_props.append(Value(value, key_significance, data_format))
-
-        elif key == 'keiyoushi':
-            if value not in ["i", "na"]:
-                print(" --parse-- Invalid value for adjective property: ", value)
-            else:
-                verb_props = dict_read_create(item["properties"], "adjective", [])
-                verb_props.append(Value(value, key_significance, data_format))
+                item["properties"].append(Value(value, key_significance, data_format))
 
         elif key == 'id':
             if key_significance > 0:

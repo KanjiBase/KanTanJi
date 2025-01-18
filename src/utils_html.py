@@ -16,7 +16,7 @@ def get_smart_label(title: str, details: str, color="#d73a49"):
 """
 
 
-def verb_prop_html(prop: str | Value, color: str):
+def vocab_property_html(prop: str | Value, color: str):
     match str(prop):
         case "ichidan":
             return get_smart_label("ichidan (る)", "Sloveso má pouze jeden tvar, při skloňování většinou odpadá ~る přípona.", color)
@@ -26,49 +26,24 @@ def verb_prop_html(prop: str | Value, color: str):
             return get_smart_label("tranzitivní", "neboli 'tadoushi', sloveso může popisovat předmět (postavili budovu)", color)
         case "tadoushi":
             return get_smart_label("netranzitivní", "neboli 'jidoushi', sloveso popisuje podmět (budova byla postavena)", color)
-    raise ValueError(f"Property does not allowed in verbs: {prop}")
+        case "i":
+            return get_smart_label("い - příd. jméno", "Sloveso má pouze jeden tvar, při skloňování většinou odpadá ~る přípona.", color)
+        case "na":
+            return get_smart_label("な - příd. jméno", "Odpadá ~な přípona (např. při použití s 'です'), pokud se neváže na podstatné jméno.", color)
+    raise ValueError(f"Property not allowed: {prop}")
 
 
-def verb_prop_color(prop: str | Value):
+def vocab_property_color(prop: str | Value):
     match str(prop):
         case "ichidan" | "godan":
             return VERB_IGIDAN_GODAN_COLOR
         case "jidoushi" | "tadoushi":
             return VERB_TRANSITIVENESS_COLOR
-    raise ValueError(f"Property does not allowed in verbs: {prop}")
-
-
-def adjective_prop_html(prop: str | Value, color: str):
-    match str(prop):
-        case "i":
-            return get_smart_label("い - příd. jméno", "Sloveso má pouze jeden tvar, při skloňování většinou odpadá ~る přípona.", color)
-        case "na":
-            return get_smart_label("な - příd. jméno", "Odpadá ~な přípona (např. při použití s 'です'), pokud se neváže na podstatné jméno.", color)
-    raise ValueError(f"Property does not allowed in adjectives: {prop}")
-
-
-def adjective_prop_color(prop: str | Value):
-    match str(prop):
         case "i" | "na":
             return ADJECTIVE_TYPE_COLOR
-    raise ValueError(f"Property does not allowed in adjectives: {prop}")
-
-
-_PROP_PARSERS_ = {
-    "verb": lambda x: verb_prop_html(x, verb_prop_color(x)),
-    "adjective": lambda x: adjective_prop_html(x, adjective_prop_color(x))
-}
+    raise ValueError(f"Property not allowed: {prop}")
 
 
 def parse_item_props_html(word: Entry):
     props = word["properties"]
-    result = []
-    for prop_name in props:
-        prop_list = props[prop_name]
-        parser = _PROP_PARSERS_.get(prop_name)
-        if parser:
-            result.extend(map(parser, prop_list))
-        else:
-            print(" WARN: Unsupported prop", word, prop_name)
-
-    return "".join(result)
+    return "".join(map(lambda x: vocab_property_html(x, vocab_property_color(x)), props))

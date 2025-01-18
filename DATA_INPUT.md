@@ -32,16 +32,19 @@ Dependening on the keys mentioned above, the row also can or must define other k
  - tango
    - imi - **required**, the meaning of the vocabulary entry
    - tsukaikata - an example usage sentence, optional
-   - doushi - verb property, optional, useful for verb description:
-     - supports one of: ``tadoushi`` (transitive), `jidoushi` (intransitive), `ichidan` (る-verb, 1 form) or `godan` (5 forms)
-   - keiyoushi - adjective property, optional:
-     - supports one of: ``na`` (na-adjective), `i` (i-adjective)  
+   - raberu - vocabulary property, optional, supports one of:
+     - ``tadoushi``  - transitive verb
+     - `jidoushi`  - intransitive verb
+     - `ichidan`  - る-verb, 1 form 
+     - `godan` - 5 form verb
+     - ``na``  - na-adjective
+     - `i`  - i-adjective  
 
 You can also define arbitrary key-value pairs you wish, these will be included in 'other', 'notes' etc. sections.
 
 #### Example:
 ```
-ID     185      tango      思＜おも＞う       imi         myslet, věřit (něčemu)        doushi        godan        doushi     tadoushi         tsukaikata        そうだと思＜おも＞います。　Myslím, že je to tak.
+ID     185      tango      思＜おも＞う       imi         myslet, věřit (něčemu)        raberu        godan        raberu     tadoushi         tsukaikata        そうだと思＜おも＞います。　Myslím, že je to tak.
 -- OR --
 ID     185      tango      思＜おも＞う       imi         myslet, věřit (něčemu)       tsukaikata        そうだと思＜おも＞います。　Myslím, že je to tak.         備<び>考<こう>      Jedná se o spíše 'emoční' než racionální myšlení.        tsukaikata        彼＜かれ＞のことをよく思＜おも＞っています。　Vážím si ho / Mám o něm vysoké mínění.
 ```
