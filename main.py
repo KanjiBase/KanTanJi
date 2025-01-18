@@ -325,7 +325,7 @@ if not uses_test_data:
     readme_output = []
 
     for dataset_id in contents:
-        dataset_readme = target_folder_to_output + "/" + dataset_id + ".md"
+        dataset_readme = dataset_id + ".md"
         dataset = complementary_datasets[dataset_id]
         dataset_name = dataset.context_name
 
@@ -351,6 +351,7 @@ else:
     contents = get_readme_contents()
     readme_output = []
     for dataset_id in contents:
+        # In test mode, output to .test folder
         dataset_readme = target_folder_to_output + "/" + dataset_id + ".md"
         dataset = complementary_datasets[dataset_id]
         dataset_name = dataset.context_name
