@@ -11,9 +11,8 @@
 !static/
 !main.py
 !src/static.py
-!README.md
-!POLICY_TERMS.md
-!DATA_INPUT.md
+!*.md
+.*.md
 !requirements.txt
 
 !src/**/*
