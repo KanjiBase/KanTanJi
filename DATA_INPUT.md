@@ -1,12 +1,8 @@
 # Kanji Input
 
-Input for kanji is defined in rows, where odd rows carry the key (~ what to do with the value) and even rows carry the value itself.
-Each row must have `ID` key with numeric ID value of the entry (it can also be versioned by dots if you want to use hierarchies). 
-
-Each row must also define **exactly one** one of the following keys:
-
- - kanji - the row is a kanji definition, the row must be defined exactly once per unique ID
- - tango - the row carries a vocabulary entry for a kanji, e.g. there must exist a row with the same ID that has 'kanji' definition
+Always, when some key is required, it can be present only once in the row. Optional keys can be present multiple times.
+It is also not important what order the keys are defined in. With kanjis, ID rows must be unique. Each tango (word)
+then uses the same ID as kanji it belongs to.
 
 > **SPARSE SUPPORT** Note: input supports many features like significance levels, formats.. but for output to truly respect
 > given feature, it must implement its usage. That means you can for example use markdown or significance 
@@ -15,21 +11,19 @@ Each row must also define **exactly one** one of the following keys:
 
 ### Minimal Example:
 ```
-ID   1   kanji   思   　　　　 imi    myslet (emotivní)
-ID   1   tango   思＜おも＞う  imi    myslet, věřit (něčemu)
+kanji   思   imi     myslet (emotivní)
+kanji   思   tango   思＜おも＞う         imi    myslet, věřit (něčemu)
 ```
 
 ### Key definitions - Data
-Always, when some key is required, it can be present only once in the row. Optional keys can be present multiple times.
-It is also not important what order the keys are defined in. With kanjis, ID rows must be unique. Each tango (word)
-then uses the same ID as kanji it belongs to.
 
 Dependening on the keys mentioned above, the row also can or must define other keys:
- - kanji
+ - kanji - if used and *tango* not present, the row defines a kanji entry, the value is used as a kanji ID
    - imi - **required**, the meaning of the kanji symbol
    - onyomi - the onyomi reading, optional, defined once per unique reading
    - kunyomi - the kunyomi reading, optional, defined once per unique reading
- - tango
+ - tango - if used, row treated as a vocabulary kanji
+   - kanji - **required**, the reference to the kanji value 
    - imi - **required**, the meaning of the vocabulary entry
    - tsukaikata - an example usage sentence, optional
    - raberu - vocabulary property, optional, supports one of:
@@ -52,13 +46,14 @@ Both entries have different qualities. It is better to provide verb with informa
 The second example provides two usage examples to emphasise different use than in the 'to omou' grammar. Furthermore, it defines
 custom **key** ``備<び>考<こう>`` which means 'note' and will be displayed in the 'extra' fields of the verb information section.
 
- ### Key definitions - Datasets
+### Key definitions - Datasets
 
 All datasets by default create learning content ``sets`` based on files they are stored in.
 If you need to have two kanji order learning datasets, you can define the other one by using
 
  - setto
-   - ids - **optional**, the ID set to compose a new dataset from, if missing
+   - id - **required**, the set ID
+   - ids - **optional**, the ID set to compose a new dataset from (kanji values), if missing
    it is the name of the dataset itself (see example)
 
 Example:
@@ -83,7 +78,8 @@ define them in the very same way as you would other items, and if your desired g
 respects this metadata, it will be used along the data to enhance the outputs! Following
 row keys - ``type``s - are supported:
 
- - radical
+ - radical - value of the radical
+   - id - **required**, arbitrary ID to reference radical values later on
    - imi - **required**, the meaning of the kanji symbol
    - kunyomi
  

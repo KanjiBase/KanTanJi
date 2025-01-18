@@ -6,11 +6,17 @@ from utils_html import parse_item_props_html
 
 
 def get_onyomi(item):
-    return item.get("onyomi").join(", ")
+    result = item.get("onyomi").join(", ")
+    if not result:
+        return "-"
+    return result
 
 
 def get_kunyomi(item):
-    return item.get("kunyomi").join(", ")
+    result = item.get("kunyomi").join(", ")
+    if not result:
+        return "-"
+    return result
 
 
 def wrap_html(title, head, content):
@@ -64,14 +70,14 @@ def get_word_html(word, color='blue'):
             </div>
             """
 
-    usage_examples = ''.join(map(get_usage, word['usage']))
+    usage_examples = ''.join(map(get_usage, word['tsukaikata']))
     if not usage_examples:
         return f"""
     <div class="bg-gradient-to-r from-{color}-50 to-{color}-100 rounded-lg shadow p-4 flex flex-col my-2">
         <div class="flex justify-between items-center">
           <div>
-            <p class="text-lg text-2xl text-gray-800">{generate_furigana(word['word'])}</p>
-            <p class="text-sm text-gray-600">{word['meaning']}</p>
+            <p class="text-lg text-2xl text-gray-800">{generate_furigana(word['tango'])}</p>
+            <p class="text-sm text-gray-600">{word['imi']}</p>
           </div>
         </div>
         {props_html}
@@ -83,8 +89,8 @@ def get_word_html(word, color='blue'):
     <div class="bg-gradient-to-r from-{color}-50 to-{color}-100 rounded-lg shadow p-4 flex flex-col my-2">
         <div class="flex justify-between items-center">
           <div>
-            <p class="text-lg text-2xl text-gray-800">{generate_furigana(word['word'])}</p>
-            <p class="text-sm text-gray-600">{word['meaning']}</p>
+            <p class="text-lg text-2xl text-gray-800">{generate_furigana(word['tango'])}</p>
+            <p class="text-sm text-gray-600">{word['imi']}</p>
           </div>
             <!-- Arrow with onclick -->
             <button
@@ -115,7 +121,10 @@ def get_vocab_entries(item):
           style="min-width: 350px; max-width: 500px;"
         >   
             <span class="text-xl font-bold text-gray-800 mb-4">{vocab_col_title(level)}</span>
-            {''.join(map(lambda x: get_word_html(x, color), filter(lambda x: getattr(x, handler)('word', level), item.vocabulary())))}
+            {''.join(map(
+                lambda x: get_word_html(x, color), 
+                filter(lambda y: getattr(y, handler)('tango', level), item.vocabulary()))
+            )}
         </div>
         """ for (level, color, handler) in [(0, 'green', 'get_equal'), (1, 'blue', 'get_equal'), (2, 'purple', 'get_below')]
     ])
@@ -142,12 +151,13 @@ def read_kanji_csv(key, data, radicals):
 
     def find_radical(id):
         for radical in radicals:
-            if str(radical["id"]) == id:
+            if radical["id"] == id:
                 return radical
         return {}
 
     keys = data["order"]
     content = data["content"]
+
     for id in keys:
         item = content[id]
 
@@ -162,7 +172,7 @@ def read_kanji_csv(key, data, radicals):
             for ref in rad_ref:
                 rad_value = find_radical(ref)
                 if rad_value:
-                    radical_html += f"<span>{rad_value.get('radical')} &emsp; {rad_value.get('meaning')}</span>"
+                    radical_html += f"<span>{rad_value.get('radical')} &emsp; {rad_value.get('imi')}</span>"
                     radical_exists = True
         if radical_exists:
             radical_html += """
@@ -240,7 +250,7 @@ def read_kanji_csv(key, data, radicals):
             </div>
             <div>
                 <p class="text-sm text-gray-500">Význam</p>
-                <p class="text-lg font-semibold text-gray-800">{item['meaning']}</p>
+                <p class="text-lg font-semibold text-gray-800">{item['imi']}</p>
             </div>
             <div>
                 <p class="text-sm text-gray-500">Kunyomi</p>

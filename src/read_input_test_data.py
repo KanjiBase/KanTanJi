@@ -23,7 +23,7 @@ def read_local_data():
         }
 
     # testing complementary datasets
-    with open('misc/test-complementary-set.json', 'r', encoding='utf-8') as f:
+    with open('misc/test-data-set.json', 'r', encoding='utf-8') as f:
         data = json.load(f)
         key = "complementary-set"
         out[key] = {

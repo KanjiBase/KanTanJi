@@ -95,14 +95,14 @@ def read_kanji_csv(key, data):
             f"<a class=\"a\" href=\"{kanji_alive}\">{item['kanji']} KanjiAlive</a><div style=\"font-size: 32pt;\">{item['kanji']}</div>",
 
             f"<div>{onyomi + kunyomi}</div>"
-            f"<div style=\"font-size: 26pt;\">{item['meaning']}</div>{extra}",
+            f"<div style=\"font-size: 26pt;\">{item['imi']}</div>{extra}",
 
             item["guid"], name
         ])
 
         # Translation to kanji card
         cards_translation.append([
-            f"<a class=\"a\" href=\"{kanji_alive}\">{item['kanji']} KanjiAlive</a><div style=\"font-size: 26pt;\">{item['meaning']}</div>",
+            f"<a class=\"a\" href=\"{kanji_alive}\">{item['kanji']} KanjiAlive</a><div style=\"font-size: 26pt;\">{item['imi']}</div>",
 
             f"<div>{onyomi + kunyomi}</div>"
             f"<div style=\"font-size: 30pt;\">{item['kanji']}</div>{extra}",
@@ -114,23 +114,27 @@ def read_kanji_csv(key, data):
 
             usage_lines = "".join(
                 [f"<div>{generate_furigana(usage)}</div>" for usage in
-                 vocab_item.get("usage")])
-            if usage_lines:
-                usage_lines = f"<div class=\"u\">{usage_title}{usage_lines}</div>"
+                 vocab_item.get("tsukaikata")])
 
             # Extra fields
-            usage_lines = usage_lines + "".join([
+            extra = "".join([
                 f"<div><b>{generate_furigana(key)}</b>: {generate_furigana(value)}</div>"
                 if value.format == InputFormat.PLAINTEXT else
                 f"<div><b>{markdown.markdown(generate_furigana(value))}</div>"
 
                 for key, value in vocab_item.get("extra", {}).items()
             ])
+            if usage_lines:
+                usage_lines = f"<div class=\"u\">{usage_title}{usage_lines}</div>"
+                if extra:
+                    usage_lines = usage_lines + "<br><br>" + extra
+            else:
+                usage_lies = extra
 
             if usage_lines:
                 usage_lines = f"<div class=\"o\">{usage_lines}</div>"
 
-            word = f"<div style=\"font-size: 28pt;\">{generate_furigana(vocab_item['word'])}</div>"
+            word = f"<div style=\"font-size: 28pt;\">{generate_furigana(vocab_item['tango'])}</div>"
 
             props_html = parse_item_props_html(vocab_item)
 
@@ -139,14 +143,14 @@ def read_kanji_csv(key, data):
                 f"{word}",
 
                 f"<div class=\"rlbl\">{props_html}</div>"
-                f"<div style=\"font-size: 26pt;\">{vocab_item['meaning']}</div>{usage_lines}",
+                f"<div style=\"font-size: 26pt;\">{vocab_item['imi']}</div>{usage_lines}",
 
                 vocab_item["guid"], name
             ])
 
             # Translation to word card
             cards_translation.append([
-                f"<div style=\"font-size: 26pt;\">{vocab_item['meaning']}</div>",
+                f"<div style=\"font-size: 26pt;\">{vocab_item['imi']}</div>",
 
                 f"<div class=\"rlbl\">{props_html}</div>{word}{usage_lines}",
 

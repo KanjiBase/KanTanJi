@@ -45,5 +45,5 @@ def vocab_property_color(prop: str | Value):
 
 
 def parse_item_props_html(word: Entry):
-    props = word["properties"]
+    props = word["raberu"]
     return "".join(map(lambda x: vocab_property_html(x, vocab_property_color(x)), props))

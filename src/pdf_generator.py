@@ -65,7 +65,7 @@ def generate(key, data, radicals, path_getter):
         kunyomi = kunyomi_values.get_equal(0)
         kunyomi.extend([f"<font color=\"gray\" size=\"10\"> {x} </font>" for x in kunyomi_values.get_below(1)])
 
-        meaning = f"<div style=\"font-size: 26pt;\">{item['meaning']}</div>"
+        meaning = f"<div style=\"font-size: 26pt;\">{item['imi']}</div>"
 
         onyomi_paragraph = Paragraph(onyomi.join("&nbsp;&nbsp;&nbsp;&nbsp;"), styles['NormalNoto'])
         kunyomi_paragraph = Paragraph(kunyomi.join("&nbsp;&nbsp;&nbsp;&nbsp;"), styles['NormalNoto'])
@@ -96,10 +96,10 @@ def generate(key, data, radicals, path_getter):
         ]
 
         for vocab_item in item.vocabulary():
-            word = generate_furigana_paragraph(vocab_item['word'], styles['NormalNoto'])
-            meaning = vocab_item['meaning']
+            word = generate_furigana_paragraph(vocab_item['tango'], styles['NormalNoto'])
+            meaning = vocab_item['imi']
 
-            usage_list = vocab_item.get("usage").copy()
+            usage_list = vocab_item.get("tsukaikata").copy()
             if len(usage_list) < 1:
                 usage_list.append(Value(False))  # trigger insertion of the word
 

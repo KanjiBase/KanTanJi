@@ -1,15 +1,8 @@
 import re
 import hashlib
 
-from utils_data_entitites import Entry, ValueList, InputFormat, Value, Version
-
-
-def compute_hash(records):
-    hash_obj = hashlib.md5()
-    for row in records:
-        # Convert each row to a string and encode it
-        hash_obj.update(str(row).encode('utf-8'))
-    return hash_obj.hexdigest()
+from utils_data_entitites import InputFormat, Value, Version, VocabEntry, RadicalEntry, KanjiEntry, \
+    DatasetEntry
 
 
 def hash_id(name: str):
@@ -18,9 +11,8 @@ def hash_id(name: str):
     return str(int(m.hexdigest(), 16))[0:12]
 
 
-def get_item_id(item):
-    type = item['type']
-    return str(item["id"]) + str(type) + str(item["guid"])
+def get_item_uid(item):
+    return str(item["guid"]) + str(item['type'])
 
 
 # Function to generate furigana in HTML format (support both > and ＞ for furigana)
@@ -118,15 +110,6 @@ def sort_kanji_set(structured_dataset):
     return sort_kanji_keys(structured_dataset)
 
 
-def find_kanji(all_data: dict, id: str):
-    for dataset_name in all_data:
-        dataset = all_data[dataset_name]
-        kanji = dataset["content"].get(id)
-        if kanji:
-            return kanji, dataset
-    return None, None
-
-
 def parse_ids(ids: str):
     id_list = ids.split(',')
 
@@ -151,12 +134,11 @@ def process_row(row: list):
     :return: parsed row ready for further processing
     """
     # Todo solve extra
-    item = Entry({"onyomi": ValueList(), "kunyomi": ValueList(), "usage": ValueList(), "extra": {}, "references": {},
-                  "properties": [], "type": ""})
-
     if len(row) < 1:
         return None, False
 
+    # First step: parse values, no meaning yet assumed
+    item = {"onyomi": [], "kunyomi": [], "tsukaikata": [], "extra": {}, "references": {}, "raberu": []}
     for i in range(0, len(row), 2):
         key = row[i]
         if type(key) == "string":
@@ -203,35 +185,20 @@ def process_row(row: list):
             if item.get("kanji", False):
                 print(f" --parse-- ERROR kanji redefinition, only one value allowed!")
             else:
-                item["type"] = 'kanji'
                 item["kanji"] = Value(value, key_significance, data_format)
-                item["guid"] = str(hash(value))
-        elif key == 'tango':
-            item["type"] = 'tango'
-            item["word"] = Value(value, key_significance, data_format)
-            item["guid"] = str(hash(value))
-        elif key == 'radical':
-            item["type"] = 'radical'
-            item["radical"] = Value(value, key_significance, data_format)
-            item["guid"] = str(hash(value))
-        elif key == 'setto':
-            item["type"] = 'dataset'
-            item["dataset"] = Value(value, key_significance, data_format)
-            item["guid"] = str(hash(value))
-
         elif key == 'raberu':
             if value not in ["ichidan", "godan", "tadoushi", "jidoushi", "i", "na"]:
                 print(" --parse-- Invalid value for vocab property: ", value)
             else:
-                item["properties"].append(Value(value, key_significance, data_format))
-
+                item["raberu"].append(Value(value, key_significance, data_format))
         elif key == 'id':
             if key_significance > 0:
                 print(" --parse-- Warning: ID cannot have lesser significance! Ignoring the property.", value)
-            item["id"] = Value(Version(value), key_significance, data_format)
+            item["id"] = Value(Version(value), 0, data_format)
         elif key == "ids":
             if key_significance > 0:
                 print(" --parse-- Warning: IDS cannot have lesser significance! Ignoring the property.", value)
+                # todo optional should extend existing
             item["ids"] = Value(Version(value), key_significance, data_format)
         elif key == 'ref':
             # todo parse ref from its syntax
@@ -249,23 +216,27 @@ def process_row(row: list):
                 item["references"][name] = ref
             ref.append(id)
 
-        elif key == 'onyomi':
-            item["onyomi"].append(Value(value, key_significance, data_format))
-        elif key == 'kunyomi':
-            item["kunyomi"].append(Value(value, key_significance, data_format))
-        elif key == 'imi':
-            item["meaning"] = Value(value, key_significance, data_format)
-
-        elif key == 'tsukaikata':
-            item["usage"].append(Value(value, key_significance, data_format))
-
+        elif key in ['onyomi', 'kunyomi', 'tsukaikata']:
+            item[key].append(Value(value, key_significance, data_format))
+        elif key in ['imi', 'tango', 'radical', 'setto']:
+            item[key] = Value(value, key_significance, data_format)
         else:
             # TODO does not support chaining
             item["extra"][original_key] = Value(value, key_significance, data_format)
 
-    if not item.get("guid", False):
-        print(" --parse-- IGNORES: invalid data:", row)
+    # Second step, derive meaning
+    if item.get("tango"):
+        output = VocabEntry()
+    elif item.get("kanji"):
+        output = KanjiEntry()
+    elif item.get("radical"):
+        output = RadicalEntry()
+    elif item.get("setto"):
+        output = DatasetEntry()
+    else:
+        print(" --parse-- IGNORES: invalid input: unknown type", row)
         return None, False
 
-    item["guid"] = get_item_id(item)
-    return item
+    output.fill(item)
+    output["guid"] = get_item_uid(output)
+    return output

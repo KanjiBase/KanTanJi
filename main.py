@@ -3,17 +3,15 @@ from pathlib import Path
 import os
 import copy
 
-from src.hash_guard import HashGuard
 from src.config import OVERRIDE_VOCAB_SIGNIFICANCE
-from src.utils import (process_row, hash_id, dict_read_create,
-                       sort_kanji_set, parse_ids, find_kanji, sort_kanji_keys)
+from src.utils import process_row, hash_id, dict_read_create, parse_ids, sort_kanji_keys
 from src.read_input_google_api import read_sheets_google_api
 from src.read_input_test_data import read_local_data
 
 from src.pdf_generator import generate as generate_pdf
 from src.anki_generator import generate as generate_anki
 from src.html_generator import generate as generate_html
-from utils_data_entitites import DataSet, KanjiEntry, Value
+from utils_data_entitites import DataSet, KanjiEntry, Value, HashGuard
 from utils_filesystem import merge_trees, delete_filesystem_node
 
 DataSet.register_processor("Anki Decks", generate_anki)
@@ -57,12 +55,12 @@ if not data:
 
 # Create hash guard in the context of method that succeeded reading the input data
 data_modification_guard = HashGuard(success_read_method)
-_data_ = DataSet("default")
-_data_.set_is_default()
-default_dataset = _data_.data
+
+# Parsed values
 parsed_metadata = {}
 complementary_datasets = {}
 kanji_dictionary = {}
+
 for dataset_name in data:
     structured_output = {}
     entry = data[dataset_name]
@@ -78,28 +76,33 @@ for dataset_name in data:
             if not item:
                 continue
 
-            id = str(item['id'])
             ttype = item['type']
             if ttype == 'kanji' or ttype == 'tango':
-                node = structured_output.get(id)
+                id = str(item['kanji'])
+                node = kanji_dictionary.get(id)
                 if node is None:
+                    # Need to re-import to fill in vocabulary items, they might come before kanji is defined
+                    # or multiple kanji entries for the same kanji might be present
                     node = KanjiEntry()
-                    structured_output[id] = node
+                    kanji_dictionary[id] = node
 
                 if ttype == "kanji":
-                    node.set_kanji(item)
-                    kanji_dictionary[str(item["kanji"])] = node
-                    node.set_context_id("default", int(id))
+                    if node.filled:
+                        print(" -- parse -- ERROR: Kanji Redefinition, ignoring!", id)
+                    else:
+                        node.fill(item)
+                        kanji_dictionary[str(item["kanji"])] = node
                 else:
                     node.add_vocabulary_entry(item)
 
             elif ttype == 'dataset':
+                id = str(item["id"])
                 node = complementary_datasets.get(id)
                 if node is None:
                     node = DataSet(id)
                     complementary_datasets[id] = node
                 ids = item.get("ids")
-                set_name = str(item.get("dataset"))
+                set_name = str(item.get("setto"))
                 if set_name is None:
                     print(" --parse dataset-- Error dataset without name!")
                     continue
@@ -113,30 +116,15 @@ for dataset_name in data:
                 # custom type, add to the dataset
                 dataset = parsed_metadata.get(ttype)
                 if not dataset:
-                    dataset = ([], [])
+                    dataset = []
                     parsed_metadata[ttype] = dataset
-                dataset[0].append(item)
-                dataset[1].append(row)
+                dataset.append(item)
 
         except Exception as e:
             print(f"Error on line {row}", e)
             print(traceback.format_exc())
 
-    if len(structured_output):
-        # Checking on 'output' never yields the same hash, there is dynamic content
-        modified = data_modification_guard.set_record_and_check_if_modified(entry["id"], entry["name"], entry["data"])
 
-        key_order = sort_kanji_set(structured_output)
-        print(f"Loaded dataset {dataset_name} - {'needs update' if modified else 'unchanged'}.")
-        default_dataset[dataset_name] = {
-            "id": entry["id"],
-            "name": entry["name"],
-            "content": structured_output,
-            "order": key_order,
-            "modified": modified
-        }
-    else:
-        print(f"Skipping {dataset_name} - not a data source.")
 
 # Now parse datasets if any
 for did in complementary_datasets:
@@ -146,24 +134,26 @@ for did in complementary_datasets:
     incremental_id = 1
     for dsid in dataset.data:
         data_subset, original_row = dataset.data[dsid]
-        subset_name = str(data_subset["dataset"])
+        subset_name = str(data_subset["setto"])
         kanjis_modified = False
         output = {}
 
         try:
             order = parse_ids(str(data_subset["ids"]))
             for kanji_id in order:
-                kanji, parent_set = find_kanji(default_dataset, kanji_id)
+                kanji = kanji_dictionary.get(kanji_id)
                 if kanji is None:
                     raise ValueError(f"Invalid kanji ID {kanji_id} in dataset {name} > {subset_name}.")
-                kanjis_modified = kanjis_modified or parent_set["modified"]
 
-                # Kanji is linked to kanji_dictionary, set globally shared context ID
+                kanjis_modified = kanjis_modified or kanji.get_was_modified(data_modification_guard)
+
+                # Kanji is linked to kanji_dictionary by the kanji letter, store context-dependent shared ID
                 kanji.set_context_id(did, incremental_id)
 
                 # Updates are consistent, e.g. anki packs use GUID which does not change. Here we create
                 # IDs that follow definition order in the dataset.
                 kanji_copy = copy.deepcopy(kanji)
+
                 kanji_copy["id"] = Value(incremental_id)
                 output[str(kanji_copy["id"])] = kanji_copy
 
@@ -185,17 +175,15 @@ for did in complementary_datasets:
             print(f" --parse dataset-- Error: dataset {subset_name} ignored", e)
             raise e
 
-data = _data_
-del default_dataset, _data_
 
 metadata = {}
 # Compute guard also for metadata
 for name in parsed_metadata:
-    metadata_entries, original_metadata = parsed_metadata[name]
+    metadata_entries = parsed_metadata[name]
     metadata[name] = {
         "name": name,
         "content": metadata_entries,
-        "modified": data_modification_guard.set_record_and_check_if_modified(name, name, original_metadata)
+        "modified": data_modification_guard.set_record_and_check_if_modified(name, name, metadata_entries)
     }
 del parsed_metadata
 
@@ -208,11 +196,8 @@ Jednoduchá aplikace na trénování Kanji - pomocí PDF souborů a přidružen�
 print()
 print("Processing started...")
 os.makedirs(".temp", exist_ok=True)
-# First process the default data
-if OVERRIDE_VOCAB_SIGNIFICANCE:
-    data.adjust_vocabulary_significance(kanji_dictionary)
-data.process(metadata=metadata, guard=data_modification_guard)
-# Then process all datasets
+
+# Process all datasets
 for dataset in complementary_datasets:
     compl_data = complementary_datasets[dataset]
     if OVERRIDE_VOCAB_SIGNIFICANCE:
@@ -226,9 +211,8 @@ readme_contents = {}
 def clean_files(item, outdated):
     global target_folder_to_output, metadata, readme_contents
     try:
-        # Skip metadata - do not create such files
-        name = item["name"]
-        if not outdated and name in metadata:
+        # Skip no context_name elements - do not create such files
+        if not item["context_name"]:
             return
 
         source = data_modification_guard.processing_file_root(item)
@@ -261,8 +245,6 @@ def get_readme_contents():
     anki_file_entries = {}
     html_file_entries = {}
 
-    abs_target_folder_to_output = os.path.abspath(target_folder_to_output)
-
     def create_dataset_readme(file_list, set_name, item_name):
         if len(file_list) > 1:
             output = f"""
@@ -278,7 +260,7 @@ def get_readme_contents():
             return output
         if len(file_list) == 1:
             return f" - <a href=\"{file_list[0]}\">{set_name} {Path(file_list[0]).stem}</a>\n"
-        raise ValueError("Invalid Dataset!")
+        print("Warning: invalid dataset - no output files!", set_name, item_name)
 
     # todo move file iteration to generators too
     for dataset_name in readme_contents:
@@ -337,24 +319,22 @@ if not uses_test_data:
     data_modification_guard.for_each_entry(clean_files)
 
     contents = get_readme_contents()
-    default_content = contents[""]
-    other_contents = []
-    del contents[""]
+    readme_output = []
 
     for dataset_name in contents:
         dataset_readme = target_folder_to_output + "/" + dataset_name + ".md"
         with open(dataset_readme, mode='w+', encoding='utf-8') as file:
             file.write(readme + contents[dataset_name])
-        other_contents.append(f"- <a href=\"{dataset_readme}\">{dataset_name}</a>")
+        readme_output.append(f"- <a href=\"{dataset_readme}\">{dataset_name}</a>")
 
-    if len(other_contents):
-        other_contents = "\n\n ## Další Dostupné Sady \n Trénování Kanji v jiném pořadí.\n" + "\n".join(other_contents)
+    if len(readme_output):
+        readme_output = "\n\n ## Dostupné Sady \n Trénování Kanji\n" + "\n".join(readme_output)
     else:
-        other_contents = ""
+        readme_output = "Nejsou žádné dostupné sady. Dataset není definován!"
 
     # Write the README.md with links to the PDF files
     with open("README.md", mode='w+', encoding='utf-8') as file:
-        file.write(readme + default_content + other_contents)
+        file.write(readme + readme_output)
 
     print("README.md updated with links.")
 else:
@@ -363,23 +343,21 @@ else:
     print("Skipping writing README.md: test mode.")
 
     contents = get_readme_contents()
-    default_content = contents[""]
-    other_contents = []
-    del contents[""]
-
+    readme_output = []
     for dataset_name in contents:
         dataset_readme = target_folder_to_output + "/" + dataset_name + ".md"
         with open(dataset_readme, mode='w+', encoding='utf-8') as file:
             file.write(readme + contents[dataset_name])
-        other_contents.append(f"- <a href=\"{dataset_readme}\">{dataset_name}</a>")
+        readme_output.append(f"- <a href=\"{dataset_readme}\">{dataset_name}</a>")
 
-    if len(other_contents):
-        other_contents = "\n\n ## Další Dostupné Sady \n Trénování Kanji v jiném pořadí.\n" + "\n".join(other_contents)
+    if len(readme_output):
+        readme_output = "\n\n ## Dostupné Sady \n Trénování Kanji\n" + "\n".join(readme_output)
     else:
-        other_contents = ""
+        readme_output = "Nejsou žádné dostupné sady. Dataset není definován!"
 
     # Write the README.md with links to the PDF files
     with open(".TEST-README.md", mode='w+', encoding='utf-8') as file:
-        file.write(readme + default_content + other_contents)
+        file.write(readme + readme_output)
+
 
 data_modification_guard.save()
