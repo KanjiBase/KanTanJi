@@ -2,11 +2,13 @@ import pdfkit
 from utils import retrieve_row_kanjialive_url, Value, generate_furigana_custom, generate_furigana
 
 options = {
-    'quiet': False,  # Enable verbose logging
-    'debug-javascript': True,
-    'no-pdf-compression': True,
+    'quiet': False,
     'disable-smart-shrinking': True,
-    'no-print-media-type': True,
+    'page-size': 'A4',
+    'margin-top': '10mm',
+    'margin-bottom': '10mm',
+    'margin-left': '10mm',
+    'margin-right': '10mm'
 }
 
 font = ''
@@ -109,12 +111,17 @@ def generate(name, data, radicals, path_getter):
         }}
         table {{
             border-collapse: collapse;
+            border-spacing: 0;
             width: 100%;
+        }}
+        tr {{
+            page-break-inside: avoid;
         }}
         th, td {{
             border: 2px solid lightgray;
             padding: 3px 7px;
             text-align: left;
+            vertical-align: middle;
         }}
         /* Todo ubuntu destroys the formatting :/ */
         th.bt, td.bt {{
@@ -158,7 +165,7 @@ def generate(name, data, radicals, path_getter):
     pdfkit.from_string(content_html, pdf_output_path, options=options)
 
     # Could also output html
-    # with open(f"{path_getter(name)}/{name}.html", "w", encoding="UTF-8") as file:
-    #     file.write(content_html)
+    with open(f"{path_getter(name)}/{name}.html", "w", encoding="UTF-8") as file:
+        file.write(content_html)
 
     return True
