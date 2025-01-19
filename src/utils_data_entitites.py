@@ -15,6 +15,7 @@ class Entry(dict):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.filled = False
+        self._name = "Entry"
 
     def get_equal(self, target, significance_level=0):
         target = self.get(target)
@@ -40,7 +41,7 @@ class Entry(dict):
         self.filled = True
 
     def __repr__(self):
-        return f"Entry({super().__repr__()})"
+        return f"{self._name}({super().__repr__()})"
 
     def __getitem__(self, key):
         value = super().__getitem__(key)
@@ -206,8 +207,6 @@ class HashGuard:
             # Return False if not modified (false if versions equal)
             return hash_record.get("version", "") != VERSION
         self.update(id, name, current_hash)
-        if not name:
-            print("DEBUG", hash_record, hash_value, current_hash)
         return True
 
     def get_complementary_id(self, id):
@@ -271,6 +270,7 @@ class KanjiEntry(Entry):
         self["_vocab_"] = []
         self._modif_flag = None
         self._context_ids = {}
+        self._name = "KanjiEntry"
 
     def add_vocabulary_entry(self, value):
         if not isinstance(value, VocabEntry):
@@ -317,6 +317,7 @@ class KanjiEntry(Entry):
 class VocabEntry(Entry):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        self._name = "VocabEntry"
 
     def fill(self, other_dict):
         super().fill(other_dict)
@@ -348,6 +349,7 @@ class RadicalEntry(Entry):
 class DatasetEntry(Entry):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        self._name = "DatasetEntry"
 
     def fill(self, other_dict):
         super().fill(other_dict)
@@ -441,5 +443,3 @@ class DataSet:
                 except Exception as e:
                     print(f"Failed to write file to ", output_path, e)
                     print(traceback.format_exc())
-
-
