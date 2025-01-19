@@ -117,9 +117,13 @@ def process_row(row: list):
     :param row: even-length row with data items to process: key-value column pairs
     :return: parsed row ready for further processing
     """
-    # Todo solve extra
+    row = list(filter(bool, row))
     if len(row) < 1:
-        return None, False
+        return None
+
+    if (len(row) % 2) == 1:
+        print(" --parse-- IGNORES: invalid input: odd length", row)
+        return None
 
     # First step: parse values, no meaning yet assumed
     item = {"onyomi": [], "kunyomi": [], "tsukaikata": [], "extra": {}, "references": {}, "raberu": []}
@@ -219,7 +223,7 @@ def process_row(row: list):
         output = DatasetEntry()
     else:
         print(" --parse-- IGNORES: invalid input: unknown type", row)
-        return None, False
+        return None
 
     output.fill(item)
     output["guid"] = get_item_uid(output)
