@@ -35,8 +35,12 @@ def generate(name, data, radicals, path_getter):
         item = content[key]
 
         onyomi = "&emsp;&emsp;".join(map(get_reading, item.get("onyomi").get_equal(0)))
+        if onyomi:
+            onyomi = onyomi + "&emsp;&emsp;"
         onyomi += "&emsp;&emsp;".join(map(get_unimportant_reading, item.get("onyomi").get_below(1)))
         kunyomi = "&emsp;&emsp;".join(map(get_reading, item.get("kunyomi").get_equal(0)))
+        if kunyomi:
+            onyomi = onyomi + "&emsp;&emsp;"
         kunyomi += "&emsp;&emsp;".join(map(get_unimportant_reading, item.get("kunyomi").get_below(1)))
 
         kanji_alive = retrieve_row_kanjialive_url(item)
@@ -105,7 +109,6 @@ def generate(name, data, radicals, path_getter):
         }}
         table {{
             border-collapse: collapse;
-            border: 2px solid black;
             width: 100%;
         }}
         th, td {{
@@ -113,17 +116,18 @@ def generate(name, data, radicals, path_getter):
             padding: 3px 7px;
             text-align: left;
         }}
+        /* Todo ubuntu destroys the formatting :/ */
         th.bt, td.bt {{
-            border-top: 2px solid black;
+            border-top: 2px solid lightgray;
         }}
         th.bb, td.bb {{
-            border-bottom: 2px solid black;
+            border-bottom: 2px solid lightgray;
         }}
         th.br, td.br {{
-            border-right: 2px solid black;
+            border-right: 2px solid lightgray;
         }}
         th.bl, td.bl {{
-            border-left: 2px solid black;
+            border-left: 2px solid lightgray;
         }}
         .kanji {{
             text-align: center;
@@ -134,7 +138,7 @@ def generate(name, data, radicals, path_getter):
         }}
         ruby rt {{
             visibility: visible !important;
-            top: 5px;
+            top: 10px;
             position: relative;
         }}
         .small-cell {{
