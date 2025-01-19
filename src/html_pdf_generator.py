@@ -143,6 +143,9 @@ def generate(name, data, radicals, path_getter):
             width: 120px;
             line-height: 1.4;
         }}
+        ruby {{
+            line-height: 1;
+        }}
         ruby rt {{
             visibility: visible !important;
             top: 10px;
