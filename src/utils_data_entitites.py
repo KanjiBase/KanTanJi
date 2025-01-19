@@ -183,7 +183,6 @@ class HashGuard:
     def save(self):
         with open(self.hash_file_path, "w", encoding='utf-8') as f:
             json.dump(self.hashes, f, ensure_ascii=False)
-            print(json.dumps(self.hashes,  ensure_ascii=False))
 
     def set_kanji_record_and_check_if_modified(self, kanji):
         return self.set_record_and_check_if_modified(kanji["kanji"], "", kanji)
