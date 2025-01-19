@@ -124,3 +124,26 @@ HTML Stránky slouží pro vložení interaktivních informací o Kanji do exter
 
   - <a href="static/1/81-160/理.html">Kanji 理</a>
 </details>
+
+
+
+
+## Japonské písmo 4
+
+### PDF Materiály
+PDF Soubory obsahují seznam znaků kanji a přidružených slovíček.
+ - <a href="static/2/1-50/1-50.pdf">Sada 1-50</a>
+
+
+### ANKI Balíčky
+Balíčky lze importovat opakovaně do ANKI aplikace. Balíčky se řadí do kolekce 'KanTanJi' 
+a umožňují chytré a interaktivní procvičování kanji. Balíček obsahuje jak kanji (poznáš podle
+toho, že karta otázky obsahuje link na KanjiAlive), tak slovní zásobu ke kanji.
+Furiganu zobrazíš kliknutím / tapnutím na kartičku.
+ - <a href="static/2/1-50/1-50.apkg">Balíček 1-50</a>
+
+
+### HTML
+HTML Stránky slouží pro vložení interaktivních informací o Kanji do externích webových služeb.
+ - <a href="static/2/1-50/押.html">Sada 押</a>
+
