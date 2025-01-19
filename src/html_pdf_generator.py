@@ -113,6 +113,7 @@ def generate(name, data, radicals, path_getter):
             border-collapse: collapse;
             border-spacing: 0;
             width: 100%;
+            page-break-inside: avoid;
         }}
         tr {{
             page-break-inside: avoid;
@@ -168,7 +169,7 @@ def generate(name, data, radicals, path_getter):
     pdfkit.from_string(content_html, pdf_output_path, options=options)
 
     # Could also output html
-    with open(f"{path_getter(name)}/{name}.html", "w", encoding="UTF-8") as file:
-        file.write(content_html)
+    # with open(f"{path_getter(name)}/{name}.html", "w", encoding="UTF-8") as file:
+    #     file.write(content_html)
 
     return True
