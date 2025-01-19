@@ -7,15 +7,19 @@ from src.config import OVERRIDE_VOCAB_SIGNIFICANCE
 from src.utils import process_row, hash_id, dict_read_create, parse_ids
 from src.read_input_google_api import read_sheets_google_api
 from src.read_input_test_data import read_local_data
-
-from src.pdf_generator import generate as generate_pdf
-from src.anki_generator import generate as generate_anki
-from src.html_generator import generate as generate_html
+# For some reason, when src. is added as prefix the code fails to run due mismatches on class types
 from utils_data_entitites import DataSet, KanjiEntry, Value, HashGuard
 from utils_filesystem import merge_trees, delete_filesystem_node
 
+# from src.pdf_generator import generate as generate_pdf
+from src.anki_generator import generate as generate_anki
+from src.html_pdf_generator import generate as generate_pdf2
+from src.html_generator import generate as generate_html
+
+
 DataSet.register_processor("Anki Decks", generate_anki)
-DataSet.register_processor("PDF Materials", generate_pdf)
+# DataSet.register_processor("PDF Materials", generate_pdf)
+DataSet.register_processor("PDF Materials", generate_pdf2)
 DataSet.register_processor("HTML Kanji Pages", generate_html)
 
 

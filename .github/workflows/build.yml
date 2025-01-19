@@ -18,6 +18,12 @@ jobs:
         with:
           persist-credentials: true
 
+      - name: Install Dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y wkhtmltopdf
+          wkhtmltopdf --version
+
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
