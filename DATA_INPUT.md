@@ -59,14 +59,14 @@ If you need to have two kanji order learning datasets, you can define the other 
 Example:
 ````
 ID    1   setto    My Awesome Dataset
-ID    1   setto    1-20                     ids      184,181
+ID    1   setto    1-20                     ids      図,思, 大, 教
 ````
 Will create dataset _My Awesome Dataset_ with 1-20 kanji set name that contain two kanjis: 184 and 181.
 
 It won't create a dataset by the file name
 it occurs in. Rather, the dataset name comes from the value of the key `setto` and it defines
-by ``ids`` what kanji IDs are to be included. These can be defined as `1,2,3,8,15` comma separated
-list of **existing kanji** references.
+by ``ids`` what kanji IDs are to be included. These can be defined as comma separated
+list of **existing kanji** letters.
 
 ### Key definitions - Metadata
 ``kanji`` and `tango` types are present in the _data_ used to generate output files. However, 

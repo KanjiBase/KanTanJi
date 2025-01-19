@@ -94,22 +94,6 @@ def structure_data_vocabulary_below_kanji(data):
     return structured_data
 
 
-
-
-def sort_kanji_keys(structured_dataset):
-    keys = list(structured_dataset.keys())
-    keys.sort(key=lambda x: x)
-    return keys
-
-
-def sort_kanji_set(structured_dataset):
-    # Actually, do not sort vocabulary, prefer the entry order in the data
-    # for id in structured_dataset:
-    #     data = structured_dataset[id]
-    #     data.sort_vocabulary()
-    return sort_kanji_keys(structured_dataset)
-
-
 def parse_ids(ids: str):
     id_list = ids.split(',')
 

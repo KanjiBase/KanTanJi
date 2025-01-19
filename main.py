@@ -4,7 +4,7 @@ import os
 import copy
 
 from src.config import OVERRIDE_VOCAB_SIGNIFICANCE
-from src.utils import process_row, hash_id, dict_read_create, parse_ids, sort_kanji_keys
+from src.utils import process_row, hash_id, dict_read_create, parse_ids
 from src.read_input_google_api import read_sheets_google_api
 from src.read_input_test_data import read_local_data
 
@@ -137,6 +137,7 @@ for did in complementary_datasets:
         subset_name = str(data_subset["setto"])
         kanjis_modified = False
         output = {}
+        output_order = []
 
         try:
             order = parse_ids(str(data_subset["ids"]))
@@ -156,7 +157,10 @@ for did in complementary_datasets:
                 kanji_copy = copy.deepcopy(kanji)
 
                 kanji_copy["id"] = Value(incremental_id)
-                output[str(kanji_copy["id"])] = kanji_copy
+
+                str_id = str(kanji_copy["id"])
+                output[str_id] = kanji_copy
+                output_order.append(str_id)
 
                 incremental_id += 1
 
@@ -167,7 +171,7 @@ for did in complementary_datasets:
                 "id": dsid,
                 "name": subset_name,
                 "content": output,
-                "order": sort_kanji_keys(output),
+                "order": output_order,
                 "modified": modified or kanjis_modified
             }
 
