@@ -148,7 +148,7 @@ def generate(name, data, radicals, path_getter):
         }}
         ruby rt {{
             visibility: visible !important;
-            top: 10px;
+            top: 3px;
             position: relative;
         }}
         .small-cell {{
