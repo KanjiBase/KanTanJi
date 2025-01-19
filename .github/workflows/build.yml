@@ -31,8 +31,9 @@ jobs:
           # Download manually with webkit support
           wget http://archive.ubuntu.com/ubuntu/pool/main/o/openssl/libssl1.1_1.1.1f-1ubuntu2_amd64.deb
           sudo dpkg -i libssl1.1_1.1.1f-1ubuntu2_amd64.deb
-          wget https://github.com/wkhtmltopdf/packaging/releases/download/0.12.6-1/wkhtmltox_0.12.6-1.focal_amd64.deb
-          sudo apt install ./wkhtmltox_0.12.6-1.focal_amd64.deb
+          wget https://github.com/wkhtmltopdf/packaging/releases/download/0.12.6-1/wkhtmltox-0.12.6-1_linux-generic-amd64.tar.xz
+          tar -xf wkhtmltox-0.12.6-1_linux-generic-amd64.tar.xz
+          sudo mv wkhtmltox/bin/* /usr/local/bin/
           wkhtmltopdf --version
           
           python -m pip install --upgrade pip
