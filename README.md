@@ -68,6 +68,8 @@ HTML Stránky slouží pro vložení interaktivních informací o Kanji do exter
 
   - <a href="static/1/1-80/左.html">Kanji 左</a>
 
+  - <a href="static/1/1-80/1-80.html">Kanji 1-80</a>
+
   - <a href="static/1/1-80/十.html">Kanji 十</a>
 </details>
 
@@ -81,6 +83,8 @@ HTML Stránky slouží pro vložení interaktivních informací o Kanji do exter
   - <a href="static/1/81-160/考.html">Kanji 考</a>
 
   - <a href="static/1/81-160/肉.html">Kanji 肉</a>
+
+  - <a href="static/1/81-160/81-160.html">Kanji 81-160</a>
 
   - <a href="static/1/81-160/元.html">Kanji 元</a>
 
