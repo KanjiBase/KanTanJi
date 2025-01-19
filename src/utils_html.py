@@ -23,9 +23,9 @@ def vocab_property_html(prop: str | Value, color: str):
         case "godan":
             return get_smart_label("godan (..う)", "Sloveso má pět tvarů jako je pět samohlášek, pro skloňování mají dle typu koncovky různá pravidla.", color)
         case "jidoushi":
-            return get_smart_label("tranzitivní", "neboli 'tadoushi', sloveso může popisovat předmět (postavili budovu)", color)
+            return get_smart_label("netranzitivní", "neboli 'じどうし', sloveso popisuje podmět (budova byla postavena)", color)
         case "tadoushi":
-            return get_smart_label("netranzitivní", "neboli 'jidoushi', sloveso popisuje podmět (budova byla postavena)", color)
+            return get_smart_label("tranzitivní", "neboli 'たどうし', sloveso může popisovat předmět (postavili budovu)", color)
         case "i":
             return get_smart_label("い - příd. jméno", "Sloveso má pouze jeden tvar, při skloňování většinou odpadá ~る přípona.", color)
         case "na":

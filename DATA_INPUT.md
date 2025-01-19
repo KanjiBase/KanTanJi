@@ -20,8 +20,8 @@ kanji   思   tango   思＜おも＞う         imi    myslet, věřit (něčem
 Dependening on the keys mentioned above, the row also can or must define other keys:
  - kanji - if used and *tango* not present, the row defines a kanji entry, the value is used as a kanji ID
    - imi - **required**, the meaning of the kanji symbol
-   - onyomi - the onyomi reading, optional, defined once per unique reading
-   - kunyomi - the kunyomi reading, optional, defined once per unique reading
+   - onyomi - the onyomi reading, optional, defined once per unique reading, supports also multiple readings separated by japanese comma ('、')
+   - kunyomi - the kunyomi reading, optional, defined once per unique reading, supports also multiple readings separated by japanese comma ('、')
  - tango - if used, row treated as a vocabulary kanji
    - kanji - **required**, the reference to the kanji value 
    - imi - **required**, the meaning of the vocabulary entry
