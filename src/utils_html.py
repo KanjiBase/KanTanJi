@@ -3,7 +3,7 @@ from utils_data_entitites import Entry, Value
 ADJECTIVE_TYPE_COLOR = "#ACA52F"
 VERB_TRANSITIVENESS_COLOR = "#28835F"
 VERB_IGIDAN_GODAN_COLOR = "#658B18"
-
+VERB_SURU_COLOR = "#4A90E2"
 
 def get_smart_label(title: str, details: str, color="#d73a49"):
     return f"""
@@ -30,6 +30,8 @@ def vocab_property_html(prop: str | Value, color: str):
             return get_smart_label("い - příd. jméno", "Sloveso má pouze jeden tvar, při skloňování většinou odpadá ~る přípona.", color)
         case "na":
             return get_smart_label("な - příd. jméno", "Odpadá ~な přípona (např. při použití s 'です'), pokud se neváže na podstatné jméno.", color)
+        case "suru":
+            return get_smart_label("する sloveso","Nepravidelná slovesa se chovají dle する tvaru podobně.", color)
     raise ValueError(f"Property not allowed: {prop}")
 
 
@@ -41,6 +43,8 @@ def vocab_property_color(prop: str | Value):
             return VERB_TRANSITIVENESS_COLOR
         case "i" | "na":
             return ADJECTIVE_TYPE_COLOR
+        case "suru":
+            return VERB_SURU_COLOR
     raise ValueError(f"Property not allowed: {prop}")
 
 

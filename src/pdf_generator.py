@@ -73,7 +73,7 @@ def generate(key, data, radicals, path_getter):
 
         # KanjiAlive URL as a clickable link
         kanji_alive = retrieve_row_kanjialive_url(item)
-        link_paragraph = Paragraph(f'<a href="{kanji_alive}">{kanji_alive}</a>', styles['NormalNoto'])
+        link_paragraph = Paragraph(f'<link href="{kanji_alive}">{kanji_alive}</link>', styles['NormalNoto'])
 
         # Create a structured table similar to your image
         table_data = [

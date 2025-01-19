@@ -31,6 +31,7 @@ Dependening on the keys mentioned above, the row also can or must define other k
      - `jidoushi`  - intransitive verb
      - `ichidan`  - る-verb, 1 form 
      - `godan` - 5 form verb
+     -  ``suru`` - if a 'suru' verb appears, no need to specify any of the above
      - ``na``  - na-adjective
      - `i`  - i-adjective  
 
