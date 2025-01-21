@@ -82,6 +82,9 @@ for dataset_name in data:
 
             ttype = item['type']
             if ttype == 'kanji' or ttype == 'tango':
+                if item.get("kanji").significance > 0:
+                    continue
+
                 id = str(item['kanji'])
                 node = kanji_dictionary.get(id)
                 if node is None:
@@ -111,6 +114,7 @@ for dataset_name in data:
                     print(" --parse dataset-- Error dataset without name!")
                     continue
 
+                # Although we respect significance level on sets, we still need to register it here, just avoid rendering resources
                 if ids is not None:
                     node.data[hash_id(set_name)] = item, row
                 else:
@@ -138,20 +142,28 @@ for did in complementary_datasets:
     incremental_id = 1
     for dsid in dataset.data:
         data_subset, original_row = dataset.data[dsid]
-        subset_name = str(data_subset["setto"])
+        subset_name_item = data_subset.get("setto")
+        subset_name = str(subset_name_item)
         kanjis_modified = False
         output = {}
         output_order = []
 
         try:
-            order = parse_ids(str(data_subset["ids"]))
+            order = parse_ids(data_subset["ids"])
+            ignored = subset_name_item.significance > 0
+
             for kanji_id in order:
                 kanji = kanji_dictionary.get(kanji_id)
                 if kanji is None:
                     raise ValueError(f"Invalid kanji ID {kanji_id} in dataset {name} > {subset_name}.")
 
+                if not kanji.filled:
+                    raise ValueError(f"Invalid kanji ID {kanji_id} in dataset {name} > {subset_name} "
+                                     f"- kanji not present, although vocabulary item might be.")
+
                 # Do not optimize! get_was_modified must run to create entires!
-                kanjis_modified = kanji.get_was_modified(data_modification_guard) or kanjis_modified
+                # If ignored, prevent from recording in the timestamp (problems with files, readme generating, etc.)
+                kanjis_modified = not ignored and kanji.get_was_modified(data_modification_guard) or kanjis_modified
 
                 # Kanji is linked to kanji_dictionary by the kanji letter, store context-dependent shared ID
                 kanji.set_context_id(did, incremental_id)
@@ -169,14 +181,17 @@ for did in complementary_datasets:
                 incremental_id += 1
 
             # Modification can also be caused by name change
-            modified = data_modification_guard.set_complementary_record_and_check_if_updated(dsid, subset_name, did,
-                                                                                             original_row)
+            # If ignored, prevent from recording in the timestamp (problems with files, readme generating, etc.)
+            modified = not ignored and data_modification_guard.set_complementary_record_and_check_if_updated(
+                dsid, subset_name, did, original_row)
+
             dataset.data[dsid] = {
                 "id": dsid,
                 "name": subset_name,
                 "content": output,
                 "order": output_order,
-                "modified": modified or kanjis_modified
+                "modified": modified or kanjis_modified,
+                "ignored": ignored
             }
 
         except Exception as e:

@@ -4,10 +4,14 @@ Always, when some key is required, it can be present only once in the row. Optio
 It is also not important what order the keys are defined in. With kanjis, ID rows must be unique. Each tango (word)
 then uses the same ID as kanji it belongs to.
 
-> **SPARSE SUPPORT** Note: input supports many features like significance levels, formats.. but for output to truly respect
+> **SPARSE SUPPORT** -- input supports many features like significance levels, formats.. but for output to truly respect
 > given feature, it must implement its usage. That means you can for example use markdown or significance 
 > level on a kanji 'imi' value, but it will not likely change anything in the output, since
 > kanji packs nor PDFs nor any other output generator expects you to adjust kanji meaning with these.
+>
+> **REQUIRED PROPERTIES** -- are required only for elements that take part in generated output.
+> If you define kanji like ``kanji  |  協`` entry and nothing more, unless the kanji is used in
+> non-ignored output for processing, it can stay like this.
 
 ### Minimal Example:
 ```
@@ -104,9 +108,47 @@ what character has which reading
 whole vocabulary element - the word; note that there must not be a space anywhere between `><` characters
 
 ### Importance of Entries - Key Marks
-Every single key supports importance marks, for example `kanji--`. This is also a 'kanji' key, but it has two level less importance status, because
-there are two minus signs. It is up to the application (PDF / Anki ...) whether its generator interprets these importance levels in any way, or ignores them completely. For example, HTML sheets might respect `tango-` as less relevant vocabulary entry and show it to the users, but ignore `imi---` since there
-is exactly one such kye required, and it does not make much sense to have 'less important meaning'. `ID` importance marks are ignored completely.
+Every single key supports importance marks, for example `tango-`. This is also a 'tango' key, but it has one level less importance status, because
+there are is a minus sign. It is up to the application (PDF / Anki ...) whether its generator interprets these importance levels in any way, or 
+ignores them completely. For example, HTML sheets might respect `tango-` as less relevant vocabulary entry and show it to the users, but ignore `imi---` since there
+is exactly one such key required, and it does not make much sense to have 'less important meaning'. `ID` importance marks are ignored completely.
+
+### Importance of ``kanji`` and `setto`
+Importance levels on 'key' identifiers - ``kanji`` and `setto` has additional meaning - such datasets will NOT be
+part of the output data. You can therefore remove certain kanji and/or vocabulary item from the rendering process,
+but still have it defined in the data. Similarly, you can define dataset, but prevent it from being generated.
+
+Usecases are: temporary or contextual removal of 'too many vocabulary entries', or support for automated
+vocabulary importance sorting. See below.
+
+### Automated importance of ``tango``
+This sorting depends on known 'kanjis' - if a word contains learnt kanji,
+it will get the highest importance score. If there is a kanji that will appear in the same set, it
+gets ``tango-`` importance level. If the kanji will be learnt 'sometimes in the future', it receives 
+``tango--`` level. This is very handy for making students learn only vocab that contains learnt kanji symbols.
+However, in order to work, all sets must be defined from the beginning!
+````
+ID  1   setto   My New Dataset
+ID  1	setto	81-160	    IDS  	図, 工, 教, 晴, 思, ...
+````
+the above will not properly sort vocabulary, since the set starts with 81nth kanji - students probably learnt a bit more
+already. What you can do, though, is to define kanji entries for ``一, 二, 三, 四, 五, ...`` 
+(do not apply small significance here!) like so:
+````
+kanji  一
+kanji  二
+kanji  三
+...
+````
+nothing more! Although for example ``imi`` is required, it is not needed here since we won't be using the kanji directly.
+Now:
+````
+ID  1   setto   My New Dataset
+ID  1	setto-	1-80	   IDS  	一, 二, 三, 四, 五, ...
+ID  1	setto	81-160	   IDS  	図, 工, 教, 晴, 思, ...
+````
+will make set 1-80 ignored for the processing, but references will stay. Previous kanjis will be found and vocabulary
+correctly sorted. Once you decide to also populate the first set with proper data, you can simply remove the minus sign.
 
 ## Example Data and Output
 

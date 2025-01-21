@@ -432,6 +432,9 @@ class DataSet:
         for proc_name, processor in DataSet._processors:
             for key in self.data:
                 data_spec = self.data[key]
+                if data_spec["ignored"]:
+                    continue
+
                 name = data_spec["name"]
                 output_path = guard.processing_file_root(data_spec["id"])
 
