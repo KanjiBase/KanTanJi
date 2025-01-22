@@ -27,7 +27,7 @@
     ["kanji", "思", "tango", "思＜おも＞い出＜だ＞す", "imi", "vzpomínat", "", "", "", "", "", ""],
     ["kanji", "思", "tango", "思＜おも＞い出＜で＞", "imi", "vzpomínky", "tsukaikata", "ほんの少<すこ>しでも つらい思<おも>い出<で>の中<なか>に 楽<たの>しい思<おも>い出<で>も作<つく>れたら良<よ>いと思<おも>います。Myslím si, že by bylo dobré, kdybychom alespoň trochu uměli tvořit šťastné vzpomínky mezi všemi těmi bolestnými.", "", "", "", ""],
     ["kanji", "思", "tango", "思＜し＞想＜そう＞", "imi", "nápad, myšlenka, ideologie", "tsukaikata", "その思<し>想<そう>が京<きょう>都<と>にある。Tato ideologie v Kyótu existuje.", "", "", "", ""],
-    ["kanji", "思", "tango", "思＜し＞考＜こう＞", "imi", "myšlenka, přemýšlení", "tsukaikata", "どのように思<し>考<こう>するか分<わ>からない。Nevím, jak přemýšlet.", "備<び>考<こう>", "Lze jako する sloveso.", "", ""],
+    ["kanji-", "思", "tango", "思＜し＞考＜こう＞", "imi", "myšlenka, přemýšlení", "tsukaikata", "どのように思<し>考<こう>するか分<わ>からない。Nevím, jak přemýšlet.", "備<び>考<こう>", "Lze jako する sloveso.", "", ""],
     ["kanji", "考", "imi", "zvážit", "onyomi", "コウ", "kunyomi", "かんが・える", "ref", "radical-3.1"],
     ["kanji", "考", "tango", "考<かんが>える", "imi", "myslet, přemýšlet (racionální), odvodit", "tsukaikata", "考<がんが>えすぎないでください。Příliš si s tím nelamte hlavu.", "", "", "", ""],
     ["kanji", "考", "tango", "考<かんが>え", "imi", "myšlenka, nápad, představa", "", "", "", "", "", ""],

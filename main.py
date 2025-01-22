@@ -166,19 +166,21 @@ for did in complementary_datasets:
                 kanjis_modified = not ignored and kanji.get_was_modified(data_modification_guard) or kanjis_modified
 
                 # Kanji is linked to kanji_dictionary by the kanji letter, store context-dependent shared ID
-                kanji.set_context_id(did, incremental_id)
+                kanji_id = kanji.set_or_get_context_id(did, incremental_id)
 
                 # Updates are consistent, e.g. anki packs use GUID which does not change. Here we create
                 # IDs that follow definition order in the dataset.
                 kanji_copy = copy.deepcopy(kanji)
 
-                kanji_copy["id"] = Value(incremental_id)
+                kanji_copy["id"] = Value(kanji_id)
 
-                str_id = str(kanji_copy["id"])
+                str_id = str(kanji_id)
                 output[str_id] = kanji_copy
                 output_order.append(str_id)
 
-                incremental_id += 1
+                # Increment only if used
+                if kanji_id == incremental_id:
+                    incremental_id += 1
 
             # Modification can also be caused by name change
             # If ignored, prevent from recording in the timestamp (problems with files, readme generating, etc.)

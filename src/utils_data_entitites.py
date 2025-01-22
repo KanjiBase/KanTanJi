@@ -280,8 +280,12 @@ class KanjiEntry(Entry):
     def vocabulary(self):
         return self.get("_vocab_")
 
-    def set_context_id(self, context_id, id):
+    def set_or_get_context_id(self, context_id, id):
+        exists_id = self._context_ids.get(context_id)
+        if exists_id is not None:
+            return exists_id
         self._context_ids[context_id] = id
+        return id
 
     def get_context_id(self, context_id):
         return self._context_ids.get(context_id)
