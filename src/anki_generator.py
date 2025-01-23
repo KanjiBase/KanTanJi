@@ -3,7 +3,7 @@ import hashlib
 import uuid
 import markdown
 
-from utils import generate_furigana, retrieve_row_kanjialive_url
+from utils import generate_furigana, retrieve_row_kanjialive_url, sanitize_filename
 from utils_data_entitites import InputFormat
 from utils_html import parse_item_props_html
 
@@ -214,5 +214,5 @@ def generate(key, data, metadata, folder_getter):
     if not data["modified"]:
         return False
     anki = read_kanji_csv(key, data)
-    create_anki_deck(key, anki, f"{folder_getter(key)}/{key}.apkg")
+    create_anki_deck(key, anki, f"{folder_getter(key)}/{sanitize_filename(key)}.apkg")
     return True

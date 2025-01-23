@@ -4,7 +4,7 @@ import os
 import copy
 
 from src.config import OVERRIDE_VOCAB_SIGNIFICANCE
-from src.utils import process_row, hash_id, dict_read_create, parse_ids
+from src.utils import process_row, dict_read_create, parse_ids
 from src.read_input_google_api import read_sheets_google_api
 from src.read_input_test_data import read_local_data
 # For some reason, when src. is added as prefix the code fails to run due mismatches on class types
@@ -102,23 +102,30 @@ for dataset_name in data:
                 else:
                     node.add_vocabulary_entry(item)
 
-            elif ttype == 'dataset':
+            elif ttype == 'dataset' or ttype == 'subset':
                 id = str(item["id"])
                 node = complementary_datasets.get(id)
                 if node is None:
                     node = DataSet(id)
                     complementary_datasets[id] = node
-                ids = item.get("ids")
                 set_name = str(item.get("setto"))
                 if set_name is None:
                     print(" --parse dataset-- Error dataset without name!")
                     continue
 
                 # Although we respect significance level on sets, we still need to register it here, just avoid rendering resources
-                if ids is not None:
-                    node.data[hash_id(set_name)] = item, row
+                if ttype == 'subset':
+                    subset_id = str(item.get("junban"))
+                    if subset_id is None:
+                        print(" --parse dataset-- Error data subset without sub-id!")
+                        continue
+                    node.append(subset_id, (item, row))
                 else:
-                    node.context_name = set_name
+                    set_name = str(item.get("setto"))
+                    if set_name is None:
+                        print(" --parse dataset-- Error dataset without name!")
+                        continue
+                    node.set_context_name(set_name)
 
             else:
                 # custom type, add to the dataset
@@ -140,7 +147,7 @@ for did in complementary_datasets:
     name = dataset.context_name
 
     incremental_id = 1
-    for dsid in dataset.data:
+    for dsid in dataset.data_range():
         data_subset, original_row = dataset.data[dsid]
         subset_name_item = data_subset.get("setto")
         subset_name = str(subset_name_item)
@@ -185,16 +192,17 @@ for did in complementary_datasets:
             # Modification can also be caused by name change
             # If ignored, prevent from recording in the timestamp (problems with files, readme generating, etc.)
             modified = not ignored and data_modification_guard.set_complementary_record_and_check_if_updated(
-                dsid, subset_name, did, original_row)
+                dsid, subset_name, did, name, original_row)
 
-            dataset.data[dsid] = {
+            dataset.overwrite(dsid, {
                 "id": dsid,
+                "context_id": did,
                 "name": subset_name,
                 "content": output,
                 "order": output_order,
                 "modified": modified or kanjis_modified,
                 "ignored": ignored
-            }
+            })
 
         except Exception as e:
             del complementary_datasets[did]
@@ -234,31 +242,32 @@ target_folder_to_output = None
 readme_contents = {}
 
 
-def clean_files(item, outdated):
+def clean_files(id, item, outdated):
     global target_folder_to_output, metadata, readme_contents
     try:
         # Skip no context_name elements - do not create such files
         if not item["context_name"]:
             return
-
         source = data_modification_guard.processing_file_root(item)
         target = data_modification_guard.saving_file_root(item, target_folder_to_output)
 
         if outdated:
-            delete_filesystem_node(source)
+            # Do not delete source, sources will not be committed in github actions
             delete_filesystem_node(target)
             print("Removing ", name, source, target)
         else:
+            Path(source).glob('**/*')
             merge_trees(source, target)
             delete_filesystem_node(source)
             print("Moving ", name, source, target)
 
-            context = item["context_name"]
-            if context is None:
-                context = ""
-
-            node = dict_read_create(readme_contents, context, [])
-            node.append(target)
+            context = item["context_id"]
+            if context is not None:
+                node = dict_read_create(readme_contents, context, [])
+                node.append({
+                    "path": target,
+                    "item": item
+                })
 
     except Exception as e:
         print(f"ERROR: Could not clean files for {item}", e)
@@ -289,16 +298,17 @@ def get_readme_contents():
         print("Warning: invalid dataset - no output files!", set_name, item_name)
 
     # todo move file iteration to generators too
-    for dataset_name in readme_contents:
-        paths = readme_contents[dataset_name]
+    for dataset_id in readme_contents:
+        elements = readme_contents[dataset_id]
+        elements = sorted(elements, key=lambda x: x["item"]["id"])
 
-        pdf_files_readme = dict_read_create(pdf_file_entries, dataset_name, [])
-        anki_files_readme = dict_read_create(anki_file_entries, dataset_name, [])
-        html_files_readme = dict_read_create(html_file_entries, dataset_name, [])
+        pdf_files_readme = dict_read_create(pdf_file_entries, dataset_id, [])
+        anki_files_readme = dict_read_create(anki_file_entries, dataset_id, [])
+        html_files_readme = dict_read_create(html_file_entries, dataset_id, [])
 
-        pdf_files = [list(Path(x).glob('**/*.pdf')) for x in paths]
-        anki_files = [list(Path(x).glob('**/*.apkg')) for x in paths]
-        html_files = [list(Path(x).glob('**/*.html')) for x in paths]
+        pdf_files = [list(Path(x["path"]).glob('**/*.pdf')) for x in elements]
+        anki_files = [list(Path(x["path"]).glob('**/*.apkg')) for x in elements]
+        html_files = [list(Path(x["path"]).glob('**/*.html')) for x in elements]
 
         if len(pdf_files):
             for file_list in pdf_files:
@@ -317,9 +327,9 @@ def get_readme_contents():
         dataset = complementary_datasets[dataset_id]
         dataset_name = dataset.context_name
 
-        pdfs = '\n'.join(pdf_file_entries[dataset_id])
-        ankis = '\n'.join(anki_file_entries[dataset_id])
-        htmls = '\n'.join(html_file_entries[dataset_id])
+        pdfs = '\n'.join(filter(bool, pdf_file_entries[dataset_id]))
+        ankis = '\n'.join(filter(bool, anki_file_entries[dataset_id]))
+        htmls = '\n'.join(filter(bool, html_file_entries[dataset_id]))
         dataset_title = f"## {dataset_name}" if dataset_name else dataset_id
 
         output_readme[dataset_id] = f"""

@@ -2,7 +2,11 @@ import re
 import hashlib
 
 from utils_data_entitites import InputFormat, Value, Version, VocabEntry, RadicalEntry, KanjiEntry, \
-    DatasetEntry
+    DatasetEntry, DataSubsetEntry
+
+
+def sanitize_filename(name: str):
+    return re.sub(r'\s', "_", str(name).strip())
 
 
 def hash_id(name: str):
@@ -209,7 +213,7 @@ def process_row(row: list):
             item[key].extend(values)
         elif key in ['tsukaikata']:
             item[key].append(Value(value, key_significance, data_format))
-        elif key in ['imi', 'tango', 'radical', 'setto']:
+        elif key in ['imi', 'tango', 'radical', 'setto', 'junban']:
             item[key] = Value(value, key_significance, data_format)
         else:
             # TODO does not support chaining
@@ -222,7 +226,9 @@ def process_row(row: list):
         output = KanjiEntry()
     elif item.get("radical"):
         output = RadicalEntry()
-    elif item.get("setto"):
+    elif item.get("junban"):
+        output = DataSubsetEntry()
+    elif item.get('setto'):
         output = DatasetEntry()
     else:
         print(" --parse-- IGNORES: invalid input: unknown type", row)

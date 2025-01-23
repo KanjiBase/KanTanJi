@@ -6,9 +6,9 @@ import json
 import time
 from enum import Enum
 from copy import copy
+from operator import itemgetter
 
 from config import VERSION
-
 
 
 class Entry(dict):
@@ -115,7 +115,6 @@ class ValueList(list):
         return self.__class__(copy(self))
 
 
-
 class CustomEncoder(json.JSONEncoder):
     def default(self, obj):
         if isinstance(obj, Value) or isinstance(obj, Version):
@@ -153,8 +152,10 @@ class HashGuard:
         Update the hash record of source file, this has no 'context_name'.
         """
         self.hashes[key] = {
+            "id": key,
             "name": name,
             "context_name": None,
+            "context_id": None,
             "hash": hash_value,
             "stamp": self.stamp,
             "version": VERSION
@@ -167,18 +168,23 @@ class HashGuard:
 
     def for_each_entry(self, clbck):
         outdated_hashes = []
+        up_to_date_hashes = []
         for key in self.hashes:
             item = self.hashes[key]
             if item["stamp"] != self.stamp:
                 outdated_hashes.append(key)
             else:
-                clbck(item, False)
+                up_to_date_hashes.append(key)
 
         print("Cleaning outdated:", outdated_hashes)
         for key in outdated_hashes:
             item = self.hashes[key]
-            clbck(item, True)
+            clbck(key, item, True)
             del self.hashes[key]
+        # Run after outdated, which might delete files
+        for key in up_to_date_hashes:
+            item = self.hashes[key]
+            clbck(key, item, False)
 
     def save(self):
         with open(self.hash_file_path, "w", encoding='utf-8') as f:
@@ -209,19 +215,24 @@ class HashGuard:
         self.update(id, name, current_hash)
         return True
 
-    def get_complementary_id(self, id):
-        return f"c-rec-{id}"
+    def get_complementary_id(self, id, context_id):
+        if context_id is None:
+            raise ValueError(f"Context ID must not be NONE! Accessed with: {id}")
+        return f"c-{context_id}-{id}"
 
-    def set_complementary_record_and_check_if_updated(self, id: str, name: str, context_name: str, record):
+    def set_complementary_record_and_check_if_updated(self, id: str, name: str, context_id: str, context_name: str,
+                                                      record):
         """
         Record existence of complementary dataset - these have no native data and thus
         do not support set_record_and_check_if_modified()
         :param id: the record ID used to identify what record list to compare against in the hash guard history
         :param name: name stored in the guard, for convenience
+        :param context_id: parent ID
         :param context_name: name of the complementary dataset context (parent name)
+        :param record: value to evaluate for changes (against previous value in history)
         :return:
         """
-        key = self.get_complementary_id(id)
+        key = self.get_complementary_id(id, context_id)
         item = self.hashes.get(key, None)
         # Modified if item missing (=> force generate) or version changed
         modified = True if item is None else item.get("version", "") != VERSION
@@ -229,7 +240,9 @@ class HashGuard:
         if item and (item["name"] != name or item["context_name"] != context_name):
             # If exists & renamed, add outdated entry so it gets cleaned
             self.hashes[f"{key}_{time.time()}"] = {
+                "id": id,
                 "name": item["name"],
+                "context_id": item["context_id"],
                 "context_name": item["context_name"],
                 "hash": item["hash"],
                 "stamp": 0,
@@ -242,24 +255,26 @@ class HashGuard:
             modified = True
 
         self.hashes[key] = {
+            "id": id,
             "name": name,
             "context_name": context_name,
+            "context_id": context_id,
             "hash": current_hash,
             "stamp": self.stamp,
             "version": VERSION
         }
         return modified
 
-    def processing_file_root(self, id_or_item):
+    def processing_file_root(self, id_or_item, parent_id=None):
         """Available only to complementary items!"""
-        return self.saving_file_root(id_or_item, ".temp")
+        return self.saving_file_root(id_or_item, ".temp", parent_id)
 
-    def saving_file_root(self, id_or_item, parent_folder):
+    def saving_file_root(self, id_or_item, parent_folder, parent_id=None):
         """Available only to complementary items!"""
-        item = self.hashes[self.get_complementary_id(id_or_item)] if type(id_or_item) != dict else id_or_item
-        context_name = item.get("context_name")
-        folder_path = parent_folder if context_name is None else f"{parent_folder}/{context_name}"
-        folder_path = f"{folder_path}/{item['name']}/"
+        item = self.hashes[self.get_complementary_id(id_or_item, parent_id)] if type(id_or_item) != dict else id_or_item
+        context = item.get("context_id")
+        folder_path = parent_folder if context is None else f"{parent_folder}/{context}"
+        folder_path = f"{folder_path}/{item['id']}/"
         os.makedirs(folder_path, exist_ok=True)
         return folder_path
 
@@ -360,10 +375,24 @@ class DatasetEntry(Entry):
         self["type"] = "dataset"
         self["setto"] = other_dict.get("setto")
         self["id"] = other_dict.get("id")
-        self["ids"] = other_dict.get("ids", None)
 
         self["guid"] = self["setto"]
 
+
+class DataSubsetEntry(Entry):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self._name = "DataSubsetEntry"
+
+    def fill(self, other_dict):
+        super().fill(other_dict)
+        self["type"] = "subset"
+        self["setto"] = other_dict.get("setto")
+        self["id"] = other_dict.get("id")
+        self["junban"] = other_dict.get("junban")
+        self["ids"] = other_dict.get("ids", [])
+
+        self["guid"] = f"{self['setto']}.{self['junban']}"
 
 
 class DataSet:
@@ -378,19 +407,44 @@ class DataSet:
             self.parent_context_id = parent_context_id
         self.data = {}
         self.default = False
+        self._order = None
+        self._initialized = False
+
+    def set_context_name(self, value):
+        if self._initialized:
+            raise ValueError(f"Redefinition of a set! {value}")
+        self._initialized = True
+        self.context_name = value
+
+    def is_initialized(self):
+        return self._initialized
 
     def set_is_default(self):
         self.default = True
+
+    def append(self, key, dataset):
+        if self.data.get(key) is not None:
+            raise ValueError(f"Redefinition of a subset! {key}")
+        self.data[key] = dataset
+
+    def overwrite(self, key, dataset):
+        self.data[key] = dataset
 
     @staticmethod
     def register_processor(name: str, processor):
         DataSet._processors.append((name, processor))
 
+    def data_range(self):
+        if not self._order:
+            self._order = sorted(self.data.keys())
+        return self._order
+
     def adjust_vocabulary_significance(self, kanji_dictionary):
         # Here we deduct significance levels automatically for vocabulary entries, these
         # are dependent on whether they contain already learnt kanji
         kanji_regex = r'[\u4e00-\u9faf]|[\u3400-\u4dbf]'
-        for dataset_name in self.data:
+
+        for dataset_name in self.data_range():
             dataset_spec = self.data[dataset_name]
             dataset = dataset_spec["content"]
             for kanji_id in dataset:
@@ -440,7 +494,7 @@ class DataSet:
                     continue
 
                 name = data_spec["name"]
-                output_path = guard.processing_file_root(data_spec["id"])
+                output_path = guard.processing_file_root(data_spec["id"], data_spec["context_id"])
 
                 try:
                     if processor(name, data_spec, metadata, lambda _: output_path):

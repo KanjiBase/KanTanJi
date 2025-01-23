@@ -11,7 +11,7 @@ from reportlab.lib.fonts import addMapping
 from reportlab.lib import fonts
 from reportlab.platypus import Spacer
 
-from utils import retrieve_row_kanjialive_url, Value, generate_furigana_custom
+from utils import retrieve_row_kanjialive_url, Value, generate_furigana_custom, sanitize_filename
 
 
 # Function to create inline furigana using <sup> tags in a Paragraph
@@ -36,7 +36,7 @@ def generate(key, data, radicals, path_getter):
     if not data["modified"]:
         return False
 
-    doc = SimpleDocTemplate(f"{path_getter(key)}/{key}.pdf", pagesize=letter, topMargin=12, bottomMargin=10)
+    doc = SimpleDocTemplate(f"{path_getter(key)}/{sanitize_filename(key)}.pdf", pagesize=letter, topMargin=12, bottomMargin=10)
     elements = []
 
     # Map bold font

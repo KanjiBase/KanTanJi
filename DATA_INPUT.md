@@ -58,13 +58,14 @@ If you need to have two kanji order learning datasets, you can define the other 
 
  - setto
    - id - **required**, the set ID
-   - ids - **optional**, the ID set to compose a new dataset from (kanji values), if missing
-   it is the name of the dataset itself (see example)
+   - junban - **optional**, defines a subset ID (order), if present the set defines a subset in the 'main' set (see example below)
+     - ids - **required**, the ID set to compose a new dataset from (kanji values), if missing
+     it is the name of the dataset itself (see example)
 
 Example:
 ````
 ID    1   setto    My Awesome Dataset
-ID    1   setto    1-20                     ids      図,思, 大, 教
+ID    1   junban    1       setto    1-20                     ids      図,思, 大, 教
 ````
 Will create dataset _My Awesome Dataset_ with 1-20 kanji set name that contain two kanjis: 184 and 181.
 
