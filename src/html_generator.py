@@ -76,7 +76,8 @@ def get_word_html(word, color='blue'):
     <div class="bg-gradient-to-r from-{color}-50 to-{color}-100 rounded-lg shadow p-4 flex flex-col my-2">
         <div class="flex justify-between items-center">
           <div>
-            <p class="text-lg text-2xl text-gray-800">{generate_furigana(word['tango'])}</p>
+            <p class="text-lg text-2xl text-gray-800 copyable cursor-pointer relative" 
+            onclick="copyText(this)">{generate_furigana(word['tango'])}</p>
             <p class="text-sm text-gray-600">{word['imi']}</p>
           </div>
         </div>
@@ -87,18 +88,14 @@ def get_word_html(word, color='blue'):
     return f"""
     
     <div class="bg-gradient-to-r from-{color}-50 to-{color}-100 rounded-lg shadow p-4 flex flex-col my-2">
-        <div class="flex justify-between items-center">
-          <div>
-            <p class="text-lg text-2xl text-gray-800">{generate_furigana(word['tango'])}</p>
-            <p class="text-sm text-gray-600">{word['imi']}</p>
-          </div>
-            <!-- Arrow with onclick -->
-            <button
-            class="button-vocab-toggle text-gray-600 hover:text-gray-900 transform transition-transform duration-200 px-2"
-            onclick="toggleExample('vocab{id_dealer}', this)"
-              >
-                ▼
-              </button>
+        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab{id_dealer}', this)">
+            <div>
+                <p class="text-lg text-2xl text-gray-800 copyable relative" 
+                onclick="copyText(this)">{generate_furigana(word['tango'])}</p>
+                <p class="text-sm text-gray-600">{word['imi']}</p>
+            </div>
+            <button class="button-vocab-toggle text-gray-600 hover:text-gray-900 
+            transform transition-transform duration-200 px-2">▼</button>
         </div>
         {props_html}
         <div id="vocab{id_dealer}" class="button-vocab-example hidden mt-2 p-2 rounded bg-white text-gray-700 shadow">
@@ -118,7 +115,7 @@ def get_vocab_entries(item):
     return ''.join([f"""
         <div 
           class="flex-1 gap-4"
-          style="min-width: 350px; max-width: 500px;"
+          style="max-width: 400px;"
         >   
             <span class="text-xl font-bold text-gray-800 mb-4">{vocab_col_title(level)}</span>
             {''.join(map(
@@ -270,8 +267,27 @@ def read_kanji_csv(key, data, radicals):
 </div>
 <br>
 <script>
-    function toggleExample(exampleId, button) {{
+    function extractText(node) {{
+      if (node.nodeType === Node.TEXT_NODE) {{
+        return node.textContent;
+      }}
+      
+      if (node.nodeType === Node.ELEMENT_NODE && node.tagName !== 'RT') {{
+        return Array.from(node.childNodes).map(child => extractText(child)).join('');
+        }}
+    }}
+    function copyText(elem) {{
+        let textToCopy = extractText(elem);
+        navigator.clipboard.writeText(textToCopy).then(() => {{
+          elem.classList.add('copied');
+          setTimeout(() => {{
+            elem.classList.remove('copied');
+          }}, 1200);
+        }})
+    }}
+    function toggleExample(exampleId, self) {{
         const example = document.getElementById(exampleId);
+        const button = Array.from(self.children).find(child => child.tagName === 'BUTTON');
         if (example.style.display === "none" || !example.style.display) {{
             example.style.display = "block";
             button.textContent = "▲";
@@ -378,6 +394,24 @@ def generate(key, data, metadata, path_getter):
 <meta charset="UTF-8">
 <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 <style>
+.copyable::after {{
+    content: 'Copied!';
+    position: absolute;
+    top: -25px;
+    right: -50px;
+    background-color: #d9f9e6;
+    color: #363636;
+    font-size: 12px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}}
+.copyable.copied::after {{
+  opacity: 1;
+  visibility: visible;
+}}
 @media screen and (min-width: 1450px) {{
   .note-container {{
     min-width: 575px;
