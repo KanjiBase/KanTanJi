@@ -8,6 +8,24 @@
 <meta charset="UTF-8">
 <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 <style>
+.copyable::after {
+    content: 'Copied!';
+    position: absolute;
+    top: -25px;
+    right: -50px;
+    background-color: #d9f9e6;
+    color: #363636;
+    font-size: 12px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+.copyable.copied::after {
+  opacity: 1;
+  visibility: visible;
+}
 @media screen and (min-width: 1450px) {
   .note-container {
     min-width: 575px;
@@ -114,24 +132,20 @@
         
         <div 
           class="flex-1 gap-4"
-          style="min-width: 350px; max-width: 500px;"
+          style="max-width: 400px;"
         >   
             <span class="text-xl font-bold text-gray-800 mb-4">Povinná slovíčka</span>
             
     
     <div class="bg-gradient-to-r from-green-50 to-green-100 rounded-lg shadow p-4 flex flex-col my-2">
-        <div class="flex justify-between items-center">
-          <div>
-            <p class="text-lg text-2xl text-gray-800"><ruby>知<rt style="visibility: hidden">し</rt></ruby>る</p>
-            <p class="text-sm text-gray-600">vědět, znát</p>
-          </div>
-            <!-- Arrow with onclick -->
-            <button
-            class="button-vocab-toggle text-gray-600 hover:text-gray-900 transform transition-transform duration-200 px-2"
-            onclick="toggleExample('vocab144', this)"
-              >
-                ▼
-              </button>
+        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab142', this)">
+            <div>
+                <p class="text-lg text-2xl text-gray-800 copyable relative" 
+                onclick="copyText(this)"><ruby>知<rt style="visibility: hidden">し</rt></ruby>る</p>
+                <p class="text-sm text-gray-600">vědět, znát</p>
+            </div>
+            <button class="button-vocab-toggle text-gray-600 hover:text-gray-900 
+            transform transition-transform duration-200 px-2">▼</button>
         </div>
         <div class='my-2 vocab-properties'>
 <span class="property-label" onclick="this.querySelector('span').style.display = (this.querySelector('span').style.display === 'none' || this.querySelector('span').style.display === '') ? 'block' : 'none';" style="display: inline-block; background-color: #658B18; color: white; padding: 4px 8px; border-radius: 12px; font-size: 12px; font-weight: bold; font-family: Arial, sans-serif; cursor: pointer; position: relative; margin-right: 8px;">
@@ -148,7 +162,7 @@
     </span>
 </span>    
 </div>
-        <div id="vocab144" class="button-vocab-example hidden mt-2 p-2 rounded bg-white text-gray-700 shadow">
+        <div id="vocab142" class="button-vocab-example hidden mt-2 p-2 rounded bg-white text-gray-700 shadow">
           
             <div>
                 <div style="margin-bottom: 5px;"><span lang="JA">そのニュースを<ruby>昨日<rt style="visibility: hidden">きのう</rt></ruby><ruby>知<rt style="visibility: hidden">し</rt></ruby>りました</span></div>
@@ -160,18 +174,14 @@
     
     
     <div class="bg-gradient-to-r from-green-50 to-green-100 rounded-lg shadow p-4 flex flex-col my-2">
-        <div class="flex justify-between items-center">
-          <div>
-            <p class="text-lg text-2xl text-gray-800"><ruby>知<rt style="visibility: hidden">し</rt></ruby>らせる</p>
-            <p class="text-sm text-gray-600">oznámí, informuje</p>
-          </div>
-            <!-- Arrow with onclick -->
-            <button
-            class="button-vocab-toggle text-gray-600 hover:text-gray-900 transform transition-transform duration-200 px-2"
-            onclick="toggleExample('vocab145', this)"
-              >
-                ▼
-              </button>
+        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab143', this)">
+            <div>
+                <p class="text-lg text-2xl text-gray-800 copyable relative" 
+                onclick="copyText(this)"><ruby>知<rt style="visibility: hidden">し</rt></ruby>らせる</p>
+                <p class="text-sm text-gray-600">oznámí, informuje</p>
+            </div>
+            <button class="button-vocab-toggle text-gray-600 hover:text-gray-900 
+            transform transition-transform duration-200 px-2">▼</button>
         </div>
         <div class='my-2 vocab-properties'>
 <span class="property-label" onclick="this.querySelector('span').style.display = (this.querySelector('span').style.display === 'none' || this.querySelector('span').style.display === '') ? 'block' : 'none';" style="display: inline-block; background-color: #658B18; color: white; padding: 4px 8px; border-radius: 12px; font-size: 12px; font-weight: bold; font-family: Arial, sans-serif; cursor: pointer; position: relative; margin-right: 8px;">
@@ -188,7 +198,7 @@
     </span>
 </span>    
 </div>
-        <div id="vocab145" class="button-vocab-example hidden mt-2 p-2 rounded bg-white text-gray-700 shadow">
+        <div id="vocab143" class="button-vocab-example hidden mt-2 p-2 rounded bg-white text-gray-700 shadow">
           
             <div>
                 <div style="margin-bottom: 5px;"><span lang="JA"><ruby>結<rt style="visibility: hidden">けっ</rt></ruby><ruby>果<rt style="visibility: hidden">か</rt></ruby>はメールで<ruby>知<rt style="visibility: hidden">し</rt></ruby>らせてください</span></div>
@@ -203,51 +213,11 @@
         </div>
     </div>
     
-    
-    <div class="bg-gradient-to-r from-green-50 to-green-100 rounded-lg shadow p-4 flex flex-col my-2">
-        <div class="flex justify-between items-center">
-          <div>
-            <p class="text-lg text-2xl text-gray-800"><ruby>知<rt style="visibility: hidden">し</rt></ruby>る</p>
-            <p class="text-sm text-gray-600">vědět, být si vědom</p>
-          </div>
-            <!-- Arrow with onclick -->
-            <button
-            class="button-vocab-toggle text-gray-600 hover:text-gray-900 transform transition-transform duration-200 px-2"
-            onclick="toggleExample('vocab146', this)"
-              >
-                ▼
-              </button>
-        </div>
-        <div class='my-2 vocab-properties'>
-<span class="property-label" onclick="this.querySelector('span').style.display = (this.querySelector('span').style.display === 'none' || this.querySelector('span').style.display === '') ? 'block' : 'none';" style="display: inline-block; background-color: #658B18; color: white; padding: 4px 8px; border-radius: 12px; font-size: 12px; font-weight: bold; font-family: Arial, sans-serif; cursor: pointer; position: relative; margin-right: 8px;">
-    godan (..う)
-    <span style="display: none; position: absolute; top: 120%; left: 0; background-color: white; color: black; border: 1px solid #658B18; padding: 4px 8px; border-radius: 6px; font-size: 12px; font-family: Arial, sans-serif; z-index: 10; min-width: 150px;">
-        Sloveso má pět tvarů jako je pět samohlášek, pro skloňování mají dle typu koncovky různá pravidla.
-    </span>
-</span>    
-
-<span class="property-label" onclick="this.querySelector('span').style.display = (this.querySelector('span').style.display === 'none' || this.querySelector('span').style.display === '') ? 'block' : 'none';" style="display: inline-block; background-color: #28835F; color: white; padding: 4px 8px; border-radius: 12px; font-size: 12px; font-weight: bold; font-family: Arial, sans-serif; cursor: pointer; position: relative; margin-right: 8px;">
-    tranzitivní
-    <span style="display: none; position: absolute; top: 120%; left: 0; background-color: white; color: black; border: 1px solid #28835F; padding: 4px 8px; border-radius: 6px; font-size: 12px; font-family: Arial, sans-serif; z-index: 10; min-width: 150px;">
-        neboli 'たどうし', sloveso může popisovat předmět (postavili budovu)
-    </span>
-</span>    
-</div>
-        <div id="vocab146" class="button-vocab-example hidden mt-2 p-2 rounded bg-white text-gray-700 shadow">
-          
-            <div>
-                <div style="margin-bottom: 5px;"><span lang="JA">それを<ruby>知<rt style="visibility: hidden">し</rt></ruby>っています</span></div>
-                <div style="margin-bottom: 5px; color: #666;">Vím to.</div>
-            </div>
-            
-        </div>
-    </div>
-    
         </div>
         
         <div 
           class="flex-1 gap-4"
-          style="min-width: 350px; max-width: 500px;"
+          style="max-width: 400px;"
         >   
             <span class="text-xl font-bold text-gray-800 mb-4">Objeví se v sadě</span>
             
@@ -255,24 +225,20 @@
         
         <div 
           class="flex-1 gap-4"
-          style="min-width: 350px; max-width: 500px;"
+          style="max-width: 400px;"
         >   
             <span class="text-xl font-bold text-gray-800 mb-4">Rozšiřující</span>
             
     
     <div class="bg-gradient-to-r from-purple-50 to-purple-100 rounded-lg shadow p-4 flex flex-col my-2">
-        <div class="flex justify-between items-center">
-          <div>
-            <p class="text-lg text-2xl text-gray-800"><ruby>通<rt style="visibility: hidden">つう</rt></ruby><ruby>知<rt style="visibility: hidden">ち</rt></ruby>する</p>
-            <p class="text-sm text-gray-600">oznámí, informuje (formálně)</p>
-          </div>
-            <!-- Arrow with onclick -->
-            <button
-            class="button-vocab-toggle text-gray-600 hover:text-gray-900 transform transition-transform duration-200 px-2"
-            onclick="toggleExample('vocab147', this)"
-              >
-                ▼
-              </button>
+        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab144', this)">
+            <div>
+                <p class="text-lg text-2xl text-gray-800 copyable relative" 
+                onclick="copyText(this)"><ruby>通<rt style="visibility: hidden">つう</rt></ruby><ruby>知<rt style="visibility: hidden">ち</rt></ruby>する</p>
+                <p class="text-sm text-gray-600">oznámí, informuje (formálně)</p>
+            </div>
+            <button class="button-vocab-toggle text-gray-600 hover:text-gray-900 
+            transform transition-transform duration-200 px-2">▼</button>
         </div>
         <div class='my-2 vocab-properties'>
 <span class="property-label" onclick="this.querySelector('span').style.display = (this.querySelector('span').style.display === 'none' || this.querySelector('span').style.display === '') ? 'block' : 'none';" style="display: inline-block; background-color: #4A90E2; color: white; padding: 4px 8px; border-radius: 12px; font-size: 12px; font-weight: bold; font-family: Arial, sans-serif; cursor: pointer; position: relative; margin-right: 8px;">
@@ -282,7 +248,7 @@
     </span>
 </span>    
 </div>
-        <div id="vocab147" class="button-vocab-example hidden mt-2 p-2 rounded bg-white text-gray-700 shadow">
+        <div id="vocab144" class="button-vocab-example hidden mt-2 p-2 rounded bg-white text-gray-700 shadow">
           
             <div>
                 <div style="margin-bottom: 5px;"><span lang="JA"><ruby>次<rt style="visibility: hidden">つぎ</rt></ruby>の<ruby>会<rt style="visibility: hidden">かい</rt></ruby><ruby>議<rt style="visibility: hidden">ぎ</rt></ruby>の<ruby>通<rt style="visibility: hidden">つう</rt></ruby><ruby>知<rt style="visibility: hidden">ち</rt></ruby>がドアに<ruby>掲<rt style="visibility: hidden">けい</rt></ruby><ruby>示<rt style="visibility: hidden">じ</rt></ruby>されていました</span></div>
@@ -299,18 +265,14 @@
     
     
     <div class="bg-gradient-to-r from-purple-50 to-purple-100 rounded-lg shadow p-4 flex flex-col my-2">
-        <div class="flex justify-between items-center">
-          <div>
-            <p class="text-lg text-2xl text-gray-800"><ruby>知<rt style="visibility: hidden">し</rt></ruby>り<ruby>合<rt style="visibility: hidden">あ</rt></ruby>う</p>
-            <p class="text-sm text-gray-600">seznámí se, pozná se</p>
-          </div>
-            <!-- Arrow with onclick -->
-            <button
-            class="button-vocab-toggle text-gray-600 hover:text-gray-900 transform transition-transform duration-200 px-2"
-            onclick="toggleExample('vocab148', this)"
-              >
-                ▼
-              </button>
+        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab145', this)">
+            <div>
+                <p class="text-lg text-2xl text-gray-800 copyable relative" 
+                onclick="copyText(this)"><ruby>知<rt style="visibility: hidden">し</rt></ruby>り<ruby>合<rt style="visibility: hidden">あ</rt></ruby>う</p>
+                <p class="text-sm text-gray-600">seznámí se, pozná se</p>
+            </div>
+            <button class="button-vocab-toggle text-gray-600 hover:text-gray-900 
+            transform transition-transform duration-200 px-2">▼</button>
         </div>
         <div class='my-2 vocab-properties'>
 <span class="property-label" onclick="this.querySelector('span').style.display = (this.querySelector('span').style.display === 'none' || this.querySelector('span').style.display === '') ? 'block' : 'none';" style="display: inline-block; background-color: #658B18; color: white; padding: 4px 8px; border-radius: 12px; font-size: 12px; font-weight: bold; font-family: Arial, sans-serif; cursor: pointer; position: relative; margin-right: 8px;">
@@ -327,7 +289,7 @@
     </span>
 </span>    
 </div>
-        <div id="vocab148" class="button-vocab-example hidden mt-2 p-2 rounded bg-white text-gray-700 shadow">
+        <div id="vocab145" class="button-vocab-example hidden mt-2 p-2 rounded bg-white text-gray-700 shadow">
           
             <div>
                 <div style="margin-bottom: 5px;"><span lang="JA"><ruby>雪<rt style="visibility: hidden">ゆき</rt></ruby><ruby>本<rt style="visibility: hidden">もと</rt></ruby>さんと<ruby>知<rt style="visibility: hidden">し</rt></ruby>り<ruby>合<rt style="visibility: hidden">あ</rt></ruby>ってどのくらいになりますか</span></div>
@@ -339,21 +301,17 @@
     
     
     <div class="bg-gradient-to-r from-purple-50 to-purple-100 rounded-lg shadow p-4 flex flex-col my-2">
-        <div class="flex justify-between items-center">
-          <div>
-            <p class="text-lg text-2xl text-gray-800"><ruby>知<rt style="visibility: hidden">ち</rt></ruby><ruby>人<rt style="visibility: hidden">じん</rt></ruby></p>
-            <p class="text-sm text-gray-600">známý, osoba, kterou znáte</p>
-          </div>
-            <!-- Arrow with onclick -->
-            <button
-            class="button-vocab-toggle text-gray-600 hover:text-gray-900 transform transition-transform duration-200 px-2"
-            onclick="toggleExample('vocab149', this)"
-              >
-                ▼
-              </button>
+        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab146', this)">
+            <div>
+                <p class="text-lg text-2xl text-gray-800 copyable relative" 
+                onclick="copyText(this)"><ruby>知<rt style="visibility: hidden">ち</rt></ruby><ruby>人<rt style="visibility: hidden">じん</rt></ruby></p>
+                <p class="text-sm text-gray-600">známý, osoba, kterou znáte</p>
+            </div>
+            <button class="button-vocab-toggle text-gray-600 hover:text-gray-900 
+            transform transition-transform duration-200 px-2">▼</button>
         </div>
         
-        <div id="vocab149" class="button-vocab-example hidden mt-2 p-2 rounded bg-white text-gray-700 shadow">
+        <div id="vocab146" class="button-vocab-example hidden mt-2 p-2 rounded bg-white text-gray-700 shadow">
           
             <div>
                 <div style="margin-bottom: 5px;"><span lang="JA"><ruby>知<rt style="visibility: hidden">ち</rt></ruby><ruby>人<rt style="visibility: hidden">じん</rt></ruby>が<ruby>増<rt style="visibility: hidden">ふ</rt></ruby>えれば<ruby>増<rt style="visibility: hidden">ふ</rt></ruby>えるほど、それだけ<ruby>会<rt style="visibility: hidden">あ</rt></ruby>う<ruby>時<rt style="visibility: hidden">じ</rt></ruby><ruby>間<rt style="visibility: hidden">かん</rt></ruby>が<ruby>少<rt style="visibility: hidden">すく</rt></ruby>なくなる</span></div>
@@ -365,21 +323,17 @@
     
     
     <div class="bg-gradient-to-r from-purple-50 to-purple-100 rounded-lg shadow p-4 flex flex-col my-2">
-        <div class="flex justify-between items-center">
-          <div>
-            <p class="text-lg text-2xl text-gray-800"><ruby>知<rt style="visibility: hidden">ち</rt></ruby><ruby>覚<rt style="visibility: hidden">かく</rt></ruby></p>
-            <p class="text-sm text-gray-600">vnímání, percepce</p>
-          </div>
-            <!-- Arrow with onclick -->
-            <button
-            class="button-vocab-toggle text-gray-600 hover:text-gray-900 transform transition-transform duration-200 px-2"
-            onclick="toggleExample('vocab150', this)"
-              >
-                ▼
-              </button>
+        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab147', this)">
+            <div>
+                <p class="text-lg text-2xl text-gray-800 copyable relative" 
+                onclick="copyText(this)"><ruby>知<rt style="visibility: hidden">ち</rt></ruby><ruby>覚<rt style="visibility: hidden">かく</rt></ruby></p>
+                <p class="text-sm text-gray-600">vnímání, percepce</p>
+            </div>
+            <button class="button-vocab-toggle text-gray-600 hover:text-gray-900 
+            transform transition-transform duration-200 px-2">▼</button>
         </div>
         
-        <div id="vocab150" class="button-vocab-example hidden mt-2 p-2 rounded bg-white text-gray-700 shadow">
+        <div id="vocab147" class="button-vocab-example hidden mt-2 p-2 rounded bg-white text-gray-700 shadow">
           
             <div>
                 <div style="margin-bottom: 5px;"><span lang="JA"><ruby>多<rt style="visibility: hidden">た</rt></ruby><ruby>量<rt style="visibility: hidden">りょう</rt></ruby>の<ruby>酒<rt style="visibility: hidden">さけ</rt></ruby>は<ruby>知<rt style="visibility: hidden">ち</rt></ruby><ruby>覚<rt style="visibility: hidden">かく</rt></ruby>をまひさせる</span></div>
@@ -391,21 +345,17 @@
     
     
     <div class="bg-gradient-to-r from-purple-50 to-purple-100 rounded-lg shadow p-4 flex flex-col my-2">
-        <div class="flex justify-between items-center">
-          <div>
-            <p class="text-lg text-2xl text-gray-800"><ruby>知<rt style="visibility: hidden">ち</rt></ruby><ruby>識<rt style="visibility: hidden">しき</rt></ruby></p>
-            <p class="text-sm text-gray-600">vědomosti, znalosti</p>
-          </div>
-            <!-- Arrow with onclick -->
-            <button
-            class="button-vocab-toggle text-gray-600 hover:text-gray-900 transform transition-transform duration-200 px-2"
-            onclick="toggleExample('vocab151', this)"
-              >
-                ▼
-              </button>
+        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab148', this)">
+            <div>
+                <p class="text-lg text-2xl text-gray-800 copyable relative" 
+                onclick="copyText(this)"><ruby>知<rt style="visibility: hidden">ち</rt></ruby><ruby>識<rt style="visibility: hidden">しき</rt></ruby></p>
+                <p class="text-sm text-gray-600">vědomosti, znalosti</p>
+            </div>
+            <button class="button-vocab-toggle text-gray-600 hover:text-gray-900 
+            transform transition-transform duration-200 px-2">▼</button>
         </div>
         
-        <div id="vocab151" class="button-vocab-example hidden mt-2 p-2 rounded bg-white text-gray-700 shadow">
+        <div id="vocab148" class="button-vocab-example hidden mt-2 p-2 rounded bg-white text-gray-700 shadow">
           
             <div>
                 <div style="margin-bottom: 5px;"><span lang="JA">コンピューターについてあまり<ruby>知<rt style="visibility: hidden">ち</rt></ruby><ruby>識<rt style="visibility: hidden">しき</rt></ruby>がない</span></div>
@@ -417,21 +367,17 @@
     
     
     <div class="bg-gradient-to-r from-purple-50 to-purple-100 rounded-lg shadow p-4 flex flex-col my-2">
-        <div class="flex justify-between items-center">
-          <div>
-            <p class="text-lg text-2xl text-gray-800"><ruby>承<rt style="visibility: hidden">しょう</rt></ruby><ruby>知<rt style="visibility: hidden">ち</rt></ruby></p>
-            <p class="text-sm text-gray-600">souhlas, vědomí, porozumění</p>
-          </div>
-            <!-- Arrow with onclick -->
-            <button
-            class="button-vocab-toggle text-gray-600 hover:text-gray-900 transform transition-transform duration-200 px-2"
-            onclick="toggleExample('vocab152', this)"
-              >
-                ▼
-              </button>
+        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab149', this)">
+            <div>
+                <p class="text-lg text-2xl text-gray-800 copyable relative" 
+                onclick="copyText(this)"><ruby>承<rt style="visibility: hidden">しょう</rt></ruby><ruby>知<rt style="visibility: hidden">ち</rt></ruby></p>
+                <p class="text-sm text-gray-600">souhlas, vědomí, porozumění</p>
+            </div>
+            <button class="button-vocab-toggle text-gray-600 hover:text-gray-900 
+            transform transition-transform duration-200 px-2">▼</button>
         </div>
         
-        <div id="vocab152" class="button-vocab-example hidden mt-2 p-2 rounded bg-white text-gray-700 shadow">
+        <div id="vocab149" class="button-vocab-example hidden mt-2 p-2 rounded bg-white text-gray-700 shadow">
           
             <div>
                 <div style="margin-bottom: 5px;">ご<ruby>注<rt style="visibility: hidden">ちゅう</rt></ruby><ruby>文<rt style="visibility: hidden">もん</rt></ruby><ruby>内<rt style="visibility: hidden">ない</rt></ruby><ruby>容<rt style="visibility: hidden">よう</rt></ruby>を<ruby>承<rt style="visibility: hidden">しょう</rt></ruby><ruby>知<rt style="visibility: hidden">ち</rt></ruby>しました。すぐに<ruby>準<rt style="visibility: hidden">じゅん</rt></ruby><ruby>備<rt style="visibility: hidden">び</rt></ruby>いたします。Vaši objednávku jsme obdrželi. Okamžitě začneme s její přípravou.</div>
@@ -447,21 +393,17 @@
     
     
     <div class="bg-gradient-to-r from-purple-50 to-purple-100 rounded-lg shadow p-4 flex flex-col my-2">
-        <div class="flex justify-between items-center">
-          <div>
-            <p class="text-lg text-2xl text-gray-800"><ruby>存<rt style="visibility: hidden">ぞん</rt></ruby><ruby>知<rt style="visibility: hidden">じ</rt></ruby></p>
-            <p class="text-sm text-gray-600">vědět (keigo)</p>
-          </div>
-            <!-- Arrow with onclick -->
-            <button
-            class="button-vocab-toggle text-gray-600 hover:text-gray-900 transform transition-transform duration-200 px-2"
-            onclick="toggleExample('vocab153', this)"
-              >
-                ▼
-              </button>
+        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab150', this)">
+            <div>
+                <p class="text-lg text-2xl text-gray-800 copyable relative" 
+                onclick="copyText(this)"><ruby>存<rt style="visibility: hidden">ぞん</rt></ruby><ruby>知<rt style="visibility: hidden">じ</rt></ruby></p>
+                <p class="text-sm text-gray-600">vědět (keigo)</p>
+            </div>
+            <button class="button-vocab-toggle text-gray-600 hover:text-gray-900 
+            transform transition-transform duration-200 px-2">▼</button>
         </div>
         
-        <div id="vocab153" class="button-vocab-example hidden mt-2 p-2 rounded bg-white text-gray-700 shadow">
+        <div id="vocab150" class="button-vocab-example hidden mt-2 p-2 rounded bg-white text-gray-700 shadow">
           
             <div>
                 <div style="margin-bottom: 5px;"><span lang="JA"><ruby>高<rt style="visibility: hidden">たか</rt></ruby><ruby>橋<rt style="visibility: hidden">はし</rt></ruby>さんをご<ruby>存<rt style="visibility: hidden">ぞん</rt></ruby><ruby>知<rt style="visibility: hidden">じ</rt></ruby>ですか</span></div>
@@ -473,21 +415,17 @@
     
     
     <div class="bg-gradient-to-r from-purple-50 to-purple-100 rounded-lg shadow p-4 flex flex-col my-2">
-        <div class="flex justify-between items-center">
-          <div>
-            <p class="text-lg text-2xl text-gray-800"><ruby>愛<rt style="visibility: hidden">あい</rt></ruby><ruby>知<rt style="visibility: hidden">ち</rt></ruby><ruby>県<rt style="visibility: hidden">けん</rt></ruby></p>
-            <p class="text-sm text-gray-600">prefektura Aiči</p>
-          </div>
-            <!-- Arrow with onclick -->
-            <button
-            class="button-vocab-toggle text-gray-600 hover:text-gray-900 transform transition-transform duration-200 px-2"
-            onclick="toggleExample('vocab154', this)"
-              >
-                ▼
-              </button>
+        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab151', this)">
+            <div>
+                <p class="text-lg text-2xl text-gray-800 copyable relative" 
+                onclick="copyText(this)"><ruby>愛<rt style="visibility: hidden">あい</rt></ruby><ruby>知<rt style="visibility: hidden">ち</rt></ruby><ruby>県<rt style="visibility: hidden">けん</rt></ruby></p>
+                <p class="text-sm text-gray-600">prefektura Aiči</p>
+            </div>
+            <button class="button-vocab-toggle text-gray-600 hover:text-gray-900 
+            transform transition-transform duration-200 px-2">▼</button>
         </div>
         
-        <div id="vocab154" class="button-vocab-example hidden mt-2 p-2 rounded bg-white text-gray-700 shadow">
+        <div id="vocab151" class="button-vocab-example hidden mt-2 p-2 rounded bg-white text-gray-700 shadow">
           
             <div>
                 <div style="margin-bottom: 5px;"><span lang="JA"><ruby>私<rt style="visibility: hidden">わたし</rt></ruby>の<ruby>両<rt style="visibility: hidden">りょう</rt></ruby><ruby>親<rt style="visibility: hidden">しん</rt></ruby>は<ruby>愛<rt style="visibility: hidden">あい</rt></ruby><ruby>知<rt style="visibility: hidden">ち</rt></ruby><ruby>県<rt style="visibility: hidden">けん</rt></ruby>で<ruby>生<rt style="visibility: hidden">う</rt></ruby>まれた</span></div>
@@ -499,47 +437,17 @@
     
     
     <div class="bg-gradient-to-r from-purple-50 to-purple-100 rounded-lg shadow p-4 flex flex-col my-2">
-        <div class="flex justify-between items-center">
-          <div>
-            <p class="text-lg text-2xl text-gray-800"><ruby>承<rt style="visibility: hidden">しょう</rt></ruby><ruby>知<rt style="visibility: hidden">ち</rt></ruby></p>
-            <p class="text-sm text-gray-600">vědomí, konsent, souhlas</p>
-          </div>
-            <!-- Arrow with onclick -->
-            <button
-            class="button-vocab-toggle text-gray-600 hover:text-gray-900 transform transition-transform duration-200 px-2"
-            onclick="toggleExample('vocab155', this)"
-              >
-                ▼
-              </button>
-        </div>
-        
-        <div id="vocab155" class="button-vocab-example hidden mt-2 p-2 rounded bg-white text-gray-700 shadow">
-          
+        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab152', this)">
             <div>
-                <div style="margin-bottom: 5px;"><span lang="JA">はい、<ruby>承<rt style="visibility: hidden">しょう</rt></ruby><ruby>知<rt style="visibility: hidden">ち</rt></ruby>しました</span></div>
-                <div style="margin-bottom: 5px; color: #666;">Ano, souhlasím. Ano, chápu.</div>
+                <p class="text-lg text-2xl text-gray-800 copyable relative" 
+                onclick="copyText(this)"><ruby>知<rt style="visibility: hidden">ち</rt></ruby><ruby>性<rt style="visibility: hidden">せい</rt></ruby></p>
+                <p class="text-sm text-gray-600">inteligence</p>
             </div>
-            
-        </div>
-    </div>
-    
-    
-    <div class="bg-gradient-to-r from-purple-50 to-purple-100 rounded-lg shadow p-4 flex flex-col my-2">
-        <div class="flex justify-between items-center">
-          <div>
-            <p class="text-lg text-2xl text-gray-800"><ruby>知<rt style="visibility: hidden">ち</rt></ruby><ruby>性<rt style="visibility: hidden">せい</rt></ruby></p>
-            <p class="text-sm text-gray-600">inteligence</p>
-          </div>
-            <!-- Arrow with onclick -->
-            <button
-            class="button-vocab-toggle text-gray-600 hover:text-gray-900 transform transition-transform duration-200 px-2"
-            onclick="toggleExample('vocab156', this)"
-              >
-                ▼
-              </button>
+            <button class="button-vocab-toggle text-gray-600 hover:text-gray-900 
+            transform transition-transform duration-200 px-2">▼</button>
         </div>
         
-        <div id="vocab156" class="button-vocab-example hidden mt-2 p-2 rounded bg-white text-gray-700 shadow">
+        <div id="vocab152" class="button-vocab-example hidden mt-2 p-2 rounded bg-white text-gray-700 shadow">
           
             <div>
                 <div style="margin-bottom: 5px;"><span lang="JA"><ruby>彼<rt style="visibility: hidden">かの</rt></ruby><ruby>女<rt style="visibility: hidden">じょ</rt></ruby>は<ruby>知<rt style="visibility: hidden">ち</rt></ruby><ruby>性<rt style="visibility: hidden">せい</rt></ruby>が<ruby>高<rt style="visibility: hidden">たか</rt></ruby>いです</span></div>
@@ -556,8 +464,27 @@
 </div>
 <br>
 <script>
-    function toggleExample(exampleId, button) {
+    function extractText(node) {
+      if (node.nodeType === Node.TEXT_NODE) {
+        return node.textContent;
+      }
+      
+      if (node.nodeType === Node.ELEMENT_NODE && node.tagName !== 'RT') {
+        return Array.from(node.childNodes).map(child => extractText(child)).join('');
+        }
+    }
+    function copyText(elem) {
+        let textToCopy = extractText(elem);
+        navigator.clipboard.writeText(textToCopy).then(() => {
+          elem.classList.add('copied');
+          setTimeout(() => {
+            elem.classList.remove('copied');
+          }, 1200);
+        })
+    }
+    function toggleExample(exampleId, self) {
         const example = document.getElementById(exampleId);
+        const button = Array.from(self.children).find(child => child.tagName === 'BUTTON');
         if (example.style.display === "none" || !example.style.display) {
             example.style.display = "block";
             button.textContent = "▲";
