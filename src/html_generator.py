@@ -105,26 +105,33 @@ def get_word_html(word, color='blue'):
     """
 
 
-def vocab_col_title(level):
-    if level > 2:
-        level = 2
-    return ["Povinná slovíčka", "Objeví se v sadě", "Rozšiřující"][level]
-
-
 def get_vocab_entries(item):
-    return ''.join([f"""
-        <div 
-          class="flex-1 gap-4"
-          style="max-width: 400px;"
-        >   
-            <span class="text-xl font-bold text-gray-800 mb-4">{vocab_col_title(level)}</span>
-            {''.join(map(
-                lambda x: get_word_html(x, color), 
-                filter(lambda y: getattr(y, handler)('tango', level), item.vocabulary()))
-            )}
-        </div>
-        """ for (level, color, handler) in [(0, 'green', 'get_equal'), (1, 'blue', 'get_equal'), (2, 'purple', 'get_below')]
-    ])
+    return f"""
+<div 
+  class="flex-1 gap-4"
+  style="max-width: 400px;"
+>   
+    <span class="text-xl font-bold text-gray-800 mb-4">Povinná slovíčka</span>
+    {''.join(map(
+        lambda x: get_word_html(x, 'green'), 
+        filter(lambda y: y.get_equal('tango', 0), item.vocabulary()))
+    )}
+</div>    
+<div 
+  class="flex-1 gap-4"
+  style="max-width: 400px;"
+>   
+    <span class="text-xl font-bold text-gray-800 mb-4">Budou v sadě / Rozšiřující</span>
+    {''.join(map(
+        lambda x: get_word_html(x, 'blue'), 
+        filter(lambda y: y.get_equal('tango', 1), item.vocabulary()))
+    )}
+    {''.join(map(
+        lambda x: get_word_html(x, 'purple'), 
+        filter(lambda y: y.get_below('tango', 2), item.vocabulary()))
+    )}
+</div>  
+"""
 
 
 def get_notes(item):

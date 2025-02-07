@@ -97,7 +97,7 @@ def read_kanji_csv(key, data):
             f"<div>{onyomi + kunyomi}</div>"
             f"<div style=\"font-size: 26pt;\">{item['imi']}</div>{extra}",
 
-            item["guid"], name
+            item["guid"], name, "kanji", 0
         ])
 
         # Translation to kanji card
@@ -107,7 +107,7 @@ def read_kanji_csv(key, data):
             f"<div>{onyomi + kunyomi}</div>"
             f"<div style=\"font-size: 30pt;\">{item['kanji']}</div>{extra}",
 
-            item["guid"], name
+            item["guid"], name, "kanji", 0
         ])
 
         for vocab_item in item.vocabulary():
@@ -134,7 +134,13 @@ def read_kanji_csv(key, data):
             if usage_lines:
                 usage_lines = f"<div class=\"o\">{usage_lines}</div>"
 
-            word = f"<div style=\"font-size: 28pt;\">{generate_furigana(vocab_item['tango'])}</div>"
+            # We also record vocab labels (tango:now  tango:deck  tango:other)
+            # meaning the word is suitable to learn now, will appear later in the same deck with different kanji,
+            # or will appear in the future
+            vocab_def = vocab_item.get('tango')
+            vocab_significance = vocab_def.significance
+
+            word = f"<div style=\"font-size: 28pt;\">{generate_furigana(str(vocab_def))}</div>"
 
             props_html = parse_item_props_html(vocab_item)
 
@@ -145,7 +151,7 @@ def read_kanji_csv(key, data):
                 f"<div class=\"rlbl\">{props_html}</div>"
                 f"<div style=\"font-size: 26pt;\">{vocab_item['imi']}</div>{usage_lines}",
 
-                vocab_item["guid"], name
+                vocab_item["guid"], name, "tango",  vocab_significance
             ])
 
             # Translation to word card
@@ -154,7 +160,7 @@ def read_kanji_csv(key, data):
 
                 f"<div class=\"rlbl\">{props_html}</div>{word}{usage_lines}",
 
-                vocab_item["guid"], name
+                vocab_item["guid"], name, "tango", vocab_significance
             ])
 
     # consume leftowers
@@ -195,12 +201,27 @@ def create_anki_deck(key, reader, filename):
 
         question_html = row[0]
         answer_html = row[1]
+        card_type = row[4]
+        significance = row[5]
+
+        tags = []
+        if card_type == "kanji":
+            tags.append("KanTanJi_Kanji")
+        else:
+            tags.append("KanTanJi_Tango")
+            if significance == 0:
+                tags.append("KanTanJi_Learn_Now")
+            elif significance == 1:
+                tags.append("KanTanJi_Learn_Deck")
+            else:
+                tags.append("KanTanJi_Learn_Future")
 
         # Create a note (card) with front and back content using the built-in model
         note = genanki.Note(
             model=kantanji_model,
             fields=[question_html, answer_html],
-            guid=row[2]
+            guid=row[2],
+            tags=tags
         )
 
         # Add the note to the deck

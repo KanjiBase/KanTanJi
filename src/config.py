@@ -1,5 +1,5 @@
 # import random
 # VERSION = str(random.randint(0, 99999))
 
-VERSION = "0.0.4"
+VERSION = "0.0.5"
 OVERRIDE_VOCAB_SIGNIFICANCE = True
