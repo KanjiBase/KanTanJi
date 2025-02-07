@@ -8,6 +8,24 @@
 <meta charset="UTF-8">
 <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 <style>
+.copyable::after {
+    content: 'Copied!';
+    position: absolute;
+    top: -25px;
+    right: -50px;
+    background-color: #d9f9e6;
+    color: #363636;
+    font-size: 12px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+.copyable.copied::after {
+  opacity: 1;
+  visibility: visible;
+}
 @media screen and (min-width: 1450px) {
   .note-container {
     min-width: 575px;
@@ -86,15 +104,15 @@
         <div class="grid grid-cols-2 gap-4">
             <div>
                 <p class="text-sm text-gray-500">Onyomi</p>
-                <p class="text-lg font-semibold text-gray-800">-</p>
+                <p class="text-lg font-semibold text-gray-800">チュウ</p>
             </div>
             <div>
                 <p class="text-sm text-gray-500">Význam</p>
-                <p class="text-lg font-semibold text-gray-800">None</p>
+                <p class="text-lg font-semibold text-gray-800">střed; uvnitř</p>
             </div>
             <div>
                 <p class="text-sm text-gray-500">Kunyomi</p>
-                <p class="text-lg font-semibold text-gray-800">-</p>
+                <p class="text-lg font-semibold text-gray-800">なか</p>
             </div>
             
         </div>
@@ -107,14 +125,15 @@
         
         <div 
           class="flex-1 gap-4"
-          style="min-width: 350px; max-width: 500px;"
+          style="max-width: 400px;"
         >   
             <span class="text-xl font-bold text-gray-800 mb-4">Povinná slovíčka</span>
             
     <div class="bg-gradient-to-r from-green-50 to-green-100 rounded-lg shadow p-4 flex flex-col my-2">
         <div class="flex justify-between items-center">
           <div>
-            <p class="text-lg text-2xl text-gray-800"><ruby>中<rt style="visibility: hidden">なか</rt></ruby></p>
+            <p class="text-lg text-2xl text-gray-800 copyable cursor-pointer relative" 
+            onclick="copyText(this)"><ruby>中<rt style="visibility: hidden">なか</rt></ruby></p>
             <p class="text-sm text-gray-600">uvnitř</p>
           </div>
         </div>
@@ -125,7 +144,7 @@
         
         <div 
           class="flex-1 gap-4"
-          style="min-width: 350px; max-width: 500px;"
+          style="max-width: 400px;"
         >   
             <span class="text-xl font-bold text-gray-800 mb-4">Objeví se v sadě</span>
             
@@ -133,14 +152,15 @@
         
         <div 
           class="flex-1 gap-4"
-          style="min-width: 350px; max-width: 500px;"
+          style="max-width: 400px;"
         >   
             <span class="text-xl font-bold text-gray-800 mb-4">Rozšiřující</span>
             
     <div class="bg-gradient-to-r from-purple-50 to-purple-100 rounded-lg shadow p-4 flex flex-col my-2">
         <div class="flex justify-between items-center">
           <div>
-            <p class="text-lg text-2xl text-gray-800"><ruby>田<rt style="visibility: hidden">た</rt></ruby><ruby>中<rt style="visibility: hidden">なか</rt></ruby></p>
+            <p class="text-lg text-2xl text-gray-800 copyable cursor-pointer relative" 
+            onclick="copyText(this)"><ruby>田<rt style="visibility: hidden">た</rt></ruby><ruby>中<rt style="visibility: hidden">なか</rt></ruby></p>
             <p class="text-sm text-gray-600">Tanaka (běžné jap. příjmení)</p>
           </div>
         </div>
@@ -150,7 +170,8 @@
     <div class="bg-gradient-to-r from-purple-50 to-purple-100 rounded-lg shadow p-4 flex flex-col my-2">
         <div class="flex justify-between items-center">
           <div>
-            <p class="text-lg text-2xl text-gray-800"><ruby>中<rt style="visibility: hidden">ちゅう</rt></ruby><ruby>国<rt style="visibility: hidden">ごく</rt></ruby></p>
+            <p class="text-lg text-2xl text-gray-800 copyable cursor-pointer relative" 
+            onclick="copyText(this)"><ruby>中<rt style="visibility: hidden">ちゅう</rt></ruby><ruby>国<rt style="visibility: hidden">ごく</rt></ruby></p>
             <p class="text-sm text-gray-600">Čína</p>
           </div>
         </div>
@@ -160,7 +181,8 @@
     <div class="bg-gradient-to-r from-purple-50 to-purple-100 rounded-lg shadow p-4 flex flex-col my-2">
         <div class="flex justify-between items-center">
           <div>
-            <p class="text-lg text-2xl text-gray-800"><ruby>中<rt style="visibility: hidden">ちゅう</rt></ruby><ruby>学<rt style="visibility: hidden">がっ</rt></ruby><ruby>校<rt style="visibility: hidden">こう</rt></ruby></p>
+            <p class="text-lg text-2xl text-gray-800 copyable cursor-pointer relative" 
+            onclick="copyText(this)"><ruby>中<rt style="visibility: hidden">ちゅう</rt></ruby><ruby>学<rt style="visibility: hidden">がっ</rt></ruby><ruby>校<rt style="visibility: hidden">こう</rt></ruby></p>
             <p class="text-sm text-gray-600">škola pro 7.-9. ročník studia (v zásadě druhý stupeň zákl. školy)</p>
           </div>
         </div>
@@ -170,7 +192,8 @@
     <div class="bg-gradient-to-r from-purple-50 to-purple-100 rounded-lg shadow p-4 flex flex-col my-2">
         <div class="flex justify-between items-center">
           <div>
-            <p class="text-lg text-2xl text-gray-800"><ruby>一<rt style="visibility: hidden">いち</rt></ruby><ruby>日<rt style="visibility: hidden">にち</rt></ruby><ruby>中<rt style="visibility: hidden">じゅう</rt></ruby></p>
+            <p class="text-lg text-2xl text-gray-800 copyable cursor-pointer relative" 
+            onclick="copyText(this)"><ruby>一<rt style="visibility: hidden">いち</rt></ruby><ruby>日<rt style="visibility: hidden">にち</rt></ruby><ruby>中<rt style="visibility: hidden">じゅう</rt></ruby></p>
             <p class="text-sm text-gray-600">celý den ( ! nepravidelnost)</p>
           </div>
         </div>
@@ -180,7 +203,8 @@
     <div class="bg-gradient-to-r from-purple-50 to-purple-100 rounded-lg shadow p-4 flex flex-col my-2">
         <div class="flex justify-between items-center">
           <div>
-            <p class="text-lg text-2xl text-gray-800"><ruby>中<rt style="visibility: hidden">ちゅう</rt></ruby><ruby>年<rt style="visibility: hidden">ねん</rt></ruby></p>
+            <p class="text-lg text-2xl text-gray-800 copyable cursor-pointer relative" 
+            onclick="copyText(this)"><ruby>中<rt style="visibility: hidden">ちゅう</rt></ruby><ruby>年<rt style="visibility: hidden">ねん</rt></ruby></p>
             <p class="text-sm text-gray-600">střední věk</p>
           </div>
         </div>
@@ -194,8 +218,27 @@
 </div>
 <br>
 <script>
-    function toggleExample(exampleId, button) {
+    function extractText(node) {
+      if (node.nodeType === Node.TEXT_NODE) {
+        return node.textContent;
+      }
+      
+      if (node.nodeType === Node.ELEMENT_NODE && node.tagName !== 'RT') {
+        return Array.from(node.childNodes).map(child => extractText(child)).join('');
+        }
+    }
+    function copyText(elem) {
+        let textToCopy = extractText(elem);
+        navigator.clipboard.writeText(textToCopy).then(() => {
+          elem.classList.add('copied');
+          setTimeout(() => {
+            elem.classList.remove('copied');
+          }, 1200);
+        })
+    }
+    function toggleExample(exampleId, self) {
         const example = document.getElementById(exampleId);
+        const button = Array.from(self.children).find(child => child.tagName === 'BUTTON');
         if (example.style.display === "none" || !example.style.display) {
             example.style.display = "block";
             button.textContent = "▲";
