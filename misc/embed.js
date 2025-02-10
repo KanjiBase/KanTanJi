@@ -57,13 +57,14 @@ if (currentScript.dataset.reinsert !== "false") {
         // Re-attach existing elements to the nested container
         const otherNodesContainer = document.createElement("div");
         otherNodesContainer.classList.add("bonus-materials");
-        otherNodesContainer.innerHTML = '<h3 class="bonus-title"> </h3>';
+        otherNodesContainer.innerHTML = '<h3 class="bonus-title">'
+            + (currentScript.dataset.reinsertTitle || 'Bonusové materiály') + '</h3>';
         const otherNodesContent = document.createElement("div");
         otherNodesContent.classList.add("bonus-content");
         const children = Array.from(parent.children);
         children.forEach(child => {
             // Avoid re-attaching scripts
-            if (child.tagName !== "SCRIPT") {
+            if (child.tagName !== "SCRIPT" || child.tagName !== "IFRAME") {
                 otherNodesContent.appendChild(child);
             }
         });
