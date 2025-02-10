@@ -160,6 +160,12 @@ PDF Soubory obsahují seznam znaků kanji a přidružených slovíček.
 
  - <a href="static/2/4/Písmo IV - Týden 3.pdf">Sada Písmo IV - Týden 3</a>
 
+ - <a href="static/2/5/Písmo IV - Týden 4.pdf">Sada Písmo IV - Týden 4</a>
+
+ - <a href="static/2/6/Písmo IV - Týden 5.pdf">Sada Písmo IV - Týden 5</a>
+
+ - <a href="static/2/7/Písmo IV - Týden 6.pdf">Sada Písmo IV - Týden 6</a>
+
 
 ### ANKI Balíčky
 Balíčky lze importovat opakovaně do ANKI aplikace. Balíčky se řadí do kolekce 'KanTanJi' 
@@ -193,6 +199,12 @@ a nakonec také v možnostech vyberte **pozastavit (suspend)**.
  - <a href="static/2/3/Písmo_IV_-_Týden_2.apkg">Balíček Písmo_IV_-_Týden_2</a>
 
  - <a href="static/2/4/Písmo_IV_-_Týden_3.apkg">Balíček Písmo_IV_-_Týden_3</a>
+
+ - <a href="static/2/5/Písmo_IV_-_Týden_4.apkg">Balíček Písmo_IV_-_Týden_4</a>
+
+ - <a href="static/2/6/Písmo_IV_-_Týden_5.apkg">Balíček Písmo_IV_-_Týden_5</a>
+
+ - <a href="static/2/7/Písmo_IV_-_Týden_6.apkg">Balíček Písmo_IV_-_Týden_6</a>
 
 
 ### HTML
@@ -336,4 +348,142 @@ HTML Stránky slouží pro vložení interaktivních informací o Kanji do exter
   - <a href="static/2/4/単.html">Kanji 単</a>
 
   - <a href="static/2/4/細.html">Kanji 細</a>
+</details>
+
+<details>
+  <summary>
+  Sada 5
+  </summary>
+            
+  - <a href="static/2/5/完.html">Kanji 完</a>
+
+  - <a href="static/2/5/費.html">Kanji 費</a>
+
+  - <a href="static/2/5/向.html">Kanji 向</a>
+
+  - <a href="static/2/5/成.html">Kanji 成</a>
+
+  - <a href="static/2/5/橋.html">Kanji 橋</a>
+
+  - <a href="static/2/5/空.html">Kanji 空</a>
+
+  - <a href="static/2/5/両.html">Kanji 両</a>
+
+  - <a href="static/2/5/建.html">Kanji 建</a>
+
+  - <a href="static/2/5/置.html">Kanji 置</a>
+
+  - <a href="static/2/5/設.html">Kanji 設</a>
+
+  - <a href="static/2/5/港.html">Kanji 港</a>
+
+  - <a href="static/2/5/飛.html">Kanji 飛</a>
+
+  - <a href="static/2/5/階.html">Kanji 階</a>
+
+  - <a href="static/2/5/風.html">Kanji 風</a>
+
+  - <a href="static/2/5/位.html">Kanji 位</a>
+
+  - <a href="static/2/5/横.html">Kanji 横</a>
+
+  - <a href="static/2/5/野.html">Kanji 野</a>
+
+  - <a href="static/2/5/平.html">Kanji 平</a>
+
+  - <a href="static/2/5/放.html">Kanji 放</a>
+
+  - <a href="static/2/5/原.html">Kanji 原</a>
+</details>
+
+<details>
+  <summary>
+  Sada 6
+  </summary>
+            
+  - <a href="static/2/6/必.html">Kanji 必</a>
+
+  - <a href="static/2/6/得.html">Kanji 得</a>
+
+  - <a href="static/2/6/顔.html">Kanji 顔</a>
+
+  - <a href="static/2/6/配.html">Kanji 配</a>
+
+  - <a href="static/2/6/訪.html">Kanji 訪</a>
+
+  - <a href="static/2/6/失.html">Kanji 失</a>
+
+  - <a href="static/2/6/卒.html">Kanji 卒</a>
+
+  - <a href="static/2/6/退.html">Kanji 退</a>
+
+  - <a href="static/2/6/老.html">Kanji 老</a>
+
+  - <a href="static/2/6/論.html">Kanji 論</a>
+
+  - <a href="static/2/6/実.html">Kanji 実</a>
+
+  - <a href="static/2/6/族.html">Kanji 族</a>
+
+  - <a href="static/2/6/術.html">Kanji 術</a>
+
+  - <a href="static/2/6/類.html">Kanji 類</a>
+
+  - <a href="static/2/6/要.html">Kanji 要</a>
+
+  - <a href="static/2/6/調.html">Kanji 調</a>
+
+  - <a href="static/2/6/民.html">Kanji 民</a>
+
+  - <a href="static/2/6/礼.html">Kanji 礼</a>
+
+  - <a href="static/2/6/効.html">Kanji 効</a>
+
+  - <a href="static/2/6/歯.html">Kanji 歯</a>
+</details>
+
+<details>
+  <summary>
+  Sada 7
+  </summary>
+            
+  - <a href="static/2/7/賛.html">Kanji 賛</a>
+
+  - <a href="static/2/7/進.html">Kanji 進</a>
+
+  - <a href="static/2/7/増.html">Kanji 増</a>
+
+  - <a href="static/2/7/直.html">Kanji 直</a>
+
+  - <a href="static/2/7/対.html">Kanji 対</a>
+
+  - <a href="static/2/7/較.html">Kanji 較</a>
+
+  - <a href="static/2/7/共.html">Kanji 共</a>
+
+  - <a href="static/2/7/表.html">Kanji 表</a>
+
+  - <a href="static/2/7/比.html">Kanji 比</a>
+
+  - <a href="static/2/7/移.html">Kanji 移</a>
+
+  - <a href="static/2/7/変.html">Kanji 変</a>
+
+  - <a href="static/2/7/続.html">Kanji 続</a>
+
+  - <a href="static/2/7/以.html">Kanji 以</a>
+
+  - <a href="static/2/7/反.html">Kanji 反</a>
+
+  - <a href="static/2/7/減.html">Kanji 減</a>
+
+  - <a href="static/2/7/過.html">Kanji 過</a>
+
+  - <a href="static/2/7/加.html">Kanji 加</a>
+
+  - <a href="static/2/7/現.html">Kanji 現</a>
+
+  - <a href="static/2/7/美.html">Kanji 美</a>
+
+  - <a href="static/2/7/初.html">Kanji 初</a>
 </details>

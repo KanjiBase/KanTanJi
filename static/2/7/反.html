@@ -1,0 +1,427 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>反</title>
+    
+<meta charset="UTF-8">
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+<style>
+.copyable::after {
+    content: 'Copied!';
+    position: absolute;
+    top: -25px;
+    right: -50px;
+    background-color: #d9f9e6;
+    color: #363636;
+    font-size: 12px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+.copyable.copied::after {
+  opacity: 1;
+  visibility: visible;
+}
+@media screen and (min-width: 1450px) {
+  .note-container {
+    min-width: 575px;
+  }
+}
+@media screen and (max-width: 1450px) {
+  .note-container {
+    min-width: 95%;
+  }
+} 
+</style> 
+            
+</head>
+<body>
+
+<div class="min-h-screen space-y-10">
+<div class="p-4 bg-gradient-to-r from-gray-50 to-gray-100 rounded-lg shadow mb-4">
+  <div class="flex justify-between items-center flex-row-reverse flex-wrap">
+    <!-- Label and Checkbox -->
+    <div id="controls" style="display: none">
+      <label for="showFurigana" class="flex items-center gap-2">
+        <input 
+          type="checkbox" 
+          id="showFurigana" 
+          class="w-5 h-5 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
+          onchange="toggleShowFurigana(this.checked)"
+        >
+        <span class="text-gray-700 font-medium">Ukazovat furiganu</span>
+      </label>
+      <label for="showSentences" class="flex items-center gap-2">
+        <input 
+          type="checkbox" 
+          id="showSentences" 
+          class="w-5 h-5 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
+          onchange="showSentences(this.checked)"
+        >
+        <span class="text-gray-700 font-medium">Vždy ukazovat věty</span>
+      </label>
+      <label for="showVocabProperties" class="flex items-center gap-2">
+        <input 
+          type="checkbox" 
+          id="showVocabProperties" 
+          class="w-5 h-5 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
+          onchange="showVocabProperties(this.checked)"
+        >
+        <span class="text-gray-700 font-medium">Ukazovat vlastnosti slovíček</span>
+      </label>
+    </div>
+  </div>
+</div>
+<!-- Kanji Info Section -->
+<div class="bg-white shadow-lg rounded-lg overflow-hidden md:flex relative">
+    <!-- Hide/Show Button -->
+    <button
+      id="toggleControls"
+      onclick="toggleControls(document.getElementById('controls').style.display !== 'none')"
+      class="my-3 mx-2 px-4 py-3 right-0 absolute bg-indigo-600 text-white rounded-lg shadow hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+    >
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-gear-fill" viewBox="0 0 16 16">
+            <path d="M9.405 1.05c-.413-1.4-2.397-1.4-2.81 0l-.1.34a1.464 1.464 0 0 1-2.105.872l-.31-.17c-1.283-.698-2.686.705-1.987 1.987l.169.311c.446.82.023 1.841-.872 2.105l-.34.1c-1.4.413-1.4 2.397 0 2.81l.34.1a1.464 1.464 0 0 1 .872 2.105l-.17.31c-.698 1.283.705 2.686 1.987 1.987l.311-.169a1.464 1.464 0 0 1 2.105.872l.1.34c.413 1.4 2.397 1.4 2.81 0l.1-.34a1.464 1.464 0 0 1 2.105-.872l.31.17c1.283.698 2.686-.705 1.987-1.987l-.169-.311a1.464 1.464 0 0 1 .872-2.105l.34-.1c1.4-.413 1.4-2.397 0-2.81l-.34-.1a1.464 1.464 0 0 1-.872-2.105l.17-.31c.698-1.283-.705-2.686-1.987-1.987l-.311.169a1.464 1.464 0 0 1-2.105-.872zM8 10.93a2.929 2.929 0 1 1 0-5.86 2.929 2.929 0 0 1 0 5.858z"/>
+        </svg>
+    </button>
+
+    <!-- Stroke Order Image -->
+    <div class="bg-gradient-to-br from-indigo-100 to-purple-100 p-6 flex items-center justify-center">
+        <img
+        src="https://raw.githubusercontent.com/KanjiBase/kanji.gif/refs/heads/master/kanji/gif/150x150/反.gif"
+        alt="Kanji Stroke Order"
+        class="w-44 h-44 rounded-lg border border-gray-200 shadow"
+        />
+    </div>
+    
+    <!-- Kanji Details -->
+    <div class="p-6 flex-1 space-y-4">
+        <h2 class="text-2xl font-bold text-gray-700">反</h2>
+        <div class="grid grid-cols-2 gap-4">
+            <div>
+                <p class="text-sm text-gray-500">Onyomi</p>
+                <p class="text-lg font-semibold text-gray-800">ハン, タン</p>
+            </div>
+            <div>
+                <p class="text-sm text-gray-500">Význam</p>
+                <p class="text-lg font-semibold text-gray-800">anti-</p>
+            </div>
+            <div>
+                <p class="text-sm text-gray-500">Kunyomi</p>
+                <p class="text-lg font-semibold text-gray-800">そ.る, そ.らす</p>
+            </div>
+            
+        <div>
+            <p class="text-sm text-gray-500">Radikál</p>
+            <p class="text-lg font-semibold text-gray-800">
+        <span>⼜ &emsp; znovu, pravá ruka, malá vidlice </span>
+            </p>
+        </div>
+        
+        </div>
+    </div>
+</div>
+
+<!-- Vocabulary Section -->
+<div>
+    <div class="flex flex-col lg:flex-row gap-6 flex-wrap">
+        
+<div 
+  class="flex-1 gap-4"
+  style="max-width: 400px;"
+>   
+    <span class="text-xl font-bold text-gray-800 mb-4">Povinná slovíčka</span>
+    
+    
+    <div class="bg-gradient-to-r from-green-50 to-green-100 rounded-lg shadow p-4 flex flex-col my-2">
+        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab929', this)">
+            <div>
+                <p class="text-lg text-2xl text-gray-800 copyable relative" 
+                onclick="copyText(this)"><ruby>反<rt style="visibility: hidden">はん</rt></ruby>する</p>
+                <p class="text-sm text-gray-600">odporovat, být v rozporu s</p>
+            </div>
+            <button class="button-vocab-toggle text-gray-600 hover:text-gray-900 
+            transform transition-transform duration-200 px-2">▼</button>
+        </div>
+        
+        <div id="vocab929" class="button-vocab-example hidden mt-2 p-2 rounded bg-white text-gray-700 shadow">
+          
+            <div>
+                <div style="margin-bottom: 5px;"><span lang="JA"><ruby>彼<rt style="visibility: hidden">かれ</rt></ruby>の<ruby>行<rt style="visibility: hidden">こう</rt></ruby><ruby>動<rt style="visibility: hidden">どう</rt></ruby>は、<ruby>会<rt style="visibility: hidden">かい</rt></ruby><ruby>社<rt style="visibility: hidden">しゃ</rt></ruby>のルールに<ruby>反<rt style="visibility: hidden">はん</rt></ruby>している</span></div>
+                <div style="margin-bottom: 5px; color: #666;">Jeho jednání odporuje firemním pravidlům.</div>
+            </div>
+            
+        </div>
+    </div>
+    
+    
+    <div class="bg-gradient-to-r from-green-50 to-green-100 rounded-lg shadow p-4 flex flex-col my-2">
+        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab930', this)">
+            <div>
+                <p class="text-lg text-2xl text-gray-800 copyable relative" 
+                onclick="copyText(this)"><ruby>違<rt style="visibility: hidden">い</rt></ruby><ruby>反<rt style="visibility: hidden">はん</rt></ruby></p>
+                <p class="text-sm text-gray-600">porušení (pravidel), přestupek</p>
+            </div>
+            <button class="button-vocab-toggle text-gray-600 hover:text-gray-900 
+            transform transition-transform duration-200 px-2">▼</button>
+        </div>
+        
+        <div id="vocab930" class="button-vocab-example hidden mt-2 p-2 rounded bg-white text-gray-700 shadow">
+          
+            <div>
+                <div style="margin-bottom: 5px;"><span lang="JA"><ruby>彼<rt style="visibility: hidden">かれ</rt></ruby>は<ruby>交<rt style="visibility: hidden">こう</rt></ruby><ruby>通<rt style="visibility: hidden">つう</rt></ruby>ルールを<ruby>違<rt style="visibility: hidden">い</rt></ruby><ruby>反<rt style="visibility: hidden">はん</rt></ruby>して、<ruby>警<rt style="visibility: hidden">けい</rt></ruby><ruby>察<rt style="visibility: hidden">さつ</rt></ruby>に<ruby>捕<rt style="visibility: hidden">つか</rt></ruby>まった</span></div>
+                <div style="margin-bottom: 5px; color: #666;">Porušil dopravní předpisy a byl chycen policií.</div>
+            </div>
+            
+        </div>
+    </div>
+    
+    
+    <div class="bg-gradient-to-r from-green-50 to-green-100 rounded-lg shadow p-4 flex flex-col my-2">
+        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab931', this)">
+            <div>
+                <p class="text-lg text-2xl text-gray-800 copyable relative" 
+                onclick="copyText(this)"><ruby>反<rt style="visibility: hidden">はん</rt></ruby><ruby>映<rt style="visibility: hidden">えい</rt></ruby></p>
+                <p class="text-sm text-gray-600">odrazit se (ve výsledku)</p>
+            </div>
+            <button class="button-vocab-toggle text-gray-600 hover:text-gray-900 
+            transform transition-transform duration-200 px-2">▼</button>
+        </div>
+        
+        <div id="vocab931" class="button-vocab-example hidden mt-2 p-2 rounded bg-white text-gray-700 shadow">
+          
+            <div>
+                <div style="margin-bottom: 5px;"><span lang="JA"><ruby>花<rt style="visibility: hidden">はな</rt></ruby><ruby>火<rt style="visibility: hidden">び</rt></ruby>は<ruby>川<rt style="visibility: hidden">かわ</rt></ruby><ruby>面<rt style="visibility: hidden">も</rt></ruby>に<ruby>反<rt style="visibility: hidden">はん</rt></ruby><ruby>映<rt style="visibility: hidden">えい</rt></ruby>していた</span></div>
+                <div style="margin-bottom: 5px; color: #666;">Ohňostroj se odrážel na hladině řeky.</div>
+            </div>
+            
+        </div>
+    </div>
+    
+    
+    <div class="bg-gradient-to-r from-green-50 to-green-100 rounded-lg shadow p-4 flex flex-col my-2">
+        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab932', this)">
+            <div>
+                <p class="text-lg text-2xl text-gray-800 copyable relative" 
+                onclick="copyText(this)"><ruby>反<rt style="visibility: hidden">はん</rt></ruby>～</p>
+                <p class="text-sm text-gray-600">prefix „anti-“ (proti-)</p>
+            </div>
+            <button class="button-vocab-toggle text-gray-600 hover:text-gray-900 
+            transform transition-transform duration-200 px-2">▼</button>
+        </div>
+        
+        <div id="vocab932" class="button-vocab-example hidden mt-2 p-2 rounded bg-white text-gray-700 shadow">
+          
+            <div>
+                <div style="margin-bottom: 5px;"><span lang="JA"><ruby>反<rt style="visibility: hidden">はん</rt></ruby><ruby>戦<rt style="visibility: hidden">せん</rt></ruby><ruby>運<rt style="visibility: hidden">うん</rt></ruby><ruby>動<rt style="visibility: hidden">どう</rt></ruby>のデモには、<ruby>多<rt style="visibility: hidden">おお</rt></ruby>くの<ruby>市<rt style="visibility: hidden">し</rt></ruby><ruby>民<rt style="visibility: hidden">みん</rt></ruby>が<ruby>集<rt style="visibility: hidden">あつ</rt></ruby>まります</span></div>
+                <div style="margin-bottom: 5px; color: #666;">Na protiválečné demonstrace přichází mnoho občanů.</div>
+            </div>
+            
+        </div>
+    </div>
+    
+</div>    
+<div 
+  class="flex-1 gap-4"
+  style="max-width: 400px;"
+>   
+    <span class="text-xl font-bold text-gray-800 mb-4">Budou v sadě / Rozšiřující</span>
+    
+    
+    <div class="bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg shadow p-4 flex flex-col my-2">
+        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab933', this)">
+            <div>
+                <p class="text-lg text-2xl text-gray-800 copyable relative" 
+                onclick="copyText(this)"><ruby>正<rt style="visibility: hidden">せい</rt></ruby><ruby>反<rt style="visibility: hidden">はん</rt></ruby><ruby>対<rt style="visibility: hidden">たい</rt></ruby></p>
+                <p class="text-sm text-gray-600">zcela odlišný</p>
+            </div>
+            <button class="button-vocab-toggle text-gray-600 hover:text-gray-900 
+            transform transition-transform duration-200 px-2">▼</button>
+        </div>
+        
+        <div id="vocab933" class="button-vocab-example hidden mt-2 p-2 rounded bg-white text-gray-700 shadow">
+          
+            <div>
+                <div style="margin-bottom: 5px;"><span lang="JA">あの<ruby>二<rt style="visibility: hidden">ふた</rt></ruby><ruby>人<rt style="visibility: hidden">り</rt></ruby>は<ruby>性<rt style="visibility: hidden">せい</rt></ruby><ruby>格<rt style="visibility: hidden">かく</rt></ruby>が<ruby>正<rt style="visibility: hidden">せい</rt></ruby><ruby>反<rt style="visibility: hidden">はん</rt></ruby><ruby>対<rt style="visibility: hidden">たい</rt></ruby>で、いつも<ruby>対<rt style="visibility: hidden">たい</rt></ruby><ruby>立<rt style="visibility: hidden">りつ</rt></ruby>している</span></div>
+                <div style="margin-bottom: 5px; color: #666;">Ti dva jsou naprosté protiklady a neustále se střetávají.</div>
+            </div>
+            
+        </div>
+    </div>
+    
+    
+    
+    <div class="bg-gradient-to-r from-purple-50 to-purple-100 rounded-lg shadow p-4 flex flex-col my-2">
+        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab934', this)">
+            <div>
+                <p class="text-lg text-2xl text-gray-800 copyable relative" 
+                onclick="copyText(this)"><ruby>反<rt style="visibility: hidden">はん</rt></ruby><ruby>省<rt style="visibility: hidden">せい</rt></ruby></p>
+                <p class="text-sm text-gray-600">sebereflexe, přehodnocení</p>
+            </div>
+            <button class="button-vocab-toggle text-gray-600 hover:text-gray-900 
+            transform transition-transform duration-200 px-2">▼</button>
+        </div>
+        
+        <div id="vocab934" class="button-vocab-example hidden mt-2 p-2 rounded bg-white text-gray-700 shadow">
+          
+            <div>
+                <div style="margin-bottom: 5px;"><span lang="JA"><ruby>反<rt style="visibility: hidden">はん</rt></ruby><ruby>省<rt style="visibility: hidden">せい</rt></ruby>することは、<ruby>成<rt style="visibility: hidden">せい</rt></ruby><ruby>長<rt style="visibility: hidden">ちょう</rt></ruby>のためにとても<ruby>重<rt style="visibility: hidden">じゅう</rt></ruby><ruby>要<rt style="visibility: hidden">よう</rt></ruby>です</span></div>
+                <div style="margin-bottom: 5px; color: #666;">Sebereflexe je pro růst velmi důležitá.</div>
+            </div>
+            
+        </div>
+    </div>
+    
+    
+    <div class="bg-gradient-to-r from-purple-50 to-purple-100 rounded-lg shadow p-4 flex flex-col my-2">
+        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab935', this)">
+            <div>
+                <p class="text-lg text-2xl text-gray-800 copyable relative" 
+                onclick="copyText(this)"><ruby>反<rt style="visibility: hidden">はん</rt></ruby><ruby>応<rt style="visibility: hidden">のう</rt></ruby></p>
+                <p class="text-sm text-gray-600"> reakce</p>
+            </div>
+            <button class="button-vocab-toggle text-gray-600 hover:text-gray-900 
+            transform transition-transform duration-200 px-2">▼</button>
+        </div>
+        
+        <div id="vocab935" class="button-vocab-example hidden mt-2 p-2 rounded bg-white text-gray-700 shadow">
+          
+            <div>
+                <div style="margin-bottom: 5px;"><span lang="JA"><ruby>薬<rt style="visibility: hidden">くすり</rt></ruby>を<ruby>飲<rt style="visibility: hidden">の</rt></ruby>んだ<ruby>後<rt style="visibility: hidden">あと</rt></ruby>、<ruby>体<rt style="visibility: hidden">からだ</rt></ruby>に<ruby>何<rt style="visibility: hidden">なに</rt></ruby>か<ruby>反<rt style="visibility: hidden">はん</rt></ruby><ruby>応<rt style="visibility: hidden">のう</rt></ruby>があった<ruby>場<rt style="visibility: hidden">ば</rt></ruby><ruby>合<rt style="visibility: hidden">あい</rt></ruby>は、すぐに<ruby>医<rt style="visibility: hidden">い</rt></ruby><ruby>者<rt style="visibility: hidden">しゃ</rt></ruby>に<ruby>連<rt style="visibility: hidden">れん</rt></ruby><ruby>絡<rt style="visibility: hidden">らく</rt></ruby>してください</span></div>
+                <div style="margin-bottom: 5px; color: #666;">Pokud po užití léku zaznamenáte reakci, okamžitě kontaktujte lékaře.</div>
+            </div>
+            
+        </div>
+    </div>
+    
+    
+    <div class="bg-gradient-to-r from-purple-50 to-purple-100 rounded-lg shadow p-4 flex flex-col my-2">
+        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab936', this)">
+            <div>
+                <p class="text-lg text-2xl text-gray-800 copyable relative" 
+                onclick="copyText(this)"><ruby>反<rt style="visibility: hidden">はん</rt></ruby><ruby>響<rt style="visibility: hidden">きょう</rt></ruby></p>
+                <p class="text-sm text-gray-600">ozvěna, rezonance</p>
+            </div>
+            <button class="button-vocab-toggle text-gray-600 hover:text-gray-900 
+            transform transition-transform duration-200 px-2">▼</button>
+        </div>
+        
+        <div id="vocab936" class="button-vocab-example hidden mt-2 p-2 rounded bg-white text-gray-700 shadow">
+          
+            <div>
+                <div style="margin-bottom: 5px;"><span lang="JA">この<ruby>部<rt style="visibility: hidden">へ</rt></ruby><ruby>屋<rt style="visibility: hidden">や</rt></ruby>では、<ruby>話<rt style="visibility: hidden">はな</rt></ruby>し<ruby>声<rt style="visibility: hidden">ごえ</rt></ruby>が<ruby>壁<rt style="visibility: hidden">かべ</rt></ruby>に<ruby>反<rt style="visibility: hidden">はん</rt></ruby><ruby>響<rt style="visibility: hidden">きょう</rt></ruby>してうるさいよ</span></div>
+                <div style="margin-bottom: 5px; color: #666;">V této místnosti se hlasy odrážejí od zdí a je tu hlučno.</div>
+            </div>
+            
+        </div>
+    </div>
+    
+</div>  
+
+        <div></div>
+    </div>
+</div>
+<br>
+<script>
+    function extractText(node) {
+      if (node.nodeType === Node.TEXT_NODE) {
+        return node.textContent;
+      }
+      
+      if (node.nodeType === Node.ELEMENT_NODE && node.tagName !== 'RT') {
+        return Array.from(node.childNodes).map(child => extractText(child)).join('');
+        }
+    }
+    function copyText(elem) {
+        let textToCopy = extractText(elem);
+        navigator.clipboard.writeText(textToCopy).then(() => {
+          elem.classList.add('copied');
+          setTimeout(() => {
+            elem.classList.remove('copied');
+          }, 1200);
+        })
+    }
+    function toggleExample(exampleId, self) {
+        const example = document.getElementById(exampleId);
+        const button = Array.from(self.children).find(child => child.tagName === 'BUTTON');
+        if (example.style.display === "none" || !example.style.display) {
+            example.style.display = "block";
+            button.textContent = "▲";
+        } else {
+            example.style.display = "none";
+            button.textContent = "▼";
+        }
+    }
+    function toggleShowFurigana(value) {
+        value = rememberValue('showFurigana', value) === 'true';
+        document.querySelectorAll('ruby rt').forEach(element => {
+            element.style.visibility = value ? 'visible' : 'hidden';
+        });
+        document.getElementById("showFurigana").checked = value;
+    }
+    function toggleControls(isHidden) {
+        const controls = document.getElementById('controls');
+        isHidden = rememberValue('hideControls', isHidden) === 'true';
+    
+        if (isHidden) {
+            controls.style.display = 'none';
+        } else {
+            controls.style.display = 'block'; 
+        }
+        sendHeightToParent();
+    }
+    function showSentences(doShow) {
+        doShow = rememberValue('showSentences', doShow) === 'true';
+        document.querySelectorAll('.button-vocab-toggle').forEach(element => {
+            element.textContent = doShow ? "▲" : "▼";
+        });
+        document.querySelectorAll('.button-vocab-example').forEach(element => {
+            element.style.display = doShow ? "block" : "none";
+        });
+        document.getElementById("showSentences").checked = doShow;
+        sendHeightToParent();
+    }
+    function showVocabProperties(doShow) {
+        doShow = rememberValue('showVocabProperties', doShow) === 'true';
+        document.querySelectorAll('.vocab-properties').forEach(element => {
+            element.style.display = doShow ? "block" : "none";
+        });
+        document.getElementById("showVocabProperties").checked = doShow;
+        sendHeightToParent();
+    }
+    // Call functions to initialize state
+    toggleShowFurigana();
+    toggleControls();
+    showSentences();
+    showVocabProperties();
+    
+    // Helper functions
+    function rememberValue(key, value, defaultValue='true') {
+        if (value === undefined) {
+            return (localStorage.getItem(key) || defaultValue);
+        } 
+        value = String(value);
+        localStorage.setItem(key, value);
+        return value;
+    }
+    function sendHeightToParent() {
+      setTimeout(() => {
+          const height = document.documentElement.scrollHeight;
+          window.parent && window.parent.postMessage({ iframeHeight: height, test: "true" }, "https://elf.phil.muni.cz");
+      });
+    }
+
+    // Call the function when the iframe is loaded
+    window.addEventListener("load", sendHeightToParent);
+
+    // Call the function when the iframe content changes (optional for dynamic content)
+    window.addEventListener("resize", sendHeightToParent);
+</script>
+        
+</body>
+</html>
+    
