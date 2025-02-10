@@ -17,26 +17,7 @@ tailwindScript.onload = () => {
     },
   };
 };
-
-if (currentScript.dataset.reinsert !== "false") {
-    // Re-attach existing elements to the nested container
-    const otherNodesContainer = document.createElement("div");
-    otherNodesContainer.classList.add("bonus-materials");
-    otherNodesContainer.innerHTML = '<h3 class="bonus-title"> </h3>';
-    const otherNodesContent = document.createElement("div");
-    otherNodesContent.classList.add("bonus-content");
-    const children = Array.from(parent.children);
-    children.forEach(child => {
-        // Avoid re-attaching scripts
-        if (child.tagName !== "SCRIPT") {
-            otherNodesContent.appendChild(child);
-        }
-    });
-    otherNodesContainer.appendChild(otherNodesContent);
-    // The current parent script
-    parent.appendChild(tailwindScript);
-    parent.appendChild(otherNodesContainer);
-}
+parent.appendChild(tailwindScript);
 
 const embedCSS = document.createElement('link');
 embedCSS.rel = 'stylesheet';
@@ -69,5 +50,26 @@ window.addEventListener("message", function(event) {
         iframe.style.height = `${Number.parseInt(iframeHeight)}px`;
     }
 });
+
+if (currentScript.dataset.reinsert !== "false") {
+    window.addEventListener('load', function () {
+
+        // Re-attach existing elements to the nested container
+        const otherNodesContainer = document.createElement("div");
+        otherNodesContainer.classList.add("bonus-materials");
+        otherNodesContainer.innerHTML = '<h3 class="bonus-title"> </h3>';
+        const otherNodesContent = document.createElement("div");
+        otherNodesContent.classList.add("bonus-content");
+        const children = Array.from(parent.children);
+        children.forEach(child => {
+            // Avoid re-attaching scripts
+            if (child.tagName !== "SCRIPT") {
+                otherNodesContent.appendChild(child);
+            }
+        });
+        otherNodesContainer.appendChild(otherNodesContent);
+        parent.appendChild(otherNodesContainer);
+    });
+}
 
 
