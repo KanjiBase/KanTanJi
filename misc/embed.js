@@ -18,8 +18,24 @@ tailwindScript.onload = () => {
   };
 };
 
-// Append the script to the <head> or <body>
-parent.appendChild(tailwindScript);
+if (currentScript.dataset.reinsert !== "false") {
+    // Re-attach existing elements to the nested container
+    const otherNodesContainer = document.createElement("div");
+    otherNodesContainer.classList.add("bonus-materials");
+    otherNodesContainer.innerHTML = '<h3 class="bonus-title"> </h3>';
+    const otherNodesContent = document.createElement("div");
+    otherNodesContent.classList.add("bonus-content");
+    const children = Array.from(parent.children);
+    children.forEach(child => {
+        if (child.tagName !== "SCRIPT") {
+            otherNodesContent.appendChild(child);
+        }
+    });
+    otherNodesContainer.appendChild(otherNodesContent);
+    // The current parent script
+    parent.appendChild(tailwindScript);
+    parent.appendChild(otherNodesContainer);
+}
 
 const embedCSS = document.createElement('link');
 embedCSS.rel = 'stylesheet';
