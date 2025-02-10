@@ -64,7 +64,7 @@ if (currentScript.dataset.reinsert !== "false") {
         const children = Array.from(parent.children);
         children.forEach(child => {
             // Avoid re-attaching scripts
-            if (child.tagName !== "SCRIPT" || child.tagName !== "IFRAME") {
+            if (child.tagName !== "SCRIPT" && child.tagName !== "IFRAME") {
                 otherNodesContent.appendChild(child);
             }
         });
