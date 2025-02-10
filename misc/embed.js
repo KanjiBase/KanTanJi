@@ -27,6 +27,7 @@ if (currentScript.dataset.reinsert !== "false") {
     otherNodesContent.classList.add("bonus-content");
     const children = Array.from(parent.children);
     children.forEach(child => {
+        // Avoid re-attaching scripts
         if (child.tagName !== "SCRIPT") {
             otherNodesContent.appendChild(child);
         }
