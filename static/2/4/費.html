@@ -8,6 +8,9 @@
 <meta charset="UTF-8">
 <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 <style>
+rt {
+    font-size: 0.4em;
+}
 .copyable::after {
     content: 'Copied!';
     position: absolute;
@@ -138,7 +141,29 @@
     
     
     <div class="bg-gradient-to-r from-green-50 to-green-100 rounded-lg shadow p-4 flex flex-col my-2">
-        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab289', this)">
+        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab685', this)">
+            <div>
+                <p class="text-lg text-2xl text-gray-800 copyable relative" 
+                onclick="copyText(this)"><ruby>費<rt style="visibility: hidden">ひ</rt></ruby><ruby>用<rt style="visibility: hidden">よう</rt></ruby></p>
+                <p class="text-sm text-gray-600">náklady</p>
+            </div>
+            <button class="button-vocab-toggle text-gray-600 hover:text-gray-900 
+            transform transition-transform duration-200 px-2">▼</button>
+        </div>
+        
+        <div id="vocab685" class="button-vocab-example hidden mt-2 p-2 rounded bg-white text-gray-700 shadow">
+          
+            <div>
+                <div style="margin-bottom: 5px;"><span lang="JA"><ruby>費<rt style="visibility: hidden">ひ</rt></ruby><ruby>用<rt style="visibility: hidden">よう</rt></ruby>にはその<ruby>金<rt style="visibility: hidden">かね</rt></ruby>で<ruby>十<rt style="visibility: hidden">じゅう</rt></ruby><ruby>分<rt style="visibility: hidden">ぶん</rt></ruby></span></div>
+                <div style="margin-bottom: 5px; color: #666;">Ty peníze na výdaje stačí.</div>
+            </div>
+            
+        </div>
+    </div>
+    
+    
+    <div class="bg-gradient-to-r from-green-50 to-green-100 rounded-lg shadow p-4 flex flex-col my-2">
+        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab686', this)">
             <div>
                 <p class="text-lg text-2xl text-gray-800 copyable relative" 
                 onclick="copyText(this)"><ruby>交<rt style="visibility: hidden">こう</rt></ruby><ruby>通<rt style="visibility: hidden">つう</rt></ruby><ruby>費<rt style="visibility: hidden">ひ</rt></ruby></p>
@@ -148,7 +173,7 @@
             transform transition-transform duration-200 px-2">▼</button>
         </div>
         
-        <div id="vocab289" class="button-vocab-example hidden mt-2 p-2 rounded bg-white text-gray-700 shadow">
+        <div id="vocab686" class="button-vocab-example hidden mt-2 p-2 rounded bg-white text-gray-700 shadow">
           
             <div>
                 <div style="margin-bottom: 5px;"><span lang="JA"><ruby>私<rt style="visibility: hidden">わたし</rt></ruby>たちの<ruby>毎<rt style="visibility: hidden">まい</rt></ruby><ruby>月<rt style="visibility: hidden">げつ</rt></ruby>の<ruby>収<rt style="visibility: hidden">しゅう</rt></ruby><ruby>入<rt style="visibility: hidden">にゅう</rt></ruby>は、<ruby>食<rt style="visibility: hidden">しょく</rt></ruby><ruby>料<rt style="visibility: hidden">りょう</rt></ruby>、<ruby>部<rt style="visibility: hidden">へ</rt></ruby><ruby>屋<rt style="visibility: hidden">や</rt></ruby><ruby>代<rt style="visibility: hidden">だい</rt></ruby>、<ruby>衣<rt style="visibility: hidden">い</rt></ruby><ruby>料<rt style="visibility: hidden">りょう</rt></ruby>、<ruby>交<rt style="visibility: hidden">こう</rt></ruby><ruby>通<rt style="visibility: hidden">つう</rt></ruby><ruby>費<rt style="visibility: hidden">ひ</rt></ruby>などをカバーできなければならない</span></div>
@@ -160,7 +185,7 @@
     
     
     <div class="bg-gradient-to-r from-green-50 to-green-100 rounded-lg shadow p-4 flex flex-col my-2">
-        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab290', this)">
+        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab687', this)">
             <div>
                 <p class="text-lg text-2xl text-gray-800 copyable relative" 
                 onclick="copyText(this)"><ruby>費<rt style="visibility: hidden">つい</rt></ruby>やす</p>
@@ -170,7 +195,7 @@
             transform transition-transform duration-200 px-2">▼</button>
         </div>
         
-        <div id="vocab290" class="button-vocab-example hidden mt-2 p-2 rounded bg-white text-gray-700 shadow">
+        <div id="vocab687" class="button-vocab-example hidden mt-2 p-2 rounded bg-white text-gray-700 shadow">
           
             <div>
                 <div style="margin-bottom: 5px;"><span lang="JA"><ruby>多<rt style="visibility: hidden">た</rt></ruby><ruby>額<rt style="visibility: hidden">がく</rt></ruby>の<ruby>金<rt style="visibility: hidden">かね</rt></ruby>がその<ruby>橋<rt style="visibility: hidden">はし</rt></ruby>に<ruby>費<rt style="visibility: hidden">つい</rt></ruby>やされた</span></div>
@@ -182,7 +207,7 @@
     
     
     <div class="bg-gradient-to-r from-green-50 to-green-100 rounded-lg shadow p-4 flex flex-col my-2">
-        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab291', this)">
+        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab688', this)">
             <div>
                 <p class="text-lg text-2xl text-gray-800 copyable relative" 
                 onclick="copyText(this)"><ruby>食<rt style="visibility: hidden">しょく</rt></ruby><ruby>費<rt style="visibility: hidden">ひ</rt></ruby></p>
@@ -192,7 +217,7 @@
             transform transition-transform duration-200 px-2">▼</button>
         </div>
         
-        <div id="vocab291" class="button-vocab-example hidden mt-2 p-2 rounded bg-white text-gray-700 shadow">
+        <div id="vocab688" class="button-vocab-example hidden mt-2 p-2 rounded bg-white text-gray-700 shadow">
           
             <div>
                 <div style="margin-bottom: 5px;"><span lang="JA">われわれの<ruby>金<rt style="visibility: hidden">かね</rt></ruby>のほとんどの<ruby>食<rt style="visibility: hidden">しょく</rt></ruby><ruby>費<rt style="visibility: hidden">ひ</rt></ruby>になる</span></div>
@@ -204,7 +229,7 @@
     
     
     <div class="bg-gradient-to-r from-green-50 to-green-100 rounded-lg shadow p-4 flex flex-col my-2">
-        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab292', this)">
+        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab689', this)">
             <div>
                 <p class="text-lg text-2xl text-gray-800 copyable relative" 
                 onclick="copyText(this)"><ruby>消<rt style="visibility: hidden">しょう</rt></ruby><ruby>費<rt style="visibility: hidden">ひ</rt></ruby>する</p>
@@ -214,7 +239,7 @@
             transform transition-transform duration-200 px-2">▼</button>
         </div>
         
-        <div id="vocab292" class="button-vocab-example hidden mt-2 p-2 rounded bg-white text-gray-700 shadow">
+        <div id="vocab689" class="button-vocab-example hidden mt-2 p-2 rounded bg-white text-gray-700 shadow">
           
             <div>
                 <div style="margin-bottom: 5px;"><span lang="JA">その<ruby>車<rt style="visibility: hidden">くるま</rt></ruby>は<ruby>多<rt style="visibility: hidden">た</rt></ruby><ruby>量<rt style="visibility: hidden">りょう</rt></ruby>の<ruby>燃<rt style="visibility: hidden">ねん</rt></ruby><ruby>料<rt style="visibility: hidden">りょう</rt></ruby>を<ruby>消<rt style="visibility: hidden">しょう</rt></ruby><ruby>費<rt style="visibility: hidden">ひ</rt></ruby>する</span></div>
@@ -226,7 +251,7 @@
     
     
     <div class="bg-gradient-to-r from-green-50 to-green-100 rounded-lg shadow p-4 flex flex-col my-2">
-        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab293', this)">
+        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab690', this)">
             <div>
                 <p class="text-lg text-2xl text-gray-800 copyable relative" 
                 onclick="copyText(this)"><ruby>旅<rt style="visibility: hidden">りょ</rt></ruby><ruby>費<rt style="visibility: hidden">ひ</rt></ruby></p>
@@ -236,7 +261,7 @@
             transform transition-transform duration-200 px-2">▼</button>
         </div>
         
-        <div id="vocab293" class="button-vocab-example hidden mt-2 p-2 rounded bg-white text-gray-700 shadow">
+        <div id="vocab690" class="button-vocab-example hidden mt-2 p-2 rounded bg-white text-gray-700 shadow">
           
             <div>
                 <div style="margin-bottom: 5px;"><span lang="JA"><ruby>安<rt style="visibility: hidden">やす</rt></ruby>いホテルに<ruby>泊<rt style="visibility: hidden">と</rt></ruby>まって<ruby>旅<rt style="visibility: hidden">りょ</rt></ruby><ruby>費<rt style="visibility: hidden">ひ</rt></ruby>を<ruby>浮<rt style="visibility: hidden">う</rt></ruby>かした</span></div>
@@ -256,29 +281,7 @@
     
     
     <div class="bg-gradient-to-r from-purple-50 to-purple-100 rounded-lg shadow p-4 flex flex-col my-2">
-        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab294', this)">
-            <div>
-                <p class="text-lg text-2xl text-gray-800 copyable relative" 
-                onclick="copyText(this)"><ruby>費<rt style="visibility: hidden">ひ</rt></ruby><ruby>用<rt style="visibility: hidden">よう</rt></ruby></p>
-                <p class="text-sm text-gray-600">náklady</p>
-            </div>
-            <button class="button-vocab-toggle text-gray-600 hover:text-gray-900 
-            transform transition-transform duration-200 px-2">▼</button>
-        </div>
-        
-        <div id="vocab294" class="button-vocab-example hidden mt-2 p-2 rounded bg-white text-gray-700 shadow">
-          
-            <div>
-                <div style="margin-bottom: 5px;"><span lang="JA"><ruby>費<rt style="visibility: hidden">ひ</rt></ruby><ruby>用<rt style="visibility: hidden">よう</rt></ruby>にはその<ruby>金<rt style="visibility: hidden">かね</rt></ruby>で<ruby>十<rt style="visibility: hidden">じゅう</rt></ruby><ruby>分<rt style="visibility: hidden">ぶん</rt></ruby></span></div>
-                <div style="margin-bottom: 5px; color: #666;">Ty peníze na výdaje stačí.</div>
-            </div>
-            
-        </div>
-    </div>
-    
-    
-    <div class="bg-gradient-to-r from-purple-50 to-purple-100 rounded-lg shadow p-4 flex flex-col my-2">
-        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab295', this)">
+        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab691', this)">
             <div>
                 <p class="text-lg text-2xl text-gray-800 copyable relative" 
                 onclick="copyText(this)"><ruby>消<rt style="visibility: hidden">しょう</rt></ruby><ruby>費<rt style="visibility: hidden">ひ</rt></ruby><ruby>税<rt style="visibility: hidden">ぜい</rt></ruby></p>
@@ -288,10 +291,10 @@
             transform transition-transform duration-200 px-2">▼</button>
         </div>
         
-        <div id="vocab295" class="button-vocab-example hidden mt-2 p-2 rounded bg-white text-gray-700 shadow">
+        <div id="vocab691" class="button-vocab-example hidden mt-2 p-2 rounded bg-white text-gray-700 shadow">
           
             <div>
-                <div style="margin-bottom: 5px;"><span lang="JA"><ruby>政<rt style="visibility: hidden">せい</rt></ruby><ruby>府<rt style="visibility: hidden">ふ</rt></ruby>は<ruby>近<rt style="visibility: hidden">ちか</rt></ruby>々＜ぢか＞、<ruby>消<rt style="visibility: hidden">しょう</rt></ruby><ruby>費<rt style="visibility: hidden">ひ</rt></ruby><ruby>税<rt style="visibility: hidden">ぜい</rt></ruby>を<ruby>引<rt style="visibility: hidden">ひ</rt></ruby>き<ruby>上<rt style="visibility: hidden">あ</rt></ruby>げるつもりなのかしら</span></div>
+                <div style="margin-bottom: 5px;"><span lang="JA"><ruby>政<rt style="visibility: hidden">せい</rt></ruby><ruby>府<rt style="visibility: hidden">ふ</rt></ruby>は<ruby>近<rt style="visibility: hidden">ちか</rt></ruby><ruby>々<rt style="visibility: hidden">ぢか</rt></ruby>、<ruby>消<rt style="visibility: hidden">しょう</rt></ruby><ruby>費<rt style="visibility: hidden">ひ</rt></ruby><ruby>税<rt style="visibility: hidden">ぜい</rt></ruby>を<ruby>引<rt style="visibility: hidden">ひ</rt></ruby>き<ruby>上<rt style="visibility: hidden">あ</rt></ruby>げるつもりなのかしら</span></div>
                 <div style="margin-bottom: 5px; color: #666;">Zajímá mě, jestli vláda brzy zvýší spotřební daň.</div>
             </div>
             
