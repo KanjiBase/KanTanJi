@@ -401,6 +401,9 @@ def generate(key, data, metadata, path_getter):
 <meta charset="UTF-8">
 <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
 <style>
+rt {{
+    font-size: 0.4em;
+}}
 .copyable::after {{
     content: 'Copied!';
     position: absolute;
