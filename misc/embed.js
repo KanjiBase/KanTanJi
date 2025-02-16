@@ -59,23 +59,24 @@ window.addEventListener("message", function(event) {
 
 if (currentScript.dataset.reinsert !== "false") {
     window.addEventListener('load', function () {
+        // Avoid re-attaching scripts
+        const children = Array.from(parent.children)
+            .filter(child => child.tagName !== "SCRIPT" && child.tagName !== "IFRAME");
 
-        // Re-attach existing elements to the nested container
-        const otherNodesContainer = document.createElement("div");
-        otherNodesContainer.classList.add("bonus-materials");
-        otherNodesContainer.innerHTML = '<h3 class="bonus-title">'
-            + (currentScript.dataset.reinsertTitle || 'Bonusové materiály') + '</h3>';
-        const otherNodesContent = document.createElement("div");
-        otherNodesContent.classList.add("bonus-content");
-        const children = Array.from(parent.children);
-        children.forEach(child => {
-            // Avoid re-attaching scripts
-            if (child.tagName !== "SCRIPT" && child.tagName !== "IFRAME") {
+        if (children.length) {
+            // Re-attach existing elements to the nested container
+            const otherNodesContainer = document.createElement("div");
+            otherNodesContainer.classList.add("bonus-materials");
+            otherNodesContainer.innerHTML = '<h3 class="bonus-title">'
+                + (currentScript.dataset.reinsertTitle || 'Bonusové materiály') + '</h3>';
+            const otherNodesContent = document.createElement("div");
+            otherNodesContent.classList.add("bonus-content");
+            children.forEach(child => {
                 otherNodesContent.appendChild(child);
-            }
-        });
-        otherNodesContainer.appendChild(otherNodesContent);
-        parent.appendChild(otherNodesContainer);
+            });
+            otherNodesContainer.appendChild(otherNodesContent);
+            parent.appendChild(otherNodesContainer);
+        }
     });
 }
 
