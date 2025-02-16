@@ -143,7 +143,7 @@ def get_notes(item):
 
     if notes:
         return f"""
-         <div class="note-container flex-1 lg:max-w-sm lg:ml-6 p-4 bg-green-100 rounded-lg shadow">
+         <div class="note-container flex-1 lg:max-w-sm lg:ml-6 p-4 bg-green-100 rounded-lg shadow" style="height: fit-content;">
             <p class="text-gray-800">{notes}</p>
          </div>
         """

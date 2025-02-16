@@ -1,5 +1,5 @@
 const currentScript = document.currentScript;
-const parent = currentScript.parentElement;
+let parent = currentScript.parentElement;
 
 // Dynamically create a script tag for the Tailwind CDN
 const tailwindScript = document.createElement('script');
@@ -18,6 +18,12 @@ tailwindScript.onload = () => {
   };
 };
 parent.appendChild(tailwindScript);
+
+// Supports <div id="kantanji"> DO NOT REMOVE THIS PART <script>...</script></div> for editors.
+if (parent.id === "kantanji") {
+    parent.style.display = 'none';
+    parent = parent.parentElement;
+}
 
 const embedCSS = document.createElement('link');
 embedCSS.rel = 'stylesheet';

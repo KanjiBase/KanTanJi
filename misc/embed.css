@@ -24,6 +24,12 @@
     border-radius: 0.3rem !important;
 }
 
+.bonus-content p {
+    text-align: center;
+}
+
 .bonus-content img {
     max-width: 250px;
+    display: block;
+    margin: 0 auto;
 }
