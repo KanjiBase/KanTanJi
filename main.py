@@ -224,6 +224,25 @@ del parsed_metadata
 readme = """
 # Kan<sup>Tan</sup>Ji &nbsp; 漢<sup>単</sup>字
 Jednoduchá aplikace na trénování Kanji - pomocí PDF souborů a přidružených Anki balíčků.
+
+#### Filtrování karet Anki
+
+Karty KanTanJi lze snadno filtrovat pomocí **tagů**. V současnosti jsou k dispozici 4 tagy:
+
+ - **KanTanJi_Kanji** (karta s kanji)
+ - **KanTanJi_Tango** (slovní zásoba související s kanji)
+ - **KanTanJi_Learn_Now** (slovní zásoba obsahující pouze kanji, která již byla naučena)
+ - **KanTanJi_Learn_Deck** (slovní zásoba obsahující kanji, která se bude učit v aktuálním balíčku)
+ - **KanTanJi_Learn_Future** (slovní zásoba obsahující kanji, která ještě nebyla naučena)
+
+Pokud chcete například odstranit všechny karty s kanji a příliš obtížnou slovní zásobu obsahující kanji, 
+která ještě nebyla naučena podle pořadí KanTanJi, můžete **pozastavit** karty s tagy 
+'KanTanJi_Kanji' a 'KanTanJi_Learn_Future'.
+
+Nejprve v aplikaci Anki **otevřete Prohlížení karet (Browse Cards)**. Poté v možnostech vyberte **filtrovat podle tagu**.
+Když jsou zobrazeny pouze požadované karty, opět v možnostech zvolte **vybrat všechny karty** 
+a nakonec také v možnostech vyberte **pozastavit (suspend)**.
+
 <br><br>
 """
 
@@ -344,27 +363,6 @@ Balíčky lze importovat opakovaně do ANKI aplikace. Balíčky se řadí do kol
 a umožňují chytré a interaktivní procvičování kanji. Balíček obsahuje jak kanji (poznáš podle
 toho, že karta otázky obsahuje link na KanjiAlive), tak slovní zásobu ke kanji.
 Furiganu zobrazíš kliknutím / tapnutím na kartičku.
-
-<details>
-<summary>Filtrování karet</summary>
-
-Karty KanTanJi lze snadno filtrovat pomocí **tagů**. V současnosti jsou k dispozici 4 tagy:
-
- - **KanTanJi_Kanji** (karta s kanji)
- - **KanTanJi_Tango** (slovní zásoba související s kanji)
- - **KanTanJi_Learn_Now** (slovní zásoba obsahující pouze kanji, která již byla naučena)
- - **KanTanJi_Learn_Deck** (slovní zásoba obsahující kanji, která se bude učit v aktuálním balíčku)
- - **KanTanJi_Learn_Future** (slovní zásoba obsahující kanji, která ještě nebyla naučena)
-
-Pokud chcete například odstranit všechny karty s kanji a příliš obtížnou slovní zásobu obsahující kanji, 
-která ještě nebyla naučena podle pořadí KanTanJi, můžete **pozastavit** karty s tagy 
-'KanTanJi_Kanji' a 'KanTanJi_Learn_Future'.
-
-Nejprve v aplikaci Anki **otevřete Prohlížení karet (Browse Cards)**. Poté v možnostech vyberte **filtrovat podle tagu**.
-Když jsou zobrazeny pouze požadované karty, opět v možnostech zvolte **vybrat všechny karty** 
-a nakonec také v možnostech vyberte **pozastavit (suspend)**.
-
-</details>
 
 {ankis}
 

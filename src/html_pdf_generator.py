@@ -81,11 +81,11 @@ def generate(name, data, radicals, path_getter):
     </tr>
     <tr>
         <td class="kanji bl bb" rowspan="3">{item["kanji"]}</td>
-        <td class="small-cell">訓</td>
+        <td class="small-cell">音</td>
         <td class="br">{onyomi}</td>
     </tr>
     <tr>
-        <td class="small-cell">音</td>
+        <td class="small-cell">訓</td>
         <td class="br">{kunyomi}</td>
     </tr>
     <tr>
