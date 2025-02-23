@@ -1,25 +1,8 @@
 
 # Kan<sup>Tan</sup>Ji &nbsp; 漢<sup>単</sup>字
 Jednoduchá aplikace na trénování Kanji - pomocí PDF souborů a přidružených Anki balíčků.
-<br><br>
 
-## Neoborová Japonština
-
-### PDF Materiály
-PDF Soubory obsahují seznam znaků kanji a přidružených slovíček.
- - <a href="static/1/1/1-80.pdf">Sada 1-80</a>
-
- - <a href="static/1/2/81-160.pdf">Sada 81-160</a>
-
-
-### ANKI Balíčky
-Balíčky lze importovat opakovaně do ANKI aplikace. Balíčky se řadí do kolekce 'KanTanJi' 
-a umožňují chytré a interaktivní procvičování kanji. Balíček obsahuje jak kanji (poznáš podle
-toho, že karta otázky obsahuje link na KanjiAlive), tak slovní zásobu ke kanji.
-Furiganu zobrazíš kliknutím / tapnutím na kartičku.
-
-<details>
-<summary>Filtrování karet</summary>
+#### Filtrování karet Anki
 
 Karty KanTanJi lze snadno filtrovat pomocí **tagů**. V současnosti jsou k dispozici 4 tagy:
 
@@ -37,7 +20,22 @@ Nejprve v aplikaci Anki **otevřete Prohlížení karet (Browse Cards)**. Poté 
 Když jsou zobrazeny pouze požadované karty, opět v možnostech zvolte **vybrat všechny karty** 
 a nakonec také v možnostech vyberte **pozastavit (suspend)**.
 
-</details>
+<br><br>
+
+## Neoborová Japonština
+
+### PDF Materiály
+PDF Soubory obsahují seznam znaků kanji a přidružených slovíček.
+ - <a href="static/1/1/1-80.pdf">Sada 1-80</a>
+
+ - <a href="static/1/2/81-160.pdf">Sada 81-160</a>
+
+
+### ANKI Balíčky
+Balíčky lze importovat opakovaně do ANKI aplikace. Balíčky se řadí do kolekce 'KanTanJi' 
+a umožňují chytré a interaktivní procvičování kanji. Balíček obsahuje jak kanji (poznáš podle
+toho, že karta otázky obsahuje link na KanjiAlive), tak slovní zásobu ke kanji.
+Furiganu zobrazíš kliknutím / tapnutím na kartičku.
 
  - <a href="static/1/1/1-80.apkg">Balíček 1-80</a>
 
@@ -172,27 +170,6 @@ Balíčky lze importovat opakovaně do ANKI aplikace. Balíčky se řadí do kol
 a umožňují chytré a interaktivní procvičování kanji. Balíček obsahuje jak kanji (poznáš podle
 toho, že karta otázky obsahuje link na KanjiAlive), tak slovní zásobu ke kanji.
 Furiganu zobrazíš kliknutím / tapnutím na kartičku.
-
-<details>
-<summary>Filtrování karet</summary>
-
-Karty KanTanJi lze snadno filtrovat pomocí **tagů**. V současnosti jsou k dispozici 4 tagy:
-
- - **KanTanJi_Kanji** (karta s kanji)
- - **KanTanJi_Tango** (slovní zásoba související s kanji)
- - **KanTanJi_Learn_Now** (slovní zásoba obsahující pouze kanji, která již byla naučena)
- - **KanTanJi_Learn_Deck** (slovní zásoba obsahující kanji, která se bude učit v aktuálním balíčku)
- - **KanTanJi_Learn_Future** (slovní zásoba obsahující kanji, která ještě nebyla naučena)
-
-Pokud chcete například odstranit všechny karty s kanji a příliš obtížnou slovní zásobu obsahující kanji, 
-která ještě nebyla naučena podle pořadí KanTanJi, můžete **pozastavit** karty s tagy 
-'KanTanJi_Kanji' a 'KanTanJi_Learn_Future'.
-
-Nejprve v aplikaci Anki **otevřete Prohlížení karet (Browse Cards)**. Poté v možnostech vyberte **filtrovat podle tagu**.
-Když jsou zobrazeny pouze požadované karty, opět v možnostech zvolte **vybrat všechny karty** 
-a nakonec také v možnostech vyberte **pozastavit (suspend)**.
-
-</details>
 
  - <a href="static/2/1/Písmo_IV_-_Týden_1.apkg">Balíček Písmo_IV_-_Týden_1</a>
 
