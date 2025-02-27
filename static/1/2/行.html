@@ -3,7 +3,7 @@
 <html lang="en">
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>茶</title>
+    <title>行</title>
     
 <meta charset="UTF-8">
 <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
@@ -95,7 +95,7 @@ rt {
     <!-- Stroke Order Image -->
     <div class="bg-gradient-to-br from-indigo-100 to-purple-100 p-6 flex items-center justify-center">
         <img
-        src="https://raw.githubusercontent.com/KanjiBase/kanji.gif/refs/heads/master/kanji/gif/150x150/茶.gif"
+        src="https://raw.githubusercontent.com/KanjiBase/kanji.gif/refs/heads/master/kanji/gif/150x150/行.gif"
         alt="Kanji Stroke Order"
         class="w-44 h-44 rounded-lg border border-gray-200 shadow"
         />
@@ -103,19 +103,19 @@ rt {
     
     <!-- Kanji Details -->
     <div class="p-6 flex-1 space-y-4">
-        <h2 class="text-2xl font-bold text-gray-700">茶</h2>
+        <h2 class="text-2xl font-bold text-gray-700">行</h2>
         <div class="grid grid-cols-2 gap-4">
             <div>
                 <p class="text-sm text-gray-500">Onyomi</p>
-                <p class="text-lg font-semibold text-gray-800">チャ, サ</p>
+                <p class="text-lg font-semibold text-gray-800">コウ, ギョウ, アン</p>
             </div>
             <div>
                 <p class="text-sm text-gray-500">Význam</p>
-                <p class="text-lg font-semibold text-gray-800">čaj</p>
+                <p class="text-lg font-semibold text-gray-800">jít, provést</p>
             </div>
             <div>
                 <p class="text-sm text-gray-500">Kunyomi</p>
-                <p class="text-lg font-semibold text-gray-800">-</p>
+                <p class="text-lg font-semibold text-gray-800">い, ゆ, おこな</p>
             </div>
             
         </div>
@@ -132,12 +132,34 @@ rt {
 >   
     <span class="text-xl font-bold text-gray-800 mb-4">Povinná slovíčka</span>
     
+    
+    <div class="bg-gradient-to-r from-green-50 to-green-100 rounded-lg shadow p-4 flex flex-col my-2">
+        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab138', this)">
+            <div>
+                <p class="text-lg text-2xl text-gray-800 copyable relative" 
+                onclick="copyText(this)"><ruby>行<rt style="visibility: hidden">ぎょう</rt></ruby></p>
+                <p class="text-sm text-gray-600">linka, řádek</p>
+            </div>
+            <button class="button-vocab-toggle text-gray-600 hover:text-gray-900 
+            transform transition-transform duration-200 px-2">▼</button>
+        </div>
+        
+        <div id="vocab138" class="button-vocab-example hidden mt-2 p-2 rounded bg-white text-gray-700 shadow">
+          
+            <div>
+                <div style="margin-bottom: 5px;"><span lang="JA"><ruby>関<rt style="visibility: hidden">かん</rt></ruby><ruby>数<rt style="visibility: hidden">すう</rt></ruby>の<ruby>数<rt style="visibility: hidden">すう</rt></ruby><ruby>式<rt style="visibility: hidden">しき</rt></ruby>が<ruby>一<rt style="visibility: hidden">いち</rt></ruby><ruby>行<rt style="visibility: hidden">ぎょう</rt></ruby><ruby>目<rt style="visibility: hidden">め</rt></ruby>にしか<ruby>入<rt style="visibility: hidden">はい</rt></ruby>っていません</span></div>
+                <div style="margin-bottom: 5px; color: #666;">Matematická formule je (vložena) pouze v prvním řádku.</div>
+            </div>
+            
+        </div>
+    </div>
+    
     <div class="bg-gradient-to-r from-green-50 to-green-100 rounded-lg shadow p-4 flex flex-col my-2">
         <div class="flex justify-between items-center">
           <div>
             <p class="text-lg text-2xl text-gray-800 copyable cursor-pointer relative" 
-            onclick="copyText(this)">お<ruby>茶<rt style="visibility: hidden">ちゃ</rt></ruby></p>
-            <p class="text-sm text-gray-600">čaj</p>
+            onclick="copyText(this)"><ruby>行<rt style="visibility: hidden">い</rt></ruby>く</p>
+            <p class="text-sm text-gray-600">jít</p>
           </div>
         </div>
         
@@ -150,53 +172,42 @@ rt {
 >   
     <span class="text-xl font-bold text-gray-800 mb-4">Budou v sadě / Rozšiřující</span>
     
-    <div class="bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg shadow p-4 flex flex-col my-2">
+    
+    <div class="bg-gradient-to-r from-purple-50 to-purple-100 rounded-lg shadow p-4 flex flex-col my-2">
         <div class="flex justify-between items-center">
           <div>
             <p class="text-lg text-2xl text-gray-800 copyable cursor-pointer relative" 
-            onclick="copyText(this)"><ruby>茶<rt style="visibility: hidden">ちゃ</rt></ruby><ruby>色<rt style="visibility: hidden">いろ</rt></ruby>い</p>
-            <p class="text-sm text-gray-600">hnědý</p>
+            onclick="copyText(this)"><ruby>銀<rt style="visibility: hidden">ぎん</rt></ruby><ruby>行<rt style="visibility: hidden">こう</rt></ruby></p>
+            <p class="text-sm text-gray-600">banka</p>
+          </div>
+        </div>
+        
+    </div>
+    
+    <div class="bg-gradient-to-r from-purple-50 to-purple-100 rounded-lg shadow p-4 flex flex-col my-2">
+        <div class="flex justify-between items-center">
+          <div>
+            <p class="text-lg text-2xl text-gray-800 copyable cursor-pointer relative" 
+            onclick="copyText(this)"><ruby>旅<rt style="visibility: hidden">りょ</rt></ruby><ruby>行<rt style="visibility: hidden">こう</rt></ruby>する</p>
+            <p class="text-sm text-gray-600">cestovat</p>
           </div>
         </div>
         <div class='my-2 vocab-properties'>
-<span class="property-label" onclick="this.querySelector('span').style.display = (this.querySelector('span').style.display === 'none' || this.querySelector('span').style.display === '') ? 'block' : 'none';" style="display: inline-block; background-color: #ACA52F; color: white; padding: 4px 8px; border-radius: 12px; font-size: 12px; font-weight: bold; font-family: Arial, sans-serif; cursor: pointer; position: relative; margin-right: 8px;">
-    い - příd. jméno
-    <span style="display: none; position: absolute; top: 120%; left: 0; background-color: white; color: black; border: 1px solid #ACA52F; padding: 4px 8px; border-radius: 6px; font-size: 12px; font-family: Arial, sans-serif; z-index: 10; min-width: 150px;">
-        Sloveso má pouze jeden tvar, při skloňování většinou odpadá ~る přípona.
+<span class="property-label" onclick="this.querySelector('span').style.display = (this.querySelector('span').style.display === 'none' || this.querySelector('span').style.display === '') ? 'block' : 'none';" style="display: inline-block; background-color: #4A90E2; color: white; padding: 4px 8px; border-radius: 12px; font-size: 12px; font-weight: bold; font-family: Arial, sans-serif; cursor: pointer; position: relative; margin-right: 8px;">
+    する sloveso
+    <span style="display: none; position: absolute; top: 120%; left: 0; background-color: white; color: black; border: 1px solid #4A90E2; padding: 4px 8px; border-radius: 6px; font-size: 12px; font-family: Arial, sans-serif; z-index: 10; min-width: 150px;">
+        Nepravidelná slovesa se chovají dle する tvaru podobně.
     </span>
 </span>    
 </div>
     </div>
     
-    
     <div class="bg-gradient-to-r from-purple-50 to-purple-100 rounded-lg shadow p-4 flex flex-col my-2">
         <div class="flex justify-between items-center">
           <div>
             <p class="text-lg text-2xl text-gray-800 copyable cursor-pointer relative" 
-            onclick="copyText(this)"><ruby>紅<rt style="visibility: hidden">こう</rt></ruby><ruby>茶<rt style="visibility: hidden">ちゃ</rt></ruby></p>
-            <p class="text-sm text-gray-600">černý čaj</p>
-          </div>
-        </div>
-        
-    </div>
-    
-    <div class="bg-gradient-to-r from-purple-50 to-purple-100 rounded-lg shadow p-4 flex flex-col my-2">
-        <div class="flex justify-between items-center">
-          <div>
-            <p class="text-lg text-2xl text-gray-800 copyable cursor-pointer relative" 
-            onclick="copyText(this)"><ruby>茶<rt style="visibility: hidden">ちゃ</rt></ruby><ruby>飲<rt style="visibility: hidden">の</rt></ruby>み</p>
-            <p class="text-sm text-gray-600">pití čaje</p>
-          </div>
-        </div>
-        
-    </div>
-    
-    <div class="bg-gradient-to-r from-purple-50 to-purple-100 rounded-lg shadow p-4 flex flex-col my-2">
-        <div class="flex justify-between items-center">
-          <div>
-            <p class="text-lg text-2xl text-gray-800 copyable cursor-pointer relative" 
-            onclick="copyText(this)"><ruby>茶<rt style="visibility: hidden">さ</rt></ruby><ruby>道<rt style="visibility: hidden">どう</rt></ruby></p>
-            <p class="text-sm text-gray-600">Cesta čaje, čajový obřad</p>
+            onclick="copyText(this)"><ruby>飛<rt style="visibility: hidden">ひ</rt></ruby><ruby>行<rt style="visibility: hidden">こう</rt></ruby><ruby>機<rt style="visibility: hidden">き</rt></ruby></p>
+            <p class="text-sm text-gray-600">letadlo</p>
           </div>
         </div>
         
@@ -204,28 +215,21 @@ rt {
     
     
     <div class="bg-gradient-to-r from-purple-50 to-purple-100 rounded-lg shadow p-4 flex flex-col my-2">
-        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab118', this)">
+        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab143', this)">
             <div>
                 <p class="text-lg text-2xl text-gray-800 copyable relative" 
-                onclick="copyText(this)"><ruby>滅<rt style="visibility: hidden">め</rt></ruby><ruby>茶<rt style="visibility: hidden">ちゃ</rt></ruby><ruby>苦<rt style="visibility: hidden">く</rt></ruby><ruby>茶<rt style="visibility: hidden">ちゃ</rt></ruby></p>
-                <p class="text-sm text-gray-600">bláznivý, chaotický, šílený</p>
+                onclick="copyText(this)"><ruby>行<rt style="visibility: hidden">こう</rt></ruby><ruby>動<rt style="visibility: hidden">どう</rt></ruby></p>
+                <p class="text-sm text-gray-600">akce, čin</p>
             </div>
             <button class="button-vocab-toggle text-gray-600 hover:text-gray-900 
             transform transition-transform duration-200 px-2">▼</button>
         </div>
-        <div class='my-2 vocab-properties'>
-<span class="property-label" onclick="this.querySelector('span').style.display = (this.querySelector('span').style.display === 'none' || this.querySelector('span').style.display === '') ? 'block' : 'none';" style="display: inline-block; background-color: #ACA52F; color: white; padding: 4px 8px; border-radius: 12px; font-size: 12px; font-weight: bold; font-family: Arial, sans-serif; cursor: pointer; position: relative; margin-right: 8px;">
-    な - příd. jméno
-    <span style="display: none; position: absolute; top: 120%; left: 0; background-color: white; color: black; border: 1px solid #ACA52F; padding: 4px 8px; border-radius: 6px; font-size: 12px; font-family: Arial, sans-serif; z-index: 10; min-width: 150px;">
-        Odpadá ~な přípona (např. při použití s 'です'), pokud se neváže na podstatné jméno.
-    </span>
-</span>    
-</div>
-        <div id="vocab118" class="button-vocab-example hidden mt-2 p-2 rounded bg-white text-gray-700 shadow">
+        
+        <div id="vocab143" class="button-vocab-example hidden mt-2 p-2 rounded bg-white text-gray-700 shadow">
           
             <div>
-                <div style="margin-bottom: 5px;"><span lang="JA"><ruby>食<rt style="visibility: hidden">た</rt></ruby>べて、<ruby>飲<rt style="visibility: hidden">の</rt></ruby>んで、とかは<ruby>滅<rt style="visibility: hidden">め</rt></ruby><ruby>茶<rt style="visibility: hidden">ちゃ</rt></ruby><ruby>苦<rt style="visibility: hidden">く</rt></ruby><ruby>茶<rt style="visibility: hidden">ちゃ</rt></ruby>好<ruby>き<rt style="visibility: hidden">す</rt></ruby>だ</span></div>
-                <div style="margin-bottom: 5px; color: #666;">Šíleně miluju například jídlo a pití.</div>
+                <div style="margin-bottom: 5px;"><span lang="JA">その<ruby>考<rt style="visibility: hidden">かんが</rt></ruby>えたことを<ruby>行<rt style="visibility: hidden">こう</rt></ruby><ruby>動<rt style="visibility: hidden">どう</rt></ruby>に<ruby>移<rt style="visibility: hidden">うつ</rt></ruby>してみる</span></div>
+                <div style="margin-bottom: 5px; color: #666;">Zkuste tyto myšlenky proměnit v činy.</div>
             </div>
             
         </div>
@@ -233,28 +237,71 @@ rt {
     
     
     <div class="bg-gradient-to-r from-purple-50 to-purple-100 rounded-lg shadow p-4 flex flex-col my-2">
-        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab119', this)">
+        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab144', this)">
             <div>
                 <p class="text-lg text-2xl text-gray-800 copyable relative" 
-                onclick="copyText(this)"><ruby>無<rt style="visibility: hidden">む</rt></ruby><ruby>茶<rt style="visibility: hidden">ちゃ</rt></ruby></p>
-                <p class="text-sm text-gray-600">přehnaný, nerozumný</p>
+                onclick="copyText(this)"><ruby>通<rt style="visibility: hidden">つう</rt></ruby><ruby>行<rt style="visibility: hidden">こう</rt></ruby></p>
+                <p class="text-sm text-gray-600">průchod</p>
+            </div>
+            <button class="button-vocab-toggle text-gray-600 hover:text-gray-900 
+            transform transition-transform duration-200 px-2">▼</button>
+        </div>
+        
+        <div id="vocab144" class="button-vocab-example hidden mt-2 p-2 rounded bg-white text-gray-700 shadow">
+          
+            <div>
+                <div style="margin-bottom: 5px;"><span lang="JA"><ruby>結<rt style="visibility: hidden">けっ</rt></ruby><ruby>局<rt style="visibility: hidden">きょく</rt></ruby><ruby>一<rt style="visibility: hidden">いっ</rt></ruby><ruby>歩<rt style="visibility: hidden">ぽ</rt></ruby><ruby>通<rt style="visibility: hidden">つう</rt></ruby><ruby>行<rt style="visibility: hidden">こう</rt></ruby>で<ruby>終<rt style="visibility: hidden">お</rt></ruby>わっちゃってるん(neformální vyjádření lítosti)ですよね</span></div>
+                <div style="margin-bottom: 5px; color: #666;">Víš, nakonec to bylo jednosměrné, že?</div>
+            </div>
+            
+        </div>
+    </div>
+    
+    
+    <div class="bg-gradient-to-r from-purple-50 to-purple-100 rounded-lg shadow p-4 flex flex-col my-2">
+        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab145', this)">
+            <div>
+                <p class="text-lg text-2xl text-gray-800 copyable relative" 
+                onclick="copyText(this)"><ruby>実<rt style="visibility: hidden">じっ</rt></ruby><ruby>行<rt style="visibility: hidden">こう</rt></ruby></p>
+                <p class="text-sm text-gray-600">provést, pořádat, realizovat</p>
             </div>
             <button class="button-vocab-toggle text-gray-600 hover:text-gray-900 
             transform transition-transform duration-200 px-2">▼</button>
         </div>
         <div class='my-2 vocab-properties'>
-<span class="property-label" onclick="this.querySelector('span').style.display = (this.querySelector('span').style.display === 'none' || this.querySelector('span').style.display === '') ? 'block' : 'none';" style="display: inline-block; background-color: #ACA52F; color: white; padding: 4px 8px; border-radius: 12px; font-size: 12px; font-weight: bold; font-family: Arial, sans-serif; cursor: pointer; position: relative; margin-right: 8px;">
-    な - příd. jméno
-    <span style="display: none; position: absolute; top: 120%; left: 0; background-color: white; color: black; border: 1px solid #ACA52F; padding: 4px 8px; border-radius: 6px; font-size: 12px; font-family: Arial, sans-serif; z-index: 10; min-width: 150px;">
-        Odpadá ~な přípona (např. při použití s 'です'), pokud se neváže na podstatné jméno.
+<span class="property-label" onclick="this.querySelector('span').style.display = (this.querySelector('span').style.display === 'none' || this.querySelector('span').style.display === '') ? 'block' : 'none';" style="display: inline-block; background-color: #4A90E2; color: white; padding: 4px 8px; border-radius: 12px; font-size: 12px; font-weight: bold; font-family: Arial, sans-serif; cursor: pointer; position: relative; margin-right: 8px;">
+    する sloveso
+    <span style="display: none; position: absolute; top: 120%; left: 0; background-color: white; color: black; border: 1px solid #4A90E2; padding: 4px 8px; border-radius: 6px; font-size: 12px; font-family: Arial, sans-serif; z-index: 10; min-width: 150px;">
+        Nepravidelná slovesa se chovají dle する tvaru podobně.
     </span>
 </span>    
 </div>
-        <div id="vocab119" class="button-vocab-example hidden mt-2 p-2 rounded bg-white text-gray-700 shadow">
+        <div id="vocab145" class="button-vocab-example hidden mt-2 p-2 rounded bg-white text-gray-700 shadow">
           
             <div>
-                <div style="margin-bottom: 5px;"><span lang="JA">いや<ruby>無<rt style="visibility: hidden">む</rt></ruby><ruby>茶<rt style="visibility: hidden">ちゃ</rt></ruby>だろうって<ruby>夢<rt style="visibility: hidden">ゆめ</rt></ruby>です</span></div>
-                <div style="margin-bottom: 5px; color: #666;">Je to nerozumné, ale je to sen.</div>
+                <div style="margin-bottom: 5px;"><span lang="JA"><ruby>高<rt style="visibility: hidden">こう</rt></ruby><ruby>校<rt style="visibility: hidden">こう</rt></ruby><ruby>生<rt style="visibility: hidden">せい</rt></ruby>たちが<ruby>企<rt style="visibility: hidden">き</rt></ruby><ruby>画<rt style="visibility: hidden">かく</rt></ruby><ruby>実<rt style="visibility: hidden">じっ</rt></ruby><ruby>行<rt style="visibility: hidden">こう</rt></ruby>するプロジェクトに<ruby>参<rt style="visibility: hidden">さん</rt></ruby><ruby>加<rt style="visibility: hidden">か</rt></ruby>しました</span></div>
+                <div style="margin-bottom: 5px; color: #666;">Účastnil jsem se projektu plánovaného a pořádaného středoškoláky.</div>
+            </div>
+            
+        </div>
+    </div>
+    
+    
+    <div class="bg-gradient-to-r from-purple-50 to-purple-100 rounded-lg shadow p-4 flex flex-col my-2">
+        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab146', this)">
+            <div>
+                <p class="text-lg text-2xl text-gray-800 copyable relative" 
+                onclick="copyText(this)"><ruby>行<rt style="visibility: hidden">ぎょう</rt></ruby><ruby>事<rt style="visibility: hidden">じ</rt></ruby></p>
+                <p class="text-sm text-gray-600">událost</p>
+            </div>
+            <button class="button-vocab-toggle text-gray-600 hover:text-gray-900 
+            transform transition-transform duration-200 px-2">▼</button>
+        </div>
+        
+        <div id="vocab146" class="button-vocab-example hidden mt-2 p-2 rounded bg-white text-gray-700 shadow">
+          
+            <div>
+                <div style="margin-bottom: 5px;"><ruby>本<rt style="visibility: hidden">ほん</rt></ruby><ruby>日<rt style="visibility: hidden">じつ</rt></ruby>の<ruby>祭<rt style="visibility: hidden">さい</rt></ruby><ruby>典<rt style="visibility: hidden">てん</rt></ruby><ruby>行<rt style="visibility: hidden">ぎょう</rt></ruby><ruby>事<rt style="visibility: hidden">じ</rt></ruby>につきまして、。。Co se týče dnešní slavnostní události...</div>
             </div>
             
         </div>
