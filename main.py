@@ -305,7 +305,11 @@ def get_readme_contents():
     anki_file_entries = {}
     html_file_entries = {}
 
-    def create_dataset_readme(file_list, set_name, item_name):
+    def create_dataset_readme(file_list, set_name, item_name=None):
+        if not item_name and len(file_list) > 1:
+            return (f"\n#### {set_name} {Path(file_list[0]).parent.name}\n" +
+                    "  ".join(map(lambda f: f"<a href=\"{f}\">{Path(f).stem}</a>", file_list)))
+
         if len(file_list) > 1:
             output = f"""
 <details>
@@ -337,7 +341,7 @@ def get_readme_contents():
 
         if len(pdf_files):
             for file_list in pdf_files:
-                pdf_files_readme.append(create_dataset_readme(file_list, "Sada", ""))
+                pdf_files_readme.append(create_dataset_readme(file_list, "PDF Seznam", ""))
 
         if len(anki_files):
             for file_list in anki_files:
@@ -345,7 +349,7 @@ def get_readme_contents():
 
         if len(html_files):
             for file_list in html_files:
-                html_files_readme.append(create_dataset_readme(file_list, "Sada", "Kanji"))
+                html_files_readme.append(create_dataset_readme(file_list, "Kanji Stránky"))
 
     output_readme = {}
     for dataset_id in readme_contents:
