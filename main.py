@@ -161,12 +161,19 @@ for did in complementary_datasets:
 
             for kanji_id in order:
                 kanji = kanji_dictionary.get(kanji_id)
+
                 if kanji is None:
-                    raise ValueError(f"Invalid kanji ID {kanji_id} in dataset {name} > {subset_name}.")
+                    print(f" --parse dataset-- Error: kanji {kanji_id} undefined for dataset {name} > {subset_name}. Skipping...")
+                    # Preserve order by increasing the numeric value, then ignore this entry
+                    incremental_id += 1
+                    continue
 
                 if not kanji.filled:
-                    raise ValueError(f"Invalid kanji ID {kanji_id} in dataset {name} > {subset_name} "
-                                     f"- kanji not present, although vocabulary item might be.")
+                    print(f" --parse dataset-- Error: kanji {kanji_id} in dataset {name} > {subset_name}"
+                          f"- kanji not explicitly defined, although vocabulary item might be. Skipping...")
+                    # Preserve order by increasing the numeric value, then ignore this entry
+                    incremental_id += 1
+                    continue
 
                 # Do not optimize! get_was_modified must run to create entires!
                 # If ignored, prevent from recording in the timestamp (problems with files, readme generating, etc.)
@@ -207,7 +214,6 @@ for did in complementary_datasets:
         except Exception as e:
             del complementary_datasets[did]
             print(f" --parse dataset-- Error: dataset {subset_name} ignored", e)
-            raise e
 
 
 metadata = {}
