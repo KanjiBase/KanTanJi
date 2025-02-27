@@ -19,27 +19,38 @@ def get_item_uid(item):
     return str(item["guid"]) + str(item['type'])
 
 
+#### ON MATCHING FURIGANA #########
+# We match using: [一-龠ぁ-ゔ0-9０-９々〆〇\s]
+# 一-龠   all kanji
+# ぁ-ゔ   all hiragana
+# 々〆〇  extended kanji symbols
+# 0-9    half-width numbers
+# ０-９   full-width numbers
+# \s     whitespace
+###################################
+
+
 # Function to generate furigana in HTML format (support both > and ＞ for furigana)
 def generate_furigana(text):
     # First match any pairs and replace them as whole
-    text = re.sub(r'[<＜]([一-龠ぁ-ゔ々〆〇\s]+)[>＞][<＜]([一-龠ぁ-ゔ々〆〇\s]+)[>＞]',
+    text = re.sub(r'[<＜]([一-龠ぁ-ゔ0-9０-９々〆〇\s]+)[>＞][<＜]([一-龠ぁ-ゔ0-9０-９々〆〇\s]+)[>＞]',
                   r'<ruby>\1<rt style="visibility: hidden">\2</rt></ruby>', str(text))
     # Match exactly one character followed by furigana in <> or ＜＞ (supports both half-width and full-width)
-    return re.sub(r'([一-龠ぁ-ゔ々〆〇\s]{1})[<＜]([一-龠ぁ-ゔ々〆〇\s]+)[>＞]',
+    return re.sub(r'([一-龠ぁ-ゔ0-9０-９々〆〇\s]{1})[<＜]([一-龠ぁ-ゔ0-9０-９々〆〇\s]+)[>＞]',
                   r'<ruby>\1<rt style="visibility: hidden">\2</rt></ruby>', str(text))
 
 
 def generate_furigana_custom(text, replaces):
     # First match any pairs and replace them as whole
-    text = re.sub(r'[<＜]([一-龠ぁ-ゔ々〆〇\s]+)[>＞][<＜]([一-龠ぁ-ゔ々〆〇\s]+)[>＞]',  replaces, str(text))
+    text = re.sub(r'[<＜]([一-龠ぁ-ゔ0-9０-９々〆〇\s]+)[>＞][<＜]([一-龠ぁ-ゔ0-9０-９々〆〇\s]+)[>＞]',  replaces, str(text))
     # Match exactly one character followed by furigana in <> or ＜＞ (supports both half-width and full-width)
-    return re.sub(r'([一-龠ぁ-ゔ々〆〇\s]{1})[<＜]([一-龠ぁ-ゔ々〆〇\s]+)[>＞]', replaces, str(text))
+    return re.sub(r'([一-龠ぁ-ゔ0-9０-９々〆〇\s]{1})[<＜]([一-龠ぁ-ゔ0-9０-９々〆〇\s]+)[>＞]', replaces, str(text))
 
 
 # Function to remove furigana, leaving only the main character
 def remove_furigana(text):
     # Match exactly one character followed by furigana in <> or ＜＞ and remove the furigana part
-    return re.sub(r'[<＜]([一-龠ぁ-ゔ々〆〇\s]+)[>＞][<＜]([一-龠ぁ-ゔ々〆〇\s]+)[>＞]', r'\1', str(text))
+    return re.sub(r'[<＜]([一-龠ぁ-ゔ0-9０-９々〆〇\s]+)[>＞][<＜]([一-龠ぁ-ゔ0-9０-９々〆〇\s]+)[>＞]', r'\1', str(text))
 
 
 def retrieve_row_kanjialive_url(item):
