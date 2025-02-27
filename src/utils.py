@@ -232,8 +232,14 @@ def process_row(row: list):
 
     # Second step, derive meaning
     if item.get("tango"):
+        if not item.get("imi") or not item.get("kanji"):
+            print(" --parse-- IGNORES: tango", item.get("tango"), "does not specify required field 'imi' or 'kanji'")
+            return None
         output = VocabEntry()
     elif item.get("kanji"):
+        if not item.get("imi"):
+            print(" --parse-- IGNORES: kanji", item.get("kanji"), "does not specify required field 'imi'")
+            return None
         output = KanjiEntry()
     elif item.get("radical"):
         output = RadicalEntry()
