@@ -52,27 +52,111 @@ HTML Stránky slouží pro vložení interaktivních informací o Kanji do exter
             
   - <a href="static/1/1/左.html">Kanji 左</a>
 
+  - <a href="static/1/1/森.html">Kanji 森</a>
+
+  - <a href="static/1/1/見.html">Kanji 見</a>
+
+  - <a href="static/1/1/人.html">Kanji 人</a>
+
   - <a href="static/1/1/一.html">Kanji 一</a>
+
+  - <a href="static/1/1/年.html">Kanji 年</a>
 
   - <a href="static/1/1/九.html">Kanji 九</a>
 
+  - <a href="static/1/1/町.html">Kanji 町</a>
+
+  - <a href="static/1/1/青.html">Kanji 青</a>
+
+  - <a href="static/1/1/赤.html">Kanji 赤</a>
+
+  - <a href="static/1/1/先.html">Kanji 先</a>
+
   - <a href="static/1/1/四.html">Kanji 四</a>
+
+  - <a href="static/1/1/入.html">Kanji 入</a>
 
   - <a href="static/1/1/下.html">Kanji 下</a>
 
+  - <a href="static/1/1/貝.html">Kanji 貝</a>
+
   - <a href="static/1/1/右.html">Kanji 右</a>
 
+  - <a href="static/1/1/手.html">Kanji 手</a>
+
+  - <a href="static/1/1/男.html">Kanji 男</a>
+
+  - <a href="static/1/1/石.html">Kanji 石</a>
+
+  - <a href="static/1/1/学.html">Kanji 学</a>
+
+  - <a href="static/1/1/正.html">Kanji 正</a>
+
+  - <a href="static/1/1/字.html">Kanji 字</a>
+
+  - <a href="static/1/1/糸.html">Kanji 糸</a>
+
+  - <a href="static/1/1/白.html">Kanji 白</a>
+
+  - <a href="static/1/1/金.html">Kanji 金</a>
+
   - <a href="static/1/1/上.html">Kanji 上</a>
+
+  - <a href="static/1/1/夕.html">Kanji 夕</a>
+
+  - <a href="static/1/1/足.html">Kanji 足</a>
+
+  - <a href="static/1/1/子.html">Kanji 子</a>
+
+  - <a href="static/1/1/出.html">Kanji 出</a>
+
+  - <a href="static/1/1/立.html">Kanji 立</a>
+
+  - <a href="static/1/1/文.html">Kanji 文</a>
+
+  - <a href="static/1/1/木.html">Kanji 木</a>
 
   - <a href="static/1/1/六.html">Kanji 六</a>
 
   - <a href="static/1/1/三.html">Kanji 三</a>
 
+  - <a href="static/1/1/本.html">Kanji 本</a>
+
+  - <a href="static/1/1/円.html">Kanji 円</a>
+
+  - <a href="static/1/1/名.html">Kanji 名</a>
+
   - <a href="static/1/1/二.html">Kanji 二</a>
+
+  - <a href="static/1/1/早.html">Kanji 早</a>
 
   - <a href="static/1/1/五.html">Kanji 五</a>
 
+  - <a href="static/1/1/空.html">Kanji 空</a>
+
+  - <a href="static/1/1/村.html">Kanji 村</a>
+
+  - <a href="static/1/1/休.html">Kanji 休</a>
+
+  - <a href="static/1/1/天.html">Kanji 天</a>
+
+  - <a href="static/1/1/花.html">Kanji 花</a>
+
+  - <a href="static/1/1/女.html">Kanji 女</a>
+
   - <a href="static/1/1/千.html">Kanji 千</a>
+
+  - <a href="static/1/1/林.html">Kanji 林</a>
+
+  - <a href="static/1/1/気.html">Kanji 気</a>
+
+  - <a href="static/1/1/目.html">Kanji 目</a>
+
+  - <a href="static/1/1/車.html">Kanji 車</a>
+
+  - <a href="static/1/1/水.html">Kanji 水</a>
+
+  - <a href="static/1/1/川.html">Kanji 川</a>
 
   - <a href="static/1/1/八.html">Kanji 八</a>
 
@@ -80,7 +164,23 @@ HTML Stránky slouží pro vložení interaktivních informací o Kanji do exter
 
   - <a href="static/1/1/百.html">Kanji 百</a>
 
+  - <a href="static/1/1/山.html">Kanji 山</a>
+
+  - <a href="static/1/1/生.html">Kanji 生</a>
+
   - <a href="static/1/1/中.html">Kanji 中</a>
+
+  - <a href="static/1/1/日.html">Kanji 日</a>
+
+  - <a href="static/1/1/竹.html">Kanji 竹</a>
+
+  - <a href="static/1/1/田.html">Kanji 田</a>
+
+  - <a href="static/1/1/音.html">Kanji 音</a>
+
+  - <a href="static/1/1/土.html">Kanji 土</a>
+
+  - <a href="static/1/1/口.html">Kanji 口</a>
 
   - <a href="static/1/1/十.html">Kanji 十</a>
 
@@ -88,7 +188,17 @@ HTML Stránky slouží pro vložení interaktivních informací o Kanji do exter
 
   - <a href="static/1/1/七.html">Kanji 七</a>
 
+  - <a href="static/1/1/雨.html">Kanji 雨</a>
+
+  - <a href="static/1/1/耳.html">Kanji 耳</a>
+
   - <a href="static/1/1/小.html">Kanji 小</a>
+
+  - <a href="static/1/1/火.html">Kanji 火</a>
+
+  - <a href="static/1/1/校.html">Kanji 校</a>
+
+  - <a href="static/1/1/力.html">Kanji 力</a>
 </details>
 
 <details>
@@ -98,11 +208,21 @@ HTML Stránky slouží pro vložení interaktivních informací o Kanji do exter
             
   - <a href="static/1/2/黄.html">Kanji 黄</a>
 
+  - <a href="static/1/2/妹.html">Kanji 妹</a>
+
+  - <a href="static/1/2/近.html">Kanji 近</a>
+
+  - <a href="static/1/2/分.html">Kanji 分</a>
+
   - <a href="static/1/2/羽.html">Kanji 羽</a>
 
   - <a href="static/1/2/晴.html">Kanji 晴</a>
 
   - <a href="static/1/2/肉.html">Kanji 肉</a>
+
+  - <a href="static/1/2/内.html">Kanji 内</a>
+
+  - <a href="static/1/2/弱.html">Kanji 弱</a>
 
   - <a href="static/1/2/止.html">Kanji 止</a>
 
@@ -110,19 +230,71 @@ HTML Stránky slouží pro vložení interaktivních informací o Kanji do exter
 
   - <a href="static/1/2/教.html">Kanji 教</a>
 
+  - <a href="static/1/2/門.html">Kanji 門</a>
+
+  - <a href="static/1/2/夜.html">Kanji 夜</a>
+
+  - <a href="static/1/2/少.html">Kanji 少</a>
+
+  - <a href="static/1/2/朝.html">Kanji 朝</a>
+
+  - <a href="static/1/2/南.html">Kanji 南</a>
+
+  - <a href="static/1/2/答.html">Kanji 答</a>
+
+  - <a href="static/1/2/原.html">Kanji 原</a>
+
+  - <a href="static/1/2/園.html">Kanji 園</a>
+
+  - <a href="static/1/2/母.html">Kanji 母</a>
+
   - <a href="static/1/2/米.html">Kanji 米</a>
+
+  - <a href="static/1/2/友.html">Kanji 友</a>
 
   - <a href="static/1/2/来.html">Kanji 来</a>
 
+  - <a href="static/1/2/言.html">Kanji 言</a>
+
   - <a href="static/1/2/才.html">Kanji 才</a>
+
+  - <a href="static/1/2/室.html">Kanji 室</a>
+
+  - <a href="static/1/2/体.html">Kanji 体</a>
+
+  - <a href="static/1/2/曜.html">Kanji 曜</a>
 
   - <a href="static/1/2/元.html">Kanji 元</a>
 
   - <a href="static/1/2/帰.html">Kanji 帰</a>
 
+  - <a href="static/1/2/後.html">Kanji 後</a>
+
+  - <a href="static/1/2/広.html">Kanji 広</a>
+
+  - <a href="static/1/2/細.html">Kanji 細</a>
+
+  - <a href="static/1/2/北.html">Kanji 北</a>
+
+  - <a href="static/1/2/夏.html">Kanji 夏</a>
+
+  - <a href="static/1/2/心.html">Kanji 心</a>
+
   - <a href="static/1/2/走.html">Kanji 走</a>
 
+  - <a href="static/1/2/市.html">Kanji 市</a>
+
+  - <a href="static/1/2/野.html">Kanji 野</a>
+
+  - <a href="static/1/2/長.html">Kanji 長</a>
+
   - <a href="static/1/2/鳴.html">Kanji 鳴</a>
+
+  - <a href="static/1/2/高.html">Kanji 高</a>
+
+  - <a href="static/1/2/紙.html">Kanji 紙</a>
+
+  - <a href="static/1/2/多.html">Kanji 多</a>
 
   - <a href="static/1/2/算.html">Kanji 算</a>
 
@@ -130,37 +302,149 @@ HTML Stránky slouží pro vložení interaktivních informací o Kanji do exter
 
   - <a href="static/1/2/鳥.html">Kanji 鳥</a>
 
+  - <a href="static/1/2/同.html">Kanji 同</a>
+
+  - <a href="static/1/2/春.html">Kanji 春</a>
+
+  - <a href="static/1/2/風.html">Kanji 風</a>
+
+  - <a href="static/1/2/形.html">Kanji 形</a>
+
+  - <a href="static/1/2/半.html">Kanji 半</a>
+
   - <a href="static/1/2/魚.html">Kanji 魚</a>
 
   - <a href="static/1/2/知.html">Kanji 知</a>
 
+  - <a href="static/1/2/弟.html">Kanji 弟</a>
+
+  - <a href="static/1/2/海.html">Kanji 海</a>
+
   - <a href="static/1/2/行.html">Kanji 行</a>
+
+  - <a href="static/1/2/外.html">Kanji 外</a>
+
+  - <a href="static/1/2/書.html">Kanji 書</a>
+
+  - <a href="static/1/2/昼.html">Kanji 昼</a>
 
   - <a href="static/1/2/理.html">Kanji 理</a>
 
   - <a href="static/1/2/黒.html">Kanji 黒</a>
 
+  - <a href="static/1/2/東.html">Kanji 東</a>
+
+  - <a href="static/1/2/秋.html">Kanji 秋</a>
+
+  - <a href="static/1/2/遠.html">Kanji 遠</a>
+
+  - <a href="static/1/2/画.html">Kanji 画</a>
+
+  - <a href="static/1/2/姉.html">Kanji 姉</a>
+
+  - <a href="static/1/2/太.html">Kanji 太</a>
+
   - <a href="static/1/2/思.html">Kanji 思</a>
 
   - <a href="static/1/2/色.html">Kanji 色</a>
 
+  - <a href="static/1/2/父.html">Kanji 父</a>
+
   - <a href="static/1/2/活.html">Kanji 活</a>
+
+  - <a href="static/1/2/地.html">Kanji 地</a>
+
+  - <a href="static/1/2/直.html">Kanji 直</a>
+
+  - <a href="static/1/2/点.html">Kanji 点</a>
+
+  - <a href="static/1/2/新.html">Kanji 新</a>
+
+  - <a href="static/1/2/雪.html">Kanji 雪</a>
+
+  - <a href="static/1/2/交.html">Kanji 交</a>
+
+  - <a href="static/1/2/家.html">Kanji 家</a>
+
+  - <a href="static/1/2/計.html">Kanji 計</a>
+
+  - <a href="static/1/2/強.html">Kanji 強</a>
+
+  - <a href="static/1/2/冬.html">Kanji 冬</a>
+
+  - <a href="static/1/2/時.html">Kanji 時</a>
+
+  - <a href="static/1/2/聞.html">Kanji 聞</a>
+
+  - <a href="static/1/2/語.html">Kanji 語</a>
+
+  - <a href="static/1/2/道.html">Kanji 道</a>
 
   - <a href="static/1/2/茶.html">Kanji 茶</a>
 
+  - <a href="static/1/2/顔.html">Kanji 顔</a>
+
+  - <a href="static/1/2/雲.html">Kanji 雲</a>
+
+  - <a href="static/1/2/数.html">Kanji 数</a>
+
+  - <a href="static/1/2/国.html">Kanji 国</a>
+
   - <a href="static/1/2/食.html">Kanji 食</a>
+
+  - <a href="static/1/2/場.html">Kanji 場</a>
+
+  - <a href="static/1/2/親.html">Kanji 親</a>
+
+  - <a href="static/1/2/記.html">Kanji 記</a>
+
+  - <a href="static/1/2/万.html">Kanji 万</a>
+
+  - <a href="static/1/2/方.html">Kanji 方</a>
 
   - <a href="static/1/2/考.html">Kanji 考</a>
 
+  - <a href="static/1/2/読.html">Kanji 読</a>
+
+  - <a href="static/1/2/京.html">Kanji 京</a>
+
+  - <a href="static/1/2/兄.html">Kanji 兄</a>
+
+  - <a href="static/1/2/自.html">Kanji 自</a>
+
+  - <a href="static/1/2/頭.html">Kanji 頭</a>
+
   - <a href="static/1/2/作.html">Kanji 作</a>
+
+  - <a href="static/1/2/古.html">Kanji 古</a>
 
   - <a href="static/1/2/歩.html">Kanji 歩</a>
 
   - <a href="static/1/2/牛.html">Kanji 牛</a>
 
+  - <a href="static/1/2/岩.html">Kanji 岩</a>
+
   - <a href="static/1/2/図.html">Kanji 図</a>
 
+  - <a href="static/1/2/間.html">Kanji 間</a>
+
+  - <a href="static/1/2/週.html">Kanji 週</a>
+
+  - <a href="static/1/2/通.html">Kanji 通</a>
+
   - <a href="static/1/2/麦.html">Kanji 麦</a>
+
+  - <a href="static/1/2/話.html">Kanji 話</a>
+
+  - <a href="static/1/2/寺.html">Kanji 寺</a>
+
+  - <a href="static/1/2/線.html">Kanji 線</a>
+
+  - <a href="static/1/2/前.html">Kanji 前</a>
+
+  - <a href="static/1/2/西.html">Kanji 西</a>
+
+  - <a href="static/1/2/今.html">Kanji 今</a>
 </details>
 
 
