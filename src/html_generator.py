@@ -165,6 +165,9 @@ def read_kanji_csv(key, data, radicals):
     for id in keys:
         item = content[id]
 
+        if item.get("kanji").significance > 0:
+            continue
+
         radical_exists = False
         radical_html = """
         <div>

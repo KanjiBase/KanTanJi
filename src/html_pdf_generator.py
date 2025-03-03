@@ -8,7 +8,8 @@ options = {
     'margin-top': '10mm',
     'margin-bottom': '10mm',
     'margin-left': '10mm',
-    'margin-right': '10mm'
+    'margin-right': '10mm',
+    'print-media-type': None,
 }
 
 font = ''
@@ -35,6 +36,9 @@ def generate(name, data, radicals, path_getter):
 
     for key in keys:
         item = content[key]
+
+        if item.get("kanji").significance > 0:
+            continue
 
         onyomi = "&emsp;&emsp;".join(map(get_reading, item.get("onyomi").get_equal(0)))
         if onyomi:

@@ -65,6 +65,10 @@ def read_kanji_csv(key, data):
     content = data["content"]
     for key in keys:
         item = content[key]
+
+        if item.get("kanji").significance > 0:
+            continue
+
         output.extend(cards)
         output.extend(cards_translation)
         cards = []

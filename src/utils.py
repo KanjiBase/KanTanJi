@@ -238,8 +238,9 @@ def process_row(row: list):
         output = VocabEntry()
     elif item.get("kanji"):
         if not item.get("imi"):
-            print(" --parse-- IGNORES: kanji", item.get("kanji"), "does not specify required field 'imi'")
-            return None
+            # Keep the kanji in play since it still defines the derived property
+            # print(" --parse-- WARNING: kanji", item.get("kanji"), "does not specify required field 'imi'")
+            item["kanji"].significance += 1
         output = KanjiEntry()
     elif item.get("radical"):
         output = RadicalEntry()

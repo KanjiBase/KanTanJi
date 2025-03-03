@@ -54,6 +54,10 @@ def generate(key, data, radicals, path_getter):
     content = data["content"]
     for key in keys:
         item = content[key]
+
+        if item.get("kanji").significance > 0:
+            continue
+
         # Kanji in large font
         kanji_paragraph = Paragraph(f"<font size=40>{item['kanji']}</font>", styles['KanjiHeader'])
 

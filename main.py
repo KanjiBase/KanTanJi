@@ -82,9 +82,6 @@ for dataset_name in data:
 
             ttype = item['type']
             if ttype == 'kanji' or ttype == 'tango':
-                if item.get("kanji").significance > 0:
-                    continue
-
                 id = str(item['kanji'])
                 node = kanji_dictionary.get(id)
                 if node is None:
@@ -121,10 +118,6 @@ for dataset_name in data:
                         continue
                     node.append(subset_id, (item, row))
                 else:
-                    set_name = str(item.get("setto"))
-                    if set_name is None:
-                        print(" --parse dataset-- Error dataset without name!")
-                        continue
                     node.set_context_name(set_name)
 
             else:
@@ -163,16 +156,20 @@ for did in complementary_datasets:
                 kanji = kanji_dictionary.get(kanji_id)
 
                 if kanji is None:
-                    print(f" --parse dataset-- Error: kanji {kanji_id} undefined for dataset {name} > {subset_name}. Skipping...")
+                    if not ignored:
+                        print(f" --parse dataset-- Error: kanji {kanji_id} undefined for dataset {name} > {subset_name}. Skipping...")
                     # Preserve order by increasing the numeric value, then ignore this entry
                     incremental_id += 1
                     continue
 
                 if not kanji.filled:
-                    print(f" --parse dataset-- Error: kanji {kanji_id} in dataset {name} > {subset_name}"
+                    if not ignored:
+                        print(f" --parse dataset-- Error: kanji {kanji_id} in dataset {name} > {subset_name}"
                           f"- kanji not explicitly defined, although vocabulary item might be. Skipping...")
                     # Preserve order by increasing the numeric value, then ignore this entry
-                    incremental_id += 1
+                    kanji_id = kanji.set_or_get_context_id(did, incremental_id)
+                    if kanji_id == incremental_id:
+                        incremental_id += 1
                     continue
 
                 # Do not optimize! get_was_modified must run to create entires!

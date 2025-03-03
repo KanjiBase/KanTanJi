@@ -442,7 +442,7 @@ class DataSet:
     def adjust_vocabulary_significance(self, kanji_dictionary):
         # Here we deduct significance levels automatically for vocabulary entries, these
         # are dependent on whether they contain already learnt kanji
-        kanji_regex = r'[\u4e00-\u9faf]|[\u3400-\u4dbf]'
+        kanji_regex = r'[\u4e00-\u9faf]|[\u3400-\u4dbf]|[々〆〇]'
 
         for dataset_name in self.data_range():
             dataset_spec = self.data[dataset_name]
