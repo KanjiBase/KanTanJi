@@ -52,30 +52,49 @@ def generate(name, data, radicals, path_getter):
         kanji_alive = retrieve_row_kanjialive_url(item)
         link_html = f'<a style="font-size: 8pt; float: right;" href="{kanji_alive}">{kanji_alive}</a>'
 
-        vocabulary = []
+        vocabulary_now = []
+        vocabulary_deck = []
+        vocabulary_future = []
 
         vocabulary_content = item.vocabulary()
 
         for i in range(len(vocabulary_content)):
             vocab_item = vocabulary_content[i]
-            usage = list(map(generate_furigana, vocab_item.get("tsukaikata")))
-            if len(usage):
-                usage = ('<div style="margin-top: 3px; font-size: 10pt;">'
-                         + '</div><div style="font-size: 10pt;">'.join(usage)
-                         + '</div>')
-            else:
-                usage = ""
 
+            style_usage = "font-size: 10pt"
             class_left = "bl"
             class_right = "br"
             if i == len(vocabulary_content) - 1:
                 class_right += " bb"
                 class_left += " bb"
-            vocabulary.append(f"""
-    <tr>
-        <td class="bl {class_left}">{generate_furigana(vocab_item['tango'])}</td>
-        <td class="br {class_right}" colspan="2"><b>{vocab_item['imi']}</b>{usage}</td>
-    </tr>""")
+
+            target_list = vocabulary_now
+            word = vocab_item.get('tango')
+            if word.significance == 1:
+                class_right += " deck"
+                class_left += " deck"
+                target_list = vocabulary_deck
+                style_usage = "font-size: 7pt"
+
+            elif word.significance > 1:
+                class_right += " future"
+                class_left += " future"
+                target_list = vocabulary_future
+                style_usage = "font-size: 6pt"
+
+            usage = list(map(generate_furigana, vocab_item.get("tsukaikata")))
+            if len(usage):
+                usage = (f'<div style="margin-top: 3px; {style_usage}">'
+                         + f'</div><div style="{style_usage}">'.join(usage)
+                         + '</div>')
+            else:
+                usage = ""
+
+            target_list.append(f"""
+        <tr>
+            <td class="bl {class_left}">{generate_furigana(str(word))}</td>
+            <td class="br {class_right}" colspan="2"><b>{vocab_item['imi']}</b>{usage}</td>
+        </tr>""")
 
         content_html.append(f"""
 <table>
@@ -96,7 +115,9 @@ def generate(name, data, radicals, path_getter):
         <td class="bb small-cell">意味</td>
         <td class="br bb"><b>{item["imi"]}</b></td> 
     </tr>
-    {''.join(vocabulary)}
+    {''.join(vocabulary_now)}
+    {''.join(vocabulary_deck)}
+    {''.join(vocabulary_future)}
 </table>""")
 
     # Generate output HTML
@@ -147,6 +168,14 @@ def generate(name, data, radicals, path_getter):
             font-size: 52pt;
             width: 120px;
             line-height: 1.4;
+        }}
+        .deck {{
+            font-size: 10pt;
+            color: #444444;
+        }}
+        .future {{
+            font-size: 8pt;
+            color: #888888;
         }}
         ruby {{
             line-height: 1;
