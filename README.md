@@ -60,6 +60,14 @@ HTML Stránky slouží pro vložení interaktivních informací o Kanji do exter
 PDF Soubory obsahují seznam znaků kanji a přidružených slovíček.
  - <a href="static/2/1/Písmo IV - Týden 1 .pdf">PDF Seznam Písmo IV - Týden 1 </a>
 
+ - <a href="static/2/10/Písmo IV - Týden 10.pdf">PDF Seznam Písmo IV - Týden 10</a>
+
+ - <a href="static/2/11/Písmo IV - Týden 11.pdf">PDF Seznam Písmo IV - Týden 11</a>
+
+ - <a href="static/2/12/Písmo IV - Týden 12.pdf">PDF Seznam Písmo IV - Týden 12</a>
+
+ - <a href="static/2/13/Písmo IV - Týden 13.pdf">PDF Seznam Písmo IV - Týden 13</a>
+
  - <a href="static/2/2/Písmo IV - Týden 2.pdf">PDF Seznam Písmo IV - Týden 2</a>
 
  - <a href="static/2/3/Písmo IV - Týden 3.pdf">PDF Seznam Písmo IV - Týden 3</a>
@@ -69,6 +77,12 @@ PDF Soubory obsahují seznam znaků kanji a přidružených slovíček.
  - <a href="static/2/5/Písmo IV - Týden 5.pdf">PDF Seznam Písmo IV - Týden 5</a>
 
  - <a href="static/2/6/Písmo IV - Týden 6.pdf">PDF Seznam Písmo IV - Týden 6</a>
+
+ - <a href="static/2/7/Písmo IV - Týden 7.pdf">PDF Seznam Písmo IV - Týden 7</a>
+
+ - <a href="static/2/8/Písmo IV - Týden 8.pdf">PDF Seznam Písmo IV - Týden 8</a>
+
+ - <a href="static/2/9/Písmo IV - Týden 9.pdf">PDF Seznam Písmo IV - Týden 9</a>
 
 
 ### ANKI Balíčky
