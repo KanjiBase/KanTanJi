@@ -5,6 +5,11 @@ from utils_data_entitites import InputFormat, Value, Version, VocabEntry, Radica
     DatasetEntry, DataSubsetEntry
 
 
+def short_uid(text, length=8):
+    hash_obj = hashlib.sha256(text.encode('utf-8'))  # Hash the input string
+    return hash_obj.hexdigest()[:length]
+
+
 def sanitize_filename(name: str):
     return re.sub(r'\s', "_", str(name).strip())
 

@@ -1,6 +1,8 @@
+import re
+
 import markdown
 
-from utils import generate_furigana
+from utils import generate_furigana, short_uid
 from utils_data_entitites import InputFormat
 from utils_html import parse_item_props_html
 
@@ -42,12 +44,8 @@ def inline_html(title, head, content):
 """
 
 
-id_dealer = 0
-
-
 def get_word_html(word, color='blue'):
-    global id_dealer
-    id_dealer += 1
+    uuid = short_uid(re.sub(r'\s+', '', word['tango']))
 
     props_html = parse_item_props_html(word)
     if props_html:
@@ -88,7 +86,7 @@ def get_word_html(word, color='blue'):
     return f"""
     
     <div class="bg-gradient-to-r from-{color}-50 to-{color}-100 rounded-lg shadow p-4 flex flex-col my-2">
-        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab{id_dealer}', this)">
+        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-{uuid}', this)">
             <div>
                 <p class="text-lg text-2xl text-gray-800 copyable relative" 
                 onclick="copyText(this)">{generate_furigana(word['tango'])}</p>
@@ -98,7 +96,7 @@ def get_word_html(word, color='blue'):
             transform transition-transform duration-200 px-2">▼</button>
         </div>
         {props_html}
-        <div id="vocab{id_dealer}" class="button-vocab-example hidden mt-2 p-2 rounded bg-white text-gray-700 shadow">
+        <div id="vocab-{uuid}" class="button-vocab-example hidden mt-2 p-2 rounded bg-white text-gray-700 shadow">
           {usage_examples}
         </div>
     </div>
