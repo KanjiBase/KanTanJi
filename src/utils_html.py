@@ -5,6 +5,7 @@ VERB_TRANSITIVENESS_COLOR = "#28835F"
 VERB_IGIDAN_GODAN_COLOR = "#658B18"
 VERB_SURU_COLOR = "#4A90E2"
 
+
 def get_smart_label(title: str, details: str, color="#d73a49"):
     return f"""
 <span class="property-label" onclick="this.querySelector('span').style.display = (this.querySelector('span').style.display === 'none' || this.querySelector('span').style.display === '') ? 'block' : 'none';" style="display: inline-block; background-color: {color}; color: white; padding: 4px 8px; border-radius: 12px; font-size: 12px; font-weight: bold; font-family: Arial, sans-serif; cursor: pointer; position: relative; margin-right: 8px;">
@@ -14,6 +15,19 @@ def get_smart_label(title: str, details: str, color="#d73a49"):
     </span>
 </span>    
 """
+
+
+def get_reading_html(text):
+    reading = str(text).split('・')
+    if len(reading) == 2:
+        return f'<span style="font-weight: bold">{reading[0]}<span style="color: gray;">・{reading[1]}</span></span>'
+    if len(reading) != 1:
+        print('E: reading with multiple separators!', text)
+    return f'<span style="font-weight: bold">{text}</span>'
+
+
+def get_unimportant_reading_html(text):
+    return f'<span style="color: gray;">{text}</span>'
 
 
 def vocab_property_html(prop: str | Value, color: str):

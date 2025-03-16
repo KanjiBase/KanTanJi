@@ -32,4 +32,13 @@ def read_local_data():
             "name": key
         }
 
+    with open('misc/real-set-test-data.json', 'r', encoding='utf-8') as f:
+        data = json.load(f)
+        key = "real-data"
+        out[key] = {
+            "data": data,
+            "id": key,
+            "name": key
+        }
+
     return out

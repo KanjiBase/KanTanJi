@@ -1,5 +1,6 @@
 import pdfkit
 from utils import retrieve_row_kanjialive_url, Value, generate_furigana_custom, generate_furigana
+from utils_html import get_reading_html, get_unimportant_reading_html
 
 options = {
     'quiet': False,
@@ -17,12 +18,14 @@ with open('misc/font_base64.txt', 'r', encoding='UTF-8') as file:
     font = file.read()
 
 
-def get_reading(text):
-    return f'<span style="font-weight: bold">{text}</span>'
-
-
-def get_unimportant_reading(text):
-    return f'<span style="color: gray;">{text}</span>'
+def get_reading(item, type):
+    result = ",&emsp; ".join(map(get_reading_html, item.get(type).get_equal(0)))
+    additional = ",&emsp;".join(map(get_unimportant_reading_html, item.get(type).get_below(1)))
+    if result and additional:
+        return result + ",&emsp;" + additional
+    if result or additional:
+        return result + additional
+    return "-"
 
 
 # Generate a PDF file with kanji, on'yomi, kun'yomi, and example words
@@ -40,14 +43,8 @@ def generate(name, data, radicals, path_getter):
         if item.get("kanji").significance > 0:
             continue
 
-        onyomi = "&emsp;&emsp;".join(map(get_reading, item.get("onyomi").get_equal(0)))
-        if onyomi:
-            onyomi = onyomi + "&emsp;&emsp;"
-        onyomi += "&emsp;&emsp;".join(map(get_unimportant_reading, item.get("onyomi").get_below(1)))
-        kunyomi = "&emsp;&emsp;".join(map(get_reading, item.get("kunyomi").get_equal(0)))
-        if kunyomi:
-            onyomi = onyomi + "&emsp;&emsp;"
-        kunyomi += "&emsp;&emsp;".join(map(get_unimportant_reading, item.get("kunyomi").get_below(1)))
+        onyomi = get_reading(item, "onyomi")
+        kunyomi = get_reading(item, "kunyomi")
 
         kanji_alive = retrieve_row_kanjialive_url(item)
         link_html = f'<a style="font-size: 8pt; float: right;" href="{kanji_alive}">{kanji_alive}</a>'
@@ -57,6 +54,7 @@ def generate(name, data, radicals, path_getter):
         vocabulary_future = []
 
         vocabulary_content = item.vocabulary()
+        vocab_row_style = "line-height: 18pt;"
 
         for i in range(len(vocabulary_content)):
             vocab_item = vocabulary_content[i]
@@ -74,13 +72,15 @@ def generate(name, data, radicals, path_getter):
                 class_right += " deck"
                 class_left += " deck"
                 target_list = vocabulary_deck
-                style_usage = "font-size: 7pt"
+                style_usage = "font-size: 8pt"
+                vocab_row_style = "line-height: 15pt;"
 
             elif word.significance > 1:
                 class_right += " future"
                 class_left += " future"
                 target_list = vocabulary_future
-                style_usage = "font-size: 6pt"
+                style_usage = "font-size: 8pt"
+                vocab_row_style = "line-height: 15pt;"
 
             usage = list(map(generate_furigana, vocab_item.get("tsukaikata")))
             if len(usage):
@@ -91,7 +91,7 @@ def generate(name, data, radicals, path_getter):
                 usage = ""
 
             target_list.append(f"""
-        <tr>
+        <tr style={vocab_row_style}>
             <td class="bl {class_left}">{generate_furigana(str(word))}</td>
             <td class="br {class_right}" colspan="2"><b>{vocab_item['imi']}</b>{usage}</td>
         </tr>""")
@@ -171,11 +171,13 @@ def generate(name, data, radicals, path_getter):
         }}
         .deck {{
             font-size: 10pt;
-            color: #444444;
+            color: #222222;
+            line-height: 15pt;
         }}
         .future {{
-            font-size: 8pt;
-            color: #888888;
+            font-size: 10pt;
+            color: #555555;
+            line-height: 15pt;
         }}
         ruby {{
             line-height: 1;

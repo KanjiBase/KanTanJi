@@ -487,7 +487,9 @@ class DataSet:
                               e)
 
     def process(self, metadata, guard: HashGuard):
+        print("Generating:", self.context_name)
         for proc_name, processor in DataSet._processors:
+            print(proc_name, end="... ")
             for key in self.data:
                 data_spec = self.data[key]
                 if data_spec["ignored"]:
@@ -498,9 +500,10 @@ class DataSet:
 
                 try:
                     if processor(name, data_spec, metadata, lambda _: output_path):
-                        print(f"[{name}]  {proc_name} - generated.")
+                        print(f"[○ {name}]", end="  ")
                     else:
-                        print(f"[{name}]  {proc_name} - unchanged.")
+                        print(f"[🞪 {name}]", end="  ")
                 except Exception as e:
-                    print(f"Failed to write file to ", output_path, e)
+                    print(f"\nFailed to write file to ", output_path, e)
                     print(traceback.format_exc())
+            print()

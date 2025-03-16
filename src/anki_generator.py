@@ -9,6 +9,11 @@ from utils_html import parse_item_props_html
 
 
 def reading_label(value):
+    reading = str(value).split('・')
+    if len(reading) == 2:
+        return f'<span class="rl">{reading[0]}<span class="rldt">・{reading[1]}</span></span>'
+    if len(reading) != 1:
+        print('E: reading with multiple separators!', value)
     return f"""
 <span class="rl">{value}</span>    
 """
@@ -23,6 +28,7 @@ def reading_label_unimportant(value):
 css = """
 .rl {padding:3px 9px;background:rgba(238,238,228,0.35);margin:0 5px;border-radius:3px;font-weight:bold;}
 .rld {color: lightgray;font-weight:auto;background:rgba(238,238,228,0.25);}
+.rldt {color: lightgray;}
 .rlbl {visibility:hidden}
 .qa {opacity:0.4;margin-bottom:15px}
 .c {display: flex;flex-direction: column;justify-content: center; align-items: center;gap: 5px;width: 100%;}

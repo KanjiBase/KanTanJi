@@ -225,7 +225,8 @@ def process_row(row: list):
             ref.append(id)
 
         elif key in ['onyomi', 'kunyomi']:
-            values = map(lambda x: Value(x.strip(), key_significance, data_format), value.split("、"))
+            # with kanji readings, replace dot with middle dot
+            values = map(lambda x: Value(x.strip().replace('.', '・'), key_significance, data_format), value.split("、"))
             item[key].extend(values)
         elif key in ['tsukaikata']:
             item[key].append(Value(value, key_significance, data_format))

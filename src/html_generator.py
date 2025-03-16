@@ -4,21 +4,17 @@ import markdown
 
 from utils import generate_furigana, short_uid
 from utils_data_entitites import InputFormat
-from utils_html import parse_item_props_html
+from utils_html import parse_item_props_html, get_reading_html, get_unimportant_reading_html
 
 
-def get_onyomi(item):
-    result = item.get("onyomi").join(", ")
-    if not result:
-        return "-"
-    return result
-
-
-def get_kunyomi(item):
-    result = item.get("kunyomi").join(", ")
-    if not result:
-        return "-"
-    return result
+def get_reading(item, type):
+    result = ",&emsp; ".join(map(get_reading_html, item.get(type).get_equal(0)))
+    additional = ",&emsp;".join(map(get_unimportant_reading_html, item.get(type).get_below(1)))
+    if result and additional:
+        return result + ",&emsp;" + additional
+    if result or additional:
+        return result + additional
+    return "-"
 
 
 def wrap_html(title, head, content):
@@ -44,7 +40,7 @@ def inline_html(title, head, content):
 """
 
 
-def get_word_html(word, color='blue'):
+def get_word_html(word, start='50', end='100'):
     uuid = short_uid(re.sub(r'\s+', '', word['tango']))
 
     props_html = parse_item_props_html(word)
@@ -71,7 +67,7 @@ def get_word_html(word, color='blue'):
     usage_examples = ''.join(map(get_usage, word['tsukaikata']))
     if not usage_examples:
         return f"""
-    <div class="bg-gradient-to-r from-{color}-50 to-{color}-100 rounded-lg shadow p-4 flex flex-col my-2">
+    <div class="bg-gradient-to-r {start} {end} rounded-lg shadow p-4 flex flex-col my-2">
         <div class="flex justify-between items-center">
           <div>
             <p class="text-lg text-2xl text-gray-800 copyable cursor-pointer relative" 
@@ -85,7 +81,7 @@ def get_word_html(word, color='blue'):
 
     return f"""
     
-    <div class="bg-gradient-to-r from-{color}-50 to-{color}-100 rounded-lg shadow p-4 flex flex-col my-2">
+    <div class="bg-gradient-to-r {start} {end} rounded-lg shadow p-4 flex flex-col my-2">
         <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-{uuid}', this)">
             <div>
                 <p class="text-lg text-2xl text-gray-800 copyable relative" 
@@ -111,7 +107,7 @@ def get_vocab_entries(item):
 >   
     <span class="text-xl font-bold text-gray-800 mb-4">Povinná slovíčka</span>
     {''.join(map(
-        lambda x: get_word_html(x, 'green'), 
+        lambda x: get_word_html(x, 'from-green-50', 'to-green-100'), 
         filter(lambda y: y.get_equal('tango', 0), item.vocabulary()))
     )}
 </div>    
@@ -121,11 +117,11 @@ def get_vocab_entries(item):
 >   
     <span class="text-xl font-bold text-gray-800 mb-4">Budou v sadě / Rozšiřující</span>
     {''.join(map(
-        lambda x: get_word_html(x, 'blue'), 
+        lambda x: get_word_html(x, 'from-blue-50', 'to-blue-100'), 
         filter(lambda y: y.get_equal('tango', 1), item.vocabulary()))
     )}
     {''.join(map(
-        lambda x: get_word_html(x, 'purple'), 
+        lambda x: get_word_html(x, 'from-purple-100', 'to-purple-300'), 
         filter(lambda y: y.get_below('tango', 2), item.vocabulary()))
     )}
 </div>  
@@ -251,7 +247,7 @@ def read_kanji_csv(key, data, radicals):
         <div class="grid grid-cols-2 gap-4">
             <div>
                 <p class="text-sm text-gray-500">Onyomi</p>
-                <p class="text-lg font-semibold text-gray-800">{get_onyomi(item)}</p>
+                <p class="text-lg font-semibold text-gray-800">{get_reading(item, 'onyomi')}</p>
             </div>
             <div>
                 <p class="text-sm text-gray-500">Význam</p>
@@ -259,7 +255,7 @@ def read_kanji_csv(key, data, radicals):
             </div>
             <div>
                 <p class="text-sm text-gray-500">Kunyomi</p>
-                <p class="text-lg font-semibold text-gray-800">{get_kunyomi(item)}</p>
+                <p class="text-lg font-semibold text-gray-800">{get_reading(item, 'kunyomi')}</p>
             </div>
             {radical_html}
         </div>
