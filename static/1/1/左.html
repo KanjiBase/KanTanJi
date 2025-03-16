@@ -107,7 +107,7 @@ rt {
         <div class="grid grid-cols-2 gap-4">
             <div>
                 <p class="text-sm text-gray-500">Onyomi</p>
-                <p class="text-lg font-semibold text-gray-800">サ</p>
+                <p class="text-lg font-semibold text-gray-800"><span style="font-weight: bold">サ</span></p>
             </div>
             <div>
                 <p class="text-sm text-gray-500">Význam</p>
@@ -115,7 +115,7 @@ rt {
             </div>
             <div>
                 <p class="text-sm text-gray-500">Kunyomi</p>
-                <p class="text-lg font-semibold text-gray-800">ひだり</p>
+                <p class="text-lg font-semibold text-gray-800"><span style="font-weight: bold">ひだり</span></p>
             </div>
             
         </div>
@@ -173,7 +173,7 @@ rt {
     </div>
     
     
-    <div class="bg-gradient-to-r from-purple-50 to-purple-100 rounded-lg shadow p-4 flex flex-col my-2">
+    <div class="bg-gradient-to-r from-purple-100 to-purple-300 rounded-lg shadow p-4 flex flex-col my-2">
         <div class="flex justify-between items-center">
           <div>
             <p class="text-lg text-2xl text-gray-800 copyable cursor-pointer relative" 
@@ -181,7 +181,14 @@ rt {
             <p class="text-sm text-gray-600">zabočení doleva</p>
           </div>
         </div>
-        
+        <div class='my-2 vocab-properties'>
+<span class="property-label" onclick="this.querySelector('span').style.display = (this.querySelector('span').style.display === 'none' || this.querySelector('span').style.display === '') ? 'block' : 'none';" style="display: inline-block; background-color: #4A90E2; color: white; padding: 4px 8px; border-radius: 12px; font-size: 12px; font-weight: bold; font-family: Arial, sans-serif; cursor: pointer; position: relative; margin-right: 8px;">
+    する sloveso
+    <span style="display: none; position: absolute; top: 120%; left: 0; background-color: white; color: black; border: 1px solid #4A90E2; padding: 4px 8px; border-radius: 6px; font-size: 12px; font-family: Arial, sans-serif; z-index: 10; min-width: 150px;">
+        Nepravidelná slovesa se chovají dle する tvaru podobně.
+    </span>
+</span>    
+</div>
     </div>
     
 </div>  
