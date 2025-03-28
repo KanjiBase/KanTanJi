@@ -1,4 +1,5 @@
 import logging
+from pathlib import Path
 
 
 class NullLogger:
@@ -39,21 +40,36 @@ class NullLogger:
 _logger = None
 
 
-def set_logging(production: bool = True):
+def set_logging(production: bool = True, output_file: str = None):
     global _logger
     if production:
         _logger = NullLogger()
     else:
-        _logger = logging.getLogger()
+        _logger = logging.getLogger("kantanji")
         _logger.setLevel(logging.INFO)
 
-        if not _logger.hasHandlers():
-            handler = logging.StreamHandler()
-            handler.setLevel(logging.INFO)
-            formatter = logging.Formatter("[%(levelname)s] %(message)s")
-            handler.setFormatter(formatter)
-            _logger.addHandler(handler)
+        if output_file is None:
+            if not _logger.hasHandlers():
+                handler = logging.StreamHandler()
+                handler.setLevel(logging.INFO)
+                formatter = logging.Formatter("[%(levelname)s] %(message)s")
+                handler.setFormatter(formatter)
+                _logger.addHandler(handler)
+        else:
+            formatter = logging.Formatter("[%(asctime)s] [%(levelname)s] %(message)s")
+
+            # Console handler
+            stream_handler = logging.StreamHandler()
+            stream_handler.setFormatter(formatter)
+            _logger.addHandler(stream_handler)
+
+            # File handler
+            log_file = Path(output_file)
+            file_handler = logging.FileHandler(log_file, mode="w")
+            file_handler.setFormatter(formatter)
+            _logger.addHandler(file_handler)
 
 def get_logger():
     global _logger
     return _logger
+

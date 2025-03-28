@@ -7,10 +7,12 @@ import copy
 from src.logging_utils import set_logging, get_logger
 parser = argparse.ArgumentParser(description="Kantanji: Generate Learning Sets from tabular data.")
 parser.add_argument("--dry-run", action='store_true', help="If true, all dataset is processed, no output written.")
+parser.add_argument("--log-file", type=str, help="If set to path, logs are stored to a file.")
+
 args = parser.parse_args()
 
 dry_run = bool(args.dry_run or os.getenv("KANTANJI_DRY_RUN"))
-set_logging(production=not dry_run)
+set_logging(production=not dry_run, output_file=args.log_file)
 logger = get_logger()
 
 # Do imports after initialization

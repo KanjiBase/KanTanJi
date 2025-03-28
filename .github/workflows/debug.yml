@@ -31,4 +31,4 @@ jobs:
         env:
             GOOGLE_SERVICE: ${{ secrets.GOOGLE_SERVICE }}
             FOLDER_ID: ${{ secrets.FOLDER_ID }}
-        run: python main.py --dry-run
+        run: python main.py --dry-run --log-file=.log_output.txt && cat .log_output.txt
