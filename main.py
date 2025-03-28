@@ -1,8 +1,19 @@
+import argparse
 import traceback
 from pathlib import Path
 import os
 import copy
 
+from src.logging_utils import set_logging, get_logger
+parser = argparse.ArgumentParser(description="Kantanji: Generate Learning Sets from tabular data.")
+parser.add_argument("--dry-run", action='store_true', help="If true, all dataset is processed, no output written.")
+args = parser.parse_args()
+
+dry_run = bool(args.dry_run or os.getenv("KANTANJI_DRY_RUN"))
+set_logging(production=not dry_run)
+logger = get_logger()
+
+# Do imports after initialization
 from src.config import OVERRIDE_VOCAB_SIGNIFICANCE
 from src.utils import process_row, dict_read_create, parse_ids
 from src.read_input_google_api import read_sheets_google_api
@@ -17,11 +28,12 @@ from src.html_pdf_generator import generate as generate_pdf2
 from src.html_generator import generate as generate_html
 
 
+DataSet.set_mode_production(not dry_run)
+
 DataSet.register_processor("Anki Decks", generate_anki)
 # DataSet.register_processor("PDF Materials", generate_pdf)
 DataSet.register_processor("PDF Materials", generate_pdf2)
 DataSet.register_processor("HTML Kanji Pages", generate_html)
-
 
 def try_read_data(getter, message, output, success_read):
     if not success_read:
@@ -132,14 +144,15 @@ for dataset_name in data:
             print(f"Error on line {row}", e)
             print(traceback.format_exc())
 
-
-
 # Now parse datasets if any
 for did in complementary_datasets:
     dataset = complementary_datasets[did]
     name = dataset.context_name
 
     incremental_id = 1
+
+    logger.info("Prepare: Dataset %s (%s)", name, did)
+
     for dsid in dataset.data_range():
         data_subset, original_row = dataset.data[dsid]
         subset_name_item = data_subset.get("setto")
@@ -147,6 +160,8 @@ for did in complementary_datasets:
         kanjis_modified = False
         output = {}
         output_order = []
+
+        logger.info(" Prepare: Subset %s (%s)", subset_name, dsid)
 
         try:
             order = parse_ids(data_subset["ids"])
@@ -157,19 +172,26 @@ for did in complementary_datasets:
 
                 if kanji is None:
                     if not ignored:
-                        print(f" --parse dataset-- Error: kanji {kanji_id} undefined for dataset {name} > {subset_name}. Skipping...")
+                        print(
+                            f" --parse dataset-- Error: kanji {kanji_id} undefined for dataset {name} > {subset_name}. Skipping...")
                     # Preserve order by increasing the numeric value, then ignore this entry
+                    logger.info("  Kanji: %s ignored or invalid.", kanji_id)
+
                     incremental_id += 1
                     continue
 
                 if not kanji.filled:
                     if not ignored:
                         print(f" --parse dataset-- Error: kanji {kanji_id} in dataset {name} > {subset_name}"
-                          f"- kanji not explicitly defined, although vocabulary item might be. Skipping...")
+                              f"- kanji not explicitly defined, although vocabulary item might be. Skipping...")
                     # Preserve order by increasing the numeric value, then ignore this entry
+
                     kanji_id = kanji.set_or_get_context_id(did, incremental_id)
                     if kanji_id == incremental_id:
+                        logger.info("  Kanji: %s not filled. Increment ID: %d.", kanji_id, incremental_id)
                         incremental_id += 1
+                    else:
+                        logger.info("  Kanji: %s not filled - but already encountered.", kanji_id)
                     continue
 
                 # Do not optimize! get_was_modified must run to create entires!
@@ -177,21 +199,24 @@ for did in complementary_datasets:
                 kanjis_modified = not ignored and kanji.get_was_modified(data_modification_guard) or kanjis_modified
 
                 # Kanji is linked to kanji_dictionary by the kanji letter, store context-dependent shared ID
-                kanji_id = kanji.set_or_get_context_id(did, incremental_id)
+                kanji_dataset_id = kanji.set_or_get_context_id(did, incremental_id)
 
                 # Updates are consistent, e.g. anki packs use GUID which does not change. Here we create
                 # IDs that follow definition order in the dataset.
                 kanji_copy = copy.deepcopy(kanji)
 
-                kanji_copy["id"] = Value(kanji_id)
+                kanji_copy["id"] = Value(kanji_dataset_id)
 
-                str_id = str(kanji_id)
+                str_id = str(kanji_dataset_id)
                 output[str_id] = kanji_copy
                 output_order.append(str_id)
 
                 # Increment only if used
-                if kanji_id == incremental_id:
+                if kanji_dataset_id == incremental_id:
+                    logger.info("  Kanji: %s: Setting increment ID: %d.", kanji_id, incremental_id)
                     incremental_id += 1
+                else:
+                    logger.info("  Kanji: %s: Already encountered before.", kanji_id)
 
             # Modification can also be caused by name change
             # If ignored, prevent from recording in the timestamp (problems with files, readme generating, etc.)
@@ -211,7 +236,6 @@ for did in complementary_datasets:
         except Exception as e:
             del complementary_datasets[did]
             print(f" --parse dataset-- Error: dataset {subset_name} ignored", e)
-
 
 metadata = {}
 # Compute guard also for metadata
@@ -265,10 +289,10 @@ readme_contents = {}
 
 
 def clean_files(id, item, outdated):
-    global target_folder_to_output, metadata, readme_contents
+    global target_folder_to_output, metadata, readme_contents, dry_run
     try:
         # Skip no context_name elements - do not create such files
-        if not item["context_name"]:
+        if not item["context_name"] or dry_run:
             return
         source = data_modification_guard.processing_file_root(item)
         target = data_modification_guard.saving_file_root(item, target_folder_to_output)
@@ -380,7 +404,7 @@ HTML Stránky slouží pro vložení interaktivních informací o Kanji do exter
     return output_readme
 
 
-if not uses_test_data:
+if not uses_test_data and not dry_run:
     target_folder_to_output = "static"
     data_modification_guard.for_each_entry(clean_files)
 
@@ -435,6 +459,5 @@ else:
     # Write the README.md with links to the PDF files
     with open(".TEST-README.md", mode='w+', encoding='utf-8') as file:
         file.write(readme + readme_output)
-
 
 data_modification_guard.save()

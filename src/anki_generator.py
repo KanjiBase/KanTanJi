@@ -240,10 +240,12 @@ def create_anki_deck(key, reader, filename):
         save_deck(filename, deck)
 
 
-def generate(key, data, metadata, folder_getter):
+def generate(key, data, metadata, folder_getter, is_debug_run):
     # Anki packs only read data, so if not modified do not re-generate
-    if not data["modified"]:
+    if not data["modified"] and not is_debug_run:
         return False
     anki = read_kanji_csv(key, data)
-    create_anki_deck(key, anki, f"{folder_getter(key)}/{sanitize_filename(key)}.apkg")
+
+    if not is_debug_run:
+        create_anki_deck(key, anki, f"{folder_getter(key)}/{sanitize_filename(key)}.apkg")
     return True

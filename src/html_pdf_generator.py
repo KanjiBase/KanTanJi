@@ -29,8 +29,8 @@ def get_reading(item, type):
 
 
 # Generate a PDF file with kanji, on'yomi, kun'yomi, and example words
-def generate(name, data, radicals, path_getter):
-    if not data["modified"]:
+def generate(name, data, radicals, path_getter, is_debug_run):
+    if not data["modified"] and not is_debug_run:
         return False
 
     content_html = []
@@ -197,14 +197,14 @@ def generate(name, data, radicals, path_getter):
 </body>
 </html>"""
 
-    # Define output path
-    pdf_output_path = f"{path_getter(name)}/{name}.pdf"
+    if not is_debug_run:
+        # Define output path
+        pdf_output_path = f"{path_getter(name)}/{name}.pdf"
+        # Convert HTML to PDF using pdfkit
+        pdfkit.from_string(content_html, pdf_output_path, options=options)
 
-    # Convert HTML to PDF using pdfkit
-    pdfkit.from_string(content_html, pdf_output_path, options=options)
-
-    # Could also output html
-    # with open(f"{path_getter(name)}/{name}.html", "w", encoding="UTF-8") as file:
-    #     file.write(content_html)
+        # Could also output html
+        # with open(f"{path_getter(name)}/{name}.html", "w", encoding="UTF-8") as file:
+        #     file.write(content_html)
 
     return True

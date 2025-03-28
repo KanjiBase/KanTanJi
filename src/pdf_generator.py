@@ -30,10 +30,11 @@ font = 'misc/font.ttf'
 pdfmetrics.registerFont(TTFont('NotoSans', font))
 pdfmetrics.registerFont(TTFont('NotoSans-Bold', font))
 
+
 # Generate a PDF file with kanji, on'yomi, kun'yomi, and example words
-def generate(key, data, radicals, path_getter):
+def generate(key, data, radicals, path_getter, is_debug_run):
     # Anki packs only read data, so if not modified do not re-generate
-    if not data["modified"]:
+    if not data["modified"] and not is_debug_run:
         return False
 
     doc = SimpleDocTemplate(f"{path_getter(key)}/{sanitize_filename(key)}.pdf", pagesize=letter, topMargin=12, bottomMargin=10)
@@ -135,7 +136,8 @@ def generate(key, data, radicals, path_getter):
         elements.append(Spacer(1, 12))  # Add space between each entry
 
     if elements:  # Only build the document if there are elements
-        doc.build(elements)
+        if not is_debug_run:
+            doc.build(elements)
         return True
 
     print("No content to add to the PDF.")

@@ -44,7 +44,8 @@ iframe.src = targetPage;
 iframe.style.width = '100%';
 iframe.style.border = 'none';
 iframe.style.minHeight = '700px';
-iframe.id = 'ifrm';
+iframe.id = 'ifrm-kantanji';
+iframe.setAttribute('allow', "clipboard-read; clipboard-write")
 parent.appendChild(iframe);
 
 window.addEventListener("message", function(event) {
@@ -52,7 +53,7 @@ window.addEventListener("message", function(event) {
         iframeHeight
     } = event.data || {};
     if (iframeHeight) {
-        const iframe = document.getElementById("ifrm");
+        const iframe = document.getElementById("ifrm-kantanji");
         iframe.style.height = `${Number.parseInt(iframeHeight)}px`;
     }
 });

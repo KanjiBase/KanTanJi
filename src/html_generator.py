@@ -372,16 +372,19 @@ def read_kanji_csv(key, data, radicals):
 import os
 
 
-def generate(key, data, metadata, path_getter):
+def generate(key, data, metadata, path_getter, is_debug_run):
     radicals = metadata.get("radical")
     if not radicals:
         print("Warning: Radicals not defined. Skipping HTML outputs!")
         return False
 
-    if not data["modified"] and not radicals["modified"]:
+    if not data["modified"] and not radicals["modified"] and not is_debug_run:
         return False
 
     output = read_kanji_csv(key, data, radicals["content"])
+
+    if is_debug_run:
+        return True
 
     did_save = False
     file_root = path_getter(key)

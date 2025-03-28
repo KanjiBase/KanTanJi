@@ -6,8 +6,9 @@ import json
 import time
 from enum import Enum
 from copy import copy
-from operator import itemgetter
 
+# Needs full path import - to load the same module as main that initialized it
+from src.logging_utils import get_logger
 from config import VERSION
 
 
@@ -397,6 +398,7 @@ class DataSubsetEntry(Entry):
 
 class DataSet:
     _processors = []
+    _production = False
 
     def __init__(self, parent_context_id, context_name=None):
         if context_name is None:
@@ -434,6 +436,10 @@ class DataSet:
     def register_processor(name: str, processor):
         DataSet._processors.append((name, processor))
 
+    @staticmethod
+    def set_mode_production(production: bool):
+        DataSet._production = production
+
     def data_range(self):
         if not self._order:
             self._order = sorted(self.data.keys())
@@ -443,8 +449,10 @@ class DataSet:
         # Here we deduct significance levels automatically for vocabulary entries, these
         # are dependent on whether they contain already learnt kanji
         kanji_regex = r'[\u4e00-\u9faf]|[\u3400-\u4dbf]|[々〆〇]'
+        logger = get_logger()
 
         for dataset_name in self.data_range():
+            logger.info("Adjust vocabulary: %s", dataset_name)
             dataset_spec = self.data[dataset_name]
             dataset = dataset_spec["content"]
             for kanji_id in dataset:
@@ -465,15 +473,16 @@ class DataSet:
                                 else contains_kanji.get_context_id(self.parent_context_id)
 
                             if contains_kanji_id is None:
-                                match_len = None
+                                match_len = -1
                                 break
                             if contains_kanji_id <= kanji_id:
                                 match_len = match_len + 1
                             elif contains_kanji_id > last_kanji_id:
-                                match_len = None
+                                match_len = -1
                                 break
 
-                        if match_len is None:
+                        logger.info("  Tango: %s, matched %s, match length %d", vocab["tango"], match, match_len)
+                        if match_len < 0:
                             vocab.get("tango").significance = 2
                         elif match_len == len(match):
                             vocab.get("tango").significance = 0
@@ -499,11 +508,12 @@ class DataSet:
                 output_path = guard.processing_file_root(data_spec["id"], data_spec["context_id"])
 
                 try:
-                    if processor(name, data_spec, metadata, lambda _: output_path):
+                    if processor(name, data_spec, metadata, lambda _: output_path, not self._production):
                         print(f"[○ {name}]", end="  ")
                     else:
                         print(f"[🞪 {name}]", end="  ")
+                    print()
                 except Exception as e:
-                    print(f"\nFailed to write file to ", output_path, e)
+                    print()
+                    print(f"Failed to write file to ", output_path, e)
                     print(traceback.format_exc())
-            print()

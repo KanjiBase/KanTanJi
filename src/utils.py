@@ -1,11 +1,17 @@
+import functools
 import re
+import os
+import json
 import hashlib
 
 from utils_data_entitites import InputFormat, Value, Version, VocabEntry, RadicalEntry, KanjiEntry, \
     DatasetEntry, DataSubsetEntry
 
 
-def short_uid(text, length=8):
+METADATA_FILE = "/misc/.file_order.json"
+
+
+def short_uid(text: str, length=8):
     hash_obj = hashlib.sha256(text.encode('utf-8'))  # Hash the input string
     return hash_obj.hexdigest()[:length]
 
@@ -20,8 +26,43 @@ def hash_id(name: str):
     return str(int(m.hexdigest(), 16))[0:12]
 
 
-def get_item_uid(item):
+def get_item_uid(item: dict):
     return str(item["guid"]) + str(item['type'])
+
+
+def order_file_list(file_list: list):
+    cached_get_file_order = functools.lru_cache(None)(get_file_order)
+    return sorted(file_list, key=cached_get_file_order)
+
+
+def set_file_order(filename: str, order: int):
+    directory = os.path.dirname(filename) or '.'
+    metadata_path = os.path.join(directory, METADATA_FILE)
+
+    # Load existing metadata
+    try:
+        with open(metadata_path, 'r') as f:
+            metadata = json.load(f)
+    except (FileNotFoundError, json.JSONDecodeError):
+        metadata = {}
+
+    metadata[filename] = order
+
+    # Save metadata
+    with open(metadata_path, 'w') as f:
+        json.dump(metadata, f, indent=2)
+
+
+def get_file_order(filename: str):
+    directory = os.path.dirname(filename) or '.'
+    metadata_path = os.path.join(directory, METADATA_FILE)
+
+    try:
+        with open(metadata_path, 'r') as f:
+            metadata = json.load(f)
+        return int(metadata.get(filename, float('inf')))
+    except (FileNotFoundError, ValueError, json.JSONDecodeError):
+        return float('inf')  # Default high value if missing
 
 
 #### ON MATCHING FURIGANA #########
