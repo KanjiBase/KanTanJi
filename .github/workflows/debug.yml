@@ -1,8 +1,7 @@
 name: Debug App On Real Data
 
 on:
-  repository_dispatch:
-    types: [manual_drive_trigger]
+  workflow_dispatch:
 
 jobs:
   generate_contents:
