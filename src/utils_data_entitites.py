@@ -427,6 +427,10 @@ class DataSet:
     def append(self, key, dataset):
         if self.data.get(key) is not None:
             raise ValueError(f"Redefinition of a subset! {key}")
+        try:
+            key = int(key)
+        except (ValueError, TypeError):
+            print("E: JunBan should be integer!", key, dataset["name"])
         self.data[key] = dataset
 
     def overwrite(self, key, dataset):
@@ -451,9 +455,9 @@ class DataSet:
         kanji_regex = r'[\u4e00-\u9faf]|[\u3400-\u4dbf]|[々〆〇]'
         logger = get_logger()
 
-        for dataset_name in self.data_range():
-            logger.info("Adjust vocabulary: %s", dataset_name)
-            dataset_spec = self.data[dataset_name]
+        for dataset_id in self.data_range():
+            dataset_spec = self.data[dataset_id]
+            logger.info("Adjust vocabulary: %s (%s)", dataset_spec["name"], dataset_id)
             dataset = dataset_spec["content"]
             for kanji_id in dataset:
                 kanji = dataset[kanji_id]
