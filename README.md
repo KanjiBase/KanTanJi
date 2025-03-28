@@ -114,6 +114,8 @@ Furiganu zobrazíš kliknutím / tapnutím na kartičku.
 
  - <a href="static/2/6/Písmo_IV_-_Týden_6.apkg">Balíček Písmo_IV_-_Týden_6</a>
 
+ - <a href="static/2/7/Písmo_IV_-_Týden_7.apkg">Balíček Písmo_IV_-_Týden_7</a>
+
  - <a href="static/2/8/Písmo_IV_-_Týden_8.apkg">Balíček Písmo_IV_-_Týden_8</a>
 
  - <a href="static/2/9/Písmo_IV_-_Týden_9.apkg">Balíček Písmo_IV_-_Týden_9</a>
@@ -148,6 +150,9 @@ HTML Stránky slouží pro vložení interaktivních informací o Kanji do exter
 
 #### Kanji Stránky 6
 <a href="static/2/6/表.html">表</a>  <a href="static/2/6/過.html">過</a>  <a href="static/2/6/反.html">反</a>  <a href="static/2/6/共.html">共</a>  <a href="static/2/6/比.html">比</a>  <a href="static/2/6/進.html">進</a>  <a href="static/2/6/加.html">加</a>  <a href="static/2/6/対.html">対</a>  <a href="static/2/6/美.html">美</a>  <a href="static/2/6/現.html">現</a>  <a href="static/2/6/直.html">直</a>  <a href="static/2/6/較.html">較</a>  <a href="static/2/6/以.html">以</a>  <a href="static/2/6/賛.html">賛</a>  <a href="static/2/6/変.html">変</a>  <a href="static/2/6/初.html">初</a>  <a href="static/2/6/増.html">増</a>  <a href="static/2/6/減.html">減</a>  <a href="static/2/6/移.html">移</a>  <a href="static/2/6/続.html">続</a>
+
+#### Kanji Stránky 7
+<a href="static/2/7/無.html">無</a>  <a href="static/2/7/性.html">性</a>  <a href="static/2/7/的.html">的</a>  <a href="static/2/7/法.html">法</a>  <a href="static/2/7/非.html">非</a>  <a href="static/2/7/課.html">課</a>  <a href="static/2/7/最.html">最</a>  <a href="static/2/7/第.html">第</a>  <a href="static/2/7/全.html">全</a>
 
 #### Kanji Stránky 8
 <a href="static/2/8/係.html">係</a>  <a href="static/2/8/王.html">王</a>  <a href="static/2/8/印.html">印</a>  <a href="static/2/8/貧.html">貧</a>  <a href="static/2/8/州.html">州</a>  <a href="static/2/8/濃.html">濃</a>  <a href="static/2/8/省.html">省</a>  <a href="static/2/8/軟.html">軟</a>  <a href="static/2/8/欧.html">欧</a>  <a href="static/2/8/厚.html">厚</a>  <a href="static/2/8/首.html">首</a>  <a href="static/2/8/庁.html">庁</a>  <a href="static/2/8/独.html">独</a>  <a href="static/2/8/硬.html">硬</a>  <a href="static/2/8/薄.html">薄</a>  <a href="static/2/8/浅.html">浅</a>  <a href="static/2/8/界.html">界</a>  <a href="static/2/8/郵.html">郵</a>  <a href="static/2/8/世.html">世</a>  <a href="static/2/8/仏.html">仏</a>
