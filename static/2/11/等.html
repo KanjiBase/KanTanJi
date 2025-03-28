@@ -204,6 +204,27 @@ rt {
     
     
     <div class="bg-gradient-to-r from-green-50 to-green-100 rounded-lg shadow p-4 flex flex-col my-2">
+        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-2f36f65d', this)">
+            <div>
+                <p class="text-lg text-2xl text-gray-800 copyable relative" 
+                onclick="copyText(this)"><ruby>平<rt style="visibility: hidden">びょう</rt></ruby><ruby>等<rt style="visibility: hidden">どう</rt></ruby></p>
+                <p class="text-sm text-gray-600">rovnost</p>
+            </div>
+            <button class="button-vocab-toggle text-gray-600 hover:text-gray-900 
+            transform transition-transform duration-200 px-2">▼</button>
+        </div>
+        
+        <div id="vocab-2f36f65d" class="button-vocab-example hidden mt-2 p-2 rounded bg-white text-gray-700 shadow">
+          
+            <div>
+                <div style="margin-bottom: 5px;">どんな<ruby>国<rt style="visibility: hidden">くに</rt></ruby>から<ruby>来<rt style="visibility: hidden">き</rt></ruby>ても、<ruby>皆<rt style="visibility: hidden">みな</rt></ruby>を<ruby>平<rt style="visibility: hidden">びょう</rt></ruby><ruby>等<rt style="visibility: hidden">どう</rt></ruby>に<ruby>扱<rt style="visibility: hidden">あつか</rt></ruby>います. Ať přijdete z jakékoli země, všichni budete zacházeni rovně.</div>
+            </div>
+            
+        </div>
+    </div>
+    
+    
+    <div class="bg-gradient-to-r from-green-50 to-green-100 rounded-lg shadow p-4 flex flex-col my-2">
         <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-784334ca', this)">
             <div>
                 <p class="text-lg text-2xl text-gray-800 copyable relative" 
@@ -272,27 +293,6 @@ rt {
 >   
     <span class="text-xl font-bold text-gray-800 mb-4">Budou v sadě / Rozšiřující</span>
     
-    
-    
-    <div class="bg-gradient-to-r from-purple-100 to-purple-300 rounded-lg shadow p-4 flex flex-col my-2">
-        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-2f36f65d', this)">
-            <div>
-                <p class="text-lg text-2xl text-gray-800 copyable relative" 
-                onclick="copyText(this)"><ruby>平<rt style="visibility: hidden">びょう</rt></ruby><ruby>等<rt style="visibility: hidden">どう</rt></ruby></p>
-                <p class="text-sm text-gray-600">rovnost</p>
-            </div>
-            <button class="button-vocab-toggle text-gray-600 hover:text-gray-900 
-            transform transition-transform duration-200 px-2">▼</button>
-        </div>
-        
-        <div id="vocab-2f36f65d" class="button-vocab-example hidden mt-2 p-2 rounded bg-white text-gray-700 shadow">
-          
-            <div>
-                <div style="margin-bottom: 5px;">どんな<ruby>国<rt style="visibility: hidden">くに</rt></ruby>から<ruby>来<rt style="visibility: hidden">き</rt></ruby>ても、<ruby>皆<rt style="visibility: hidden">みな</rt></ruby>を<ruby>平<rt style="visibility: hidden">びょう</rt></ruby><ruby>等<rt style="visibility: hidden">どう</rt></ruby>に<ruby>扱<rt style="visibility: hidden">あつか</rt></ruby>います. Ať přijdete z jakékoli země, všichni budete zacházeni rovně.</div>
-            </div>
-            
-        </div>
-    </div>
     
 </div>  
 
