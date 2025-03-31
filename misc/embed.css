@@ -33,3 +33,12 @@
     display: block;
     margin: 0 auto;
 }
+
+/* Embed videos via VideoJS are broken when re-inserted, patch: hide the controls */
+.bonus-content .video-js .vjs-big-play-button, .bonus-content .video-js .vjs-loading-spinner,
+.bonus-content .video-js .vjs-text-track-display, .bonus-content .video-js .vjs-poster,
+.bonus-content .video-js .vjs-control-bar, .bonus-content .video-js .vjs-error-display,
+.bonus-content .video-js .vjs-modal-dialog {
+    display: none !important;
+    visibility: hidden !important;
+}
