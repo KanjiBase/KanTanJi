@@ -455,38 +455,60 @@ class DataSet:
         kanji_regex = r'[\u4e00-\u9faf]|[\u3400-\u4dbf]|[々〆〇]'
         logger = get_logger()
 
+        was_significance_test_configured = False
+        per_dataset_id = False
+        last_kanji_id = None
+
         for dataset_id in self.data_range():
             dataset_spec = self.data[dataset_id]
-            logger.info("Adjust vocabulary: %s (%s)", dataset_spec["name"], dataset_id)
             dataset = dataset_spec["content"]
+
+            # How to setup last_kanji_id: if we have more than 50 kanjis, let's keep it per subset
+            #  else decide globally
+            if not was_significance_test_configured:
+                was_significance_test_configured = True
+                per_dataset_id = len(dataset) < 50
+                if not per_dataset_id:
+                    last_spec = self.data[self.data_range()[-1]]
+                    last_kanji_id = last_spec["order"][-1]
+
+                    if last_kanji_id is None:
+                        print("ERROR", None, last_kanji_id, last_spec)
+
+
+            logger.info("Adjust vocabulary: %s (%s) (per dataset: %s, last %s)",
+                        dataset_spec["name"], dataset_id, per_dataset_id, last_kanji_id)
+
             for kanji_id in dataset:
                 kanji = dataset[kanji_id]
 
                 kanji_id = kanji.get_context_id(self.parent_context_id)
-                # Find last in this set
-                last_kanji_id = dataset_spec["order"][-1]
-                last_kanji_id = dataset[last_kanji_id].get_context_id(self.parent_context_id)
+                if per_dataset_id:
+                    # Find last in this set
+                    last_kanji_id = dataset_spec["order"][-1]
+                    last_kanji_id = dataset[last_kanji_id].get_context_id(self.parent_context_id)
 
                 for vocab in kanji.vocabulary():
                     try:
                         match_len = 0
                         match = re.findall(kanji_regex, vocab["tango"])
+                        ignore_reason = None
                         for m in match:
                             contains_kanji = kanji_dictionary.get(m)
                             contains_kanji_id = None if contains_kanji is None \
                                 else contains_kanji.get_context_id(self.parent_context_id)
 
                             if contains_kanji_id is None:
-                                match_len = -1
+                                ignore_reason = f"kanji {m} undefined"
                                 break
                             if contains_kanji_id <= kanji_id:
                                 match_len = match_len + 1
                             elif contains_kanji_id > last_kanji_id:
-                                match_len = -1
+                                ignore_reason = f"kanji {m} in far lesson"
                                 break
 
                         logger.info("  Tango: %s, matched %s, match length %d", vocab["tango"], match, match_len)
-                        if match_len < 0:
+                        if ignore_reason:
                             vocab.get("tango").significance = 2
                         elif match_len == len(match):
                             vocab.get("tango").significance = 0

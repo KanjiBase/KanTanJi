@@ -56,7 +56,7 @@ def set_logging(production: bool = True, output_file: str = None):
                 handler.setFormatter(formatter)
                 _logger.addHandler(handler)
         else:
-            formatter = logging.Formatter("[%(asctime)s] [%(levelname)s] %(message)s")
+            formatter = logging.Formatter("[%(levelname)s] %(message)s")
 
             # Console handler
             stream_handler = logging.StreamHandler()
