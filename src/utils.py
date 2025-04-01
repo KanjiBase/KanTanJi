@@ -244,6 +244,8 @@ def process_row(row: list):
             if key_significance > 0:
                 print(" --parse-- Warning: ID cannot have lesser significance! Ignoring the property.", value)
             item["id"] = Value(Version(value), 0, data_format)
+        elif key == "subid":
+            item["subid"] = Value(Version(value), key_significance, data_format)
         elif key == "ids":
             if key_significance > 0:
                 print(" --parse-- Warning: IDS cannot have lesser significance! Ignoring the property.", value)
@@ -267,11 +269,14 @@ def process_row(row: list):
 
         elif key in ['onyomi', 'kunyomi']:
             # with kanji readings, replace dot with middle dot
-            values = map(lambda x: Value(x.strip().replace('.', '・'), key_significance, data_format), value.split("、"))
+            values = map(lambda x: Value(x.strip().replace('.', '・'), key_significance, data_format),
+                         filter(None, re.split(r"[,、]+", value)))
             item[key].extend(values)
         elif key in ['tsukaikata']:
             item[key].append(Value(value, key_significance, data_format))
-        elif key in ['imi', 'tango', 'radical', 'setto', 'junban']:
+        elif key in ['junban']:
+            item[key] = Value(int(value), key_significance, data_format)
+        elif key in ['imi', 'tango', 'radical', 'setto']:
             item[key] = Value(value, key_significance, data_format)
         else:
             # TODO does not support chaining
@@ -291,7 +296,7 @@ def process_row(row: list):
         output = KanjiEntry()
     elif item.get("radical"):
         output = RadicalEntry()
-    elif item.get("junban"):
+    elif item.get("subid"):
         output = DataSubsetEntry()
     elif item.get('setto'):
         output = DatasetEntry()

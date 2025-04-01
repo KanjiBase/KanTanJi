@@ -12,6 +12,12 @@ then uses the same ID as kanji it belongs to.
 > **REQUIRED PROPERTIES** -- are required only for elements that take part in generated output.
 > If you define kanji like ``kanji  |  協`` entry and nothing more, unless the kanji is used in
 > non-ignored output for processing, it can stay like this.
+> 
+> Definition
+>  - KEY **optional**
+>    - SUBKEY **required**
+> 
+> Means that ``KEY`` is optional; if specified, SUBKEY is mandatory.
 
 ### Minimal Example:
 ```
@@ -58,14 +64,15 @@ If you need to have two kanji order learning datasets, you can define the other 
 
  - setto
    - id - **required**, the set ID
-   - junban - **optional**, defines a subset ID (order), if present the set defines a subset in the 'main' set (see example below)
+   - subid - **optional**, defines a subset ID (order), if present the set defines a subset in the 'main' set (see example below)
+     - junban - **required**, defines the order
      - ids - **required**, the ID set to compose a new dataset from (kanji values), if missing
      it is the name of the dataset itself (see example)
 
 Example:
 ````
 ID    1   setto    My Awesome Dataset
-ID    1   junban    1       setto    1-20                     ids      図,思, 大, 教
+ID    1   setto    1-20            subid  1           junban    1            ids      図,思, 大, 教
 ````
 Will create dataset _My Awesome Dataset_ with 1-20 kanji set name that contain two kanjis: 184 and 181.
 
@@ -87,7 +94,7 @@ row keys - ``type``s - are supported:
  - radical - value of the radical
    - id - **required**, arbitrary ID to reference radical values later on
    - imi - **required**, the meaning of the kanji symbol
-   - kunyomi
+   - kunyomi - **optional**
  
 
 Unlike data, these metadata entries are available across all data items - they can be defined

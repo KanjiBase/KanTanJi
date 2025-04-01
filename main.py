@@ -126,7 +126,7 @@ for dataset_name in data:
 
                 # Although we respect significance level on sets, we still need to register it here, just avoid rendering resources
                 if ttype == 'subset':
-                    subset_id = str(item.get("junban"))
+                    subset_id = str(item.get("subid"))
                     if subset_id is None:
                         print(" --parse dataset-- Error data subset without sub-id!")
                         continue

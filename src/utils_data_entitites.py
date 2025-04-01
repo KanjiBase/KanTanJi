@@ -391,10 +391,11 @@ class DataSubsetEntry(Entry):
         self["type"] = "subset"
         self["setto"] = other_dict.get("setto")
         self["id"] = other_dict.get("id")
+        self["subid"] = other_dict.get("subid")
         self["junban"] = other_dict.get("junban")
         self["ids"] = other_dict.get("ids", [])
 
-        self["guid"] = f"{self['setto']}.{self['junban']}"
+        self["guid"] = f"{self['setto']}.{self['subid']}"
 
 
 class DataSet:
@@ -433,6 +434,7 @@ class DataSet:
         except (ValueError, TypeError):
             print("E: JunBan should be integer!", key, dataset["name"])
         self.data[key] = dataset
+        self._order = None
 
     def overwrite(self, key, dataset):
         self.data[key] = dataset
@@ -446,8 +448,10 @@ class DataSet:
         DataSet._production = production
 
     def data_range(self):
+        # TODO DIRTY: we are setting tuples (dict, orig data) as values and later overwriting by dict!
         if not self._order:
-            self._order = sorted(self.data.keys())
+            # Access junban by .get() to avoid conversion to str
+            self._order = [k for k, v in sorted(self.data.items(), key=lambda item: item[1][0].get('junban').value)]
         return self._order
 
     def adjust_vocabulary_significance(self, kanji_dictionary):
