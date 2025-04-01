@@ -243,6 +243,35 @@ rt {
     
     
     <div class="bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg shadow p-4 flex flex-col my-2">
+        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-c30318f4', this)">
+            <div>
+                <p class="text-lg text-2xl text-gray-800 copyable relative" 
+                onclick="copyText(this)"><ruby>複<rt style="visibility: hidden">ふく</rt></ruby><ruby>雑<rt style="visibility: hidden">ざつ</rt></ruby>な</p>
+                <p class="text-sm text-gray-600">složitý, komplexní</p>
+            </div>
+            <button class="button-vocab-toggle text-gray-600 hover:text-gray-900 
+            transform transition-transform duration-200 px-2">▼</button>
+        </div>
+        <div class='my-2 vocab-properties'>
+<span class="property-label" onclick="this.querySelector('span').style.display = (this.querySelector('span').style.display === 'none' || this.querySelector('span').style.display === '') ? 'block' : 'none';" style="display: inline-block; background-color: #ACA52F; color: white; padding: 4px 8px; border-radius: 12px; font-size: 12px; font-weight: bold; font-family: Arial, sans-serif; cursor: pointer; position: relative; margin-right: 8px;">
+    な - příd. jméno
+    <span style="display: none; position: absolute; top: 120%; left: 0; background-color: white; color: black; border: 1px solid #ACA52F; padding: 4px 8px; border-radius: 6px; font-size: 12px; font-family: Arial, sans-serif; z-index: 10; min-width: 150px;">
+        Odpadá ~な přípona (např. při použití s 'です'), pokud se neváže na podstatné jméno.
+    </span>
+</span>    
+</div>
+        <div id="vocab-c30318f4" class="button-vocab-example hidden mt-2 p-2 rounded bg-white text-gray-700 shadow">
+          
+            <div>
+                <div style="margin-bottom: 5px;"><span lang="JA">この<ruby>機<rt style="visibility: hidden">き</rt></ruby><ruby>械<rt style="visibility: hidden">かい</rt></ruby>のメカニズムは<ruby>複<rt style="visibility: hidden">ふく</rt></ruby><ruby>雑<rt style="visibility: hidden">ざつ</rt></ruby>です</span></div>
+                <div style="margin-bottom: 5px; color: #666;">Mechanismus tohoto stroje je složitý.</div>
+            </div>
+            
+        </div>
+    </div>
+    
+    
+    <div class="bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg shadow p-4 flex flex-col my-2">
         <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-9347ee99', this)">
             <div>
                 <p class="text-lg text-2xl text-gray-800 copyable relative" 
@@ -288,35 +317,6 @@ rt {
             <div>
                 <div style="margin-bottom: 5px;"><span lang="JA"><ruby>通<rt style="visibility: hidden">とお</rt></ruby>りは<ruby>自<rt style="visibility: hidden">じ</rt></ruby><ruby>動<rt style="visibility: hidden">どう</rt></ruby><ruby>車<rt style="visibility: hidden">しゃ</rt></ruby>で<ruby>混<rt style="visibility: hidden">こん</rt></ruby><ruby>雑<rt style="visibility: hidden">ざつ</rt></ruby>してきました</span></div>
                 <div style="margin-bottom: 5px; color: #666;">Ulice se začala plnit auty.</div>
-            </div>
-            
-        </div>
-    </div>
-    
-    
-    <div class="bg-gradient-to-r from-purple-100 to-purple-300 rounded-lg shadow p-4 flex flex-col my-2">
-        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-c30318f4', this)">
-            <div>
-                <p class="text-lg text-2xl text-gray-800 copyable relative" 
-                onclick="copyText(this)"><ruby>複<rt style="visibility: hidden">ふく</rt></ruby><ruby>雑<rt style="visibility: hidden">ざつ</rt></ruby>な</p>
-                <p class="text-sm text-gray-600">složitý, komplexní</p>
-            </div>
-            <button class="button-vocab-toggle text-gray-600 hover:text-gray-900 
-            transform transition-transform duration-200 px-2">▼</button>
-        </div>
-        <div class='my-2 vocab-properties'>
-<span class="property-label" onclick="this.querySelector('span').style.display = (this.querySelector('span').style.display === 'none' || this.querySelector('span').style.display === '') ? 'block' : 'none';" style="display: inline-block; background-color: #ACA52F; color: white; padding: 4px 8px; border-radius: 12px; font-size: 12px; font-weight: bold; font-family: Arial, sans-serif; cursor: pointer; position: relative; margin-right: 8px;">
-    な - příd. jméno
-    <span style="display: none; position: absolute; top: 120%; left: 0; background-color: white; color: black; border: 1px solid #ACA52F; padding: 4px 8px; border-radius: 6px; font-size: 12px; font-family: Arial, sans-serif; z-index: 10; min-width: 150px;">
-        Odpadá ~な přípona (např. při použití s 'です'), pokud se neváže na podstatné jméno.
-    </span>
-</span>    
-</div>
-        <div id="vocab-c30318f4" class="button-vocab-example hidden mt-2 p-2 rounded bg-white text-gray-700 shadow">
-          
-            <div>
-                <div style="margin-bottom: 5px;"><span lang="JA">この<ruby>機<rt style="visibility: hidden">き</rt></ruby><ruby>械<rt style="visibility: hidden">かい</rt></ruby>のメカニズムは<ruby>複<rt style="visibility: hidden">ふく</rt></ruby><ruby>雑<rt style="visibility: hidden">ざつ</rt></ruby>です</span></div>
-                <div style="margin-bottom: 5px; color: #666;">Mechanismus tohoto stroje je složitý.</div>
             </div>
             
         </div>
