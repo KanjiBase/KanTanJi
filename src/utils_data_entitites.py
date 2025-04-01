@@ -471,7 +471,8 @@ class DataSet:
                 per_dataset_id = len(dataset) < 50
                 if not per_dataset_id:
                     last_spec = self.data[self.data_range()[-1]]
-                    last_kanji_id = dataset[last_spec["order"][-1]].get_context_id(self.parent_context_id)
+                    last_dataset = last_spec["content"]
+                    last_kanji_id = last_dataset[last_spec["order"][-1]].get_context_id(self.parent_context_id)
 
                     if type(last_kanji_id) != int:
                         print(f"E: Attempt to derive last kanji for the whole dataset failed: invalid id or type: {last_kanji_id}", last_spec)
