@@ -296,12 +296,13 @@ class KanjiEntry(Entry):
     def vocabulary(self):
         return self.get("_vocab_")
 
-    def set_or_get_context_id(self, context_id, id):
+    def set_or_get_context_id(self, context_id, dependent_id):
         exists_id = self._context_ids.get(context_id)
         if exists_id is not None:
             return exists_id
-        self._context_ids[context_id] = id
-        return id
+        dependent_id = int(dependent_id)
+        self._context_ids[context_id] = dependent_id
+        return dependent_id
 
     def get_context_id(self, context_id):
         return self._context_ids.get(context_id)
@@ -472,8 +473,8 @@ class DataSet:
                     last_spec = self.data[self.data_range()[-1]]
                     last_kanji_id = last_spec["order"][-1]
 
-                    if last_kanji_id is None:
-                        print("ERROR", None, last_kanji_id, last_spec)
+                    if type(last_kanji_id) != int:
+                        print(f"E: Attempt to derive last kanji for the whole dataset failed: invalid id or type: {last_kanji_id}", last_spec)
 
 
             logger.info("Adjust vocabulary: %s (%s) (per dataset: %s, last %s)",
@@ -485,8 +486,7 @@ class DataSet:
                 kanji_id = kanji.get_context_id(self.parent_context_id)
                 if per_dataset_id:
                     # Find last in this set
-                    last_kanji_id = dataset_spec["order"][-1]
-                    last_kanji_id = dataset[last_kanji_id].get_context_id(self.parent_context_id)
+                    last_kanji_id = dataset[dataset_spec["order"][-1]].get_context_id(self.parent_context_id)
 
                 for vocab in kanji.vocabulary():
                     try:
@@ -507,7 +507,8 @@ class DataSet:
                                 ignore_reason = f"kanji {m} in far lesson"
                                 break
 
-                        logger.info("  Tango: %s, matched %s, match length %d", vocab["tango"], match, match_len)
+                        logger.info("  Tango: %s, matched %s, match length %d (r: %s)",
+                                    vocab["tango"], match, match_len, ignore_reason)
                         if ignore_reason:
                             vocab.get("tango").significance = 2
                         elif match_len == len(match):
@@ -520,6 +521,7 @@ class DataSet:
                         print("Error when dealing with vocab item in Kanji", kanji_id,
                               "skipping significance modification...",
                               e)
+                        logger.error("Origin:", e)
 
     def process(self, metadata, guard: HashGuard):
         print("Generating:", self.context_name)
