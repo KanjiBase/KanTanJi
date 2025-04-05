@@ -89,7 +89,7 @@ PDF Soubory obsahují seznam znaků kanji a přidružených slovíček.
 
  - <a href="static/2/12/Písmo IV - Týden 12.pdf">PDF Seznam Písmo IV - Týden 12</a>
 
- - <a href="static/2/48/Písmo III - Lekce 35.pdf">PDF Seznam Písmo III - Lekce 35</a>
+ - <a href="static/2/14/Písmo I - Lekce 1.pdf">PDF Seznam Písmo I - Lekce 1</a>
 
 
 ### ANKI Balíčky
@@ -122,7 +122,7 @@ Furiganu zobrazíš kliknutím / tapnutím na kartičku.
 
  - <a href="static/2/12/Písmo_IV_-_Týden_12.apkg">Balíček Písmo_IV_-_Týden_12</a>
 
- - <a href="static/2/48/Písmo_III_-_Lekce_35.apkg">Balíček Písmo_III_-_Lekce_35</a>
+ - <a href="static/2/14/Písmo_I_-_Lekce_1.apkg">Balíček Písmo_I_-_Lekce_1</a>
 
 
 ### HTML
@@ -164,5 +164,5 @@ HTML Stránky slouží pro vložení interaktivních informací o Kanji do exter
 #### Kanji Stránky 12
 <a href="static/2/12/管.html">管</a>  <a href="static/2/12/防.html">防</a>  <a href="static/2/12/保.html">保</a>  <a href="static/2/12/限.html">限</a>  <a href="static/2/12/害.html">害</a>  <a href="static/2/12/然.html">然</a>  <a href="static/2/12/囲.html">囲</a>  <a href="static/2/12/郊.html">郊</a>  <a href="static/2/12/固.html">固</a>  <a href="static/2/12/械.html">械</a>  <a href="static/2/12/周.html">周</a>  <a href="static/2/12/底.html">底</a>  <a href="static/2/12/整.html">整</a>  <a href="static/2/12/紀.html">紀</a>  <a href="static/2/12/像.html">像</a>  <a href="static/2/12/官.html">官</a>  <a href="static/2/12/球.html">球</a>  <a href="static/2/12/張.html">張</a>  <a href="static/2/12/署.html">署</a>  <a href="static/2/12/協.html">協</a>  <a href="static/2/12/想.html">想</a>  <a href="static/2/12/普.html">普</a>
 
-#### Kanji Stránky 48
-<a href="static/2/48/銀.html">銀</a>  <a href="static/2/48/個.html">個</a>  <a href="static/2/48/々.html">々</a>  <a href="static/2/48/資.html">資</a>  <a href="static/2/48/期.html">期</a>  <a href="static/2/48/産.html">産</a>  <a href="static/2/48/価.html">価</a>  <a href="static/2/48/報.html">報</a>  <a href="static/2/48/品.html">品</a>  <a href="static/2/48/告.html">告</a>
+#### Kanji Stránky 14
+<a href="static/2/14/月.html">月</a>  <a href="static/2/14/日.html">日</a>
