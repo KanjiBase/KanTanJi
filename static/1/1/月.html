@@ -107,7 +107,7 @@ rt {
         <div class="grid grid-cols-2 gap-4">
             <div>
                 <p class="text-sm text-gray-500">Onyomi</p>
-                <p class="text-lg font-semibold text-gray-800"><span style="font-weight: bold">ガツ</span>,&emsp; <span style="font-weight: bold">ゲツ</span></p>
+                <p class="text-lg font-semibold text-gray-800"><span style="font-weight: bold">ゲツ</span>,&emsp; <span style="font-weight: bold">～ガツ</span></p>
             </div>
             <div>
                 <p class="text-sm text-gray-500">Význam</p>
@@ -118,6 +118,13 @@ rt {
                 <p class="text-lg font-semibold text-gray-800"><span style="font-weight: bold">つき</span></p>
             </div>
             
+        <div>
+            <p class="text-sm text-gray-500">Radikál</p>
+            <p class="text-lg font-semibold text-gray-800">
+        <span>⽉ &emsp; měsíc</span>
+            </p>
+        </div>
+        
         </div>
     </div>
 </div>
@@ -132,37 +139,70 @@ rt {
 >   
     <span class="text-xl font-bold text-gray-800 mb-4">Povinná slovíčka</span>
     
-    <div class="bg-gradient-to-r from-green-50 to-green-100 rounded-lg shadow p-4 flex flex-col my-2">
-        <div class="flex justify-between items-center">
-          <div>
-            <p class="text-lg text-2xl text-gray-800 copyable cursor-pointer relative" 
-            onclick="copyText(this)"><ruby>月<rt style="visibility: hidden">つき</rt></ruby></p>
-            <p class="text-sm text-gray-600">měsíc (většinou jako nebeské těleso, zřídka i časový úsek)</p>
-          </div>
-        </div>
-        
-    </div>
     
     <div class="bg-gradient-to-r from-green-50 to-green-100 rounded-lg shadow p-4 flex flex-col my-2">
-        <div class="flex justify-between items-center">
-          <div>
-            <p class="text-lg text-2xl text-gray-800 copyable cursor-pointer relative" 
-            onclick="copyText(this)"><ruby>二<rt style="visibility: hidden">に</rt></ruby><ruby>月<rt style="visibility: hidden">がつ</rt></ruby></p>
-            <p class="text-sm text-gray-600">únor</p>
-          </div>
+        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-41c9041f', this)">
+            <div>
+                <p class="text-lg text-2xl text-gray-800 copyable relative" 
+                onclick="copyText(this)"><ruby>月<rt style="visibility: hidden">つき</rt></ruby></p>
+                <p class="text-sm text-gray-600">měsíc (většinou jako nebeské těleso, zřídka i časový úsek)</p>
+            </div>
+            <button class="button-vocab-toggle text-gray-600 hover:text-gray-900 
+            transform transition-transform duration-200 px-2">▼</button>
         </div>
         
+        <div id="vocab-41c9041f" class="button-vocab-example hidden mt-2 p-2 rounded bg-white text-gray-700 shadow">
+          
+            <div>
+                <div style="margin-bottom: 5px;"><span lang="JA"><ruby>月<rt style="visibility: hidden">つき</rt></ruby>がきれいですね</span></div>
+                <div style="margin-bottom: 5px; color: #666;">Je krásný měsíc, že? (způsob nepřímého vyjádření milostného zalíbení)</div>
+            </div>
+            
+        </div>
     </div>
     
+    
     <div class="bg-gradient-to-r from-green-50 to-green-100 rounded-lg shadow p-4 flex flex-col my-2">
-        <div class="flex justify-between items-center">
-          <div>
-            <p class="text-lg text-2xl text-gray-800 copyable cursor-pointer relative" 
-            onclick="copyText(this)"><ruby>二<rt style="visibility: hidden">に</rt></ruby>か<ruby>月<rt style="visibility: hidden">げつ</rt></ruby></p>
-            <p class="text-sm text-gray-600">dva měsíce</p>
-          </div>
+        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-58a755cc', this)">
+            <div>
+                <p class="text-lg text-2xl text-gray-800 copyable relative" 
+                onclick="copyText(this)"><ruby>二<rt style="visibility: hidden">に</rt></ruby><ruby>月<rt style="visibility: hidden">がつ</rt></ruby></p>
+                <p class="text-sm text-gray-600">únor</p>
+            </div>
+            <button class="button-vocab-toggle text-gray-600 hover:text-gray-900 
+            transform transition-transform duration-200 px-2">▼</button>
         </div>
         
+        <div id="vocab-58a755cc" class="button-vocab-example hidden mt-2 p-2 rounded bg-white text-gray-700 shadow">
+          
+            <div>
+                <div style="margin-bottom: 5px;"><span lang="JA"><ruby>二<rt style="visibility: hidden">に</rt></ruby><ruby>月<rt style="visibility: hidden">がつ</rt></ruby>は<ruby>一<rt style="visibility: hidden">いち</rt></ruby><ruby>番<rt style="visibility: hidden">ばん</rt></ruby><ruby>短<rt style="visibility: hidden">みじか</rt></ruby>い<ruby>月<rt style="visibility: hidden">つき</rt></ruby>です</span></div>
+                <div style="margin-bottom: 5px; color: #666;">Únor je nejkratší měsíc.</div>
+            </div>
+            
+        </div>
+    </div>
+    
+    
+    <div class="bg-gradient-to-r from-green-50 to-green-100 rounded-lg shadow p-4 flex flex-col my-2">
+        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-bea28e97', this)">
+            <div>
+                <p class="text-lg text-2xl text-gray-800 copyable relative" 
+                onclick="copyText(this)"><ruby>二<rt style="visibility: hidden">に</rt></ruby>か<ruby>月<rt style="visibility: hidden">げつ</rt></ruby>、<ruby>二<rt style="visibility: hidden">に</rt></ruby>ヶ＜か＞<ruby>月<rt style="visibility: hidden">げつ</rt></ruby></p>
+                <p class="text-sm text-gray-600">dva měsíce</p>
+            </div>
+            <button class="button-vocab-toggle text-gray-600 hover:text-gray-900 
+            transform transition-transform duration-200 px-2">▼</button>
+        </div>
+        
+        <div id="vocab-bea28e97" class="button-vocab-example hidden mt-2 p-2 rounded bg-white text-gray-700 shadow">
+          
+            <div>
+                <div style="margin-bottom: 5px;"><span lang="JA"><ruby>二<rt style="visibility: hidden">に</rt></ruby>ヶ＜か＞<ruby>月<rt style="visibility: hidden">げつ</rt></ruby>に<ruby>一<rt style="visibility: hidden">いっ</rt></ruby><ruby>回<rt style="visibility: hidden">かい</rt></ruby><ruby>旅<rt style="visibility: hidden">りょ</rt></ruby><ruby>行<rt style="visibility: hidden">こう</rt></ruby>に<ruby>行<rt style="visibility: hidden">い</rt></ruby>きます</span></div>
+                <div style="margin-bottom: 5px; color: #666;">Jednou za dva měsíce jezdím na výlet.</div>
+            </div>
+            
+        </div>
     </div>
     
 </div>    
@@ -172,37 +212,92 @@ rt {
 >   
     <span class="text-xl font-bold text-gray-800 mb-4">Budou v sadě / Rozšiřující</span>
     
-    <div class="bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg shadow p-4 flex flex-col my-2">
-        <div class="flex justify-between items-center">
-          <div>
-            <p class="text-lg text-2xl text-gray-800 copyable cursor-pointer relative" 
-            onclick="copyText(this)"><ruby>三<rt style="visibility: hidden">み</rt></ruby><ruby>日<rt style="visibility: hidden">か</rt></ruby><ruby>月<rt style="visibility: hidden">づき</rt></ruby></p>
-            <p class="text-sm text-gray-600">srpek měsíce</p>
-          </div>
-        </div>
-        
-    </div>
     
     <div class="bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg shadow p-4 flex flex-col my-2">
-        <div class="flex justify-between items-center">
-          <div>
-            <p class="text-lg text-2xl text-gray-800 copyable cursor-pointer relative" 
-            onclick="copyText(this)"><ruby>生<rt style="visibility: hidden">せい</rt></ruby><ruby>年<rt style="visibility: hidden">ねん</rt></ruby><ruby>月<rt style="visibility: hidden">がっ</rt></ruby><ruby>日<rt style="visibility: hidden">ぴ</rt></ruby></p>
-            <p class="text-sm text-gray-600">datum narození</p>
-          </div>
+        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-b6c90b6e', this)">
+            <div>
+                <p class="text-lg text-2xl text-gray-800 copyable relative" 
+                onclick="copyText(this)"><ruby>先<rt style="visibility: hidden">せん</rt></ruby><ruby>月<rt style="visibility: hidden">げつ</rt></ruby></p>
+                <p class="text-sm text-gray-600">minulý měsíc</p>
+            </div>
+            <button class="button-vocab-toggle text-gray-600 hover:text-gray-900 
+            transform transition-transform duration-200 px-2">▼</button>
         </div>
         
+        <div id="vocab-b6c90b6e" class="button-vocab-example hidden mt-2 p-2 rounded bg-white text-gray-700 shadow">
+          
+            <div>
+                <div style="margin-bottom: 5px;"><span lang="JA"><ruby>先<rt style="visibility: hidden">せん</rt></ruby><ruby>月<rt style="visibility: hidden">げつ</rt></ruby>、ロンドンに<ruby>行<rt style="visibility: hidden">い</rt></ruby>きました</span></div>
+                <div style="margin-bottom: 5px; color: #666;">Minulý měsíc jsem jel do Londýna.</div>
+            </div>
+            
+        </div>
     </div>
     
+    
     <div class="bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg shadow p-4 flex flex-col my-2">
-        <div class="flex justify-between items-center">
-          <div>
-            <p class="text-lg text-2xl text-gray-800 copyable cursor-pointer relative" 
-            onclick="copyText(this)"><ruby>月<rt style="visibility: hidden">げつ</rt></ruby><ruby>曜<rt style="visibility: hidden">よう</rt></ruby><ruby>日<rt style="visibility: hidden">び</rt></ruby></p>
-            <p class="text-sm text-gray-600">pondělí</p>
-          </div>
+        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-fbb7cdb2', this)">
+            <div>
+                <p class="text-lg text-2xl text-gray-800 copyable relative" 
+                onclick="copyText(this)"><ruby>生<rt style="visibility: hidden">せい</rt></ruby><ruby>年<rt style="visibility: hidden">ねん</rt></ruby><ruby>月<rt style="visibility: hidden">がっ</rt></ruby><ruby>日<rt style="visibility: hidden">ぴ</rt></ruby></p>
+                <p class="text-sm text-gray-600">datum narození</p>
+            </div>
+            <button class="button-vocab-toggle text-gray-600 hover:text-gray-900 
+            transform transition-transform duration-200 px-2">▼</button>
         </div>
         
+        <div id="vocab-fbb7cdb2" class="button-vocab-example hidden mt-2 p-2 rounded bg-white text-gray-700 shadow">
+          
+            <div>
+                <div style="margin-bottom: 5px;"><span lang="JA"><ruby>生<rt style="visibility: hidden">せい</rt></ruby><ruby>年<rt style="visibility: hidden">ねん</rt></ruby><ruby>月<rt style="visibility: hidden">がっ</rt></ruby><ruby>日<rt style="visibility: hidden">ぴ</rt></ruby>を<ruby>教<rt style="visibility: hidden">おし</rt></ruby>えてください</span></div>
+                <div style="margin-bottom: 5px; color: #666;">Prosím, řekněte mi své datum narození.</div>
+            </div>
+            
+        </div>
+    </div>
+    
+    
+    <div class="bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg shadow p-4 flex flex-col my-2">
+        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-11e4caf1', this)">
+            <div>
+                <p class="text-lg text-2xl text-gray-800 copyable relative" 
+                onclick="copyText(this)">お<ruby>正<rt style="visibility: hidden">しょう</rt></ruby><ruby>月<rt style="visibility: hidden">がつ</rt></ruby></p>
+                <p class="text-sm text-gray-600">Nový rok</p>
+            </div>
+            <button class="button-vocab-toggle text-gray-600 hover:text-gray-900 
+            transform transition-transform duration-200 px-2">▼</button>
+        </div>
+        
+        <div id="vocab-11e4caf1" class="button-vocab-example hidden mt-2 p-2 rounded bg-white text-gray-700 shadow">
+          
+            <div>
+                <div style="margin-bottom: 5px;"><span lang="JA">もうすぐお<ruby>正<rt style="visibility: hidden">しょう</rt></ruby><ruby>月<rt style="visibility: hidden">がつ</rt></ruby>です</span></div>
+                <div style="margin-bottom: 5px; color: #666;">Blíží se Nový rok.</div>
+            </div>
+            
+        </div>
+    </div>
+    
+    
+    <div class="bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg shadow p-4 flex flex-col my-2">
+        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-df06cd53', this)">
+            <div>
+                <p class="text-lg text-2xl text-gray-800 copyable relative" 
+                onclick="copyText(this)"><ruby>月<rt style="visibility: hidden">げつ</rt></ruby><ruby>曜<rt style="visibility: hidden">よう</rt></ruby><ruby>日<rt style="visibility: hidden">び</rt></ruby></p>
+                <p class="text-sm text-gray-600">pondělí</p>
+            </div>
+            <button class="button-vocab-toggle text-gray-600 hover:text-gray-900 
+            transform transition-transform duration-200 px-2">▼</button>
+        </div>
+        
+        <div id="vocab-df06cd53" class="button-vocab-example hidden mt-2 p-2 rounded bg-white text-gray-700 shadow">
+          
+            <div>
+                <div style="margin-bottom: 5px;"><span lang="JA"><ruby>月<rt style="visibility: hidden">げつ</rt></ruby><ruby>曜<rt style="visibility: hidden">よう</rt></ruby><ruby>日<rt style="visibility: hidden">び</rt></ruby>が<ruby>好<rt style="visibility: hidden">す</rt></ruby>きではありません</span></div>
+                <div style="margin-bottom: 5px; color: #666;">Nemám rád pondělí.</div>
+            </div>
+            
+        </div>
     </div>
     
     
