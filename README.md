@@ -91,6 +91,8 @@ PDF Soubory obsahují seznam znaků kanji a přidružených slovíček.
 
  - <a href="static/2/14/Písmo I - Lekce 1.pdf">PDF Seznam Písmo I - Lekce 1</a>
 
+ - <a href="static/2/48/Písmo III - Lekce 35.pdf">PDF Seznam Písmo III - Lekce 35</a>
+
 
 ### ANKI Balíčky
 Balíčky lze importovat opakovaně do ANKI aplikace. Balíčky se řadí do kolekce 'KanTanJi' 
@@ -123,6 +125,8 @@ Furiganu zobrazíš kliknutím / tapnutím na kartičku.
  - <a href="static/2/12/Písmo_IV_-_Týden_12.apkg">Balíček Písmo_IV_-_Týden_12</a>
 
  - <a href="static/2/14/Písmo_I_-_Lekce_1.apkg">Balíček Písmo_I_-_Lekce_1</a>
+
+ - <a href="static/2/48/Písmo_III_-_Lekce_35.apkg">Balíček Písmo_III_-_Lekce_35</a>
 
 
 ### HTML
@@ -166,3 +170,6 @@ HTML Stránky slouží pro vložení interaktivních informací o Kanji do exter
 
 #### Kanji Stránky 14
 <a href="static/2/14/月.html">月</a>  <a href="static/2/14/日.html">日</a>
+
+#### Kanji Stránky 48
+<a href="static/2/48/銀.html">銀</a>  <a href="static/2/48/個.html">個</a>  <a href="static/2/48/々.html">々</a>  <a href="static/2/48/資.html">資</a>  <a href="static/2/48/期.html">期</a>  <a href="static/2/48/産.html">産</a>  <a href="static/2/48/価.html">価</a>  <a href="static/2/48/報.html">報</a>  <a href="static/2/48/品.html">品</a>  <a href="static/2/48/告.html">告</a>
