@@ -118,6 +118,13 @@ rt {
                 <p class="text-lg font-semibold text-gray-800"><span style="font-weight: bold">おお</span>,&emsp; <span style="font-weight: bold">おお<span style="color: gray;">・きい</span></span></p>
             </div>
             
+        <div>
+            <p class="text-sm text-gray-500">Radikál</p>
+            <p class="text-lg font-semibold text-gray-800">
+        <span>⼤ &emsp; velký</span>
+            </p>
+        </div>
+        
         </div>
     </div>
 </div>
@@ -132,13 +139,16 @@ rt {
 >   
     <span class="text-xl font-bold text-gray-800 mb-4">Povinná slovíčka</span>
     
+    
     <div class="bg-gradient-to-r from-green-50 to-green-100 rounded-lg shadow p-4 flex flex-col my-2">
-        <div class="flex justify-between items-center">
-          <div>
-            <p class="text-lg text-2xl text-gray-800 copyable cursor-pointer relative" 
-            onclick="copyText(this)"><ruby>大<rt style="visibility: hidden">おお</rt></ruby>きい</p>
-            <p class="text-sm text-gray-600">velký</p>
-          </div>
+        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-e78aad6e', this)">
+            <div>
+                <p class="text-lg text-2xl text-gray-800 copyable relative" 
+                onclick="copyText(this)"><ruby>大<rt style="visibility: hidden">おお</rt></ruby>きい</p>
+                <p class="text-sm text-gray-600">velký</p>
+            </div>
+            <button class="button-vocab-toggle text-gray-600 hover:text-gray-900 
+            transform transition-transform duration-200 px-2">▼</button>
         </div>
         <div class='my-2 vocab-properties'>
 <span class="property-label" onclick="this.querySelector('span').style.display = (this.querySelector('span').style.display === 'none' || this.querySelector('span').style.display === '') ? 'block' : 'none';" style="display: inline-block; background-color: #ACA52F; color: white; padding: 4px 8px; border-radius: 12px; font-size: 12px; font-weight: bold; font-family: Arial, sans-serif; cursor: pointer; position: relative; margin-right: 8px;">
@@ -148,6 +158,14 @@ rt {
     </span>
 </span>    
 </div>
+        <div id="vocab-e78aad6e" class="button-vocab-example hidden mt-2 p-2 rounded bg-white text-gray-700 shadow">
+          
+            <div>
+                <div style="margin-bottom: 5px;"><span lang="JA"><ruby>彼<rt style="visibility: hidden">かれ</rt></ruby>は<ruby>手<rt style="visibility: hidden">て</rt></ruby>が<ruby>大<rt style="visibility: hidden">おお</rt></ruby>きい</span></div>
+                <div style="margin-bottom: 5px; color: #666;">On má velké ruce.</div>
+            </div>
+            
+        </div>
     </div>
     
 </div>    
@@ -157,47 +175,83 @@ rt {
 >   
     <span class="text-xl font-bold text-gray-800 mb-4">Budou v sadě / Rozšiřující</span>
     
-    <div class="bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg shadow p-4 flex flex-col my-2">
-        <div class="flex justify-between items-center">
-          <div>
-            <p class="text-lg text-2xl text-gray-800 copyable cursor-pointer relative" 
-            onclick="copyText(this)"><ruby>大<rt style="visibility: hidden">おお</rt></ruby><ruby>雨<rt style="visibility: hidden">あめ</rt></ruby></p>
-            <p class="text-sm text-gray-600">silný déšť</p>
-          </div>
-        </div>
-        
-    </div>
     
     <div class="bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg shadow p-4 flex flex-col my-2">
-        <div class="flex justify-between items-center">
-          <div>
-            <p class="text-lg text-2xl text-gray-800 copyable cursor-pointer relative" 
-            onclick="copyText(this)"><ruby>大<rt style="visibility: hidden">だい</rt></ruby><ruby>学<rt style="visibility: hidden">がく</rt></ruby></p>
-            <p class="text-sm text-gray-600">univerzita</p>
-          </div>
+        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-8ac60442', this)">
+            <div>
+                <p class="text-lg text-2xl text-gray-800 copyable relative" 
+                onclick="copyText(this)"><ruby>大<rt style="visibility: hidden">おお</rt></ruby><ruby>雨<rt style="visibility: hidden">あめ</rt></ruby></p>
+                <p class="text-sm text-gray-600">silný déšť</p>
+            </div>
+            <button class="button-vocab-toggle text-gray-600 hover:text-gray-900 
+            transform transition-transform duration-200 px-2">▼</button>
         </div>
         
+        <div id="vocab-8ac60442" class="button-vocab-example hidden mt-2 p-2 rounded bg-white text-gray-700 shadow">
+          
+            <div>
+                <div style="margin-bottom: 5px;"><span lang="JA"><ruby>大<rt style="visibility: hidden">おお</rt></ruby><ruby>阪<rt style="visibility: hidden">さか</rt></ruby>は<ruby>大<rt style="visibility: hidden">おお</rt></ruby><ruby>雨<rt style="visibility: hidden">あめ</rt></ruby>だった</span></div>
+                <div style="margin-bottom: 5px; color: #666;">V Ósace hustě pršelo.</div>
+            </div>
+            
+        </div>
     </div>
     
+    
     <div class="bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg shadow p-4 flex flex-col my-2">
-        <div class="flex justify-between items-center">
-          <div>
-            <p class="text-lg text-2xl text-gray-800 copyable cursor-pointer relative" 
-            onclick="copyText(this)"><ruby>大人<rt style="visibility: hidden">おとな</rt></ruby></p>
-            <p class="text-sm text-gray-600">dospělý člověk</p>
-          </div>
+        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-5f9268d2', this)">
+            <div>
+                <p class="text-lg text-2xl text-gray-800 copyable relative" 
+                onclick="copyText(this)"><ruby>大<rt style="visibility: hidden">だい</rt></ruby><ruby>学<rt style="visibility: hidden">がく</rt></ruby></p>
+                <p class="text-sm text-gray-600">univerzita</p>
+            </div>
+            <button class="button-vocab-toggle text-gray-600 hover:text-gray-900 
+            transform transition-transform duration-200 px-2">▼</button>
         </div>
         
+        <div id="vocab-5f9268d2" class="button-vocab-example hidden mt-2 p-2 rounded bg-white text-gray-700 shadow">
+          
+            <div>
+                <div style="margin-bottom: 5px;"><span lang="JA"><ruby>私<rt style="visibility: hidden">し</rt></ruby><ruby>立<rt style="visibility: hidden">りつ</rt></ruby><ruby>大<rt style="visibility: hidden">だい</rt></ruby><ruby>学<rt style="visibility: hidden">がく</rt></ruby>の<ruby>数<rt style="visibility: hidden">かず</rt></ruby>が<ruby>増<rt style="visibility: hidden">ふ</rt></ruby>えた</span></div>
+                <div style="margin-bottom: 5px; color: #666;">Vzrostl počet soukromých vysokých škol.</div>
+            </div>
+            
+        </div>
     </div>
+    
+    
+    <div class="bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg shadow p-4 flex flex-col my-2">
+        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-f00c7b8f', this)">
+            <div>
+                <p class="text-lg text-2xl text-gray-800 copyable relative" 
+                onclick="copyText(this)"><ruby>大人<rt style="visibility: hidden">おとな</rt></ruby></p>
+                <p class="text-sm text-gray-600">dospělý člověk</p>
+            </div>
+            <button class="button-vocab-toggle text-gray-600 hover:text-gray-900 
+            transform transition-transform duration-200 px-2">▼</button>
+        </div>
+        
+        <div id="vocab-f00c7b8f" class="button-vocab-example hidden mt-2 p-2 rounded bg-white text-gray-700 shadow">
+          
+            <div>
+                <div style="margin-bottom: 5px;"><span lang="JA">トムさんは<ruby>大人<rt style="visibility: hidden">おとな</rt></ruby>です</span></div>
+                <div style="margin-bottom: 5px; color: #666;">Tom je dospělý.</div>
+            </div>
+            
+        </div>
+    </div>
+    
     
     
     <div class="bg-gradient-to-r from-purple-100 to-purple-300 rounded-lg shadow p-4 flex flex-col my-2">
-        <div class="flex justify-between items-center">
-          <div>
-            <p class="text-lg text-2xl text-gray-800 copyable cursor-pointer relative" 
-            onclick="copyText(this)"><ruby>大<rt style="visibility: hidden">だい</rt></ruby><ruby>事<rt style="visibility: hidden">じ</rt></ruby></p>
-            <p class="text-sm text-gray-600">důležitý</p>
-          </div>
+        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-850ba2a6', this)">
+            <div>
+                <p class="text-lg text-2xl text-gray-800 copyable relative" 
+                onclick="copyText(this)"><ruby>大<rt style="visibility: hidden">だい</rt></ruby><ruby>事<rt style="visibility: hidden">じ</rt></ruby></p>
+                <p class="text-sm text-gray-600">důležitý</p>
+            </div>
+            <button class="button-vocab-toggle text-gray-600 hover:text-gray-900 
+            transform transition-transform duration-200 px-2">▼</button>
         </div>
         <div class='my-2 vocab-properties'>
 <span class="property-label" onclick="this.querySelector('span').style.display = (this.querySelector('span').style.display === 'none' || this.querySelector('span').style.display === '') ? 'block' : 'none';" style="display: inline-block; background-color: #ACA52F; color: white; padding: 4px 8px; border-radius: 12px; font-size: 12px; font-weight: bold; font-family: Arial, sans-serif; cursor: pointer; position: relative; margin-right: 8px;">
@@ -207,6 +261,19 @@ rt {
     </span>
 </span>    
 </div>
+        <div id="vocab-850ba2a6" class="button-vocab-example hidden mt-2 p-2 rounded bg-white text-gray-700 shadow">
+          
+            <div>
+                <div style="margin-bottom: 5px;"><span lang="JA"><ruby>文<rt style="visibility: hidden">ぶん</rt></ruby><ruby>法<rt style="visibility: hidden">ぽう</rt></ruby>はとても<ruby>大<rt style="visibility: hidden">だい</rt></ruby><ruby>事<rt style="visibility: hidden">じ</rt></ruby>です</span></div>
+                <div style="margin-bottom: 5px; color: #666;">Gramatika je velmi důležitá.</div>
+            </div>
+            
+            <div>
+                <div style="margin-bottom: 5px;"><span lang="JA">お<ruby>大<rt style="visibility: hidden">だい</rt></ruby><ruby>事<rt style="visibility: hidden">じ</rt></ruby>に</span></div>
+                <div style="margin-bottom: 5px; color: #666;">Opatruj se.</div>
+            </div>
+            
+        </div>
     </div>
     
 </div>  

@@ -107,17 +107,24 @@ rt {
         <div class="grid grid-cols-2 gap-4">
             <div>
                 <p class="text-sm text-gray-500">Onyomi</p>
-                <p class="text-lg font-semibold text-gray-800">-</p>
+                <p class="text-lg font-semibold text-gray-800"><span style="font-weight: bold">エン</span></p>
             </div>
             <div>
                 <p class="text-sm text-gray-500">Význam</p>
-                <p class="text-lg font-semibold text-gray-800">None</p>
+                <p class="text-lg font-semibold text-gray-800">kruh, jen</p>
             </div>
             <div>
                 <p class="text-sm text-gray-500">Kunyomi</p>
-                <p class="text-lg font-semibold text-gray-800">-</p>
+                <p class="text-lg font-semibold text-gray-800"><span style="color: gray;">まる</span>,&emsp;<span style="color: gray;">まる・い</span></p>
             </div>
             
+        <div>
+            <p class="text-sm text-gray-500">Radikál</p>
+            <p class="text-lg font-semibold text-gray-800">
+        <span>⼌ &emsp; ohrada</span>
+            </p>
+        </div>
+        
         </div>
     </div>
 </div>
@@ -132,6 +139,72 @@ rt {
 >   
     <span class="text-xl font-bold text-gray-800 mb-4">Povinná slovíčka</span>
     
+    
+    <div class="bg-gradient-to-r from-green-50 to-green-100 rounded-lg shadow p-4 flex flex-col my-2">
+        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-9fc3426a', this)">
+            <div>
+                <p class="text-lg text-2xl text-gray-800 copyable relative" 
+                onclick="copyText(this)"><ruby>円<rt style="visibility: hidden">えん</rt></ruby></p>
+                <p class="text-sm text-gray-600">japonský jen (měna)</p>
+            </div>
+            <button class="button-vocab-toggle text-gray-600 hover:text-gray-900 
+            transform transition-transform duration-200 px-2">▼</button>
+        </div>
+        
+        <div id="vocab-9fc3426a" class="button-vocab-example hidden mt-2 p-2 rounded bg-white text-gray-700 shadow">
+          
+            <div>
+                <div style="margin-bottom: 5px;"><span lang="JA"><ruby>五<rt style="visibility: hidden">ご</rt></ruby><ruby>十<rt style="visibility: hidden">じゅう</rt></ruby><ruby>円<rt style="visibility: hidden">えん</rt></ruby>です</span></div>
+                <div style="margin-bottom: 5px; color: #666;">Dělá to padesát jenů.</div>
+            </div>
+            
+        </div>
+    </div>
+    
+    
+    <div class="bg-gradient-to-r from-green-50 to-green-100 rounded-lg shadow p-4 flex flex-col my-2">
+        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-f0f2a099', this)">
+            <div>
+                <p class="text-lg text-2xl text-gray-800 copyable relative" 
+                onclick="copyText(this)"><ruby>百<rt style="visibility: hidden">ひゃく</rt></ruby><ruby>円<rt style="visibility: hidden">えん</rt></ruby></p>
+                <p class="text-sm text-gray-600">sto jenů</p>
+            </div>
+            <button class="button-vocab-toggle text-gray-600 hover:text-gray-900 
+            transform transition-transform duration-200 px-2">▼</button>
+        </div>
+        
+        <div id="vocab-f0f2a099" class="button-vocab-example hidden mt-2 p-2 rounded bg-white text-gray-700 shadow">
+          
+            <div>
+                <div style="margin-bottom: 5px;"><span lang="JA"><ruby>百<rt style="visibility: hidden">ひゃく</rt></ruby><ruby>円<rt style="visibility: hidden">えん</rt></ruby>を<ruby>払<rt style="visibility: hidden">はら</rt></ruby>いました</span></div>
+                <div style="margin-bottom: 5px; color: #666;">Zaplatil jsem sto jenů.</div>
+            </div>
+            
+        </div>
+    </div>
+    
+    
+    <div class="bg-gradient-to-r from-green-50 to-green-100 rounded-lg shadow p-4 flex flex-col my-2">
+        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-99650df6', this)">
+            <div>
+                <p class="text-lg text-2xl text-gray-800 copyable relative" 
+                onclick="copyText(this)"><ruby>五<rt style="visibility: hidden">ご</rt></ruby><ruby>千<rt style="visibility: hidden">せん</rt></ruby><ruby>円<rt style="visibility: hidden">えん</rt></ruby></p>
+                <p class="text-sm text-gray-600">pět tisíc jenů</p>
+            </div>
+            <button class="button-vocab-toggle text-gray-600 hover:text-gray-900 
+            transform transition-transform duration-200 px-2">▼</button>
+        </div>
+        
+        <div id="vocab-99650df6" class="button-vocab-example hidden mt-2 p-2 rounded bg-white text-gray-700 shadow">
+          
+            <div>
+                <div style="margin-bottom: 5px;"><span lang="JA"><ruby>五<rt style="visibility: hidden">ご</rt></ruby><ruby>千<rt style="visibility: hidden">せん</rt></ruby><ruby>円<rt style="visibility: hidden">えん</rt></ruby>しか<ruby>持<rt style="visibility: hidden">も</rt></ruby>っていない</span></div>
+                <div style="margin-bottom: 5px; color: #666;">Mám jen pět tisíc jenů.</div>
+            </div>
+            
+        </div>
+    </div>
+    
 </div>    
 <div 
   class="flex-1 gap-4"
@@ -142,7 +215,11 @@ rt {
     
 </div>  
 
-        <div></div>
+        
+         <div class="note-container flex-1 lg:max-w-sm lg:ml-6 p-4 bg-green-100 rounded-lg shadow" style="height: fit-content;">
+            <p class="text-gray-800"><div><strong><i>"Kulatý" - <ruby>円<rt style="visibility: hidden">まる</rt></ruby>い a <ruby>丸<rt style="visibility: hidden">まる</rt></ruby>い<i></strong>: Častěji se pro vyjádření významu "kulatý" využívá zápis znakem <ruby>丸<rt style="visibility: hidden">まる</rt></ruby> (kulaté tvary, trojrozměrný prostor). Užití znaku <ruby>円<rt style="visibility: hidden">まる</rt></ruby> je omezenější, lze jím popsat ploché kruhové objekty nebo geometrické útvary (dvojrozměrný prostor).</div></p>
+         </div>
+        
     </div>
 </div>
 <br>
