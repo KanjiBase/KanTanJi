@@ -89,14 +89,6 @@ PDF Soubory obsahují seznam znaků kanji a přidružených slovíček.
 
  - <a href="static/2/12/Písmo IV - Týden 12.pdf">PDF Seznam Písmo IV - Týden 12</a>
 
- - <a href="static/2/14/Písmo I - Lekce 1.pdf">PDF Seznam Písmo I - Lekce 1</a>
-
- - <a href="static/2/15/Písmo I - Lekce 2.pdf">PDF Seznam Písmo I - Lekce 2</a>
-
- - <a href="static/2/16/Písmo I - Lekce 3.pdf">PDF Seznam Písmo I - Lekce 3</a>
-
- - <a href="static/2/17/Písmo I - Lekce 4.pdf">PDF Seznam Písmo I - Lekce 4</a>
-
 
 ### ANKI Balíčky
 Balíčky lze importovat opakovaně do ANKI aplikace. Balíčky se řadí do kolekce 'KanTanJi' 
@@ -127,14 +119,6 @@ Furiganu zobrazíš kliknutím / tapnutím na kartičku.
  - <a href="static/2/11/Písmo_IV_-_Týden_11.apkg">Balíček Písmo_IV_-_Týden_11</a>
 
  - <a href="static/2/12/Písmo_IV_-_Týden_12.apkg">Balíček Písmo_IV_-_Týden_12</a>
-
- - <a href="static/2/14/Písmo_I_-_Lekce_1.apkg">Balíček Písmo_I_-_Lekce_1</a>
-
- - <a href="static/2/15/Písmo_I_-_Lekce_2.apkg">Balíček Písmo_I_-_Lekce_2</a>
-
- - <a href="static/2/16/Písmo_I_-_Lekce_3.apkg">Balíček Písmo_I_-_Lekce_3</a>
-
- - <a href="static/2/17/Písmo_I_-_Lekce_4.apkg">Balíček Písmo_I_-_Lekce_4</a>
 
 
 ### HTML
@@ -175,15 +159,3 @@ HTML Stránky slouží pro vložení interaktivních informací o Kanji do exter
 
 #### Kanji Stránky 12
 <a href="static/2/12/管.html">管</a>  <a href="static/2/12/防.html">防</a>  <a href="static/2/12/保.html">保</a>  <a href="static/2/12/限.html">限</a>  <a href="static/2/12/害.html">害</a>  <a href="static/2/12/然.html">然</a>  <a href="static/2/12/囲.html">囲</a>  <a href="static/2/12/郊.html">郊</a>  <a href="static/2/12/固.html">固</a>  <a href="static/2/12/械.html">械</a>  <a href="static/2/12/周.html">周</a>  <a href="static/2/12/底.html">底</a>  <a href="static/2/12/整.html">整</a>  <a href="static/2/12/紀.html">紀</a>  <a href="static/2/12/像.html">像</a>  <a href="static/2/12/官.html">官</a>  <a href="static/2/12/球.html">球</a>  <a href="static/2/12/張.html">張</a>  <a href="static/2/12/署.html">署</a>  <a href="static/2/12/協.html">協</a>  <a href="static/2/12/想.html">想</a>  <a href="static/2/12/普.html">普</a>
-
-#### Kanji Stránky 14
-<a href="static/2/14/人.html">人</a>  <a href="static/2/14/門.html">門</a>  <a href="static/2/14/木.html">木</a>  <a href="static/2/14/車.html">車</a>  <a href="static/2/14/川.html">川</a>  <a href="static/2/14/月.html">月</a>  <a href="static/2/14/山.html">山</a>  <a href="static/2/14/日.html">日</a>  <a href="static/2/14/田.html">田</a>  <a href="static/2/14/口.html">口</a>
-
-#### Kanji Stránky 15
-<a href="static/2/15/先.html">先</a>  <a href="static/2/15/学.html">学</a>  <a href="static/2/15/金.html">金</a>  <a href="static/2/15/子.html">子</a>  <a href="static/2/15/女.html">女</a>  <a href="static/2/15/水.html">水</a>  <a href="static/2/15/生.html">生</a>  <a href="static/2/15/土.html">土</a>  <a href="static/2/15/私.html">私</a>  <a href="static/2/15/火.html">火</a>
-
-#### Kanji Stránky 16
-<a href="static/2/16/一.html">一</a>  <a href="static/2/16/年.html">年</a>  <a href="static/2/16/九.html">九</a>  <a href="static/2/16/四.html">四</a>  <a href="static/2/16/六.html">六</a>  <a href="static/2/16/三.html">三</a>  <a href="static/2/16/円.html">円</a>  <a href="static/2/16/二.html">二</a>  <a href="static/2/16/五.html">五</a>  <a href="static/2/16/千.html">千</a>  <a href="static/2/16/八.html">八</a>  <a href="static/2/16/百.html">百</a>  <a href="static/2/16/十.html">十</a>  <a href="static/2/16/七.html">七</a>
-
-#### Kanji Stránky 17
-<a href="static/2/17/分.html">分</a>  <a href="static/2/17/下.html">下</a>  <a href="static/2/17/上.html">上</a>  <a href="static/2/17/本.html">本</a>  <a href="static/2/17/半.html">半</a>  <a href="static/2/17/中.html">中</a>  <a href="static/2/17/大.html">大</a>  <a href="static/2/17/小.html">小</a>  <a href="static/2/17/何.html">何</a>  <a href="static/2/17/力.html">力</a>
