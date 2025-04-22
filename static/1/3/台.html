@@ -318,6 +318,28 @@ rt {
     
     
     <div class="bg-gradient-to-r from-purple-100 to-purple-300 rounded-lg shadow p-4 flex flex-col my-2">
+        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-0c7e6e49', this)">
+            <div>
+                <p class="text-lg text-2xl text-gray-800 copyable relative" 
+                onclick="copyText(this)"><ruby>台<rt style="visibility: hidden">だい</rt></ruby><ruby>座<rt style="visibility: hidden">ざ</rt></ruby></p>
+                <p class="text-sm text-gray-600">podstavec, insert</p>
+            </div>
+            <button class="button-vocab-toggle text-gray-600 hover:text-gray-900 
+            transform transition-transform duration-200 px-2">▼</button>
+        </div>
+        
+        <div id="vocab-0c7e6e49" class="button-vocab-example hidden mt-2 p-2 rounded bg-white text-gray-700 shadow">
+          
+            <div>
+                <div style="margin-bottom: 5px;"><span lang="JA"><ruby>台<rt style="visibility: hidden">だい</rt></ruby><ruby>座<rt style="visibility: hidden">ざ</rt></ruby>に<ruby>乗<rt style="visibility: hidden">の</rt></ruby>っている<ruby>方<rt style="visibility: hidden">かた</rt></ruby>の<ruby>足<rt style="visibility: hidden">あし</rt></ruby>ですね</span></div>
+                <div style="margin-bottom: 5px; color: #666;">Jedná se o nohu osoby, která stojí na podstavci.</div>
+            </div>
+            
+        </div>
+    </div>
+    
+    
+    <div class="bg-gradient-to-r from-purple-100 to-purple-300 rounded-lg shadow p-4 flex flex-col my-2">
         <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-4ce2cf85', this)">
             <div>
                 <p class="text-lg text-2xl text-gray-800 copyable relative" 
