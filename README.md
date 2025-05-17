@@ -89,16 +89,6 @@ PDF Soubory obsahují seznam znaků kanji a přidružených slovíček.
 
  - <a href="static/2/12/Písmo IV - Týden 12.pdf">PDF Seznam Písmo IV - Týden 12</a>
 
- - <a href="static/2/18/Písmo I - Lekce 5.pdf">PDF Seznam Písmo I - Lekce 5</a>
-
- - <a href="static/2/19/Písmo I - Lekce 6.pdf">PDF Seznam Písmo I - Lekce 6</a>
-
- - <a href="static/2/20/Písmo I - Lekce 7.pdf">PDF Seznam Písmo I - Lekce 7</a>
-
- - <a href="static/2/21/Písmo I - Lekce 8.pdf">PDF Seznam Písmo I - Lekce 8</a>
-
- - <a href="static/2/22/Písmo I - Lekce 9.pdf">PDF Seznam Písmo I - Lekce 9</a>
-
 
 ### ANKI Balíčky
 Balíčky lze importovat opakovaně do ANKI aplikace. Balíčky se řadí do kolekce 'KanTanJi' 
@@ -129,16 +119,6 @@ Furiganu zobrazíš kliknutím / tapnutím na kartičku.
  - <a href="static/2/11/Písmo_IV_-_Týden_11.apkg">Balíček Písmo_IV_-_Týden_11</a>
 
  - <a href="static/2/12/Písmo_IV_-_Týden_12.apkg">Balíček Písmo_IV_-_Týden_12</a>
-
- - <a href="static/2/18/Písmo_I_-_Lekce_5.apkg">Balíček Písmo_I_-_Lekce_5</a>
-
- - <a href="static/2/19/Písmo_I_-_Lekce_6.apkg">Balíček Písmo_I_-_Lekce_6</a>
-
- - <a href="static/2/20/Písmo_I_-_Lekce_7.apkg">Balíček Písmo_I_-_Lekce_7</a>
-
- - <a href="static/2/21/Písmo_I_-_Lekce_8.apkg">Balíček Písmo_I_-_Lekce_8</a>
-
- - <a href="static/2/22/Písmo_I_-_Lekce_9.apkg">Balíček Písmo_I_-_Lekce_9</a>
 
 
 ### HTML
@@ -179,18 +159,3 @@ HTML Stránky slouží pro vložení interaktivních informací o Kanji do exter
 
 #### Kanji Stránky 12
 <a href="static/2/12/紀.html">紀</a>  <a href="static/2/12/周.html">周</a>  <a href="static/2/12/管.html">管</a>  <a href="static/2/12/官.html">官</a>  <a href="static/2/12/球.html">球</a>  <a href="static/2/12/普.html">普</a>  <a href="static/2/12/然.html">然</a>  <a href="static/2/12/限.html">限</a>  <a href="static/2/12/械.html">械</a>  <a href="static/2/12/署.html">署</a>  <a href="static/2/12/囲.html">囲</a>  <a href="static/2/12/想.html">想</a>  <a href="static/2/12/害.html">害</a>  <a href="static/2/12/協.html">協</a>  <a href="static/2/12/張.html">張</a>  <a href="static/2/12/保.html">保</a>  <a href="static/2/12/郊.html">郊</a>  <a href="static/2/12/固.html">固</a>  <a href="static/2/12/防.html">防</a>  <a href="static/2/12/像.html">像</a>  <a href="static/2/12/底.html">底</a>  <a href="static/2/12/整.html">整</a>
-
-#### Kanji Stránky 18
-<a href="static/2/18/林.html">林</a>  <a href="static/2/18/岩.html">岩</a>  <a href="static/2/18/好.html">好</a>  <a href="static/2/18/体.html">体</a>  <a href="static/2/18/森.html">森</a>  <a href="static/2/18/畑.html">畑</a>  <a href="static/2/18/明.html">明</a>  <a href="static/2/18/休.html">休</a>  <a href="static/2/18/男.html">男</a>  <a href="static/2/18/間.html">間</a>
-
-#### Kanji Stránky 19
-<a href="static/2/19/目.html">目</a>  <a href="static/2/19/雨.html">雨</a>  <a href="static/2/19/足.html">足</a>  <a href="static/2/19/手.html">手</a>  <a href="static/2/19/米.html">米</a>  <a href="static/2/19/石.html">石</a>  <a href="static/2/19/竹.html">竹</a>  <a href="static/2/19/貝.html">貝</a>  <a href="static/2/19/耳.html">耳</a>  <a href="static/2/19/糸.html">糸</a>
-
-#### Kanji Stránky 20
-<a href="static/2/20/魚.html">魚</a>  <a href="static/2/20/茶.html">茶</a>  <a href="static/2/20/馬.html">馬</a>  <a href="static/2/20/肉.html">肉</a>  <a href="static/2/20/物.html">物</a>  <a href="static/2/20/鳥.html">鳥</a>  <a href="static/2/20/字.html">字</a>  <a href="static/2/20/牛.html">牛</a>  <a href="static/2/20/文.html">文</a>
-
-#### Kanji Stránky 21
-<a href="static/2/21/暗.html">暗</a>  <a href="static/2/21/多.html">多</a>  <a href="static/2/21/低.html">低</a>  <a href="static/2/21/安.html">安</a>  <a href="static/2/21/長.html">長</a>  <a href="static/2/21/少.html">少</a>  <a href="static/2/21/古.html">古</a>  <a href="static/2/21/高.html">高</a>  <a href="static/2/21/新.html">新</a>  <a href="static/2/21/短.html">短</a>
-
-#### Kanji Stránky 22
-<a href="static/2/22/書.html">書</a>  <a href="static/2/22/話.html">話</a>  <a href="static/2/22/帰.html">帰</a>  <a href="static/2/22/聞.html">聞</a>  <a href="static/2/22/行.html">行</a>  <a href="static/2/22/見.html">見</a>  <a href="static/2/22/飲.html">飲</a>  <a href="static/2/22/食.html">食</a>  <a href="static/2/22/買.html">買</a>  <a href="static/2/22/来.html">来</a>  <a href="static/2/22/読.html">読</a>  <a href="static/2/22/教.html">教</a>
