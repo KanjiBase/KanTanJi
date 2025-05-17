@@ -89,6 +89,8 @@ PDF Soubory obsahují seznam znaků kanji a přidružených slovíček.
 
  - <a href="static/2/12/Písmo IV - Týden 12.pdf">PDF Seznam Písmo IV - Týden 12</a>
 
+ - <a href="static/2/13/Písmo IV - Týden 13.pdf">PDF Seznam Písmo IV - Týden 13</a>
+
 
 ### ANKI Balíčky
 Balíčky lze importovat opakovaně do ANKI aplikace. Balíčky se řadí do kolekce 'KanTanJi' 
@@ -119,6 +121,8 @@ Furiganu zobrazíš kliknutím / tapnutím na kartičku.
  - <a href="static/2/11/Písmo_IV_-_Týden_11.apkg">Balíček Písmo_IV_-_Týden_11</a>
 
  - <a href="static/2/12/Písmo_IV_-_Týden_12.apkg">Balíček Písmo_IV_-_Týden_12</a>
+
+ - <a href="static/2/13/Písmo_IV_-_Týden_13.apkg">Balíček Písmo_IV_-_Týden_13</a>
 
 
 ### HTML
@@ -159,3 +163,6 @@ HTML Stránky slouží pro vložení interaktivních informací o Kanji do exter
 
 #### Kanji Stránky 12
 <a href="static/2/12/紀.html">紀</a>  <a href="static/2/12/周.html">周</a>  <a href="static/2/12/管.html">管</a>  <a href="static/2/12/官.html">官</a>  <a href="static/2/12/球.html">球</a>  <a href="static/2/12/普.html">普</a>  <a href="static/2/12/然.html">然</a>  <a href="static/2/12/限.html">限</a>  <a href="static/2/12/械.html">械</a>  <a href="static/2/12/署.html">署</a>  <a href="static/2/12/囲.html">囲</a>  <a href="static/2/12/想.html">想</a>  <a href="static/2/12/害.html">害</a>  <a href="static/2/12/協.html">協</a>  <a href="static/2/12/張.html">張</a>  <a href="static/2/12/保.html">保</a>  <a href="static/2/12/郊.html">郊</a>  <a href="static/2/12/固.html">固</a>  <a href="static/2/12/防.html">防</a>  <a href="static/2/12/像.html">像</a>  <a href="static/2/12/底.html">底</a>  <a href="static/2/12/整.html">整</a>
+
+#### Kanji Stránky 13
+<a href="static/2/13/緒.html">緒</a>  <a href="static/2/13/師.html">師</a>  <a href="static/2/13/堂.html">堂</a>  <a href="static/2/13/各.html">各</a>  <a href="static/2/13/値.html">値</a>  <a href="static/2/13/未.html">未</a>  <a href="static/2/13/率.html">率</a>  <a href="static/2/13/士.html">士</a>  <a href="static/2/13/派.html">派</a>  <a href="static/2/13/帯.html">帯</a>  <a href="static/2/13/群.html">群</a>  <a href="static/2/13/軍.html">軍</a>  <a href="static/2/13/団.html">団</a>  <a href="static/2/13/額.html">額</a>  <a href="static/2/13/再.html">再</a>  <a href="static/2/13/総.html">総</a>  <a href="static/2/13/旧.html">旧</a>  <a href="static/2/13/満.html">満</a>  <a href="static/2/13/型.html">型</a>  <a href="static/2/13/超.html">超</a>  <a href="static/2/13/券.html">券</a>
