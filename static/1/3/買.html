@@ -139,13 +139,16 @@ rt {
 >   
     <span class="text-xl font-bold text-gray-800 mb-4">Povinná slovíčka</span>
     
+    
     <div class="bg-gradient-to-r from-green-50 to-green-100 rounded-lg shadow p-4 flex flex-col my-2">
-        <div class="flex justify-between items-center">
-          <div>
-            <p class="text-lg text-2xl text-gray-800 copyable cursor-pointer relative" 
-            onclick="copyText(this)"><ruby>買<rt style="visibility: hidden">か</rt></ruby>う</p>
-            <p class="text-sm text-gray-600">koupit</p>
-          </div>
+        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-e6089fa5', this)">
+            <div>
+                <p class="text-lg text-2xl text-gray-800 copyable relative" 
+                onclick="copyText(this)"><ruby>買<rt style="visibility: hidden">か</rt></ruby>う</p>
+                <p class="text-sm text-gray-600">koupit</p>
+            </div>
+            <button class="button-vocab-toggle text-gray-600 hover:text-gray-900 
+            transform transition-transform duration-200 px-2">▼</button>
         </div>
         <div class='my-2 vocab-properties'>
 <span class="property-label" onclick="this.querySelector('span').style.display = (this.querySelector('span').style.display === 'none' || this.querySelector('span').style.display === '') ? 'block' : 'none';" style="display: inline-block; background-color: #28835F; color: white; padding: 4px 8px; border-radius: 12px; font-size: 12px; font-weight: bold; font-family: Arial, sans-serif; cursor: pointer; position: relative; margin-right: 8px;">
@@ -162,6 +165,14 @@ rt {
     </span>
 </span>    
 </div>
+        <div id="vocab-e6089fa5" class="button-vocab-example hidden mt-2 p-2 rounded bg-white text-gray-700 shadow">
+          
+            <div>
+                <div style="margin-bottom: 5px;"><span lang="JA">トムさんは<ruby>何<rt style="visibility: hidden">なに</rt></ruby>を<ruby>買<rt style="visibility: hidden">か</rt></ruby>いましたか</span></div>
+                <div style="margin-bottom: 5px; color: #666;">Co koupil Tom?</div>
+            </div>
+            
+        </div>
     </div>
     
 </div>    
