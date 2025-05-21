@@ -163,6 +163,28 @@ rt {
     
     
     <div class="bg-gradient-to-r from-green-50 to-green-100 rounded-lg shadow p-4 flex flex-col my-2">
+        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-0221bd83', this)">
+            <div>
+                <p class="text-lg text-2xl text-gray-800 copyable relative" 
+                onclick="copyText(this)"><ruby>見<rt style="visibility: hidden">み</rt></ruby>える</p>
+                <p class="text-sm text-gray-600">jde vidět, je viditelný</p>
+            </div>
+            <button class="button-vocab-toggle text-gray-600 hover:text-gray-900 
+            transform transition-transform duration-200 px-2">▼</button>
+        </div>
+        
+        <div id="vocab-0221bd83" class="button-vocab-example hidden mt-2 p-2 rounded bg-white text-gray-700 shadow">
+          
+            <div>
+                <div style="margin-bottom: 5px;"><span lang="JA">まもなく<ruby>富<rt style="visibility: hidden">ふ</rt></ruby><ruby>士<rt style="visibility: hidden">じ</rt></ruby><ruby>山<rt style="visibility: hidden">さん</rt></ruby>が<ruby>見<rt style="visibility: hidden">み</rt></ruby>えてきた</span></div>
+                <div style="margin-bottom: 5px; color: #666;">Za chvíli půjde vidět hora Fudži.</div>
+            </div>
+            
+        </div>
+    </div>
+    
+    
+    <div class="bg-gradient-to-r from-green-50 to-green-100 rounded-lg shadow p-4 flex flex-col my-2">
         <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-ed8660bc', this)">
             <div>
                 <p class="text-lg text-2xl text-gray-800 copyable relative" 

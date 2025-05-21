@@ -168,6 +168,28 @@ rt {
     
     
     <div class="bg-gradient-to-r from-green-50 to-green-100 rounded-lg shadow p-4 flex flex-col my-2">
+        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-c429dbb2', this)">
+            <div>
+                <p class="text-lg text-2xl text-gray-800 copyable relative" 
+                onclick="copyText(this)"><ruby>聞<rt style="visibility: hidden">き</rt></ruby>く</p>
+                <p class="text-sm text-gray-600">jde slyšet</p>
+            </div>
+            <button class="button-vocab-toggle text-gray-600 hover:text-gray-900 
+            transform transition-transform duration-200 px-2">▼</button>
+        </div>
+        
+        <div id="vocab-c429dbb2" class="button-vocab-example hidden mt-2 p-2 rounded bg-white text-gray-700 shadow">
+          
+            <div>
+                <div style="margin-bottom: 5px;"><span lang="JA"><ruby>自<rt style="visibility: hidden">じ</rt></ruby><ruby>分<rt style="visibility: hidden">ぶん</rt></ruby>の<ruby>名<rt style="visibility: hidden">な</rt></ruby><ruby>前<rt style="visibility: hidden">まえ</rt></ruby>が<ruby>呼<rt style="visibility: hidden">よ</rt></ruby>ばれるのが<ruby>聞<rt style="visibility: hidden">き</rt></ruby>こえました</span></div>
+                <div style="margin-bottom: 5px; color: #666;">Slyšel jsem, jak někdo volal mé jméno.</div>
+            </div>
+            
+        </div>
+    </div>
+    
+    
+    <div class="bg-gradient-to-r from-green-50 to-green-100 rounded-lg shadow p-4 flex flex-col my-2">
         <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-4ed0604a', this)">
             <div>
                 <p class="text-lg text-2xl text-gray-800 copyable relative" 
