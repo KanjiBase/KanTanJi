@@ -107,7 +107,7 @@ rt {
         <div class="grid grid-cols-2 gap-4">
             <div>
                 <p class="text-sm text-gray-500">Onyomi</p>
-                <p class="text-lg font-semibold text-gray-800"><span style="font-weight: bold">ウン</span></p>
+                <p class="text-lg font-semibold text-gray-800"><span style="color: gray;">ウン</span></p>
             </div>
             <div>
                 <p class="text-sm text-gray-500">Význam</p>
@@ -118,6 +118,13 @@ rt {
                 <p class="text-lg font-semibold text-gray-800"><span style="font-weight: bold">くも</span>,&emsp; <span style="font-weight: bold">～ぐも</span></p>
             </div>
             
+        <div>
+            <p class="text-sm text-gray-500">Radikál</p>
+            <p class="text-lg font-semibold text-gray-800">
+        <span>⾬ &emsp; déšť</span>
+            </p>
+        </div>
+        
         </div>
     </div>
 </div>
@@ -132,6 +139,50 @@ rt {
 >   
     <span class="text-xl font-bold text-gray-800 mb-4">Povinná slovíčka</span>
     
+    
+    <div class="bg-gradient-to-r from-green-50 to-green-100 rounded-lg shadow p-4 flex flex-col my-2">
+        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-2d2583b5', this)">
+            <div>
+                <p class="text-lg text-2xl text-gray-800 copyable relative" 
+                onclick="copyText(this)"><ruby>雲<rt style="visibility: hidden">くも</rt></ruby></p>
+                <p class="text-sm text-gray-600">mrak</p>
+            </div>
+            <button class="button-vocab-toggle text-gray-600 hover:text-gray-900 
+            transform transition-transform duration-200 px-2">▼</button>
+        </div>
+        
+        <div id="vocab-2d2583b5" class="button-vocab-example hidden mt-2 p-2 rounded bg-white text-gray-700 shadow">
+          
+            <div>
+                <div style="margin-bottom: 5px;"><span lang="JA"><ruby>暗<rt style="visibility: hidden">くら</rt></ruby>い <ruby>雲<rt style="visibility: hidden">くも</rt></ruby>は <ruby>雨<rt style="visibility: hidden">あめ</rt></ruby>の <ruby>前<rt style="visibility: hidden">ぜん</rt></ruby><ruby>兆<rt style="visibility: hidden">ちょう</rt></ruby>だ</span></div>
+                <div style="margin-bottom: 5px; color: #666;">Tmavé mraky jsou předzvěstí deště.</div>
+            </div>
+            
+        </div>
+    </div>
+    
+    
+    <div class="bg-gradient-to-r from-green-50 to-green-100 rounded-lg shadow p-4 flex flex-col my-2">
+        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-61846fb9', this)">
+            <div>
+                <p class="text-lg text-2xl text-gray-800 copyable relative" 
+                onclick="copyText(this)"><ruby>出雲<rt style="visibility: hidden">いずも</rt></ruby></p>
+                <p class="text-sm text-gray-600">provincie Izumo</p>
+            </div>
+            <button class="button-vocab-toggle text-gray-600 hover:text-gray-900 
+            transform transition-transform duration-200 px-2">▼</button>
+        </div>
+        
+        <div id="vocab-61846fb9" class="button-vocab-example hidden mt-2 p-2 rounded bg-white text-gray-700 shadow">
+          
+            <div>
+                <div style="margin-bottom: 5px;"><span lang="JA">出<ruby>雲<rt style="visibility: hidden">いずも</rt></ruby>は<ruby>昔<rt style="visibility: hidden">むかし</rt></ruby>から神<ruby>話<rt style="visibility: hidden">しんわ</rt></ruby>の<ruby>地<rt style="visibility: hidden">ち</rt></ruby>として有<ruby>名<rt style="visibility: hidden">ゆうめい</rt></ruby>です</span></div>
+                <div style="margin-bottom: 5px; color: #666;">Izumo je odedávna proslulé jako země mýtů.</div>
+            </div>
+            
+        </div>
+    </div>
+    
 </div>    
 <div 
   class="flex-1 gap-4"
@@ -142,7 +193,11 @@ rt {
     
 </div>  
 
-        <div></div>
+        
+         <div class="note-container flex-1 lg:max-w-sm lg:ml-6 p-4 bg-green-100 rounded-lg shadow" style="height: fit-content;">
+            <p class="text-gray-800"><div><strong><i>POZOR:<i></strong>: Pro zapsání slova "oblačno" (japonsky くもり) se nepoužívá znak 雲, ale 曇. </div></p>
+         </div>
+        
     </div>
 </div>
 <br>
