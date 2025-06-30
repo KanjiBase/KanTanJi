@@ -263,4 +263,4 @@ HTML Stránky slouží pro vložení interaktivních informací o Kanji do exter
 <a href="static/2/26/度.html">度</a>  <a href="static/2/26/店.html">店</a>  <a href="static/2/26/病.html">病</a>  <a href="static/2/26/屋.html">屋</a>  <a href="static/2/26/広.html">広</a>  <a href="static/2/26/国.html">国</a>  <a href="static/2/26/閉.html">閉</a>  <a href="static/2/26/痛.html">痛</a>  <a href="static/2/26/回.html">回</a>  <a href="static/2/26/困.html">困</a>  <a href="static/2/26/開.html">開</a>  <a href="static/2/26/疲.html">疲</a>
 
 #### Kanji Stránky 27
-<a href="static/2/27/寺.html">寺</a>  <a href="static/2/27/晴.html">晴</a>  <a href="static/2/27/道.html">道</a>
+<a href="static/2/27/速.html">速</a>  <a href="static/2/27/静.html">静</a>  <a href="static/2/27/青.html">青</a>  <a href="static/2/27/寺.html">寺</a>  <a href="static/2/27/持.html">持</a>  <a href="static/2/27/荷.html">荷</a>  <a href="static/2/27/歌.html">歌</a>  <a href="static/2/27/晴.html">晴</a>  <a href="static/2/27/遅.html">遅</a>  <a href="static/2/27/道.html">道</a>  <a href="static/2/27/遠.html">遠</a>  <a href="static/2/27/近.html">近</a>
