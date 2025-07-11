@@ -28,6 +28,7 @@ from utils_filesystem import merge_trees, delete_filesystem_node
 from src.anki_generator import generate as generate_anki
 from src.html_pdf_generator import generate as generate_pdf2
 from src.html_generator import generate as generate_html
+from src.json_generator import generate as generate_json
 
 
 DataSet.set_mode_production(not dry_run)
@@ -36,6 +37,7 @@ DataSet.register_processor("Anki Decks", generate_anki)
 # DataSet.register_processor("PDF Materials", generate_pdf)
 DataSet.register_processor("PDF Materials", generate_pdf2)
 DataSet.register_processor("HTML Kanji Pages", generate_html)
+DataSet.register_processor("JSON Data Bundle", generate_json)
 
 def try_read_data(getter, message, output, success_read):
     if not success_read:
@@ -220,10 +222,14 @@ for did in complementary_datasets:
                 else:
                     logger.info("  Kanji: %s: Already encountered before.", kanji_id)
 
+
+            dataset_order = str(data_subset.get("junban", ""))
+            if not dataset_order:
+                dataset_order = None
             # Modification can also be caused by name change
             # If ignored, prevent from recording in the timestamp (problems with files, readme generating, etc.)
             modified = not ignored and data_modification_guard.set_complementary_record_and_check_if_updated(
-                dsid, subset_name, did, name, original_row)
+                dsid, subset_name, did, name, original_row, dataset_order)
 
             dataset.overwrite(dsid, {
                 "id": dsid,
@@ -327,6 +333,7 @@ def get_readme_contents():
     pdf_file_entries = {}
     anki_file_entries = {}
     html_file_entries = {}
+    json_file_entries = {}
 
     def create_dataset_readme(file_list, set_name, item_name=None):
         if not item_name and len(file_list) > 1:
@@ -352,15 +359,18 @@ def get_readme_contents():
     # todo move file iteration to generators too
     for dataset_id in readme_contents:
         elements = readme_contents[dataset_id]
-        elements = sorted(elements, key=lambda x: x["item"]["id"])
+        print(elements[0]["item"])
+        elements = sorted(elements, key=lambda x: x["item"].get("order", x["item"]["id"]))
 
         pdf_files_readme = dict_read_create(pdf_file_entries, dataset_id, [])
         anki_files_readme = dict_read_create(anki_file_entries, dataset_id, [])
         html_files_readme = dict_read_create(html_file_entries, dataset_id, [])
+        json_files_readme = dict_read_create(json_file_entries, dataset_id, [])
 
         pdf_files = [list(Path(x["path"]).glob('**/*.pdf')) for x in elements]
         anki_files = [list(Path(x["path"]).glob('**/*.apkg')) for x in elements]
         html_files = [list(Path(x["path"]).glob('**/*.html')) for x in elements]
+        json_files = [list(Path(x["path"]).glob('**/*.json')) for x in elements]
 
         if len(pdf_files):
             for file_list in pdf_files:
@@ -374,6 +384,10 @@ def get_readme_contents():
             for file_list in html_files:
                 html_files_readme.append(create_dataset_readme(file_list, "Kanji Stránky"))
 
+        if len(json_files):
+            for file_list in json_files:
+                json_files_readme.append(create_dataset_readme(file_list, "JSON Datový Balíček"))
+
     output_readme = {}
     for dataset_id in readme_contents:
         dataset = complementary_datasets[dataset_id]
@@ -382,6 +396,7 @@ def get_readme_contents():
         pdfs = '\n'.join(filter(bool, pdf_file_entries[dataset_id]))
         ankis = '\n'.join(filter(bool, anki_file_entries[dataset_id]))
         htmls = '\n'.join(filter(bool, html_file_entries[dataset_id]))
+        jsons = '\n'.join(filter(bool, json_file_entries[dataset_id]))
         dataset_title = f"## {dataset_name}" if dataset_name else dataset_id
 
         output_readme[dataset_id] = f"""
@@ -402,6 +417,10 @@ Furiganu zobrazíš kliknutím / tapnutím na kartičku.
 ### HTML
 HTML Stránky slouží pro vložení interaktivních informací o Kanji do externích webových služeb.
 {htmls}
+
+### Datové Balíčky
+Slouží pro import do dalších aplikací, například Lively Wallpaper.
+{jsons}
 """
     return output_readme
 

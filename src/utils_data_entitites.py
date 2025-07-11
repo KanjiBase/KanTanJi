@@ -148,11 +148,11 @@ class HashGuard:
                 item["hash"] = ""
         return item
 
-    def update(self, key, name, hash_value):
+    def update(self, key, name, hash_value, junban=None):
         """
         Update the hash record of source file, this has no 'context_name'.
         """
-        self.hashes[key] = {
+        record = {
             "id": key,
             "name": name,
             "context_name": None,
@@ -161,6 +161,10 @@ class HashGuard:
             "stamp": self.stamp,
             "version": VERSION
         }
+        if junban is not None:
+            record["junban"] = junban
+        self.hashes[key] = record
+
 
     def invalidate_all(self):
         for key in self.hashes:
@@ -194,7 +198,7 @@ class HashGuard:
     def set_kanji_record_and_check_if_modified(self, kanji):
         return self.set_record_and_check_if_modified(kanji["kanji"], "", kanji)
 
-    def set_record_and_check_if_modified(self, id: str, name: str, record):
+    def set_record_and_check_if_modified(self, id: str, name: str, record, junban=None):
         """
         Check if data has changed on dataset that is not complementary. Records also existence of the record,
         which is necessary due to file maintenance.
@@ -213,7 +217,7 @@ class HashGuard:
         if hash_record is not None and hash_value == current_hash and hash_record.get("version", "") == VERSION:
             return False
         # Update even if version mismatch!
-        self.update(id, name, current_hash)
+        self.update(id, name, current_hash, junban)
         return True
 
     def get_complementary_id(self, id, context_id):
@@ -222,7 +226,7 @@ class HashGuard:
         return f"c-{context_id}-{id}"
 
     def set_complementary_record_and_check_if_updated(self, id: str, name: str, context_id: str, context_name: str,
-                                                      record):
+                                                      record, junban=None):
         """
         Record existence of complementary dataset - these have no native data and thus
         do not support set_record_and_check_if_modified()
@@ -240,7 +244,7 @@ class HashGuard:
 
         if item and (item["name"] != name or item["context_name"] != context_name):
             # If exists & renamed, add outdated entry so it gets cleaned
-            self.hashes[f"{key}_{time.time()}"] = {
+            entry = {
                 "id": id,
                 "name": item["name"],
                 "context_id": item["context_id"],
@@ -249,13 +253,16 @@ class HashGuard:
                 "stamp": 0,
                 "version": VERSION
             }
+            if junban is not None:
+                entry["junban"] = junban
+            self.hashes[f"{key}_{time.time()}"] = entry
             modified = True
 
         current_hash = compute_hash(record)
         if not modified and item.get("hash") != current_hash:
             modified = True
 
-        self.hashes[key] = {
+        entry = {
             "id": id,
             "name": name,
             "context_name": context_name,
@@ -264,6 +271,9 @@ class HashGuard:
             "stamp": self.stamp,
             "version": VERSION
         }
+        if junban is not None:
+            entry["junban"] = junban
+        self.hashes[key] = entry
         return modified
 
     def processing_file_root(self, id_or_item, parent_id=None):
