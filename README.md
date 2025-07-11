@@ -56,7 +56,16 @@ HTML Stránky slouží pro vložení interaktivních informací o Kanji do exter
 <a href="static/1/2/馬.html">馬</a>  <a href="static/1/2/昼.html">昼</a>  <a href="static/1/2/分.html">分</a>  <a href="static/1/2/万.html">万</a>  <a href="static/1/2/高.html">高</a>  <a href="static/1/2/体.html">体</a>  <a href="static/1/2/細.html">細</a>  <a href="static/1/2/姉.html">姉</a>  <a href="static/1/2/理.html">理</a>  <a href="static/1/2/来.html">来</a>  <a href="static/1/2/間.html">間</a>  <a href="static/1/2/牛.html">牛</a>  <a href="static/1/2/同.html">同</a>  <a href="static/1/2/行.html">行</a>  <a href="static/1/2/朝.html">朝</a>  <a href="static/1/2/売.html">売</a>  <a href="static/1/2/兄.html">兄</a>  <a href="static/1/2/長.html">長</a>  <a href="static/1/2/知.html">知</a>  <a href="static/1/2/書.html">書</a>  <a href="static/1/2/答.html">答</a>  <a href="static/1/2/工.html">工</a>  <a href="static/1/2/紙.html">紙</a>  <a href="static/1/2/少.html">少</a>  <a href="static/1/2/活.html">活</a>  <a href="static/1/2/内.html">内</a>  <a href="static/1/2/冬.html">冬</a>  <a href="static/1/2/地.html">地</a>  <a href="static/1/2/強.html">強</a>  <a href="static/1/2/後.html">後</a>  <a href="static/1/2/交.html">交</a>  <a href="static/1/2/秋.html">秋</a>  <a href="static/1/2/茶.html">茶</a>  <a href="static/1/2/古.html">古</a>  <a href="static/1/2/広.html">広</a>  <a href="static/1/2/場.html">場</a>  <a href="static/1/2/顔.html">顔</a>  <a href="static/1/2/時.html">時</a>  <a href="static/1/2/国.html">国</a>  <a href="static/1/2/風.html">風</a>  <a href="static/1/2/弱.html">弱</a>  <a href="static/1/2/鳴.html">鳴</a>  <a href="static/1/2/方.html">方</a>  <a href="static/1/2/数.html">数</a>  <a href="static/1/2/点.html">点</a>  <a href="static/1/2/親.html">親</a>  <a href="static/1/2/才.html">才</a>  <a href="static/1/2/羽.html">羽</a>  <a href="static/1/2/思.html">思</a>  <a href="static/1/2/夏.html">夏</a>  <a href="static/1/2/太.html">太</a>  <a href="static/1/2/寺.html">寺</a>  <a href="static/1/2/記.html">記</a>  <a href="static/1/2/首.html">首</a>  <a href="static/1/2/雪.html">雪</a>  <a href="static/1/2/教.html">教</a>  <a href="static/1/2/食.html">食</a>  <a href="static/1/2/海.html">海</a>  <a href="static/1/2/帰.html">帰</a>  <a href="static/1/2/直.html">直</a>  <a href="static/1/2/通.html">通</a>  <a href="static/1/2/自.html">自</a>  <a href="static/1/2/野.html">野</a>  <a href="static/1/2/頭.html">頭</a>  <a href="static/1/2/弟.html">弟</a>  <a href="static/1/2/米.html">米</a>  <a href="static/1/2/形.html">形</a>  <a href="static/1/2/心.html">心</a>  <a href="static/1/2/晴.html">晴</a>  <a href="static/1/2/母.html">母</a>  <a href="static/1/2/曜.html">曜</a>  <a href="static/1/2/作.html">作</a>  <a href="static/1/2/算.html">算</a>  <a href="static/1/2/色.html">色</a>  <a href="static/1/2/魚.html">魚</a>  <a href="static/1/2/前.html">前</a>  <a href="static/1/2/画.html">画</a>  <a href="static/1/2/春.html">春</a>  <a href="static/1/2/南.html">南</a>  <a href="static/1/2/園.html">園</a>  <a href="static/1/2/言.html">言</a>  <a href="static/1/2/家.html">家</a>  <a href="static/1/2/父.html">父</a>  <a href="static/1/2/話.html">話</a>  <a href="static/1/2/元.html">元</a>  <a href="static/1/2/雲.html">雲</a>  <a href="static/1/2/歩.html">歩</a>  <a href="static/1/2/外.html">外</a>  <a href="static/1/2/京.html">京</a>  <a href="static/1/2/走.html">走</a>  <a href="static/1/2/買.html">買</a>  <a href="static/1/2/妹.html">妹</a>  <a href="static/1/2/北.html">北</a>  <a href="static/1/2/図.html">図</a>  <a href="static/1/2/麦.html">麦</a>  <a href="static/1/2/止.html">止</a>  <a href="static/1/2/市.html">市</a>  <a href="static/1/2/考.html">考</a>  <a href="static/1/2/多.html">多</a>  <a href="static/1/2/新.html">新</a>  <a href="static/1/2/西.html">西</a>  <a href="static/1/2/週.html">週</a>  <a href="static/1/2/計.html">計</a>  <a href="static/1/2/黄.html">黄</a>  <a href="static/1/2/道.html">道</a>  <a href="static/1/2/遠.html">遠</a>  <a href="static/1/2/近.html">近</a>  <a href="static/1/2/聞.html">聞</a>  <a href="static/1/2/原.html">原</a>  <a href="static/1/2/肉.html">肉</a>  <a href="static/1/2/東.html">東</a>  <a href="static/1/2/今.html">今</a>  <a href="static/1/2/夜.html">夜</a>  <a href="static/1/2/語.html">語</a>  <a href="static/1/2/岩.html">岩</a>  <a href="static/1/2/室.html">室</a>  <a href="static/1/2/読.html">読</a>  <a href="static/1/2/門.html">門</a>  <a href="static/1/2/黒.html">黒</a>  <a href="static/1/2/半.html">半</a>  <a href="static/1/2/線.html">線</a>  <a href="static/1/2/鳥.html">鳥</a>  <a href="static/1/2/友.html">友</a>
 
 #### Kanji Stránky 3
-<a href="static/1/3/馬.html">馬</a>  <a href="static/1/3/番.html">番</a>  <a href="static/1/3/引.html">引</a>  <a href="static/1/3/理.html">理</a>  <a href="static/1/3/来.html">来</a>  <a href="static/1/3/牛.html">牛</a>  <a href="static/1/3/切.html">切</a>  <a href="static/1/3/行.html">行</a>  <a href="static/1/3/売.html">売</a>  <a href="static/1/3/知.html">知</a>  <a href="static/1/3/書.html">書</a>  <a href="static/1/3/汽.html">汽</a>  <a href="static/1/3/船.html">船</a>  <a href="static/1/3/答.html">答</a>  <a href="static/1/3/工.html">工</a>  <a href="static/1/3/紙.html">紙</a>  <a href="static/1/3/活.html">活</a>  <a href="static/1/3/組.html">組</a>  <a href="static/1/3/電.html">電</a>  <a href="static/1/3/当.html">当</a>  <a href="static/1/3/声.html">声</a>  <a href="static/1/3/茶.html">茶</a>  <a href="static/1/3/合.html">合</a>  <a href="static/1/3/鳴.html">鳴</a>  <a href="static/1/3/会.html">会</a>  <a href="static/1/3/才.html">才</a>  <a href="static/1/3/公.html">公</a>  <a href="static/1/3/羽.html">羽</a>  <a href="static/1/3/思.html">思</a>  <a href="static/1/3/寺.html">寺</a>  <a href="static/1/3/弓.html">弓</a>  <a href="static/1/3/教.html">教</a>  <a href="static/1/3/食.html">食</a>  <a href="static/1/3/帰.html">帰</a>  <a href="static/1/3/通.html">通</a>  <a href="static/1/3/明.html">明</a>  <a href="static/1/3/米.html">米</a>  <a href="static/1/3/歌.html">歌</a>  <a href="static/1/3/刀.html">刀</a>  <a href="static/1/3/晴.html">晴</a>  <a href="static/1/3/毎.html">毎</a>  <a href="static/1/3/回.html">回</a>  <a href="static/1/3/作.html">作</a>  <a href="static/1/3/算.html">算</a>  <a href="static/1/3/色.html">色</a>  <a href="static/1/3/社.html">社</a>  <a href="static/1/3/魚.html">魚</a>  <a href="static/1/3/科.html">科</a>  <a href="static/1/3/言.html">言</a>  <a href="static/1/3/家.html">家</a>  <a href="static/1/3/話.html">話</a>  <a href="static/1/3/元.html">元</a>  <a href="static/1/3/歩.html">歩</a>  <a href="static/1/3/戸.html">戸</a>  <a href="static/1/3/走.html">走</a>  <a href="static/1/3/買.html">買</a>  <a href="static/1/3/図.html">図</a>  <a href="static/1/3/麦.html">麦</a>  <a href="static/1/3/止.html">止</a>  <a href="static/1/3/考.html">考</a>  <a href="static/1/3/台.html">台</a>  <a href="static/1/3/黄.html">黄</a>  <a href="static/1/3/道.html">道</a>  <a href="static/1/3/聞.html">聞</a>  <a href="static/1/3/肉.html">肉</a>  <a href="static/1/3/語.html">語</a>  <a href="static/1/3/用.html">用</a>  <a href="static/1/3/午.html">午</a>  <a href="static/1/3/室.html">室</a>  <a href="static/1/3/読.html">読</a>  <a href="static/1/3/門.html">門</a>  <a href="static/1/3/黒.html">黒</a>  <a href="static/1/3/何.html">何</a>  <a href="static/1/3/鳥.html">鳥</a>
+<a href="static/1/3/馬.html">馬</a>  <a href="static/1/3/番.html">番</a>  <a href="static/1/3/引.html">引</a>  <a href="static/1/3/理.html">理</a>  <a href="static/1/3/来.html">来</a>  <a href="static/1/3/牛.html">牛</a>  <a href="static/1/3/切.html">切</a>  <a href="static/1/3/行.html">行</a>  <a href="static/1/3/売.html">売</a>  <a href="static/1/3/知.html">知</a>  <a href="static/1/3/書.html">書</a>  <a href="static/1/3/絵.html">絵</a>  <a href="static/1/3/汽.html">汽</a>  <a href="static/1/3/船.html">船</a>  <a href="static/1/3/答.html">答</a>  <a href="static/1/3/工.html">工</a>  <a href="static/1/3/紙.html">紙</a>  <a href="static/1/3/活.html">活</a>  <a href="static/1/3/組.html">組</a>  <a href="static/1/3/電.html">電</a>  <a href="static/1/3/当.html">当</a>  <a href="static/1/3/声.html">声</a>  <a href="static/1/3/茶.html">茶</a>  <a href="static/1/3/合.html">合</a>  <a href="static/1/3/鳴.html">鳴</a>  <a href="static/1/3/会.html">会</a>  <a href="static/1/3/才.html">才</a>  <a href="static/1/3/公.html">公</a>  <a href="static/1/3/羽.html">羽</a>  <a href="static/1/3/思.html">思</a>  <a href="static/1/3/寺.html">寺</a>  <a href="static/1/3/記.html">記</a>  <a href="static/1/3/弓.html">弓</a>  <a href="static/1/3/教.html">教</a>  <a href="static/1/3/食.html">食</a>  <a href="static/1/3/帰.html">帰</a>  <a href="static/1/3/通.html">通</a>  <a href="static/1/3/明.html">明</a>  <a href="static/1/3/米.html">米</a>  <a href="static/1/3/歌.html">歌</a>  <a href="static/1/3/刀.html">刀</a>  <a href="static/1/3/晴.html">晴</a>  <a href="static/1/3/毎.html">毎</a>  <a href="static/1/3/回.html">回</a>  <a href="static/1/3/作.html">作</a>  <a href="static/1/3/算.html">算</a>  <a href="static/1/3/色.html">色</a>  <a href="static/1/3/社.html">社</a>  <a href="static/1/3/魚.html">魚</a>  <a href="static/1/3/画.html">画</a>  <a href="static/1/3/科.html">科</a>  <a href="static/1/3/言.html">言</a>  <a href="static/1/3/家.html">家</a>  <a href="static/1/3/話.html">話</a>  <a href="static/1/3/元.html">元</a>  <a href="static/1/3/歩.html">歩</a>  <a href="static/1/3/戸.html">戸</a>  <a href="static/1/3/走.html">走</a>  <a href="static/1/3/買.html">買</a>  <a href="static/1/3/図.html">図</a>  <a href="static/1/3/麦.html">麦</a>  <a href="static/1/3/止.html">止</a>  <a href="static/1/3/考.html">考</a>  <a href="static/1/3/台.html">台</a>  <a href="static/1/3/黄.html">黄</a>  <a href="static/1/3/道.html">道</a>  <a href="static/1/3/聞.html">聞</a>  <a href="static/1/3/肉.html">肉</a>  <a href="static/1/3/語.html">語</a>  <a href="static/1/3/用.html">用</a>  <a href="static/1/3/午.html">午</a>  <a href="static/1/3/室.html">室</a>  <a href="static/1/3/読.html">読</a>  <a href="static/1/3/門.html">門</a>  <a href="static/1/3/黒.html">黒</a>  <a href="static/1/3/何.html">何</a>  <a href="static/1/3/鳥.html">鳥</a>
+
+### Datové Balíčky
+Slouží pro import do dalších aplikací, například Lively Wallpaper.
+ - <a href="static/1/1/1-80.json">JSON Datový Balíček 1-80</a>
+
+ - <a href="static/1/2/81-160.json">JSON Datový Balíček 81-160</a>
+
+ - <a href="static/1/3/161-240.json">JSON Datový Balíček 161-240</a>
+
 
 
 
@@ -264,3 +273,60 @@ HTML Stránky slouží pro vložení interaktivních informací o Kanji do exter
 
 #### Kanji Stránky 27
 <a href="static/2/27/速.html">速</a>  <a href="static/2/27/静.html">静</a>  <a href="static/2/27/青.html">青</a>  <a href="static/2/27/寺.html">寺</a>  <a href="static/2/27/持.html">持</a>  <a href="static/2/27/荷.html">荷</a>  <a href="static/2/27/歌.html">歌</a>  <a href="static/2/27/晴.html">晴</a>  <a href="static/2/27/遅.html">遅</a>  <a href="static/2/27/道.html">道</a>  <a href="static/2/27/遠.html">遠</a>  <a href="static/2/27/近.html">近</a>
+
+### Datové Balíčky
+Slouží pro import do dalších aplikací, například Lively Wallpaper.
+ - <a href="static/2/1/Písmo_IV_-_Týden_1.json">JSON Datový Balíček Písmo_IV_-_Týden_1</a>
+
+ - <a href="static/2/2/Písmo_IV_-_Týden_2.json">JSON Datový Balíček Písmo_IV_-_Týden_2</a>
+
+ - <a href="static/2/3/Písmo_IV_-_Týden_3.json">JSON Datový Balíček Písmo_IV_-_Týden_3</a>
+
+ - <a href="static/2/4/Písmo_IV_-_Týden_4.json">JSON Datový Balíček Písmo_IV_-_Týden_4</a>
+
+ - <a href="static/2/5/Písmo_IV_-_Týden_5.json">JSON Datový Balíček Písmo_IV_-_Týden_5</a>
+
+ - <a href="static/2/6/Písmo_IV_-_Týden_6.json">JSON Datový Balíček Písmo_IV_-_Týden_6</a>
+
+ - <a href="static/2/7/Písmo_IV_-_Týden_7.json">JSON Datový Balíček Písmo_IV_-_Týden_7</a>
+
+ - <a href="static/2/8/Písmo_IV_-_Týden_8.json">JSON Datový Balíček Písmo_IV_-_Týden_8</a>
+
+ - <a href="static/2/9/Písmo_IV_-_Týden_9.json">JSON Datový Balíček Písmo_IV_-_Týden_9</a>
+
+ - <a href="static/2/10/Písmo_IV_-_Týden_10.json">JSON Datový Balíček Písmo_IV_-_Týden_10</a>
+
+ - <a href="static/2/11/Písmo_IV_-_Týden_11.json">JSON Datový Balíček Písmo_IV_-_Týden_11</a>
+
+ - <a href="static/2/12/Písmo_IV_-_Týden_12.json">JSON Datový Balíček Písmo_IV_-_Týden_12</a>
+
+ - <a href="static/2/13/Písmo_IV_-_Týden_13.json">JSON Datový Balíček Písmo_IV_-_Týden_13</a>
+
+ - <a href="static/2/14/Písmo_I_-_Lekce_1.json">JSON Datový Balíček Písmo_I_-_Lekce_1</a>
+
+ - <a href="static/2/15/Písmo_I_-_Lekce_2.json">JSON Datový Balíček Písmo_I_-_Lekce_2</a>
+
+ - <a href="static/2/16/Písmo_I_-_Lekce_3.json">JSON Datový Balíček Písmo_I_-_Lekce_3</a>
+
+ - <a href="static/2/17/Písmo_I_-_Lekce_4.json">JSON Datový Balíček Písmo_I_-_Lekce_4</a>
+
+ - <a href="static/2/18/Písmo_I_-_Lekce_5.json">JSON Datový Balíček Písmo_I_-_Lekce_5</a>
+
+ - <a href="static/2/19/Písmo_I_-_Lekce_6.json">JSON Datový Balíček Písmo_I_-_Lekce_6</a>
+
+ - <a href="static/2/20/Písmo_I_-_Lekce_7.json">JSON Datový Balíček Písmo_I_-_Lekce_7</a>
+
+ - <a href="static/2/21/Písmo_I_-_Lekce_8.json">JSON Datový Balíček Písmo_I_-_Lekce_8</a>
+
+ - <a href="static/2/22/Písmo_I_-_Lekce_9.json">JSON Datový Balíček Písmo_I_-_Lekce_9</a>
+
+ - <a href="static/2/23/Písmo_II_-_Lekce_10.json">JSON Datový Balíček Písmo_II_-_Lekce_10</a>
+
+ - <a href="static/2/24/Písmo_II_-_Lekce_11.json">JSON Datový Balíček Písmo_II_-_Lekce_11</a>
+
+ - <a href="static/2/25/Písmo_II_-_Lekce_12.json">JSON Datový Balíček Písmo_II_-_Lekce_12</a>
+
+ - <a href="static/2/26/Písmo_II_-_Lekce_13.json">JSON Datový Balíček Písmo_II_-_Lekce_13</a>
+
+ - <a href="static/2/27/Písmo_II_-_Lekce_14.json">JSON Datový Balíček Písmo_II_-_Lekce_14</a>
+
