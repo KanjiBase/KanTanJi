@@ -359,8 +359,7 @@ def get_readme_contents():
     # todo move file iteration to generators too
     for dataset_id in readme_contents:
         elements = readme_contents[dataset_id]
-        print(elements[0]["item"])
-        elements = sorted(elements, key=lambda x: x["item"].get("order", x["item"]["id"]))
+        elements = sorted(elements, key=lambda x: x["item"].get("junban", x["item"]["id"]))
 
         pdf_files_readme = dict_read_create(pdf_file_entries, dataset_id, [])
         anki_files_readme = dict_read_create(anki_file_entries, dataset_id, [])
@@ -419,7 +418,7 @@ HTML Stránky slouží pro vložení interaktivních informací o Kanji do exter
 {htmls}
 
 ### Datové Balíčky
-Slouží pro import do dalších aplikací, například Lively Wallpaper.
+Slouží pro import do dalších aplikací, například [Lively Wallpaper](https://github.com/KanjiBase/LivelyKanji).
 {jsons}
 """
     return output_readme
