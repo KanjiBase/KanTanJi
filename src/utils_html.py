@@ -4,7 +4,7 @@ ADJECTIVE_TYPE_COLOR = "#ACA52F"
 VERB_TRANSITIVENESS_COLOR = "#28835F"
 VERB_IGIDAN_GODAN_COLOR = "#658B18"
 VERB_SURU_COLOR = "#4A90E2"
-
+VERB_IRREGULAR_COLOR = "#E65563"
 
 def get_smart_label(title: str, details: str, color="#d73a49"):
     return f"""
@@ -62,7 +62,7 @@ def vocab_property_color(prop: str | Value):
         case "suru":
             return VERB_SURU_COLOR
         case "fukisokuna":
-            return
+            return VERB_IRREGULAR_COLOR
     raise ValueError(f"Property not allowed: {prop}")
 
 
