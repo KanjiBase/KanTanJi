@@ -46,6 +46,8 @@ def vocab_property_html(prop: str | Value, color: str):
             return get_smart_label("な - příd. jméno", "Odpadá ~な přípona (např. při použití s 'です'), pokud se neváže na podstatné jméno.", color)
         case "suru":
             return get_smart_label("する sloveso","Nepravidelná slovesa se chovají dle する tvaru podobně.", color)
+        case "fukisokuna":
+            return get_smart_label("nepravidelné čtení","Čtení nelze odvodit ze zápisu kanji.", color)
     raise ValueError(f"Property not allowed: {prop}")
 
 
@@ -59,6 +61,8 @@ def vocab_property_color(prop: str | Value):
             return ADJECTIVE_TYPE_COLOR
         case "suru":
             return VERB_SURU_COLOR
+        case "fukisokuna":
+            return
     raise ValueError(f"Property not allowed: {prop}")
 
 

@@ -43,7 +43,8 @@ Dependening on the keys mentioned above, the row also can or must define other k
      - `godan` - 5 form verb
      -  ``suru`` - if a 'suru' verb appears, no need to specify any of the above
      - ``na``  - na-adjective
-     - `i`  - i-adjective  
+     - `i`  - i-adjective 
+     - `fukisokuna` - irregular reading
 
 You can also define arbitrary key-value pairs you wish, these will be included in 'other', 'notes' etc. sections.
 
