@@ -387,7 +387,7 @@ class DatasetEntry(Entry):
         self["type"] = "dataset"
         self["setto"] = other_dict.get("setto")
         self["id"] = other_dict.get("id")
-
+        self["kijutsu"] = other_dict.get("kijutsu", None)
         self["guid"] = self["setto"]
 
 
@@ -404,7 +404,6 @@ class DataSubsetEntry(Entry):
         self["subid"] = other_dict.get("subid")
         self["junban"] = other_dict.get("junban")
         self["ids"] = other_dict.get("ids", [])
-
         self["guid"] = f"{self['setto']}.{self['subid']}"
 
 
@@ -419,16 +418,18 @@ class DataSet:
         else:
             self.context_name = context_name
             self.parent_context_id = parent_context_id
+        self.description = None
         self.data = {}
         self.default = False
         self._order = None
         self._initialized = False
 
-    def set_context_name(self, value):
+    def set_context_name(self, value, description=None):
         if self._initialized:
             raise ValueError(f"Redefinition of a set! {value}")
         self._initialized = True
         self.context_name = value
+        self.description = description
 
     def is_initialized(self):
         return self._initialized

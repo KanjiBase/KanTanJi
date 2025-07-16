@@ -276,7 +276,7 @@ def process_row(row: list):
             item[key].append(Value(value, key_significance, data_format))
         elif key in ['junban']:
             item[key] = Value(int(value), key_significance, data_format)
-        elif key in ['imi', 'tango', 'radical', 'setto']:
+        elif key in ['imi', 'tango', 'radical', 'setto', 'kijutsu']:
             item[key] = Value(value, key_significance, data_format)
         else:
             # TODO does not support chaining

@@ -134,7 +134,7 @@ for dataset_name in data:
                         continue
                     node.append(subset_id, (item, row))
                 else:
-                    node.set_context_name(set_name)
+                    node.set_context_name(set_name, item.get("kijutsu"))
 
             else:
                 # custom type, add to the dataset
@@ -223,7 +223,7 @@ for did in complementary_datasets:
                     logger.info("  Kanji: %s: Already encountered before.", kanji_id)
 
 
-            dataset_order = str(data_subset.get("junban", ""))
+            dataset_order = str(data_subset.get("junban", None))
             if not dataset_order:
                 dataset_order = None
             # Modification can also be caused by name change
@@ -262,7 +262,7 @@ Jednoduchá aplikace na trénování Kanji - pomocí PDF souborů a přidružen�
 
 #### Filtrování karet Anki
 
-Karty KanTanJi lze snadno filtrovat pomocí **tagů**. V současnosti jsou k dispozici 4 tagy:
+Karty KanTanJi lze snadno filtrovat pomocí **tagů**. V současnosti jsou k dispozici tagy:
 
  - **KanTanJi_Kanji** (karta s kanji)
  - **KanTanJi_Tango** (slovní zásoba související s kanji)
@@ -356,10 +356,16 @@ def get_readme_contents():
             return f" - <a href=\"{file_list[0]}\">{set_name} {Path(file_list[0]).stem}</a>\n"
         print("Warning: invalid dataset - no output files!", set_name, item_name)
 
+    def get_sort_attr(x):
+        try:
+            return int(x['item'].get('junban', 0))
+        except (ValueError, TypeError):
+            return 0
+
     # todo move file iteration to generators too
     for dataset_id in readme_contents:
         elements = readme_contents[dataset_id]
-        elements = sorted(elements, key=lambda x: x["item"].get("junban", x["item"]["id"]))
+        elements = sorted(elements, key=get_sort_attr)
 
         pdf_files_readme = dict_read_create(pdf_file_entries, dataset_id, [])
         anki_files_readme = dict_read_create(anki_file_entries, dataset_id, [])
@@ -400,7 +406,7 @@ def get_readme_contents():
 
         output_readme[dataset_id] = f"""
 {dataset_title}
-
+{dataset.description if dataset.description else ""}
 ### PDF Materiály
 PDF Soubory obsahují seznam znaků kanji a přidružených slovíček.
 {pdfs}
