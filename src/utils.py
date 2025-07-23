@@ -236,7 +236,7 @@ def process_row(row: list):
             else:
                 item["kanji"] = Value(value, key_significance, data_format)
         elif key == 'raberu':
-            if value not in ["ichidan", "godan", "tadoushi", "jidoushi", "suru", "i", "na"]:
+            if value not in ["ichidan", "godan", "tadoushi", "jidoushi", "suru", "i", "na", "fukisokuna"]:
                 print(" --parse-- Invalid value for vocab property: ", value)
             else:
                 item["raberu"].append(Value(value, key_significance, data_format))

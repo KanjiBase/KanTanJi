@@ -33,19 +33,19 @@ def get_unimportant_reading_html(text):
 def vocab_property_html(prop: str | Value, color: str):
     match str(prop):
         case "ichidan":
-            return get_smart_label("ichidan (る)", "Sloveso má pouze jeden tvar, při skloňování většinou odpadá ~る přípona.", color)
+            return get_smart_label("ichidan (..る)", "Sloveso má pouze jeden tvar, při skloňování většinou odpadá ~る přípona.", color)
         case "godan":
             return get_smart_label("godan (..う)", "Sloveso má pět tvarů jako je pět samohlášek, pro skloňování mají dle typu koncovky různá pravidla.", color)
         case "jidoushi":
-            return get_smart_label("netranzitivní", "neboli 'じどうし', sloveso popisuje podmět (budova byla postavena)", color)
+            return get_smart_label("netranzitivní", "neboli 'じどうし', sloveso popisuje podmět (budova se staví)", color)
         case "tadoushi":
             return get_smart_label("tranzitivní", "neboli 'たどうし', sloveso může popisovat předmět (postavili budovu)", color)
         case "i":
-            return get_smart_label("い - příd. jméno", "Sloveso má pouze jeden tvar, při skloňování většinou odpadá ~る přípona.", color)
+            return get_smart_label("い - příd. jméno", "Koncovka ~い buď zůstává, nebo se nahrazuje např. v záporu za ~くない.", color)
         case "na":
-            return get_smart_label("な - příd. jméno", "Odpadá ~な přípona (např. při použití s 'です'), pokud se neváže na podstatné jméno.", color)
+            return get_smart_label("な - příd. jméno", "Většinou koncovka ~な odpadá (např. při použití s 'です'), pokud se neváže na podstatné jméno.", color)
         case "suru":
-            return get_smart_label("する sloveso","Nepravidelná slovesa se chovají dle する tvaru podobně.", color)
+            return get_smart_label("する sloveso","Nepravidelná slovesa se chovají podobně dle する tvaru.", color)
         case "fukisokuna":
             return get_smart_label("nepravidelné čtení","Čtení nelze odvodit ze zápisu kanji.", color)
     raise ValueError(f"Property not allowed: {prop}")
