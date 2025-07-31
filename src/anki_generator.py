@@ -31,10 +31,10 @@ css = """
 .rldt {color: lightgray;}
 .rlbl {visibility:hidden}
 .qa {opacity:0.4;margin-bottom:15px}
-.c {display: flex;flex-direction: column;justify-content: center; align-items: center;gap: 5px;width: 100%;}
+.c {display: flex;flex-direction: column;justify-content: center; align-items: center;gap: 5px;width: 100%;text-align:center;}
 .t {font-size:15pt;color: gray;font-weight: bold;}
 .a {white-space: nowrap; font-size: 10pt;display:block;margin-bottom:10px;}
-.o {background-color:rgba(188,188,188,0.1);color:gray!important;width: 100%;margin-top:25px;padding:5px 12px;border-radius:5px;}
+.o {background-color:rgba(188,188,188,0.1);color:gray!important;width: 100%;margin-top:25px;padding:5px 12px;border-radius:5px;text-align:left;}
 .g {color:gray!important}
 .u {background-color:rgba(50,50,50,0.2);border-radius:5px;padding:5px 12px;font-size:14pt;}
 """

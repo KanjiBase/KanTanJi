@@ -65,7 +65,11 @@ def get_word_html(word, start='50', end='100'):
             """
 
     usage_examples = ''.join(map(get_usage, word['tsukaikata']))
-    if not usage_examples:
+    if usage_examples:
+        usage_examples = f"<div class=\"mt-2 p-2 rounded bg-white shadow\">{usage_examples}</div>"
+    notes = get_notes_content(word, "mt-2")
+
+    if not usage_examples and not notes:
         return f"""
     <div class="bg-gradient-to-r {start} {end} rounded-lg shadow p-4 flex flex-col my-2">
         <div class="flex justify-between items-center">
@@ -80,7 +84,6 @@ def get_word_html(word, start='50', end='100'):
     """
 
     return f"""
-    
     <div class="bg-gradient-to-r {start} {end} rounded-lg shadow p-4 flex flex-col my-2">
         <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-{uuid}', this)">
             <div>
@@ -92,8 +95,9 @@ def get_word_html(word, start='50', end='100'):
             transform transition-transform duration-200 px-2">▼</button>
         </div>
         {props_html}
-        <div id="vocab-{uuid}" class="button-vocab-example hidden mt-2 p-2 rounded bg-white text-gray-700 shadow">
-          {usage_examples}
+        <div id="vocab-{uuid}" class="button-vocab-example hidden text-gray-700">
+            {usage_examples}
+            {notes}
         </div>
     </div>
     """
@@ -128,13 +132,18 @@ def get_vocab_entries(item):
 """
 
 
-def get_notes(item):
-    notes = "".join([
-        f"<div><strong><i>{generate_furigana(key)}<i></strong>: {generate_furigana(value)}</div>" if value.format == InputFormat.PLAINTEXT
+def get_notes_content(item, cls=""):
+    if cls:
+        cls = f" class=\"{cls}\""
+    return "".join([
+        f"<div{cls}><strong><i>{generate_furigana(key)}<i></strong>: {generate_furigana(value)}</div>" if value.format == InputFormat.PLAINTEXT
         else f"<div>{markdown.markdown(generate_furigana(value))}</div>"
         for key, value in item.get("extra", {}).items()
     ])
 
+
+def get_notes(item):
+    notes = get_notes_content(item)
     if notes:
         return f"""
          <div class="note-container flex-1 lg:max-w-sm lg:ml-6 p-4 bg-green-100 rounded-lg shadow" style="height: fit-content;">
