@@ -132,7 +132,6 @@ rt {
 >   
     <span class="text-xl font-bold text-gray-800 mb-4">Povinná slovíčka</span>
     
-    
     <div class="bg-gradient-to-r from-green-50 to-green-100 rounded-lg shadow p-4 flex flex-col my-2">
         <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-a6cf0faf', this)">
             <div>
@@ -144,16 +143,16 @@ rt {
             transform transition-transform duration-200 px-2">▼</button>
         </div>
         
-        <div id="vocab-a6cf0faf" class="button-vocab-example hidden mt-2 p-2 rounded bg-white text-gray-700 shadow">
-          
+        <div id="vocab-a6cf0faf" class="button-vocab-example hidden text-gray-700">
+            <div class="mt-2 p-2 rounded bg-white shadow">
             <div>
                 <div style="margin-bottom: 5px;"><span lang="JA"><ruby>一足<rt style="visibility: hidden">いっそく</rt></ruby><ruby>一刀<rt style="visibility: hidden">いっとう</rt></ruby>という<ruby>意<rt style="visibility: hidden">い</rt></ruby><ruby>味<rt style="visibility: hidden">み</rt></ruby>は、<ruby>一<rt style="visibility: hidden">いっ</rt></ruby><ruby>歩<rt style="visibility: hidden">ぽ</rt></ruby><ruby>踏<rt style="visibility: hidden">ふ</rt></ruby>み<ruby>出<rt style="visibility: hidden">だ</rt></ruby>せば<ruby>当<rt style="visibility: hidden">あ</rt></ruby>たります</span></div>
                 <div style="margin-bottom: 5px; color: #666;">„Jeden krok, jeden úder“ znamená, že když uděláš krok vpřed, zasáhneš.</div>
             </div>
-            
+            </div>
+            <div class="mt-2"><strong><i><ruby>備<rt style="visibility: hidden">び</rt></ruby><ruby>考<rt style="visibility: hidden">こう</rt></ruby><i></strong>: Má plno významů, např. <ruby>日<rt style="visibility: hidden">ひ</rt></ruby>の<ruby>当<rt style="visibility: hidden">あ</rt></ruby>たり - sluneční/denní světlo (ve smyslu jak/kam svítí) atd.</div>
         </div>
     </div>
-    
     
     <div class="bg-gradient-to-r from-green-50 to-green-100 rounded-lg shadow p-4 flex flex-col my-2">
         <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-0d3e7150', this)">
@@ -166,25 +165,32 @@ rt {
             transform transition-transform duration-200 px-2">▼</button>
         </div>
         
-        <div id="vocab-0d3e7150" class="button-vocab-example hidden mt-2 p-2 rounded bg-white text-gray-700 shadow">
-          
+        <div id="vocab-0d3e7150" class="button-vocab-example hidden text-gray-700">
+            <div class="mt-2 p-2 rounded bg-white shadow">
             <div>
                 <div style="margin-bottom: 5px;"><span lang="JA">これ、ほんとうですか</span></div>
                 <div style="margin-bottom: 5px; color: #666;">Je to pravda?</div>
+            </div>
             </div>
             
         </div>
     </div>
     
     <div class="bg-gradient-to-r from-green-50 to-green-100 rounded-lg shadow p-4 flex flex-col my-2">
-        <div class="flex justify-between items-center">
-          <div>
-            <p class="text-lg text-2xl text-gray-800 copyable cursor-pointer relative" 
-            onclick="copyText(this)"><ruby>当<rt style="visibility: hidden">あ</rt></ruby>たり</p>
-            <p class="text-sm text-gray-600">zásah, úspěch</p>
-          </div>
+        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-fe7a9b58', this)">
+            <div>
+                <p class="text-lg text-2xl text-gray-800 copyable relative" 
+                onclick="copyText(this)"><ruby>当<rt style="visibility: hidden">あ</rt></ruby>たり</p>
+                <p class="text-sm text-gray-600">zásah, úspěch</p>
+            </div>
+            <button class="button-vocab-toggle text-gray-600 hover:text-gray-900 
+            transform transition-transform duration-200 px-2">▼</button>
         </div>
         
+        <div id="vocab-fe7a9b58" class="button-vocab-example hidden text-gray-700">
+            
+            <div class="mt-2"><strong><i><ruby>備<rt style="visibility: hidden">び</rt></ruby><ruby>考<rt style="visibility: hidden">こう</rt></ruby><i></strong>: <ruby>１人<rt style="visibility: hidden">ひとり</rt></ruby>あたり - fráze (často hiragana): na obyvatele / na člověka</div>
+        </div>
     </div>
     
     <div class="bg-gradient-to-r from-green-50 to-green-100 rounded-lg shadow p-4 flex flex-col my-2">
@@ -198,7 +204,6 @@ rt {
         
     </div>
     
-    
     <div class="bg-gradient-to-r from-green-50 to-green-100 rounded-lg shadow p-4 flex flex-col my-2">
         <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-a53874f4', this)">
             <div>
@@ -210,16 +215,16 @@ rt {
             transform transition-transform duration-200 px-2">▼</button>
         </div>
         
-        <div id="vocab-a53874f4" class="button-vocab-example hidden mt-2 p-2 rounded bg-white text-gray-700 shadow">
-          
+        <div id="vocab-a53874f4" class="button-vocab-example hidden text-gray-700">
+            <div class="mt-2 p-2 rounded bg-white shadow">
             <div>
                 <div style="margin-bottom: 5px;"><span lang="JA">これ<ruby>当<rt style="visibility: hidden">あ</rt></ruby>たり<ruby>前<rt style="visibility: hidden">まえ</rt></ruby>なんですけど</span></div>
                 <div style="margin-bottom: 5px; color: #666;">To je přece zřejmé.</div>
             </div>
+            </div>
             
         </div>
     </div>
-    
     
     <div class="bg-gradient-to-r from-green-50 to-green-100 rounded-lg shadow p-4 flex flex-col my-2">
         <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-7121c25c', this)">
@@ -232,10 +237,11 @@ rt {
             transform transition-transform duration-200 px-2">▼</button>
         </div>
         
-        <div id="vocab-7121c25c" class="button-vocab-example hidden mt-2 p-2 rounded bg-white text-gray-700 shadow">
-          
+        <div id="vocab-7121c25c" class="button-vocab-example hidden text-gray-700">
+            <div class="mt-2 p-2 rounded bg-white shadow">
             <div>
                 <div style="margin-bottom: 5px;">イベント当<ruby>日<rt style="visibility: hidden">とうじつ</rt></ruby>まで <ruby>私<rt style="visibility: hidden">わたし</rt></ruby>は。。。 Až do toho dne konání akce jsem...</div>
+            </div>
             </div>
             
         </div>
@@ -272,7 +278,7 @@ rt {
 <span class="property-label" onclick="this.querySelector('span').style.display = (this.querySelector('span').style.display === 'none' || this.querySelector('span').style.display === '') ? 'block' : 'none';" style="display: inline-block; background-color: #ACA52F; color: white; padding: 4px 8px; border-radius: 12px; font-size: 12px; font-weight: bold; font-family: Arial, sans-serif; cursor: pointer; position: relative; margin-right: 8px;">
     な - příd. jméno
     <span style="display: none; position: absolute; top: 120%; left: 0; background-color: white; color: black; border: 1px solid #ACA52F; padding: 4px 8px; border-radius: 6px; font-size: 12px; font-family: Arial, sans-serif; z-index: 10; min-width: 150px;">
-        Odpadá ~な přípona (např. při použití s 'です'), pokud se neváže na podstatné jméno.
+        Většinou koncovka ~な odpadá (např. při použití s 'です'), pokud se neváže na podstatné jméno.
     </span>
 </span>    
 </div>

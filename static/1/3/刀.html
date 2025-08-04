@@ -155,25 +155,37 @@ rt {
     </div>
     
     <div class="bg-gradient-to-r from-green-50 to-green-100 rounded-lg shadow p-4 flex flex-col my-2">
-        <div class="flex justify-between items-center">
-          <div>
-            <p class="text-lg text-2xl text-gray-800 copyable cursor-pointer relative" 
-            onclick="copyText(this)"><ruby>小<rt style="visibility: hidden">こ</rt></ruby><ruby>刀<rt style="visibility: hidden">がたな</rt></ruby></p>
-            <p class="text-sm text-gray-600">malý meč, dýka, nůž</p>
-          </div>
+        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-9aa672a9', this)">
+            <div>
+                <p class="text-lg text-2xl text-gray-800 copyable relative" 
+                onclick="copyText(this)"><ruby>小<rt style="visibility: hidden">こ</rt></ruby><ruby>刀<rt style="visibility: hidden">がたな</rt></ruby></p>
+                <p class="text-sm text-gray-600">malý meč, dýka, nůž</p>
+            </div>
+            <button class="button-vocab-toggle text-gray-600 hover:text-gray-900 
+            transform transition-transform duration-200 px-2">▼</button>
         </div>
         
+        <div id="vocab-9aa672a9" class="button-vocab-example hidden text-gray-700">
+            
+            <div class="mt-2"><strong><i><ruby>備<rt style="visibility: hidden">び</rt></ruby><ruby>考<rt style="visibility: hidden">こう</rt></ruby><i></strong>: Pro kuchyňský nůž se používá spíše ナイフ.</div>
+        </div>
     </div>
     
     <div class="bg-gradient-to-r from-green-50 to-green-100 rounded-lg shadow p-4 flex flex-col my-2">
-        <div class="flex justify-between items-center">
-          <div>
-            <p class="text-lg text-2xl text-gray-800 copyable cursor-pointer relative" 
-            onclick="copyText(this)"><ruby>竹刀<rt style="visibility: hidden">しない</rt></ruby></p>
-            <p class="text-sm text-gray-600">bambusový meč (kendo)</p>
-          </div>
+        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-811ef94c', this)">
+            <div>
+                <p class="text-lg text-2xl text-gray-800 copyable relative" 
+                onclick="copyText(this)"><ruby>竹刀<rt style="visibility: hidden">しない</rt></ruby></p>
+                <p class="text-sm text-gray-600">bambusový meč (kendo)</p>
+            </div>
+            <button class="button-vocab-toggle text-gray-600 hover:text-gray-900 
+            transform transition-transform duration-200 px-2">▼</button>
         </div>
         
+        <div id="vocab-811ef94c" class="button-vocab-example hidden text-gray-700">
+            
+            <div class="mt-2"><strong><i><ruby>備<rt style="visibility: hidden">び</rt></ruby><ruby>考<rt style="visibility: hidden">こう</rt></ruby><i></strong>: Nepravidelné čtení. Typický cvičný bambusový meč na kendó.</div>
+        </div>
     </div>
     
 </div>    
