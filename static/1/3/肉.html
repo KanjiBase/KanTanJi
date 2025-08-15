@@ -256,6 +256,28 @@ rt {
         </div>
     </div>
     
+    <div class="bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg shadow p-4 flex flex-col my-2">
+        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-255bfa32', this)">
+            <div>
+                <p class="text-lg text-2xl text-gray-800 copyable relative" 
+                onclick="copyText(this)"><ruby>肉<rt style="visibility: hidden">にく</rt></ruby><ruby>屋<rt style="visibility: hidden">や</rt></ruby></p>
+                <p class="text-sm text-gray-600">řeznictví, obchod s masem</p>
+            </div>
+            <button class="button-vocab-toggle text-gray-600 hover:text-gray-900 
+            transform transition-transform duration-200 px-2">▼</button>
+        </div>
+        
+        <div id="vocab-255bfa32" class="button-vocab-example hidden text-gray-700">
+            <div class="mt-2 p-2 rounded bg-white shadow">
+            <div>
+                <div style="margin-bottom: 5px;"><span lang="JA">そのパン<ruby>屋<rt style="visibility: hidden">や</rt></ruby>は<ruby>肉<rt style="visibility: hidden">にく</rt></ruby><ruby>屋<rt style="visibility: hidden">や</rt></ruby>の<ruby>隣<rt style="visibility: hidden">となり</rt></ruby>です</span></div>
+                <div style="margin-bottom: 5px; color: #666;">Pekařství je hned vedle řeznictví.</div>
+            </div>
+            </div>
+            
+        </div>
+    </div>
+    
     
     <div class="bg-gradient-to-r from-purple-100 to-purple-300 rounded-lg shadow p-4 flex flex-col my-2">
         <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-c1837ac2', this)">
@@ -273,28 +295,6 @@ rt {
             <div>
                 <div style="margin-bottom: 5px;"><span lang="JA">この<ruby>豚<rt style="visibility: hidden">ぶた</rt></ruby><ruby>肉<rt style="visibility: hidden">にく</rt></ruby>は１キロいくらですか</span></div>
                 <div style="margin-bottom: 5px; color: #666;">Kolik stojí kilogram tohoto vepřového masa?</div>
-            </div>
-            </div>
-            
-        </div>
-    </div>
-    
-    <div class="bg-gradient-to-r from-purple-100 to-purple-300 rounded-lg shadow p-4 flex flex-col my-2">
-        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-255bfa32', this)">
-            <div>
-                <p class="text-lg text-2xl text-gray-800 copyable relative" 
-                onclick="copyText(this)"><ruby>肉<rt style="visibility: hidden">にく</rt></ruby><ruby>屋<rt style="visibility: hidden">や</rt></ruby></p>
-                <p class="text-sm text-gray-600">řeznictví, obchod s masem</p>
-            </div>
-            <button class="button-vocab-toggle text-gray-600 hover:text-gray-900 
-            transform transition-transform duration-200 px-2">▼</button>
-        </div>
-        
-        <div id="vocab-255bfa32" class="button-vocab-example hidden text-gray-700">
-            <div class="mt-2 p-2 rounded bg-white shadow">
-            <div>
-                <div style="margin-bottom: 5px;"><span lang="JA">そのパン<ruby>屋<rt style="visibility: hidden">や</rt></ruby>は<ruby>肉<rt style="visibility: hidden">にく</rt></ruby><ruby>屋<rt style="visibility: hidden">や</rt></ruby>の<ruby>隣<rt style="visibility: hidden">となり</rt></ruby>です</span></div>
-                <div style="margin-bottom: 5px; color: #666;">Pekařství je hned vedle řeznictví.</div>
             </div>
             </div>
             

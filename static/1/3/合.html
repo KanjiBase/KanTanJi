@@ -236,6 +236,35 @@ rt {
 >   
     <span class="text-xl font-bold text-gray-800 mb-4">Budou v sadě / Rozšiřující</span>
     
+    <div class="bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg shadow p-4 flex flex-col my-2">
+        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-b0b64468', this)">
+            <div>
+                <p class="text-lg text-2xl text-gray-800 copyable relative" 
+                onclick="copyText(this)"><ruby>合<rt style="visibility: hidden">ごう</rt></ruby><ruby>意<rt style="visibility: hidden">い</rt></ruby>する</p>
+                <p class="text-sm text-gray-600">souhlasit, shodnout se</p>
+            </div>
+            <button class="button-vocab-toggle text-gray-600 hover:text-gray-900 
+            transform transition-transform duration-200 px-2">▼</button>
+        </div>
+        <div class='my-2 vocab-properties'>
+<span class="property-label" onclick="this.querySelector('span').style.display = (this.querySelector('span').style.display === 'none' || this.querySelector('span').style.display === '') ? 'block' : 'none';" style="display: inline-block; background-color: #4A90E2; color: white; padding: 4px 8px; border-radius: 12px; font-size: 12px; font-weight: bold; font-family: Arial, sans-serif; cursor: pointer; position: relative; margin-right: 8px;">
+    する sloveso
+    <span style="display: none; position: absolute; top: 120%; left: 0; background-color: white; color: black; border: 1px solid #4A90E2; padding: 4px 8px; border-radius: 6px; font-size: 12px; font-family: Arial, sans-serif; z-index: 10; min-width: 150px;">
+        Nepravidelná slovesa se chovají podobně dle する tvaru.
+    </span>
+</span>    
+</div>
+        <div id="vocab-b0b64468" class="button-vocab-example hidden text-gray-700">
+            <div class="mt-2 p-2 rounded bg-white shadow">
+            <div>
+                <div style="margin-bottom: 5px;"><span lang="JA"><ruby>倍<rt style="visibility: hidden">ばい</rt></ruby><ruby>増<rt style="visibility: hidden">ぞう</rt></ruby>することで合<ruby>意<rt style="visibility: hidden">ごうい</rt></ruby>しました</span></div>
+                <div style="margin-bottom: 5px; color: #666;">Dohodli jsme se na zdvojnásobení.</div>
+            </div>
+            </div>
+            
+        </div>
+    </div>
+    
     
     <div class="bg-gradient-to-r from-purple-100 to-purple-300 rounded-lg shadow p-4 flex flex-col my-2">
         <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-d3244b80', this)">
@@ -297,35 +326,6 @@ rt {
             <div>
                 <div style="margin-bottom: 5px;"><span lang="JA"><ruby>実<rt style="visibility: hidden">じつ</rt></ruby>に都<ruby>合<rt style="visibility: hidden">つごう</rt></ruby>がよいのです</span></div>
                 <div style="margin-bottom: 5px; color: #666;">Je to vskutku výhodné (~situace).</div>
-            </div>
-            </div>
-            
-        </div>
-    </div>
-    
-    <div class="bg-gradient-to-r from-purple-100 to-purple-300 rounded-lg shadow p-4 flex flex-col my-2">
-        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-b0b64468', this)">
-            <div>
-                <p class="text-lg text-2xl text-gray-800 copyable relative" 
-                onclick="copyText(this)"><ruby>合<rt style="visibility: hidden">ごう</rt></ruby><ruby>意<rt style="visibility: hidden">い</rt></ruby>する</p>
-                <p class="text-sm text-gray-600">souhlasit, shodnout se</p>
-            </div>
-            <button class="button-vocab-toggle text-gray-600 hover:text-gray-900 
-            transform transition-transform duration-200 px-2">▼</button>
-        </div>
-        <div class='my-2 vocab-properties'>
-<span class="property-label" onclick="this.querySelector('span').style.display = (this.querySelector('span').style.display === 'none' || this.querySelector('span').style.display === '') ? 'block' : 'none';" style="display: inline-block; background-color: #4A90E2; color: white; padding: 4px 8px; border-radius: 12px; font-size: 12px; font-weight: bold; font-family: Arial, sans-serif; cursor: pointer; position: relative; margin-right: 8px;">
-    する sloveso
-    <span style="display: none; position: absolute; top: 120%; left: 0; background-color: white; color: black; border: 1px solid #4A90E2; padding: 4px 8px; border-radius: 6px; font-size: 12px; font-family: Arial, sans-serif; z-index: 10; min-width: 150px;">
-        Nepravidelná slovesa se chovají podobně dle する tvaru.
-    </span>
-</span>    
-</div>
-        <div id="vocab-b0b64468" class="button-vocab-example hidden text-gray-700">
-            <div class="mt-2 p-2 rounded bg-white shadow">
-            <div>
-                <div style="margin-bottom: 5px;"><span lang="JA"><ruby>倍<rt style="visibility: hidden">ばい</rt></ruby><ruby>増<rt style="visibility: hidden">ぞう</rt></ruby>することで合<ruby>意<rt style="visibility: hidden">ごうい</rt></ruby>しました</span></div>
-                <div style="margin-bottom: 5px; color: #666;">Dohodli jsme se na zdvojnásobení.</div>
             </div>
             </div>
             

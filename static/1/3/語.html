@@ -270,6 +270,28 @@ rt {
 >   
     <span class="text-xl font-bold text-gray-800 mb-4">Budou v sadě / Rozšiřující</span>
     
+    <div class="bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg shadow p-4 flex flex-col my-2">
+        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-8541d2ed', this)">
+            <div>
+                <p class="text-lg text-2xl text-gray-800 copyable relative" 
+                onclick="copyText(this)"><ruby>主<rt style="visibility: hidden">しゅ</rt></ruby><ruby>語<rt style="visibility: hidden">ご</rt></ruby></p>
+                <p class="text-sm text-gray-600">podmět</p>
+            </div>
+            <button class="button-vocab-toggle text-gray-600 hover:text-gray-900 
+            transform transition-transform duration-200 px-2">▼</button>
+        </div>
+        
+        <div id="vocab-8541d2ed" class="button-vocab-example hidden text-gray-700">
+            <div class="mt-2 p-2 rounded bg-white shadow">
+            <div>
+                <div style="margin-bottom: 5px;"><span lang="JA"><ruby>文<rt style="visibility: hidden">ぶん</rt></ruby>には<ruby>普<rt style="visibility: hidden">ふ</rt></ruby><ruby>通<rt style="visibility: hidden">つう</rt></ruby>、<ruby>主<rt style="visibility: hidden">しゅ</rt></ruby><ruby>語<rt style="visibility: hidden">ご</rt></ruby>と<ruby>動<rt style="visibility: hidden">どう</rt></ruby><ruby>詞<rt style="visibility: hidden">し</rt></ruby>があります</span></div>
+                <div style="margin-bottom: 5px; color: #666;">Větu obyčejně tvoří podmět a přísudek.</div>
+            </div>
+            </div>
+            
+        </div>
+    </div>
+    
     
     <div class="bg-gradient-to-r from-purple-100 to-purple-300 rounded-lg shadow p-4 flex flex-col my-2">
         <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-5c094e9a', this)">
@@ -308,28 +330,6 @@ rt {
             <div class="mt-2 p-2 rounded bg-white shadow">
             <div>
                 <div style="margin-bottom: 5px;"><ruby>家<rt style="visibility: hidden">いえ</rt></ruby>でちゃんと<ruby>韓<rt style="visibility: hidden">かん</rt></ruby><ruby>国<rt style="visibility: hidden">こく</rt></ruby><ruby>語<rt style="visibility: hidden">ご</rt></ruby><ruby>勉<rt style="visibility: hidden">べん</rt></ruby><ruby>強<rt style="visibility: hidden">きょう</rt></ruby>できてる?　Učíš se doma poctivě korejštinu?</div>
-            </div>
-            </div>
-            
-        </div>
-    </div>
-    
-    <div class="bg-gradient-to-r from-purple-100 to-purple-300 rounded-lg shadow p-4 flex flex-col my-2">
-        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-8541d2ed', this)">
-            <div>
-                <p class="text-lg text-2xl text-gray-800 copyable relative" 
-                onclick="copyText(this)"><ruby>主<rt style="visibility: hidden">しゅ</rt></ruby><ruby>語<rt style="visibility: hidden">ご</rt></ruby></p>
-                <p class="text-sm text-gray-600">podmět</p>
-            </div>
-            <button class="button-vocab-toggle text-gray-600 hover:text-gray-900 
-            transform transition-transform duration-200 px-2">▼</button>
-        </div>
-        
-        <div id="vocab-8541d2ed" class="button-vocab-example hidden text-gray-700">
-            <div class="mt-2 p-2 rounded bg-white shadow">
-            <div>
-                <div style="margin-bottom: 5px;"><span lang="JA"><ruby>文<rt style="visibility: hidden">ぶん</rt></ruby>には<ruby>普<rt style="visibility: hidden">ふ</rt></ruby><ruby>通<rt style="visibility: hidden">つう</rt></ruby>、<ruby>主<rt style="visibility: hidden">しゅ</rt></ruby><ruby>語<rt style="visibility: hidden">ご</rt></ruby>と<ruby>動<rt style="visibility: hidden">どう</rt></ruby><ruby>詞<rt style="visibility: hidden">し</rt></ruby>があります</span></div>
-                <div style="margin-bottom: 5px; color: #666;">Větu obyčejně tvoří podmět a přísudek.</div>
             </div>
             </div>
             
