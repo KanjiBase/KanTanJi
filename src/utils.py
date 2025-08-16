@@ -3,6 +3,7 @@ import re
 import os
 import json
 import hashlib
+from pathlib import Path
 
 from utils_data_entitites import InputFormat, Value, Version, VocabEntry, RadicalEntry, KanjiEntry, \
     DatasetEntry, DataSubsetEntry
@@ -172,6 +173,34 @@ def dict_read_create(ddict, key, default):
     return node
 
 
+def create_dataset_readme(file_list: list, set_name: str, item_name=None):
+    """
+    :param file_list:
+    :param set_name:
+    :param item_name: if set to none, the output is space-separated list, else bulletpoint names are used
+    :return:
+    """
+    if not item_name and len(file_list) > 1:
+        return (f"\n#### {set_name} {Path(file_list[0]).parent.name}\n" +
+                "  ".join(map(lambda f: f"<a href=\"{f}\">{Path(f).stem}</a>", file_list)))
+
+    if len(file_list) > 1:
+        output = f"""
+<details>
+<summary>
+{set_name}
+</summary>
+        """
+        for file in file_list:
+            output += f"\n  - <a href=\"{file}\">{item_name} {Path(file).stem}</a>\n"
+
+        output += "</details>"
+        return output
+    if len(file_list) == 1:
+        return f" - <a href=\"{file_list[0]}\">{set_name if item_name else Path(file_list[0]).stem}</a>\n"
+    print("Warning: invalid dataset - no output files!", set_name, item_name)
+
+
 def process_row(row: list):
     """
     Process data row that comes in
@@ -224,38 +253,38 @@ def process_row(row: list):
                 if cur_format == "md" or cur_format == "markdown":
                     data_format = InputFormat.MARKDOWN
                 else:
-                    print(f" --parse-- ERROR unsupported format {data_format} for {key}")
+                    print(f" --parse-- ERROR unsupported format {data_format} for {key}", row)
             else:
-                print(f" --parse-- WARNING key starts with '[' but match format not found {key}")
+                print(f" --parse-- WARNING key starts with '[' but match format not found {key}", row)
 
         if key == 'kanji':
             if len(value) != 1:
-                print(f" --parse-- ERROR kanji value '{value}' longer than 1")
+                print(f" --parse-- ERROR kanji value '{value}' longer than 1", row)
             if item.get("kanji", False):
-                print(f" --parse-- ERROR kanji redefinition, only one value allowed!")
+                print(f" --parse-- ERROR kanji redefinition, only one value allowed!", row)
             else:
                 item["kanji"] = Value(value, key_significance, data_format)
         elif key == 'raberu':
             if value not in ["ichidan", "godan", "tadoushi", "jidoushi", "suru", "i", "na", "fukisokuna"]:
-                print(" --parse-- Invalid value for vocab property: ", value)
+                print(" --parse-- Invalid value", value, "for vocab property", row)
             else:
                 item["raberu"].append(Value(value, key_significance, data_format))
         elif key == 'id':
             if key_significance > 0:
-                print(" --parse-- Warning: ID cannot have lesser significance! Ignoring the property.", value)
+                print(" --parse-- Warning: ID cannot have lesser significance! Ignoring the property.", row)
             item["id"] = Value(Version(value), 0, data_format)
         elif key == "subid":
             item["subid"] = Value(Version(value), key_significance, data_format)
         elif key == "ids":
             if key_significance > 0:
-                print(" --parse-- Warning: IDS cannot have lesser significance! Ignoring the property.", value)
+                print(" --parse-- Warning: IDS cannot have lesser significance! Ignoring the property.", row)
                 # todo optional should extend existing
             item["ids"] = Value(Version(value), key_significance, data_format)
         elif key == 'ref':
             # todo parse ref from its syntax
             values = value.split("-")
             if len(values) != 2:
-                print(f" --parse-- ERROR reference '{value}' invalid syntax - ignoring!")
+                print(f" --parse-- ERROR reference '{value}' invalid syntax - ignoring!", row)
                 continue
 
             name = values[0]
@@ -285,7 +314,7 @@ def process_row(row: list):
     # Second step, derive meaning
     if item.get("tango"):
         if not item.get("imi") or not item.get("kanji"):
-            print(" --parse-- IGNORES: tango", item.get("tango"), "does not specify required field 'imi' or 'kanji'")
+            print(" --parse-- IGNORES: tango", item.get("tango"), "does not specify required field 'imi' or 'kanji'", row)
             return None
         output = VocabEntry()
     elif item.get("kanji"):

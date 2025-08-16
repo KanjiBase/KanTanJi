@@ -24,20 +24,18 @@ from src.read_input_test_data import read_local_data
 from utils_data_entitites import DataSet, KanjiEntry, Value, HashGuard
 from utils_filesystem import merge_trees, delete_filesystem_node
 
-# from src.pdf_generator import generate as generate_pdf
-from src.anki_generator import generate as generate_anki
-from src.html_pdf_generator import generate as generate_pdf2
-from src.html_generator import generate as generate_html
-from src.json_generator import generate as generate_json
+import src.anki_generator as anki
+import src.html_pdf_generator as pdf
+import src.html_generator as html
+import src.json_generator as json
 
 
 DataSet.set_mode_production(not dry_run)
 
-DataSet.register_processor("Anki Decks", generate_anki)
-# DataSet.register_processor("PDF Materials", generate_pdf)
-DataSet.register_processor("PDF Materials", generate_pdf2)
-DataSet.register_processor("HTML Kanji Pages", generate_html)
-DataSet.register_processor("JSON Data Bundle", generate_json)
+DataSet.register_processor("Anki Decks", anki.generate)
+DataSet.register_processor("PDF Materials", pdf.generate)
+DataSet.register_processor("HTML Kanji Pages", html.generate)
+DataSet.register_processor("JSON Data Bundle", json.generate)
 
 def try_read_data(getter, message, output, success_read):
     if not success_read:
@@ -335,26 +333,7 @@ def get_readme_contents():
     html_file_entries = {}
     json_file_entries = {}
 
-    def create_dataset_readme(file_list, set_name, item_name=None):
-        if not item_name and len(file_list) > 1:
-            return (f"\n#### {set_name} {Path(file_list[0]).parent.name}\n" +
-                    "  ".join(map(lambda f: f"<a href=\"{f}\">{Path(f).stem}</a>", file_list)))
 
-        if len(file_list) > 1:
-            output = f"""
-<details>
-  <summary>
-  {set_name} {Path(file_list[0]).parent.name}
-  </summary>
-            """
-            for file in file_list:
-                output += f"\n  - <a href=\"{file}\">{item_name} {Path(file).stem}</a>\n"
-
-            output += "</details>"
-            return output
-        if len(file_list) == 1:
-            return f" - <a href=\"{file_list[0]}\">{set_name} {Path(file_list[0]).stem}</a>\n"
-        print("Warning: invalid dataset - no output files!", set_name, item_name)
 
     def get_sort_attr(x):
         try:
@@ -367,34 +346,21 @@ def get_readme_contents():
         elements = readme_contents[dataset_id]
         elements = sorted(elements, key=get_sort_attr)
 
+        print(dataset_id)
+
         pdf_files_readme = dict_read_create(pdf_file_entries, dataset_id, [])
         anki_files_readme = dict_read_create(anki_file_entries, dataset_id, [])
         html_files_readme = dict_read_create(html_file_entries, dataset_id, [])
         json_files_readme = dict_read_create(json_file_entries, dataset_id, [])
 
-        pdf_files = [list(Path(x["path"]).glob('**/*.pdf')) for x in elements]
-        anki_files = [list(Path(x["path"]).glob('**/*.apkg')) for x in elements]
-        html_files = [list(Path(x["path"]).glob('**/*.html')) for x in elements]
-        json_files = [list(Path(x["path"]).glob('**/*.json')) for x in elements]
-
-        if len(pdf_files):
-            for file_list in pdf_files:
-                pdf_files_readme.append(create_dataset_readme(file_list, "PDF Seznam", ""))
-
-        if len(anki_files):
-            for file_list in anki_files:
-                anki_files_readme.append(create_dataset_readme(file_list, "Balíček", ""))
-
-        if len(html_files):
-            for file_list in html_files:
-                html_files_readme.append(create_dataset_readme(file_list, "Kanji Stránky"))
-
-        if len(json_files):
-            for file_list in json_files:
-                json_files_readme.append(create_dataset_readme(file_list, "JSON Datový Balíček"))
+        pdf_files_readme.extend(pdf.create_readme_entries(elements))
+        anki_files_readme.extend(anki.create_readme_entries(elements))
+        html_files_readme.extend(html.create_readme_entries(elements))
+        json_files_readme.extend(json.create_readme_entries(elements))
 
     output_readme = {}
     for dataset_id in readme_contents:
+        print(dataset_id)
         dataset = complementary_datasets[dataset_id]
         dataset_name = dataset.context_name
 
@@ -402,6 +368,7 @@ def get_readme_contents():
         ankis = '\n'.join(filter(bool, anki_file_entries[dataset_id]))
         htmls = '\n'.join(filter(bool, html_file_entries[dataset_id]))
         jsons = '\n'.join(filter(bool, json_file_entries[dataset_id]))
+        print(pdfs)
         dataset_title = f"## {dataset_name}" if dataset_name else dataset_id
 
         output_readme[dataset_id] = f"""

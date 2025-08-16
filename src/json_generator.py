@@ -1,9 +1,11 @@
+from pathlib import Path
+
 import genanki
 import hashlib
 import uuid
 import markdown
 
-from utils import generate_furigana, retrieve_row_kanjialive_url, sanitize_filename
+from utils import generate_furigana, retrieve_row_kanjialive_url, sanitize_filename, create_dataset_readme
 from utils_data_entitites import InputFormat
 from utils_html import parse_item_props_html
 
@@ -51,3 +53,11 @@ def generate(key, data, metadata, folder_getter, is_debug_run):
     if not is_debug_run:
         save_json(key, anki, f"{folder_getter(key)}/{sanitize_filename(key)}.json")
     return True
+
+
+def create_readme_entries(dataset_list: list):
+    result = []
+    for x in dataset_list:
+        files = list(Path(x["path"]).glob('**/*.json'))
+        result.append(create_dataset_readme(files, f"JSON Datový Balíček {x['item']['name']}", ""))
+    return result

@@ -16,6 +16,7 @@
 !requirements.txt
 
 !src/**/*
+src/__pycache__/
 # Ensure all output files are not ignored
 !static/**/*
 !misc/**/*

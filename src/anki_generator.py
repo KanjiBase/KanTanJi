@@ -1,9 +1,12 @@
+from pathlib import Path
+from collections.abc import Callable
+
 import genanki
 import hashlib
 import uuid
 import markdown
 
-from utils import generate_furigana, retrieve_row_kanjialive_url, sanitize_filename
+from utils import generate_furigana, retrieve_row_kanjialive_url, sanitize_filename, create_dataset_readme
 from utils_data_entitites import InputFormat
 from utils_html import parse_item_props_html
 
@@ -240,7 +243,7 @@ def create_anki_deck(key, reader, filename):
         save_deck(filename, deck)
 
 
-def generate(key, data, metadata, folder_getter, is_debug_run):
+def generate(key: str, data: dict, metadata: dict, folder_getter: Callable, is_debug_run: bool):
     # Anki packs only read data, so if not modified do not re-generate
     if not data["modified"] and not is_debug_run:
         return False
@@ -249,3 +252,11 @@ def generate(key, data, metadata, folder_getter, is_debug_run):
     if not is_debug_run:
         create_anki_deck(key, anki, f"{folder_getter(key)}/{sanitize_filename(key)}.apkg")
     return True
+
+
+def create_readme_entries(dataset_list: list):
+    result = []
+    for x in dataset_list:
+        files = list(Path(x["path"]).glob('**/*.apkg'))
+        result.append(create_dataset_readme(files, f"Balíček {x['item']['name']}", ""))
+    return result

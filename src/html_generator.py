@@ -1,8 +1,9 @@
 import re
+from pathlib import Path
 
 import markdown
 
-from utils import generate_furigana, short_uid
+from utils import generate_furigana, short_uid, create_dataset_readme
 from utils_data_entitites import InputFormat
 from utils_html import parse_item_props_html, get_reading_html, get_unimportant_reading_html
 
@@ -445,3 +446,11 @@ rt {{
             """, v))
         did_save = True
     return did_save
+
+
+def create_readme_entries(dataset_list: list):
+    result = []
+    for x in dataset_list:
+        files = list(Path(x["path"]).glob('**/*.html'))
+        result.append(create_dataset_readme(files, f"Kanji Stránky {x['item']['name']}"))
+    return result

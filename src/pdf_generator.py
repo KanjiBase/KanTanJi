@@ -1,4 +1,5 @@
 import re
+from pathlib import Path
 
 from reportlab.lib.pagesizes import letter
 from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Paragraph, Flowable, KeepTogether
@@ -11,7 +12,7 @@ from reportlab.lib.fonts import addMapping
 from reportlab.lib import fonts
 from reportlab.platypus import Spacer
 
-from utils import retrieve_row_kanjialive_url, Value, generate_furigana_custom, sanitize_filename
+from utils import retrieve_row_kanjialive_url, Value, generate_furigana_custom, sanitize_filename, create_dataset_readme
 
 
 # Function to create inline furigana using <sup> tags in a Paragraph
@@ -142,3 +143,11 @@ def generate(key, data, radicals, path_getter, is_debug_run):
 
     print("No content to add to the PDF.")
     return False
+
+
+def create_readme_entries(dataset_list: list):
+    result = []
+    for x in dataset_list:
+        files = list(Path(x["path"]).glob('**/*.pdf'))
+        result.append(create_dataset_readme(files, f"PDF Stránky {x['item']['name']}", ""))
+    return result
