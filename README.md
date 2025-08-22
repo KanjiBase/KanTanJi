@@ -267,7 +267,7 @@ Furiganu zobrazíš kliknutím / tapnutím na kartičku.
 HTML Stránky slouží pro vložení interaktivních informací o Kanji do externích webových služeb.
 
 #### Kanji Stránky Písmo I - Lekce 1 14
-<a href="static/2/14/田.html">田</a>  <a href="static/2/14/月.html">月</a>  <a href="static/2/14/門.html">門</a>  <a href="static/2/14/車.html">車</a>  <a href="static/2/14/川.html">川</a>  <a href="static/2/14/口.html">口</a>  <a href="static/2/14/山.html">山</a>  <a href="static/2/14/木.html">木</a>  <a href="static/2/14/人.html">人</a>
+<a href="static/2/14/田.html">田</a>  <a href="static/2/14/月.html">月</a>  <a href="static/2/14/日.html">日</a>  <a href="static/2/14/門.html">門</a>  <a href="static/2/14/車.html">車</a>  <a href="static/2/14/川.html">川</a>  <a href="static/2/14/口.html">口</a>  <a href="static/2/14/山.html">山</a>  <a href="static/2/14/木.html">木</a>  <a href="static/2/14/人.html">人</a>
 
 #### Kanji Stránky Písmo I - Lekce 2 15
 <a href="static/2/15/私.html">私</a>  <a href="static/2/15/学.html">学</a>  <a href="static/2/15/女.html">女</a>  <a href="static/2/15/土.html">土</a>  <a href="static/2/15/子.html">子</a>  <a href="static/2/15/金.html">金</a>  <a href="static/2/15/先.html">先</a>  <a href="static/2/15/水.html">水</a>  <a href="static/2/15/生.html">生</a>  <a href="static/2/15/火.html">火</a>

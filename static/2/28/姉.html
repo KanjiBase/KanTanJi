@@ -139,7 +139,6 @@ rt {
 >   
     <span class="text-xl font-bold text-gray-800 mb-4">Povinná slovíčka</span>
     
-    
     <div class="bg-gradient-to-r from-green-50 to-green-100 rounded-lg shadow p-4 flex flex-col my-2">
         <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-1b5afe02', this)">
             <div>
@@ -151,16 +150,16 @@ rt {
             transform transition-transform duration-200 px-2">▼</button>
         </div>
         
-        <div id="vocab-1b5afe02" class="button-vocab-example hidden mt-2 p-2 rounded bg-white text-gray-700 shadow">
-          
+        <div id="vocab-1b5afe02" class="button-vocab-example hidden text-gray-700">
+            <div class="mt-2 p-2 rounded bg-white shadow">
             <div>
                 <div style="margin-bottom: 5px;"><span lang="JA"><ruby>姉<rt style="visibility: hidden">あね</rt></ruby>が<ruby>私<rt style="visibility: hidden">わたし</rt></ruby>にきれいな<ruby>人<rt style="visibility: hidden">にん</rt></ruby><ruby>形<rt style="visibility: hidden">ぎょ</rt></ruby>をつくってくれました</span></div>
                 <div style="margin-bottom: 5px; color: #666;">Moje sestra mi vyrobila krásnou panenku.</div>
             </div>
+            </div>
             
         </div>
     </div>
-    
     
     <div class="bg-gradient-to-r from-green-50 to-green-100 rounded-lg shadow p-4 flex flex-col my-2">
         <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-a465a9fc', this)">
@@ -172,12 +171,20 @@ rt {
             <button class="button-vocab-toggle text-gray-600 hover:text-gray-900 
             transform transition-transform duration-200 px-2">▼</button>
         </div>
-        
-        <div id="vocab-a465a9fc" class="button-vocab-example hidden mt-2 p-2 rounded bg-white text-gray-700 shadow">
-          
+        <div class='my-2 vocab-properties'>
+<span class="property-label" onclick="this.querySelector('span').style.display = (this.querySelector('span').style.display === 'none' || this.querySelector('span').style.display === '') ? 'block' : 'none';" style="display: inline-block; background-color: #E65563; color: white; padding: 4px 8px; border-radius: 12px; font-size: 12px; font-weight: bold; font-family: Arial, sans-serif; cursor: pointer; position: relative; margin-right: 8px;">
+    nepravidelné čtení
+    <span style="display: none; position: absolute; top: 120%; left: 0; background-color: white; color: black; border: 1px solid #E65563; padding: 4px 8px; border-radius: 6px; font-size: 12px; font-family: Arial, sans-serif; z-index: 10; min-width: 150px;">
+        Čtení nelze odvodit ze zápisu kanji.
+    </span>
+</span>    
+</div>
+        <div id="vocab-a465a9fc" class="button-vocab-example hidden text-gray-700">
+            <div class="mt-2 p-2 rounded bg-white shadow">
             <div>
                 <div style="margin-bottom: 5px;"><span lang="JA">お<ruby>姉<rt style="visibility: hidden">ねえ</rt></ruby>さんを<ruby>駅<rt style="visibility: hidden">えき</rt></ruby>まで<ruby>迎<rt style="visibility: hidden">むか</rt></ruby>えに<ruby>行<rt style="visibility: hidden">い</rt></ruby>かせてください</span></div>
                 <div style="margin-bottom: 5px; color: #666;">Vyzvedni prosím svou sestru na nádraží.</div>
+            </div>
             </div>
             
         </div>
@@ -190,7 +197,6 @@ rt {
 >   
     <span class="text-xl font-bold text-gray-800 mb-4">Budou v sadě / Rozšiřující</span>
     
-    
     <div class="bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg shadow p-4 flex flex-col my-2">
         <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-21e0defe', this)">
             <div>
@@ -202,11 +208,12 @@ rt {
             transform transition-transform duration-200 px-2">▼</button>
         </div>
         
-        <div id="vocab-21e0defe" class="button-vocab-example hidden mt-2 p-2 rounded bg-white text-gray-700 shadow">
-          
+        <div id="vocab-21e0defe" class="button-vocab-example hidden text-gray-700">
+            <div class="mt-2 p-2 rounded bg-white shadow">
             <div>
                 <div style="margin-bottom: 5px;"><span lang="JA">その<ruby>姉<rt style="visibility: hidden">し</rt></ruby><ruby>妹<rt style="visibility: hidden">まい</rt></ruby>は<ruby>似<rt style="visibility: hidden">に</rt></ruby>ています</span></div>
                 <div style="margin-bottom: 5px; color: #666;">Ty sestry jsou si podobné.</div>
+            </div>
             </div>
             
         </div>
