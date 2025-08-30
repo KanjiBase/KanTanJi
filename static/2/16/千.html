@@ -139,7 +139,6 @@ rt {
 >   
     <span class="text-xl font-bold text-gray-800 mb-4">Povinná slovíčka</span>
     
-    
     <div class="bg-gradient-to-r from-green-50 to-green-100 rounded-lg shadow p-4 flex flex-col my-2">
         <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-8bf6b061', this)">
             <div>
@@ -151,16 +150,16 @@ rt {
             transform transition-transform duration-200 px-2">▼</button>
         </div>
         
-        <div id="vocab-8bf6b061" class="button-vocab-example hidden mt-2 p-2 rounded bg-white text-gray-700 shadow">
-          
+        <div id="vocab-8bf6b061" class="button-vocab-example hidden text-gray-700">
+            <div class="mt-2 p-2 rounded bg-white shadow">
             <div>
                 <div style="margin-bottom: 5px;"><span lang="JA">コンサートには<ruby>千<rt style="visibility: hidden">せん</rt></ruby><ruby>人<rt style="visibility: hidden">にん</rt></ruby>ぐらい<ruby>来<rt style="visibility: hidden">き</rt></ruby>ました</span></div>
                 <div style="margin-bottom: 5px; color: #666;">Na koncert přišlo zhruba tisíc lidí.</div>
             </div>
+            </div>
             
         </div>
     </div>
-    
     
     <div class="bg-gradient-to-r from-green-50 to-green-100 rounded-lg shadow p-4 flex flex-col my-2">
         <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-35e31010', this)">
@@ -172,17 +171,24 @@ rt {
             <button class="button-vocab-toggle text-gray-600 hover:text-gray-900 
             transform transition-transform duration-200 px-2">▼</button>
         </div>
-        
-        <div id="vocab-35e31010" class="button-vocab-example hidden mt-2 p-2 rounded bg-white text-gray-700 shadow">
-          
+        <div class='my-2 vocab-properties'>
+<span class="property-label" onclick="this.querySelector('span').style.display = (this.querySelector('span').style.display === 'none' || this.querySelector('span').style.display === '') ? 'block' : 'none';" style="display: inline-block; background-color: #E65563; color: white; padding: 4px 8px; border-radius: 12px; font-size: 12px; font-weight: bold; font-family: Arial, sans-serif; cursor: pointer; position: relative; margin-right: 8px;">
+    nepravidelné čtení
+    <span style="display: none; position: absolute; top: 120%; left: 0; background-color: white; color: black; border: 1px solid #E65563; padding: 4px 8px; border-radius: 6px; font-size: 12px; font-family: Arial, sans-serif; z-index: 10; min-width: 150px;">
+        Čtení nelze odvodit ze zápisu kanji.
+    </span>
+</span>    
+</div>
+        <div id="vocab-35e31010" class="button-vocab-example hidden text-gray-700">
+            <div class="mt-2 p-2 rounded bg-white shadow">
             <div>
                 <div style="margin-bottom: 5px;"><span lang="JA"><ruby>全<rt style="visibility: hidden">ぜん</rt></ruby><ruby>部<rt style="visibility: hidden">ぶ</rt></ruby>で<ruby>三<rt style="visibility: hidden">さん</rt></ruby><ruby>千<rt style="visibility: hidden">ぜん</rt></ruby><ruby>円<rt style="visibility: hidden">えん</rt></ruby>です</span></div>
                 <div style="margin-bottom: 5px; color: #666;">Celkem to dělá tři tisíce jenů.</div>
             </div>
+            </div>
             
         </div>
     </div>
-    
     
     <div class="bg-gradient-to-r from-green-50 to-green-100 rounded-lg shadow p-4 flex flex-col my-2">
         <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-f7806aa2', this)">
@@ -195,16 +201,16 @@ rt {
             transform transition-transform duration-200 px-2">▼</button>
         </div>
         
-        <div id="vocab-f7806aa2" class="button-vocab-example hidden mt-2 p-2 rounded bg-white text-gray-700 shadow">
-          
+        <div id="vocab-f7806aa2" class="button-vocab-example hidden text-gray-700">
+            <div class="mt-2 p-2 rounded bg-white shadow">
             <div>
                 <div style="margin-bottom: 5px;"><span lang="JA">これは<ruby>六<rt style="visibility: hidden">ろく</rt></ruby><ruby>千<rt style="visibility: hidden">せん</rt></ruby>コルナです</span></div>
                 <div style="margin-bottom: 5px; color: #666;">Toto stojí šest tisíc korun.</div>
             </div>
+            </div>
             
         </div>
     </div>
-    
     
     <div class="bg-gradient-to-r from-green-50 to-green-100 rounded-lg shadow p-4 flex flex-col my-2">
         <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-1afe6375', this)">
@@ -217,11 +223,12 @@ rt {
             transform transition-transform duration-200 px-2">▼</button>
         </div>
         
-        <div id="vocab-1afe6375" class="button-vocab-example hidden mt-2 p-2 rounded bg-white text-gray-700 shadow">
-          
+        <div id="vocab-1afe6375" class="button-vocab-example hidden text-gray-700">
+            <div class="mt-2 p-2 rounded bg-white shadow">
             <div>
                 <div style="margin-bottom: 5px;"><span lang="JA">このホテルは<ruby>一<rt style="visibility: hidden">いち</rt></ruby><ruby>日<rt style="visibility: hidden">にち</rt></ruby><ruby>八<rt style="visibility: hidden">はっ</rt></ruby><ruby>千<rt style="visibility: hidden">せん</rt></ruby><ruby>円<rt style="visibility: hidden">えん</rt></ruby>です</span></div>
                 <div style="margin-bottom: 5px; color: #666;">Tento hotel je za osm tisíc jenů na den.</div>
+            </div>
             </div>
             
         </div>

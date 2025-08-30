@@ -169,6 +169,28 @@ rt {
     <span class="text-xl font-bold text-gray-800 mb-4">Budou v sadě / Rozšiřující</span>
     
     <div class="bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg shadow p-4 flex flex-col my-2">
+        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-2a3fe205', this)">
+            <div>
+                <p class="text-lg text-2xl text-gray-800 copyable relative" 
+                onclick="copyText(this)"><ruby>場<rt style="visibility: hidden">ば</rt></ruby><ruby>所<rt style="visibility: hidden">しょ</rt></ruby></p>
+                <p class="text-sm text-gray-600">místo</p>
+            </div>
+            <button class="button-vocab-toggle text-gray-600 hover:text-gray-900 
+            transform transition-transform duration-200 px-2">▼</button>
+        </div>
+        
+        <div id="vocab-2a3fe205" class="button-vocab-example hidden text-gray-700">
+            <div class="mt-2 p-2 rounded bg-white shadow">
+            <div>
+                <div style="margin-bottom: 5px;"><span lang="JA"><ruby>君<rt style="visibility: hidden">きみ</rt></ruby>は<ruby>安<rt style="visibility: hidden">あん</rt></ruby><ruby>全<rt style="visibility: hidden">ぜん</rt></ruby>な<ruby>場<rt style="visibility: hidden">ば</rt></ruby><ruby>所<rt style="visibility: hidden">しょ</rt></ruby>にいる</span></div>
+                <div style="margin-bottom: 5px; color: #666;">Jsi na bezpečném místě.</div>
+            </div>
+            </div>
+            
+        </div>
+    </div>
+    
+    <div class="bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg shadow p-4 flex flex-col my-2">
         <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-5f79f74c', this)">
             <div>
                 <p class="text-lg text-2xl text-gray-800 copyable relative" 
@@ -212,30 +234,7 @@ rt {
         </div>
     </div>
     
-    
-    <div class="bg-gradient-to-r from-purple-100 to-purple-300 rounded-lg shadow p-4 flex flex-col my-2">
-        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-2a3fe205', this)">
-            <div>
-                <p class="text-lg text-2xl text-gray-800 copyable relative" 
-                onclick="copyText(this)"><ruby>場<rt style="visibility: hidden">ば</rt></ruby><ruby>所<rt style="visibility: hidden">しょ</rt></ruby></p>
-                <p class="text-sm text-gray-600">místo</p>
-            </div>
-            <button class="button-vocab-toggle text-gray-600 hover:text-gray-900 
-            transform transition-transform duration-200 px-2">▼</button>
-        </div>
-        
-        <div id="vocab-2a3fe205" class="button-vocab-example hidden text-gray-700">
-            <div class="mt-2 p-2 rounded bg-white shadow">
-            <div>
-                <div style="margin-bottom: 5px;"><span lang="JA"><ruby>君<rt style="visibility: hidden">きみ</rt></ruby>は<ruby>安<rt style="visibility: hidden">あん</rt></ruby><ruby>全<rt style="visibility: hidden">ぜん</rt></ruby>な<ruby>場<rt style="visibility: hidden">ば</rt></ruby><ruby>所<rt style="visibility: hidden">しょ</rt></ruby>にいる</span></div>
-                <div style="margin-bottom: 5px; color: #666;">Jsi na bezpečném místě.</div>
-            </div>
-            </div>
-            
-        </div>
-    </div>
-    
-    <div class="bg-gradient-to-r from-purple-100 to-purple-300 rounded-lg shadow p-4 flex flex-col my-2">
+    <div class="bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg shadow p-4 flex flex-col my-2">
         <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-7f85d539', this)">
             <div>
                 <p class="text-lg text-2xl text-gray-800 copyable relative" 
@@ -256,6 +255,7 @@ rt {
             
         </div>
     </div>
+    
     
 </div>  
 

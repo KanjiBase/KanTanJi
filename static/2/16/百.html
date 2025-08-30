@@ -139,7 +139,6 @@ rt {
 >   
     <span class="text-xl font-bold text-gray-800 mb-4">Povinná slovíčka</span>
     
-    
     <div class="bg-gradient-to-r from-green-50 to-green-100 rounded-lg shadow p-4 flex flex-col my-2">
         <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-3648d965', this)">
             <div>
@@ -151,16 +150,16 @@ rt {
             transform transition-transform duration-200 px-2">▼</button>
         </div>
         
-        <div id="vocab-3648d965" class="button-vocab-example hidden mt-2 p-2 rounded bg-white text-gray-700 shadow">
-          
+        <div id="vocab-3648d965" class="button-vocab-example hidden text-gray-700">
+            <div class="mt-2 p-2 rounded bg-white shadow">
             <div>
                 <div style="margin-bottom: 5px;"><span lang="JA">このペンは<ruby>百<rt style="visibility: hidden">ひゃく</rt></ruby><ruby>円<rt style="visibility: hidden">えん</rt></ruby>です</span></div>
                 <div style="margin-bottom: 5px; color: #666;">Tohle pero stojí sto jenů.</div>
             </div>
+            </div>
             
         </div>
     </div>
-    
     
     <div class="bg-gradient-to-r from-green-50 to-green-100 rounded-lg shadow p-4 flex flex-col my-2">
         <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-466d8433', this)">
@@ -172,17 +171,24 @@ rt {
             <button class="button-vocab-toggle text-gray-600 hover:text-gray-900 
             transform transition-transform duration-200 px-2">▼</button>
         </div>
-        
-        <div id="vocab-466d8433" class="button-vocab-example hidden mt-2 p-2 rounded bg-white text-gray-700 shadow">
-          
+        <div class='my-2 vocab-properties'>
+<span class="property-label" onclick="this.querySelector('span').style.display = (this.querySelector('span').style.display === 'none' || this.querySelector('span').style.display === '') ? 'block' : 'none';" style="display: inline-block; background-color: #E65563; color: white; padding: 4px 8px; border-radius: 12px; font-size: 12px; font-weight: bold; font-family: Arial, sans-serif; cursor: pointer; position: relative; margin-right: 8px;">
+    nepravidelné čtení
+    <span style="display: none; position: absolute; top: 120%; left: 0; background-color: white; color: black; border: 1px solid #E65563; padding: 4px 8px; border-radius: 6px; font-size: 12px; font-family: Arial, sans-serif; z-index: 10; min-width: 150px;">
+        Čtení nelze odvodit ze zápisu kanji.
+    </span>
+</span>    
+</div>
+        <div id="vocab-466d8433" class="button-vocab-example hidden text-gray-700">
+            <div class="mt-2 p-2 rounded bg-white shadow">
             <div>
                 <div style="margin-bottom: 5px;"><span lang="JA">この<ruby>本<rt style="visibility: hidden">ほん</rt></ruby>は<ruby>三<rt style="visibility: hidden">さん</rt></ruby><ruby>百<rt style="visibility: hidden">びゃく</rt></ruby><ruby>円<rt style="visibility: hidden">えん</rt></ruby>です</span></div>
                 <div style="margin-bottom: 5px; color: #666;">Tato kniha stojí tři sta jenů.</div>
             </div>
+            </div>
             
         </div>
     </div>
-    
     
     <div class="bg-gradient-to-r from-green-50 to-green-100 rounded-lg shadow p-4 flex flex-col my-2">
         <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-d08a1c6f', this)">
@@ -194,17 +200,24 @@ rt {
             <button class="button-vocab-toggle text-gray-600 hover:text-gray-900 
             transform transition-transform duration-200 px-2">▼</button>
         </div>
-        
-        <div id="vocab-d08a1c6f" class="button-vocab-example hidden mt-2 p-2 rounded bg-white text-gray-700 shadow">
-          
+        <div class='my-2 vocab-properties'>
+<span class="property-label" onclick="this.querySelector('span').style.display = (this.querySelector('span').style.display === 'none' || this.querySelector('span').style.display === '') ? 'block' : 'none';" style="display: inline-block; background-color: #E65563; color: white; padding: 4px 8px; border-radius: 12px; font-size: 12px; font-weight: bold; font-family: Arial, sans-serif; cursor: pointer; position: relative; margin-right: 8px;">
+    nepravidelné čtení
+    <span style="display: none; position: absolute; top: 120%; left: 0; background-color: white; color: black; border: 1px solid #E65563; padding: 4px 8px; border-radius: 6px; font-size: 12px; font-family: Arial, sans-serif; z-index: 10; min-width: 150px;">
+        Čtení nelze odvodit ze zápisu kanji.
+    </span>
+</span>    
+</div>
+        <div id="vocab-d08a1c6f" class="button-vocab-example hidden text-gray-700">
+            <div class="mt-2 p-2 rounded bg-white shadow">
             <div>
                 <div style="margin-bottom: 5px;"><span lang="JA"><ruby>六<rt style="visibility: hidden">ろっ</rt></ruby><ruby>百<rt style="visibility: hidden">ぴゃく</rt></ruby><ruby>人<rt style="visibility: hidden">にん</rt></ruby>が<ruby>来<rt style="visibility: hidden">き</rt></ruby>ました</span></div>
                 <div style="margin-bottom: 5px; color: #666;">Přišlo šest set lidí.</div>
             </div>
+            </div>
             
         </div>
     </div>
-    
     
     <div class="bg-gradient-to-r from-green-50 to-green-100 rounded-lg shadow p-4 flex flex-col my-2">
         <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-b889da56', this)">
@@ -216,12 +229,20 @@ rt {
             <button class="button-vocab-toggle text-gray-600 hover:text-gray-900 
             transform transition-transform duration-200 px-2">▼</button>
         </div>
-        
-        <div id="vocab-b889da56" class="button-vocab-example hidden mt-2 p-2 rounded bg-white text-gray-700 shadow">
-          
+        <div class='my-2 vocab-properties'>
+<span class="property-label" onclick="this.querySelector('span').style.display = (this.querySelector('span').style.display === 'none' || this.querySelector('span').style.display === '') ? 'block' : 'none';" style="display: inline-block; background-color: #E65563; color: white; padding: 4px 8px; border-radius: 12px; font-size: 12px; font-weight: bold; font-family: Arial, sans-serif; cursor: pointer; position: relative; margin-right: 8px;">
+    nepravidelné čtení
+    <span style="display: none; position: absolute; top: 120%; left: 0; background-color: white; color: black; border: 1px solid #E65563; padding: 4px 8px; border-radius: 6px; font-size: 12px; font-family: Arial, sans-serif; z-index: 10; min-width: 150px;">
+        Čtení nelze odvodit ze zápisu kanji.
+    </span>
+</span>    
+</div>
+        <div id="vocab-b889da56" class="button-vocab-example hidden text-gray-700">
+            <div class="mt-2 p-2 rounded bg-white shadow">
             <div>
                 <div style="margin-bottom: 5px;"><span lang="JA">このシャツは<ruby>八<rt style="visibility: hidden">はっ</rt></ruby><ruby>百<rt style="visibility: hidden">ぴゃく</rt></ruby><ruby>円<rt style="visibility: hidden">えん</rt></ruby>です</span></div>
                 <div style="margin-bottom: 5px; color: #666;">Tato košile stojí osm set jenů.</div>
+            </div>
             </div>
             
         </div>
@@ -235,7 +256,6 @@ rt {
     <span class="text-xl font-bold text-gray-800 mb-4">Budou v sadě / Rozšiřující</span>
     
     
-    
     <div class="bg-gradient-to-r from-purple-100 to-purple-300 rounded-lg shadow p-4 flex flex-col my-2">
         <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-e5c2559e', this)">
             <div>
@@ -246,12 +266,20 @@ rt {
             <button class="button-vocab-toggle text-gray-600 hover:text-gray-900 
             transform transition-transform duration-200 px-2">▼</button>
         </div>
-        
-        <div id="vocab-e5c2559e" class="button-vocab-example hidden mt-2 p-2 rounded bg-white text-gray-700 shadow">
-          
+        <div class='my-2 vocab-properties'>
+<span class="property-label" onclick="this.querySelector('span').style.display = (this.querySelector('span').style.display === 'none' || this.querySelector('span').style.display === '') ? 'block' : 'none';" style="display: inline-block; background-color: #E65563; color: white; padding: 4px 8px; border-radius: 12px; font-size: 12px; font-weight: bold; font-family: Arial, sans-serif; cursor: pointer; position: relative; margin-right: 8px;">
+    nepravidelné čtení
+    <span style="display: none; position: absolute; top: 120%; left: 0; background-color: white; color: black; border: 1px solid #E65563; padding: 4px 8px; border-radius: 6px; font-size: 12px; font-family: Arial, sans-serif; z-index: 10; min-width: 150px;">
+        Čtení nelze odvodit ze zápisu kanji.
+    </span>
+</span>    
+</div>
+        <div id="vocab-e5c2559e" class="button-vocab-example hidden text-gray-700">
+            <div class="mt-2 p-2 rounded bg-white shadow">
             <div>
                 <div style="margin-bottom: 5px;"><span lang="JA">その<ruby>八<rt style="visibility: hidden">や</rt></ruby><ruby>百<rt style="visibility: hidden">お</rt></ruby><ruby>屋<rt style="visibility: hidden">や</rt></ruby>は<ruby>客<rt style="visibility: hidden">きゃく</rt></ruby>にとても<ruby>親<rt style="visibility: hidden">しん</rt></ruby><ruby>切<rt style="visibility: hidden">せつ</rt></ruby>だ</span></div>
                 <div style="margin-bottom: 5px; color: #666;">Ten zelinář je ke svým zákazníkům velmi přátelský.</div>
+            </div>
             </div>
             
         </div>
