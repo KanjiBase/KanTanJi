@@ -177,6 +177,35 @@ rt {
     </div>
     
     <div class="bg-gradient-to-r from-green-50 to-green-100 rounded-lg shadow p-4 flex flex-col my-2">
+        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-720a1ab4', this)">
+            <div>
+                <p class="text-lg text-2xl text-gray-800 copyable relative" 
+                onclick="copyText(this)"><ruby>実<rt style="visibility: hidden">じっ</rt></ruby><ruby>験<rt style="visibility: hidden">けん</rt></ruby></p>
+                <p class="text-sm text-gray-600">experiment</p>
+            </div>
+            <button class="button-vocab-toggle text-gray-600 hover:text-gray-900 
+            transform transition-transform duration-200 px-2">▼</button>
+        </div>
+        <div class='my-2 vocab-properties'>
+<span class="property-label" onclick="this.querySelector('span').style.display = (this.querySelector('span').style.display === 'none' || this.querySelector('span').style.display === '') ? 'block' : 'none';" style="display: inline-block; background-color: #4A90E2; color: white; padding: 4px 8px; border-radius: 12px; font-size: 12px; font-weight: bold; font-family: Arial, sans-serif; cursor: pointer; position: relative; margin-right: 8px;">
+    する sloveso
+    <span style="display: none; position: absolute; top: 120%; left: 0; background-color: white; color: black; border: 1px solid #4A90E2; padding: 4px 8px; border-radius: 6px; font-size: 12px; font-family: Arial, sans-serif; z-index: 10; min-width: 150px;">
+        Nepravidelná slovesa se chovají podobně dle する tvaru.
+    </span>
+</span>    
+</div>
+        <div id="vocab-720a1ab4" class="button-vocab-example hidden text-gray-700">
+            <div class="mt-2 p-2 rounded bg-white shadow">
+            <div>
+                <div style="margin-bottom: 5px;"><span lang="JA">その<ruby>実<rt style="visibility: hidden">じっ</rt></ruby><ruby>験<rt style="visibility: hidden">けん</rt></ruby>は<ruby>失<rt style="visibility: hidden">しっ</rt></ruby><ruby>敗<rt style="visibility: hidden">ぱい</rt></ruby>だった</span></div>
+                <div style="margin-bottom: 5px; color: #666;">Ten experiment selhal.</div>
+            </div>
+            </div>
+            
+        </div>
+    </div>
+    
+    <div class="bg-gradient-to-r from-green-50 to-green-100 rounded-lg shadow p-4 flex flex-col my-2">
         <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-4ed09032', this)">
             <div>
                 <p class="text-lg text-2xl text-gray-800 copyable relative" 
@@ -270,35 +299,6 @@ rt {
 >   
     <span class="text-xl font-bold text-gray-800 mb-4">Budou v sadě / Rozšiřující</span>
     
-    
-    <div class="bg-gradient-to-r from-purple-100 to-purple-300 rounded-lg shadow p-4 flex flex-col my-2">
-        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-720a1ab4', this)">
-            <div>
-                <p class="text-lg text-2xl text-gray-800 copyable relative" 
-                onclick="copyText(this)"><ruby>実<rt style="visibility: hidden">じっ</rt></ruby><ruby>験<rt style="visibility: hidden">けん</rt></ruby></p>
-                <p class="text-sm text-gray-600">experiment</p>
-            </div>
-            <button class="button-vocab-toggle text-gray-600 hover:text-gray-900 
-            transform transition-transform duration-200 px-2">▼</button>
-        </div>
-        <div class='my-2 vocab-properties'>
-<span class="property-label" onclick="this.querySelector('span').style.display = (this.querySelector('span').style.display === 'none' || this.querySelector('span').style.display === '') ? 'block' : 'none';" style="display: inline-block; background-color: #4A90E2; color: white; padding: 4px 8px; border-radius: 12px; font-size: 12px; font-weight: bold; font-family: Arial, sans-serif; cursor: pointer; position: relative; margin-right: 8px;">
-    する sloveso
-    <span style="display: none; position: absolute; top: 120%; left: 0; background-color: white; color: black; border: 1px solid #4A90E2; padding: 4px 8px; border-radius: 6px; font-size: 12px; font-family: Arial, sans-serif; z-index: 10; min-width: 150px;">
-        Nepravidelná slovesa se chovají podobně dle する tvaru.
-    </span>
-</span>    
-</div>
-        <div id="vocab-720a1ab4" class="button-vocab-example hidden text-gray-700">
-            <div class="mt-2 p-2 rounded bg-white shadow">
-            <div>
-                <div style="margin-bottom: 5px;"><span lang="JA">その<ruby>実<rt style="visibility: hidden">じっ</rt></ruby><ruby>験<rt style="visibility: hidden">けん</rt></ruby>は<ruby>失<rt style="visibility: hidden">しっ</rt></ruby><ruby>敗<rt style="visibility: hidden">ぱい</rt></ruby>だった</span></div>
-                <div style="margin-bottom: 5px; color: #666;">Ten experiment selhal.</div>
-            </div>
-            </div>
-            
-        </div>
-    </div>
     
     <div class="bg-gradient-to-r from-purple-100 to-purple-300 rounded-lg shadow p-4 flex flex-col my-2">
         <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-c9220977', this)">

@@ -323,6 +323,28 @@ rt {
     </div>
     
     <div class="bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg shadow p-4 flex flex-col my-2">
+        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-db714612', this)">
+            <div>
+                <p class="text-lg text-2xl text-gray-800 copyable relative" 
+                onclick="copyText(this)"><ruby>去<rt style="visibility: hidden">きょ</rt></ruby><ruby>年<rt style="visibility: hidden">ねん</rt></ruby></p>
+                <p class="text-sm text-gray-600">minulý rok</p>
+            </div>
+            <button class="button-vocab-toggle text-gray-600 hover:text-gray-900 
+            transform transition-transform duration-200 px-2">▼</button>
+        </div>
+        
+        <div id="vocab-db714612" class="button-vocab-example hidden text-gray-700">
+            <div class="mt-2 p-2 rounded bg-white shadow">
+            <div>
+                <div style="margin-bottom: 5px;"><span lang="JA"><ruby>去<rt style="visibility: hidden">きょ</rt></ruby><ruby>年<rt style="visibility: hidden">ねん</rt></ruby><ruby>京<rt style="visibility: hidden">きょう</rt></ruby><ruby>都<rt style="visibility: hidden">と</rt></ruby>へ<ruby>行<rt style="visibility: hidden">い</rt></ruby>った</span></div>
+                <div style="margin-bottom: 5px; color: #666;">Jeli minulý rok do Kjóta.</div>
+            </div>
+            </div>
+            
+        </div>
+    </div>
+    
+    <div class="bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg shadow p-4 flex flex-col my-2">
         <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-9f443d7a', this)">
             <div>
                 <p class="text-lg text-2xl text-gray-800 copyable relative" 
@@ -366,28 +388,6 @@ rt {
         </div>
     </div>
     
-    
-    <div class="bg-gradient-to-r from-purple-100 to-purple-300 rounded-lg shadow p-4 flex flex-col my-2">
-        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-db714612', this)">
-            <div>
-                <p class="text-lg text-2xl text-gray-800 copyable relative" 
-                onclick="copyText(this)"><ruby>去<rt style="visibility: hidden">きょ</rt></ruby><ruby>年<rt style="visibility: hidden">ねん</rt></ruby></p>
-                <p class="text-sm text-gray-600">minulý rok</p>
-            </div>
-            <button class="button-vocab-toggle text-gray-600 hover:text-gray-900 
-            transform transition-transform duration-200 px-2">▼</button>
-        </div>
-        
-        <div id="vocab-db714612" class="button-vocab-example hidden text-gray-700">
-            <div class="mt-2 p-2 rounded bg-white shadow">
-            <div>
-                <div style="margin-bottom: 5px;"><span lang="JA"><ruby>去<rt style="visibility: hidden">きょ</rt></ruby><ruby>年<rt style="visibility: hidden">ねん</rt></ruby><ruby>京<rt style="visibility: hidden">きょう</rt></ruby><ruby>都<rt style="visibility: hidden">と</rt></ruby>へ<ruby>行<rt style="visibility: hidden">い</rt></ruby>った</span></div>
-                <div style="margin-bottom: 5px; color: #666;">Jeli minulý rok do Kjóta.</div>
-            </div>
-            </div>
-            
-        </div>
-    </div>
     
 </div>  
 
