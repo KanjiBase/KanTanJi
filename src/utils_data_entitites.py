@@ -539,25 +539,29 @@ class DataSet:
                               e)
                         logger.error("Origin:", e)
 
-    def process(self, metadata, guard: HashGuard):
+    def process(self, metadata, guard: HashGuard, path_getter: callable = None):
         print("Generating:", self.context_name)
         for proc_name, processor in DataSet._processors:
             print(proc_name, end="... ")
-            for key in self.data:
-                data_spec = self.data[key]
-                if data_spec["ignored"]:
-                    continue
+            self.process_using(processor, metadata, guard, path_getter)
 
-                name = data_spec["name"]
-                output_path = guard.processing_file_root(data_spec["id"], data_spec["context_id"])
+    def process_using(self, processor: callable, metadata, guard: HashGuard, path_getter: callable):
+        for key in self.data:
+            data_spec = self.data[key]
+            if data_spec["ignored"]:
+                continue
 
-                try:
-                    if processor(name, data_spec, metadata, lambda _: output_path, not self._production):
-                        print(f"[○ {name}]", end="  ")
-                    else:
-                        print(f"[🞪 {name}]", end="  ")
-                    print()
-                except Exception as e:
-                    print()
-                    print(f"Failed to write file to ", output_path, e)
-                    print(traceback.format_exc())
+            name = data_spec["name"]
+            output_path = guard.processing_file_root(data_spec["id"], data_spec["context_id"]) \
+                if path_getter is None else path_getter(data_spec["id"])
+
+            try:
+                if processor(name, data_spec, metadata, lambda _: output_path, not self._production):
+                    print(f"[○ {name}]", end="  ")
+                else:
+                    print(f"[🞪 {name}]", end="  ")
+                print()
+            except Exception as e:
+                print()
+                print(f"Failed to write file to ", output_path, e)
+                print(traceback.format_exc())

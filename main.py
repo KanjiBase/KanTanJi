@@ -8,6 +8,7 @@ from src.logging_utils import set_logging, get_logger
 parser = argparse.ArgumentParser(description="Kantanji: Generate Learning Sets from tabular data.")
 parser.add_argument("--dry-run", action='store_true', help="If true, all dataset is processed, no output written.")
 parser.add_argument("--log-file", type=str, help="If set to path, logs are stored to a file.")
+parser.add_argument("--sentences", action='store_true', help="Generates debugging file that displays all sentences and words. Stores ./artifacts/all.pdf file.")
 
 args = parser.parse_args()
 
@@ -21,7 +22,7 @@ from src.utils import process_row, dict_read_create, parse_ids
 from src.read_input_google_api import read_sheets_google_api
 from src.read_input_test_data import read_local_data
 # For some reason, when src. is added as prefix the code fails to run due mismatches on class types
-from utils_data_entitites import DataSet, KanjiEntry, Value, HashGuard
+from utils_data_entitites import DataSet, KanjiEntry, Value, HashGuard, DataSubsetEntry
 from utils_filesystem import merge_trees, delete_filesystem_node
 
 import src.anki_generator as anki
@@ -146,6 +147,48 @@ for dataset_name in data:
             print(f"Error on line {row}", e)
             print(traceback.format_exc())
 
+
+## First prepare metadata
+metadata = {}
+# Compute guard also for metadata
+for name in parsed_metadata:
+    metadata_entries = parsed_metadata[name]
+    metadata[name] = {
+        "name": name,
+        "content": metadata_entries,
+        "modified": data_modification_guard.set_record_and_check_if_modified(name, name, metadata_entries)
+    }
+del parsed_metadata
+
+
+## Then debugging info - if requested, exit after generating
+if args.sentences:
+    import sentences_pdf_generator
+    all_kanji_dataset = DataSet(-1)
+    item = DataSubsetEntry()
+    item.fill({
+        "setto": "All kanji",
+        "id": -1,
+        "subid": -1,
+        "junban": 1,
+        "ids": ""
+    })
+    all_kanji_dataset.append(-1, item)
+    all_kanji_dataset.overwrite(-1, {
+        "id": -1,
+        "context_id": -1,
+        "name": "all",
+        "content": kanji_dictionary,
+        "order": kanji_dictionary.keys(),
+        "modified": True,
+        "ignored": False
+    })
+    all_kanji_dataset.process_using(processor=sentences_pdf_generator.generate, metadata=metadata,
+                                    guard=data_modification_guard,
+                                    path_getter=lambda item: f".artifacts/")
+    exit(0)
+
+
 # Now parse datasets if any
 for did in complementary_datasets:
     dataset = complementary_datasets[did]
@@ -243,16 +286,6 @@ for did in complementary_datasets:
             del complementary_datasets[did]
             print(f" --parse dataset-- Error: dataset {subset_name} ignored", e)
 
-metadata = {}
-# Compute guard also for metadata
-for name in parsed_metadata:
-    metadata_entries = parsed_metadata[name]
-    metadata[name] = {
-        "name": name,
-        "content": metadata_entries,
-        "modified": data_modification_guard.set_record_and_check_if_modified(name, name, metadata_entries)
-    }
-del parsed_metadata
 
 readme = """
 # Kan<sup>Tan</sup>Ji &nbsp; 漢<sup>単</sup>字

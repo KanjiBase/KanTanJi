@@ -1,0 +1,46 @@
+name: Generate Sentences PDF to verify correctness of vocabulary examples.
+
+on:
+  repository_dispatch:
+    types: [manual_drive_trigger]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  generate_contents:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v3
+        with:
+          persist-credentials: true
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y wkhtmltopdf
+          wkhtmltopdf --version
+          
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run Python script to generate DataSets
+        env:
+            GOOGLE_SERVICE: ${{ secrets.GOOGLE_SERVICE }}
+            FOLDER_ID: ${{ secrets.FOLDER_ID }}
+        run: python main.py --sentences
+
+      - name: Store sentences (artifact)
+        uses: actions/upload-artifact@v4
+        with:
+          name: datasets-pdf
+          path: .artifacts/**/*.pdf
+          retention-days: 5
