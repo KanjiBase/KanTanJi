@@ -36,11 +36,15 @@ jobs:
         env:
             GOOGLE_SERVICE: ${{ secrets.GOOGLE_SERVICE }}
             FOLDER_ID: ${{ secrets.FOLDER_ID }}
-        run: python main.py --sentences && ls ./.artifacts
+        run: |
+            python main.py --sentences
+            echo "List artifacts dir:"
+            ls -al ./.artifacts
 
       - name: Store sentences (artifact)
         uses: actions/upload-artifact@v4
         with:
           name: datasets-pdf
-          path: .artifacts/*.pdf
+          path: ./.artifacts
           retention-days: 5
+          if-no-files-found: error
