@@ -230,10 +230,9 @@ def process_row(row: list):
         if key[0] == "$":
             key = key[1:len(key)]
         value = row[i + 1]
-        if type(value) == "string":
-            value = value.strip()
-        else:
-            value = f"{value}"
+        if type(value) != "string":
+            value = str(value)
+        value = value.strip()
 
         key_significance = 0
         if key.endswith("-"):
