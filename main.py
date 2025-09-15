@@ -9,6 +9,7 @@ parser = argparse.ArgumentParser(description="Kantanji: Generate Learning Sets f
 parser.add_argument("--dry-run", action='store_true', help="If true, all dataset is processed, no output written.")
 parser.add_argument("--log-file", type=str, help="If set to path, logs are stored to a file.")
 parser.add_argument("--sentences", action='store_true', help="Generates debugging file that displays all sentences and words. Stores ./artifacts/all.pdf file.")
+parser.add_argument("--sentences-from", type=str, help="Generates debugging file that displays all sentences and words. Stores ./artifacts/all.pdf file.")
 
 args = parser.parse_args()
 
@@ -162,12 +163,22 @@ del parsed_metadata
 
 
 ## Then debugging info - if requested, exit after generating
-if args.sentences:
+if args.sentences or args.sentences_from:
     import sentences_pdf_generator
     all_kanji_dataset = DataSet(-1)
+    name = "All"
+
+    if args.sentences_from:
+        name = "Selected"
+        trimmed_dictionary = {}
+        kanjis = parse_ids(args.sentences_from)
+        for kanji in kanjis:
+            trimmed_dictionary[kanji] = kanji_dictionary[kanji]
+        kanji_dictionary = trimmed_dictionary
+
     item = DataSubsetEntry()
     item.fill({
-        "setto": "All kanji",
+        "setto": f"${name} kanji",
         "id": -1,
         "subid": -1,
         "junban": 1,
@@ -177,7 +188,7 @@ if args.sentences:
     all_kanji_dataset.overwrite(-1, {
         "id": -1,
         "context_id": -1,
-        "name": "all",
+        "name": name.lower().replace(" ", "_"),
         "content": kanji_dictionary,
         "order": kanji_dictionary.keys(),
         "modified": True,
@@ -185,7 +196,7 @@ if args.sentences:
     })
     all_kanji_dataset.process_using(processor=sentences_pdf_generator.generate, metadata=metadata,
                                     guard=data_modification_guard,
-                                    path_getter=lambda item: f".artifacts/")
+                                    path_getter=lambda _: f".artifacts/")
     exit(0)
 
 
