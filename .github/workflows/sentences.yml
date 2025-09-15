@@ -4,9 +4,18 @@ on:
   repository_dispatch:
     types: [manual_drive_trigger]
   workflow_dispatch:
+    inputs:
+      kanji:
+        description: 'Comma-separated kanji list to output debugging PDFs for.'
+        default: 'all'
+        required: true
+        type: string
 
 permissions:
   contents: write
+
+env:
+  KANJI: ${{ github.event.inputs.kanji || 'all' }}
 
 jobs:
   generate_contents:
@@ -32,12 +41,23 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Run Python script to generate DataSets
+      - name: Run Python script to generate all sentences
+        if: env.KANJI == 'all'
         env:
           GOOGLE_SERVICE: ${{ secrets.GOOGLE_SERVICE }}
           FOLDER_ID: ${{ secrets.FOLDER_ID }}
         run: |
           python main.py --sentences
+          echo "List artifacts dir:"
+          ls -al ./.artifacts
+
+      - name: Run Python script to generate selected sentences
+        if: env.KANJI != 'all'
+        env:
+          GOOGLE_SERVICE: ${{ secrets.GOOGLE_SERVICE }}
+          FOLDER_ID: ${{ secrets.FOLDER_ID }}
+        run: |
+          python main.py --sentences-from "$KANJI"
           echo "List artifacts dir:"
           ls -al ./.artifacts
 
