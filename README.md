@@ -513,6 +513,14 @@ PDF Soubory obsahují seznam znaků kanji a přidružených slovíček.
 
  - <a href="static/3/2/Semestr 3 - Sada 2.pdf">Semestr 3 - Sada 2</a>
 
+ - <a href="static/3/3/Semestr 3 - Sada 3.pdf">Semestr 3 - Sada 3</a>
+
+ - <a href="static/3/4/Semestr 3 - Sada 4.pdf">Semestr 3 - Sada 4</a>
+
+ - <a href="static/3/5/Semestr 3 - Sada 5.pdf">Semestr 3 - Sada 5</a>
+
+ - <a href="static/3/6/Semestr 3 - Sada 6.pdf">Semestr 3 - Sada 6</a>
+
 
 ### ANKI Balíčky
 Balíčky lze importovat opakovaně do ANKI aplikace. Balíčky se řadí do kolekce 'KanTanJi' 
@@ -524,6 +532,14 @@ Furiganu zobrazíš kliknutím / tapnutím na kartičku.
 
  - <a href="static/3/2/Semestr_3_-_Sada_2.apkg">Semestr_3_-_Sada_2</a>
 
+ - <a href="static/3/3/Semestr_3_-_Sada_3.apkg">Semestr_3_-_Sada_3</a>
+
+ - <a href="static/3/4/Semestr_3_-_Sada_4.apkg">Semestr_3_-_Sada_4</a>
+
+ - <a href="static/3/5/Semestr_3_-_Sada_5.apkg">Semestr_3_-_Sada_5</a>
+
+ - <a href="static/3/6/Semestr_3_-_Sada_6.apkg">Semestr_3_-_Sada_6</a>
+
 
 ### HTML
 HTML Stránky slouží pro vložení interaktivních informací o Kanji do externích webových služeb.
@@ -534,9 +550,29 @@ HTML Stránky slouží pro vložení interaktivních informací o Kanji do exter
 #### Kanji Stránky Semestr 3 - Sada 2 2
 <a href="static/3/2/計.html">計</a>  <a href="static/3/2/点.html">点</a>  <a href="static/3/2/弱.html">弱</a>  <a href="static/3/2/交.html">交</a>  <a href="static/3/2/線.html">線</a>  <a href="static/3/2/直.html">直</a>  <a href="static/3/2/光.html">光</a>  <a href="static/3/2/角.html">角</a>  <a href="static/3/2/丸.html">丸</a>  <a href="static/3/2/矢.html">矢</a>
 
+#### Kanji Stránky Semestr 3 - Sada 3 3
+<a href="static/3/3/妹.html">妹</a>  <a href="static/3/3/弟.html">弟</a>  <a href="static/3/3/兄.html">兄</a>  <a href="static/3/3/姉.html">姉</a>  <a href="static/3/3/高.html">高</a>  <a href="static/3/3/同.html">同</a>  <a href="static/3/3/親.html">親</a>  <a href="static/3/3/父.html">父</a>  <a href="static/3/3/強.html">強</a>  <a href="static/3/3/母.html">母</a>
+
+#### Kanji Stránky Semestr 3 - Sada 4 4
+<a href="static/3/4/時.html">時</a>  <a href="static/3/4/頭.html">頭</a>  <a href="static/3/4/顔.html">顔</a>  <a href="static/3/4/自.html">自</a>  <a href="static/3/4/毛.html">毛</a>  <a href="static/3/4/心.html">心</a>  <a href="static/3/4/曜.html">曜</a>  <a href="static/3/4/体.html">体</a>  <a href="static/3/4/友.html">友</a>  <a href="static/3/4/首.html">首</a>
+
+#### Kanji Stránky Semestr 3 - Sada 5 5
+<a href="static/3/5/秋.html">秋</a>  <a href="static/3/5/夏.html">夏</a>  <a href="static/3/5/夜.html">夜</a>  <a href="static/3/5/週.html">週</a>  <a href="static/3/5/春.html">春</a>  <a href="static/3/5/分.html">分</a>  <a href="static/3/5/昼.html">昼</a>  <a href="static/3/5/朝.html">朝</a>  <a href="static/3/5/今.html">今</a>  <a href="static/3/5/冬.html">冬</a>
+
+#### Kanji Stránky Semestr 3 - Sada 6 6
+<a href="static/3/6/東.html">東</a>  <a href="static/3/6/古.html">古</a>  <a href="static/3/6/新.html">新</a>  <a href="static/3/6/遠.html">遠</a>  <a href="static/3/6/西.html">西</a>  <a href="static/3/6/間.html">間</a>  <a href="static/3/6/南.html">南</a>  <a href="static/3/6/近.html">近</a>  <a href="static/3/6/北.html">北</a>  <a href="static/3/6/方.html">方</a>
+
 ### Datové Balíčky
 Slouží pro import do dalších aplikací, například [Lively Wallpaper](https://github.com/KanjiBase/LivelyKanji).
  - <a href="static/3/1/Semestr_3_-_Sada_1.json">Semestr_3_-_Sada_1</a>
 
  - <a href="static/3/2/Semestr_3_-_Sada_2.json">Semestr_3_-_Sada_2</a>
+
+ - <a href="static/3/3/Semestr_3_-_Sada_3.json">Semestr_3_-_Sada_3</a>
+
+ - <a href="static/3/4/Semestr_3_-_Sada_4.json">Semestr_3_-_Sada_4</a>
+
+ - <a href="static/3/5/Semestr_3_-_Sada_5.json">Semestr_3_-_Sada_5</a>
+
+ - <a href="static/3/6/Semestr_3_-_Sada_6.json">Semestr_3_-_Sada_6</a>
 
