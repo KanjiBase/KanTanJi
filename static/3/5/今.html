@@ -162,6 +162,27 @@ rt {
     </div>
     
     <div class="bg-gradient-to-r from-green-50 to-green-100 rounded-lg shadow p-4 flex flex-col my-2">
+        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-7e71d4d8', this)">
+            <div>
+                <p class="text-lg text-2xl text-gray-800 copyable relative" 
+                onclick="copyText(this)"><ruby>今日<rt style="visibility: hidden">きょう</rt></ruby></p>
+                <p class="text-sm text-gray-600">dnes</p>
+            </div>
+            <button class="button-vocab-toggle text-gray-600 hover:text-gray-900 
+            transform transition-transform duration-200 px-2">▼</button>
+        </div>
+        
+        <div id="vocab-7e71d4d8" class="button-vocab-example hidden text-gray-700">
+            <div class="mt-2 p-2 rounded bg-white shadow">
+            <div>
+                <div style="margin-bottom: 5px;"><ruby>今日<rt style="visibility: hidden">きょう</rt></ruby>はここまでです。お <ruby>疲<rt style="visibility: hidden">つか</rt></ruby>れ <ruby>様<rt style="visibility: hidden">さま</rt></ruby>でした。To je pro dnešek vše. Děkujeme za Vaši tvrdou práci.</div>
+            </div>
+            </div>
+            
+        </div>
+    </div>
+    
+    <div class="bg-gradient-to-r from-green-50 to-green-100 rounded-lg shadow p-4 flex flex-col my-2">
         <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-a9382fa2', this)">
             <div>
                 <p class="text-lg text-2xl text-gray-800 copyable relative" 
@@ -212,58 +233,7 @@ rt {
         </div>
     </div>
     
-</div>    
-<div 
-  class="flex-1 gap-4"
-  style="max-width: 400px;"
->   
-    <span class="text-xl font-bold text-gray-800 mb-4">Budou v sadě / Rozšiřující</span>
-    
-    
-    <div class="bg-gradient-to-r from-purple-100 to-purple-300 rounded-lg shadow p-4 flex flex-col my-2">
-        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-7e71d4d8', this)">
-            <div>
-                <p class="text-lg text-2xl text-gray-800 copyable relative" 
-                onclick="copyText(this)"><ruby>今日<rt style="visibility: hidden">きょう</rt></ruby></p>
-                <p class="text-sm text-gray-600">dnes</p>
-            </div>
-            <button class="button-vocab-toggle text-gray-600 hover:text-gray-900 
-            transform transition-transform duration-200 px-2">▼</button>
-        </div>
-        
-        <div id="vocab-7e71d4d8" class="button-vocab-example hidden text-gray-700">
-            <div class="mt-2 p-2 rounded bg-white shadow">
-            <div>
-                <div style="margin-bottom: 5px;"><ruby>今日<rt style="visibility: hidden">きょう</rt></ruby>はここまでです。お <ruby>疲<rt style="visibility: hidden">つか</rt></ruby>れ <ruby>様<rt style="visibility: hidden">さま</rt></ruby>でした。To je pro dnešek vše. Děkujeme za Vaši tvrdou práci.</div>
-            </div>
-            </div>
-            
-        </div>
-    </div>
-    
-    <div class="bg-gradient-to-r from-purple-100 to-purple-300 rounded-lg shadow p-4 flex flex-col my-2">
-        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-01c772f1', this)">
-            <div>
-                <p class="text-lg text-2xl text-gray-800 copyable relative" 
-                onclick="copyText(this)"><ruby>今<rt style="visibility: hidden">こん</rt></ruby><ruby>晩<rt style="visibility: hidden">ばん</rt></ruby></p>
-                <p class="text-sm text-gray-600">dnes večer</p>
-            </div>
-            <button class="button-vocab-toggle text-gray-600 hover:text-gray-900 
-            transform transition-transform duration-200 px-2">▼</button>
-        </div>
-        
-        <div id="vocab-01c772f1" class="button-vocab-example hidden text-gray-700">
-            <div class="mt-2 p-2 rounded bg-white shadow">
-            <div>
-                <div style="margin-bottom: 5px;"><span lang="JA"><ruby>今<rt style="visibility: hidden">こん</rt></ruby><ruby>晩<rt style="visibility: hidden">ばん</rt></ruby> <ruby>雨<rt style="visibility: hidden">あめ</rt></ruby>が<ruby>降<rt style="visibility: hidden">ふ</rt></ruby>りそうです</span></div>
-                <div style="margin-bottom: 5px; color: #666;">Zdá se, že dnes večer bude pršet.</div>
-            </div>
-            </div>
-            
-        </div>
-    </div>
-    
-    <div class="bg-gradient-to-r from-purple-100 to-purple-300 rounded-lg shadow p-4 flex flex-col my-2">
+    <div class="bg-gradient-to-r from-green-50 to-green-100 rounded-lg shadow p-4 flex flex-col my-2">
         <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-878ce36e', this)">
             <div>
                 <p class="text-lg text-2xl text-gray-800 copyable relative" 
@@ -285,7 +255,7 @@ rt {
         </div>
     </div>
     
-    <div class="bg-gradient-to-r from-purple-100 to-purple-300 rounded-lg shadow p-4 flex flex-col my-2">
+    <div class="bg-gradient-to-r from-green-50 to-green-100 rounded-lg shadow p-4 flex flex-col my-2">
         <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-9f443d7a', this)">
             <div>
                 <p class="text-lg text-2xl text-gray-800 copyable relative" 
@@ -301,6 +271,36 @@ rt {
             <div>
                 <div style="margin-bottom: 5px;"><span lang="JA"><ruby>今<rt style="visibility: hidden">こ</rt></ruby><ruby>年<rt style="visibility: hidden">とし</rt></ruby>はバラが<ruby>早<rt style="visibility: hidden">はや</rt></ruby>く<ruby>咲<rt style="visibility: hidden">さ</rt></ruby>いています</span></div>
                 <div style="margin-bottom: 5px; color: #666;">Letos růže kvetou brzy.</div>
+            </div>
+            </div>
+            
+        </div>
+    </div>
+    
+</div>    
+<div 
+  class="flex-1 gap-4"
+  style="max-width: 400px;"
+>   
+    <span class="text-xl font-bold text-gray-800 mb-4">Budou v sadě / Rozšiřující</span>
+    
+    
+    <div class="bg-gradient-to-r from-purple-100 to-purple-300 rounded-lg shadow p-4 flex flex-col my-2">
+        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-01c772f1', this)">
+            <div>
+                <p class="text-lg text-2xl text-gray-800 copyable relative" 
+                onclick="copyText(this)"><ruby>今<rt style="visibility: hidden">こん</rt></ruby><ruby>晩<rt style="visibility: hidden">ばん</rt></ruby></p>
+                <p class="text-sm text-gray-600">dnes večer</p>
+            </div>
+            <button class="button-vocab-toggle text-gray-600 hover:text-gray-900 
+            transform transition-transform duration-200 px-2">▼</button>
+        </div>
+        
+        <div id="vocab-01c772f1" class="button-vocab-example hidden text-gray-700">
+            <div class="mt-2 p-2 rounded bg-white shadow">
+            <div>
+                <div style="margin-bottom: 5px;"><span lang="JA"><ruby>今<rt style="visibility: hidden">こん</rt></ruby><ruby>晩<rt style="visibility: hidden">ばん</rt></ruby> <ruby>雨<rt style="visibility: hidden">あめ</rt></ruby>が<ruby>降<rt style="visibility: hidden">ふ</rt></ruby>りそうです</span></div>
+                <div style="margin-bottom: 5px; color: #666;">Zdá se, že dnes večer bude pršet.</div>
             </div>
             </div>
             

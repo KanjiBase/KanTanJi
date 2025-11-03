@@ -168,6 +168,33 @@ rt {
 >   
     <span class="text-xl font-bold text-gray-800 mb-4">Budou v sadě / Rozšiřující</span>
     
+    <div class="bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg shadow p-4 flex flex-col my-2">
+        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-1cad1340', this)">
+            <div>
+                <p class="text-lg text-2xl text-gray-800 copyable relative" 
+                onclick="copyText(this)"><ruby>自<rt style="visibility: hidden">じ</rt></ruby><ruby>分<rt style="visibility: hidden">ぶん</rt></ruby></p>
+                <p class="text-sm text-gray-600">já, sám, sebe</p>
+            </div>
+            <button class="button-vocab-toggle text-gray-600 hover:text-gray-900 
+            transform transition-transform duration-200 px-2">▼</button>
+        </div>
+        
+        <div id="vocab-1cad1340" class="button-vocab-example hidden text-gray-700">
+            <div class="mt-2 p-2 rounded bg-white shadow">
+            <div>
+                <div style="margin-bottom: 5px;"><span lang="JA"><ruby>自分<rt style="visibility: hidden">じぶん</rt></ruby>の<ruby>失<rt style="visibility: hidden">しっ</rt></ruby><ruby>敗<rt style="visibility: hidden">ぱい</rt></ruby>を他<ruby>人<rt style="visibility: hidden">たにん</rt></ruby>のせいにするのではなく、<ruby>改<rt style="visibility: hidden">かい</rt></ruby><ruby>善<rt style="visibility: hidden">ぜん</rt></ruby>する<ruby>努<rt style="visibility: hidden">ど</rt></ruby><ruby>力<rt style="visibility: hidden">りょく</rt></ruby>をするべきだ</span></div>
+                <div style="margin-bottom: 5px; color: #666;">Místo toho, abychom svá selhání svalovali na ostatní, bychom se měli snažit je napravit.</div>
+            </div>
+            
+            <div>
+                <div style="margin-bottom: 5px;"><span lang="JA"><ruby>留<rt style="visibility: hidden">りゅう</rt></ruby><ruby>学<rt style="visibility: hidden">がく</rt></ruby>は<ruby>自<rt style="visibility: hidden">じ</rt></ruby><ruby>分<rt style="visibility: hidden">ぶん</rt></ruby><ruby>自<rt style="visibility: hidden">じ</rt></ruby><ruby>身<rt style="visibility: hidden">しん</rt></ruby>を<ruby>見<rt style="visibility: hidden">み</rt></ruby>つめることができる<ruby>絶<rt style="visibility: hidden">ぜっ</rt></ruby><ruby>好<rt style="visibility: hidden">こう</rt></ruby>の<ruby>機<rt style="visibility: hidden">き</rt></ruby><ruby>会<rt style="visibility: hidden">かい</rt></ruby>だ</span></div>
+                <div style="margin-bottom: 5px; color: #666;">Studium v zahraničí je vynikající příležitost k sebereflexi.</div>
+            </div>
+            </div>
+            
+        </div>
+    </div>
+    
     
     <div class="bg-gradient-to-r from-purple-100 to-purple-300 rounded-lg shadow p-4 flex flex-col my-2">
         <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-0e63ec80', this)">
@@ -214,33 +241,6 @@ rt {
             <div>
                 <div style="margin-bottom: 5px;"><span lang="JA"><ruby>試験<rt style="visibility: hidden">しけん</rt></ruby>に<ruby>合格<rt style="visibility: hidden">ごうかく</rt></ruby>する<ruby>自信<rt style="visibility: hidden">じしん</rt></ruby>がある</span></div>
                 <div style="margin-bottom: 5px; color: #666;">Jsem si jistý, že u zkoušky uspěji.</div>
-            </div>
-            </div>
-            
-        </div>
-    </div>
-    
-    <div class="bg-gradient-to-r from-purple-100 to-purple-300 rounded-lg shadow p-4 flex flex-col my-2">
-        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-1cad1340', this)">
-            <div>
-                <p class="text-lg text-2xl text-gray-800 copyable relative" 
-                onclick="copyText(this)"><ruby>自<rt style="visibility: hidden">じ</rt></ruby><ruby>分<rt style="visibility: hidden">ぶん</rt></ruby></p>
-                <p class="text-sm text-gray-600">já, sám, sebe</p>
-            </div>
-            <button class="button-vocab-toggle text-gray-600 hover:text-gray-900 
-            transform transition-transform duration-200 px-2">▼</button>
-        </div>
-        
-        <div id="vocab-1cad1340" class="button-vocab-example hidden text-gray-700">
-            <div class="mt-2 p-2 rounded bg-white shadow">
-            <div>
-                <div style="margin-bottom: 5px;"><span lang="JA"><ruby>自分<rt style="visibility: hidden">じぶん</rt></ruby>の<ruby>失<rt style="visibility: hidden">しっ</rt></ruby><ruby>敗<rt style="visibility: hidden">ぱい</rt></ruby>を他<ruby>人<rt style="visibility: hidden">たにん</rt></ruby>のせいにするのではなく、<ruby>改<rt style="visibility: hidden">かい</rt></ruby><ruby>善<rt style="visibility: hidden">ぜん</rt></ruby>する<ruby>努<rt style="visibility: hidden">ど</rt></ruby><ruby>力<rt style="visibility: hidden">りょく</rt></ruby>をするべきだ</span></div>
-                <div style="margin-bottom: 5px; color: #666;">Místo toho, abychom svá selhání svalovali na ostatní, bychom se měli snažit je napravit.</div>
-            </div>
-            
-            <div>
-                <div style="margin-bottom: 5px;"><span lang="JA"><ruby>留<rt style="visibility: hidden">りゅう</rt></ruby><ruby>学<rt style="visibility: hidden">がく</rt></ruby>は<ruby>自<rt style="visibility: hidden">じ</rt></ruby><ruby>分<rt style="visibility: hidden">ぶん</rt></ruby><ruby>自<rt style="visibility: hidden">じ</rt></ruby><ruby>身<rt style="visibility: hidden">しん</rt></ruby>を<ruby>見<rt style="visibility: hidden">み</rt></ruby>つめることができる<ruby>絶<rt style="visibility: hidden">ぜっ</rt></ruby><ruby>好<rt style="visibility: hidden">こう</rt></ruby>の<ruby>機<rt style="visibility: hidden">き</rt></ruby><ruby>会<rt style="visibility: hidden">かい</rt></ruby>だ</span></div>
-                <div style="margin-bottom: 5px; color: #666;">Studium v zahraničí je vynikající příležitost k sebereflexi.</div>
             </div>
             </div>
             

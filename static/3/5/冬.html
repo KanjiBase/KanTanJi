@@ -162,6 +162,28 @@ rt {
     </div>
     
     <div class="bg-gradient-to-r from-green-50 to-green-100 rounded-lg shadow p-4 flex flex-col my-2">
+        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-d51b62d8', this)">
+            <div>
+                <p class="text-lg text-2xl text-gray-800 copyable relative" 
+                onclick="copyText(this)"><ruby>冬<rt style="visibility: hidden">ふゆ</rt></ruby><ruby>休<rt style="visibility: hidden">やす</rt></ruby>み</p>
+                <p class="text-sm text-gray-600">zimní prázdniny</p>
+            </div>
+            <button class="button-vocab-toggle text-gray-600 hover:text-gray-900 
+            transform transition-transform duration-200 px-2">▼</button>
+        </div>
+        
+        <div id="vocab-d51b62d8" class="button-vocab-example hidden text-gray-700">
+            <div class="mt-2 p-2 rounded bg-white shadow">
+            <div>
+                <div style="margin-bottom: 5px;"><span lang="JA"><ruby>冬<rt style="visibility: hidden">ふゆ</rt></ruby><ruby>休<rt style="visibility: hidden">やす</rt></ruby>みはどのように<ruby>過<rt style="visibility: hidden">す</rt></ruby>ごしましたか</span></div>
+                <div style="margin-bottom: 5px; color: #666;">Jak jsi strávil zimní prázdniny?</div>
+            </div>
+            </div>
+            
+        </div>
+    </div>
+    
+    <div class="bg-gradient-to-r from-green-50 to-green-100 rounded-lg shadow p-4 flex flex-col my-2">
         <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-660c6f5e', this)">
             <div>
                 <p class="text-lg text-2xl text-gray-800 copyable relative" 
@@ -212,28 +234,6 @@ rt {
         </div>
     </div>
     
-    
-    <div class="bg-gradient-to-r from-purple-100 to-purple-300 rounded-lg shadow p-4 flex flex-col my-2">
-        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-d51b62d8', this)">
-            <div>
-                <p class="text-lg text-2xl text-gray-800 copyable relative" 
-                onclick="copyText(this)"><ruby>冬<rt style="visibility: hidden">ふゆ</rt></ruby><ruby>休<rt style="visibility: hidden">やす</rt></ruby>み</p>
-                <p class="text-sm text-gray-600">zimní prázdniny</p>
-            </div>
-            <button class="button-vocab-toggle text-gray-600 hover:text-gray-900 
-            transform transition-transform duration-200 px-2">▼</button>
-        </div>
-        
-        <div id="vocab-d51b62d8" class="button-vocab-example hidden text-gray-700">
-            <div class="mt-2 p-2 rounded bg-white shadow">
-            <div>
-                <div style="margin-bottom: 5px;"><span lang="JA"><ruby>冬<rt style="visibility: hidden">ふゆ</rt></ruby><ruby>休<rt style="visibility: hidden">やす</rt></ruby>みはどのように<ruby>過<rt style="visibility: hidden">す</rt></ruby>ごしましたか</span></div>
-                <div style="margin-bottom: 5px; color: #666;">Jak jsi strávil zimní prázdniny?</div>
-            </div>
-            </div>
-            
-        </div>
-    </div>
     
 </div>  
 
