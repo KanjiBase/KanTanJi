@@ -200,8 +200,8 @@ def generate(name, data, radicals, path_getter, is_debug_run):
         pdfkit.from_string(content_html, pdf_output_path, options=options)
 
         # Could also output html
-        with open(f"{path_getter(name)}/{name}.html", "w", encoding="UTF-8") as file:
-            file.write(content_html)
+        # with open(f"{path_getter(name)}/{name}.html", "w", encoding="UTF-8") as file:
+        #     file.write(content_html)
 
     return True
 
