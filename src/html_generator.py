@@ -137,7 +137,7 @@ def get_notes_content(item, cls=""):
     if cls:
         cls = f" class=\"{cls}\""
     return "".join([
-        f"<div{cls}><strong><i>{generate_furigana(key)}<i></strong>: {generate_furigana(value)}</div>" if value.format == InputFormat.PLAINTEXT
+        f"<div{cls}><strong><i>{generate_furigana(key)}</i></strong>: {generate_furigana(value)}</div>" if value.format == InputFormat.PLAINTEXT
         else f"<div>{markdown.markdown(generate_furigana(value))}</div>"
         for key, value in item.get("extra", {}).items()
     ])

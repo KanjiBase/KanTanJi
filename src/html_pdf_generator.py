@@ -71,14 +71,12 @@ def generate(name, data, radicals, path_getter, is_debug_run):
             target_list = vocabulary_now
             word = vocab_item.get('tango')
             if word.significance == 1:
-                class_right += " deck"
                 class_left += " deck"
                 target_list = vocabulary_deck
                 style_usage = "font-size: 8pt"
                 vocab_row_style = "line-height: 15pt;"
 
             elif word.significance > 1:
-                class_right += " future"
                 class_left += " future"
                 target_list = vocabulary_future
                 style_usage = "font-size: 8pt"
@@ -162,7 +160,7 @@ def generate(name, data, radicals, path_getter, is_debug_run):
             border-right: 2px solid lightgray;
         }}
         th.bl, td.bl {{
-            border-left: 2px solid lightgray;
+            border-left: 5px solid #464646;
         }}
         .kanji {{
             text-align: center;
@@ -171,15 +169,11 @@ def generate(name, data, radicals, path_getter, is_debug_run):
             width: 120px;
             line-height: 1.4;
         }}
-        .deck {{
-            font-size: 10pt;
-            color: #222222;
-            line-height: 15pt;
+        td.deck {{
+            border-left: 5px solid #a4a4a4 !important;
         }}
-        .future {{
-            font-size: 10pt;
-            color: #555555;
-            line-height: 15pt;
+        td.future {{
+            border-left: 5px solid lightgray !important;
         }}
         ruby {{
             line-height: 1;
@@ -206,8 +200,8 @@ def generate(name, data, radicals, path_getter, is_debug_run):
         pdfkit.from_string(content_html, pdf_output_path, options=options)
 
         # Could also output html
-        # with open(f"{path_getter(name)}/{name}.html", "w", encoding="UTF-8") as file:
-        #     file.write(content_html)
+        with open(f"{path_getter(name)}/{name}.html", "w", encoding="UTF-8") as file:
+            file.write(content_html)
 
     return True
 
