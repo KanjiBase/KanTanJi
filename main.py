@@ -309,7 +309,14 @@ Pokud chcete pomoci s přípravou obsahu a nebo máte jiný nápad, neváhejte n
 
 Kan<sup>Tan</sup>Ji je open-source projekt, a nemá žádný vztah s existujícími profily na sociálních sítích.
 
-### Detaily o podporovaných způsobech učení
+### FAQ
+<details>
+<summary>Jaký je stav projektu?</summary>
+Kan<sup>Tan</sup>Ji může obsahovat drobné nedostatky, typicky způsobené lidskou chybou při zadávání tisíců slovíček
+a příkladových vět - dejte nám vědět, pokud nějaké najdete! Japonský školní systém je hotový vždy po poslední sadu, 
+ve které typicky chybí pár znaků, které se v BKB pořadí ještě nevyskytují. BKB pořadí je kompletní dle existující sady.
+V budoucnu plánujeme pokračovat v množství podporovaných kanji.
+</details>
 <details>
 <summary>
 Řazení znaků a velikosti sad
@@ -321,7 +328,7 @@ pořadí a vlastní velikosti sad.
 </details>
 <details>
 <summary>Filtrování karet Anki</summary>
-Karty KanTanJi lze snadno filtrovat pomocí **tagů**. V současnosti jsou k dispozici tagy:
+Karty KanTanJi mohou obsahovat více, než se chcete učit. Karty lze snadno filtrovat pomocí **tagů**. V současnosti jsou k dispozici tagy:
 
  - **KanTanJi_Kanji** (karta s kanji)
  - **KanTanJi_Tango** (slovní zásoba související s kanji)
@@ -336,6 +343,8 @@ která ještě nebyla naučena podle pořadí KanTanJi, můžete **pozastavit** 
 Nejprve v aplikaci Anki **otevřete Prohlížení karet (Browse Cards)**. Poté v možnostech vyberte **filtrovat podle tagu**.
 Když jsou zobrazeny pouze požadované karty, opět v možnostech zvolte **vybrat všechny karty** 
 a nakonec také v možnostech vyberte **pozastavit (suspend)**.
+
+Doporučujeme slučovat studované sady do jedné velké sady, aby bylo možné využít výhod chytrého opakování v Anki.
 </details>
 """
 
