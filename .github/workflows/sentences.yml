@@ -1,8 +1,6 @@
 name: Generate Sentences PDF to verify correctness of vocabulary examples.
 
 on:
-  repository_dispatch:
-    types: [manual_drive_trigger]
   workflow_dispatch:
     inputs:
       kanji:
