@@ -120,7 +120,7 @@ def read_kanji_csv(key, data):
             f"<div>{onyomi + kunyomi}</div>"
             f"<div style=\"font-size: 30pt;\">{item['kanji']}</div>{extra}",
 
-            item["guid"], name, "kanji", 0
+            item["guid"] + "-rev", name, "kanji", 0
         ])
 
         for vocab_item in item.vocabulary():
@@ -173,7 +173,7 @@ def read_kanji_csv(key, data):
 
                 f"<div class=\"rlbl\">{props_html}</div>{word}{usage_lines}",
 
-                vocab_item["guid"], name, "tango", vocab_significance
+                vocab_item["guid"] + "-rev", name, "tango", vocab_significance
             ])
 
     # consume leftowers

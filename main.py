@@ -415,8 +415,6 @@ def get_readme_contents():
         elements = readme_contents[dataset_id]
         elements = sorted(elements, key=get_sort_attr)
 
-        print(dataset_id)
-
         pdf_files_readme = dict_read_create(pdf_file_entries, dataset_id, [])
         anki_files_readme = dict_read_create(anki_file_entries, dataset_id, [])
         html_files_readme = dict_read_create(html_file_entries, dataset_id, [])
@@ -429,7 +427,6 @@ def get_readme_contents():
 
     output_readme = {}
     for dataset_id in readme_contents:
-        print(dataset_id)
         dataset = complementary_datasets[dataset_id]
         dataset_name = dataset.context_name
 
@@ -437,7 +434,7 @@ def get_readme_contents():
         ankis = '\n'.join(filter(bool, anki_file_entries[dataset_id]))
         htmls = '\n'.join(filter(bool, html_file_entries[dataset_id]))
         jsons = '\n'.join(filter(bool, json_file_entries[dataset_id]))
-        print(pdfs)
+
         dataset_title = f"## {dataset_name}" if dataset_name else dataset_id
 
         output_readme[dataset_id] = f"""

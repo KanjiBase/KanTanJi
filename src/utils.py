@@ -28,7 +28,7 @@ def hash_id(name: str):
 
 
 def get_item_uid(item: dict):
-    return str(item["guid"]) + str(item['type'])
+    return remove_furigana(str(item["guid"]) + str(item['type']))
 
 
 def order_file_list(file_list: list):
@@ -96,8 +96,10 @@ def generate_furigana_custom(text, replaces):
 
 # Function to remove furigana, leaving only the main character
 def remove_furigana(text):
-    # Match exactly one character followed by furigana in <> or ＜＞ and remove the furigana part
-    return re.sub(r'[<＜]([一-龠々〆〇ぁ-ゔァ-ヴー0-9０-９\s]+)[>＞][<＜]([一-龠々〆〇ぁ-ゔァ-ヴー0-9０-９\s]+)[>＞]', r'\1', str(text))
+    # First match any pairs and replace them as whole
+    text = re.sub(r'[<＜]([一-龠々〆〇ぁ-ゔァ-ヴー0-9０-９\s]+)[>＞][<＜]([一-龠々〆〇ぁ-ゔァ-ヴー0-9０-９\s]+)[>＞]', r'\1', str(text))
+    # Match exactly one character followed by furigana in <> or ＜＞ (supports both half-width and full-width)
+    return re.sub(r'([一-龠々〆〇ぁ-ゔァ-ヴー0-9０-９\s]{1})[<＜]([一-龠々〆〇ぁ-ゔァ-ヴー0-9０-９\s]+)[>＞]', r'\1', str(text))
 
 
 def retrieve_row_kanjialive_url(item):
