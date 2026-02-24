@@ -65,7 +65,13 @@ PDF Soubory obsahují seznam znaků kanji a přidružených slovíček.
 
  - <a href="static/1/5/Elementary 3 (321-400).pdf">Elementary 3 (321-400)</a>
 
- - <a href="static/1/6/Elementary 4 (601-640).pdf">Elementary 4 (601-640)</a>
+ - <a href="static/1/6/Elementary 3 (401-440).pdf">Elementary 3 (401-440)</a>
+
+ - <a href="static/1/7/Elementary 4 (441-520).pdf">Elementary 4 (441-520)</a>
+
+ - <a href="static/1/8/Elementary 4 (421-600).pdf">Elementary 4 (421-600)</a>
+
+ - <a href="static/1/9/Elementary 4 (601-640).pdf">Elementary 4 (601-640)</a>
 
 
 ### ANKI Balíčky
@@ -84,7 +90,13 @@ Furiganu zobrazíš kliknutím / tapnutím na kartičku.
 
  - <a href="static/1/5/Elementary_3_(321-400).apkg">Elementary_3_(321-400)</a>
 
- - <a href="static/1/6/Elementary_4_(601-640).apkg">Elementary_4_(601-640)</a>
+ - <a href="static/1/6/Elementary_3_(401-440).apkg">Elementary_3_(401-440)</a>
+
+ - <a href="static/1/7/Elementary_4_(441-520).apkg">Elementary_4_(441-520)</a>
+
+ - <a href="static/1/8/Elementary_4_(421-600).apkg">Elementary_4_(421-600)</a>
+
+ - <a href="static/1/9/Elementary_4_(601-640).apkg">Elementary_4_(601-640)</a>
 
 
 ### HTML
@@ -105,8 +117,17 @@ HTML Stránky slouží pro vložení interaktivních informací o Kanji do exter
 #### Kanji Stránky Elementary 3 (321-400)
 <a href="static/1/5/相.html">相</a>  <a href="static/1/5/由.html">由</a>  <a href="static/1/5/服.html">服</a>  <a href="static/1/5/港.html">港</a>  <a href="static/1/5/終.html">終</a>  <a href="static/1/5/期.html">期</a>  <a href="static/1/5/短.html">短</a>  <a href="static/1/5/温.html">温</a>  <a href="static/1/5/消.html">消</a>  <a href="static/1/5/決.html">決</a>  <a href="static/1/5/有.html">有</a>  <a href="static/1/5/注.html">注</a>  <a href="static/1/5/物.html">物</a>  <a href="static/1/5/真.html">真</a>  <a href="static/1/5/橋.html">橋</a>  <a href="static/1/5/次.html">次</a>  <a href="static/1/5/油.html">油</a>  <a href="static/1/5/福.html">福</a>  <a href="static/1/5/病.html">病</a>  <a href="static/1/5/整.html">整</a>  <a href="static/1/5/族.html">族</a>  <a href="static/1/5/洋.html">洋</a>  <a href="static/1/5/横.html">横</a>  <a href="static/1/5/美.html">美</a>  <a href="static/1/5/落.html">落</a>  <a href="static/1/5/等.html">等</a>  <a href="static/1/5/歯.html">歯</a>  <a href="static/1/5/流.html">流</a>  <a href="static/1/5/練.html">練</a>  <a href="static/1/5/研.html">研</a>  <a href="static/1/5/暑.html">暑</a>  <a href="static/1/5/発.html">発</a>  <a href="static/1/5/礼.html">礼</a>  <a href="static/1/5/深.html">深</a>  <a href="static/1/5/畑.html">畑</a>  <a href="static/1/5/者.html">者</a>  <a href="static/1/5/球.html">球</a>  <a href="static/1/5/業.html">業</a>  <a href="static/1/5/究.html">究</a>  <a href="static/1/5/荷.html">荷</a>  <a href="static/1/5/暗.html">暗</a>  <a href="static/1/5/第.html">第</a>  <a href="static/1/5/旅.html">旅</a>  <a href="static/1/5/曲.html">曲</a>  <a href="static/1/5/県.html">県</a>  <a href="static/1/5/様.html">様</a>  <a href="static/1/5/育.html">育</a>  <a href="static/1/5/習.html">習</a>  <a href="static/1/5/界.html">界</a>  <a href="static/1/5/着.html">着</a>  <a href="static/1/5/苦.html">苦</a>  <a href="static/1/5/泳.html">泳</a>
 
+#### Kanji Stránky Elementary 3 (401-440)
+<a href="static/1/6/送.html">送</a>  <a href="static/1/6/軽.html">軽</a>  <a href="static/1/6/銀.html">銀</a>  <a href="static/1/6/速.html">速</a>  <a href="static/1/6/談.html">談</a>  <a href="static/1/6/階.html">階</a>  <a href="static/1/6/部.html">部</a>  <a href="static/1/6/酒.html">酒</a>  <a href="static/1/6/返.html">返</a>  <a href="static/1/6/鉄.html">鉄</a>  <a href="static/1/6/館.html">館</a>  <a href="static/1/6/配.html">配</a>  <a href="static/1/6/進.html">進</a>  <a href="static/1/6/院.html">院</a>  <a href="static/1/6/都.html">都</a>  <a href="static/1/6/運.html">運</a>  <a href="static/1/6/表.html">表</a>  <a href="static/1/6/題.html">題</a>  <a href="static/1/6/開.html">開</a>  <a href="static/1/6/集.html">集</a>  <a href="static/1/6/負.html">負</a>  <a href="static/1/6/遊.html">遊</a>  <a href="static/1/6/転.html">転</a>  <a href="static/1/6/農.html">農</a>  <a href="static/1/6/起.html">起</a>  <a href="static/1/6/重.html">重</a>  <a href="static/1/6/飲.html">飲</a>  <a href="static/1/6/路.html">路</a>  <a href="static/1/6/薬.html">薬</a>  <a href="static/1/6/面.html">面</a>  <a href="static/1/6/調.html">調</a>  <a href="static/1/6/駅.html">駅</a>
+
+#### Kanji Stránky Elementary 4 (441-520)
+<a href="static/1/7/協.html">協</a>  <a href="static/1/7/官.html">官</a>  <a href="static/1/7/位.html">位</a>  <a href="static/1/7/信.html">信</a>  <a href="static/1/7/参.html">参</a>  <a href="static/1/7/初.html">初</a>  <a href="static/1/7/周.html">周</a>  <a href="static/1/7/底.html">底</a>  <a href="static/1/7/好.html">好</a>  <a href="static/1/7/害.html">害</a>  <a href="static/1/7/器.html">器</a>  <a href="static/1/7/以.html">以</a>  <a href="static/1/7/単.html">単</a>  <a href="static/1/7/冷.html">冷</a>  <a href="static/1/7/建.html">建</a>  <a href="static/1/7/不.html">不</a>  <a href="static/1/7/利.html">利</a>  <a href="static/1/7/各.html">各</a>  <a href="static/1/7/争.html">争</a>  <a href="static/1/7/印.html">印</a>  <a href="static/1/7/型.html">型</a>  <a href="static/1/7/得.html">得</a>  <a href="static/1/7/変.html">変</a>  <a href="static/1/7/告.html">告</a>  <a href="static/1/7/史.html">史</a>  <a href="static/1/7/康.html">康</a>  <a href="static/1/7/夫.html">夫</a>  <a href="static/1/7/功.html">功</a>  <a href="static/1/7/喜.html">喜</a>  <a href="static/1/7/便.html">便</a>  <a href="static/1/7/別.html">別</a>  <a href="static/1/7/完.html">完</a>  <a href="static/1/7/必.html">必</a>  <a href="static/1/7/固.html">固</a>  <a href="static/1/7/借.html">借</a>  <a href="static/1/7/停.html">停</a>  <a href="static/1/7/加.html">加</a>  <a href="static/1/7/囲.html">囲</a>  <a href="static/1/7/府.html">府</a>  <a href="static/1/7/健.html">健</a>  <a href="static/1/7/低.html">低</a>  <a href="static/1/7/失.html">失</a>  <a href="static/1/7/共.html">共</a>  <a href="static/1/7/士.html">士</a>  <a href="static/1/7/堂.html">堂</a>  <a href="static/1/7/伝.html">伝</a>  <a href="static/1/7/働.html">働</a>  <a href="static/1/7/卒.html">卒</a>  <a href="static/1/7/席.html">席</a>  <a href="static/1/7/帯.html">帯</a>
+
+#### Kanji Stránky Elementary 4 (421-600)
+<a href="static/1/8/折.html">折</a>  <a href="static/1/8/続.html">続</a>  <a href="static/1/8/求.html">求</a>  <a href="static/1/8/料.html">料</a>  <a href="static/1/8/念.html">念</a>  <a href="static/1/8/管.html">管</a>  <a href="static/1/8/置.html">置</a>  <a href="static/1/8/治.html">治</a>  <a href="static/1/8/焼.html">焼</a>  <a href="static/1/8/笑.html">笑</a>  <a href="static/1/8/的.html">的</a>  <a href="static/1/8/救.html">救</a>  <a href="static/1/8/満.html">満</a>  <a href="static/1/8/果.html">果</a>  <a href="static/1/8/熱.html">熱</a>  <a href="static/1/8/戦.html">戦</a>  <a href="static/1/8/改.html">改</a>  <a href="static/1/8/成.html">成</a>  <a href="static/1/8/老.html">老</a>  <a href="static/1/8/機.html">機</a>  <a href="static/1/8/泣.html">泣</a>  <a href="static/1/8/紀.html">紀</a>  <a href="static/1/8/省.html">省</a>  <a href="static/1/8/敗.html">敗</a>  <a href="static/1/8/良.html">良</a>  <a href="static/1/8/案.html">案</a>  <a href="static/1/8/無.html">無</a>  <a href="static/1/8/約.html">約</a>  <a href="static/1/8/結.html">結</a>  <a href="static/1/8/械.html">械</a>  <a href="static/1/8/浅.html">浅</a>  <a href="static/1/8/民.html">民</a>  <a href="static/1/8/特.html">特</a>  <a href="static/1/8/然.html">然</a>  <a href="static/1/8/最.html">最</a>  <a href="static/1/8/未.html">未</a>  <a href="static/1/8/産.html">産</a>  <a href="static/1/8/法.html">法</a>  <a href="static/1/8/欠.html">欠</a>  <a href="static/1/8/歴.html">歴</a>  <a href="static/1/8/残.html">残</a>
+
 #### Kanji Stránky Elementary 4 (601-640)
-<a href="static/1/6/養.html">養</a>  <a href="static/1/6/課.html">課</a>  <a href="static/1/6/願.html">願</a>  <a href="static/1/6/関.html">関</a>  <a href="static/1/6/飯.html">飯</a>  <a href="static/1/6/議.html">議</a>  <a href="static/1/6/英.html">英</a>  <a href="static/1/6/覚.html">覚</a>  <a href="static/1/6/量.html">量</a>  <a href="static/1/6/要.html">要</a>  <a href="static/1/6/静.html">静</a>  <a href="static/1/6/連.html">連</a>  <a href="static/1/6/選.html">選</a>  <a href="static/1/6/軍.html">軍</a>  <a href="static/1/6/説.html">説</a>  <a href="static/1/6/験.html">験</a>  <a href="static/1/6/飛.html">飛</a>  <a href="static/1/6/類.html">類</a>  <a href="static/1/6/辞.html">辞</a>  <a href="static/1/6/試.html">試</a>  <a href="static/1/6/費.html">費</a>
+<a href="static/1/9/養.html">養</a>  <a href="static/1/9/課.html">課</a>  <a href="static/1/9/願.html">願</a>  <a href="static/1/9/関.html">関</a>  <a href="static/1/9/飯.html">飯</a>  <a href="static/1/9/議.html">議</a>  <a href="static/1/9/英.html">英</a>  <a href="static/1/9/覚.html">覚</a>  <a href="static/1/9/量.html">量</a>  <a href="static/1/9/要.html">要</a>  <a href="static/1/9/静.html">静</a>  <a href="static/1/9/連.html">連</a>  <a href="static/1/9/選.html">選</a>  <a href="static/1/9/軍.html">軍</a>  <a href="static/1/9/説.html">説</a>  <a href="static/1/9/験.html">験</a>  <a href="static/1/9/飛.html">飛</a>  <a href="static/1/9/類.html">類</a>  <a href="static/1/9/辞.html">辞</a>  <a href="static/1/9/試.html">試</a>  <a href="static/1/9/費.html">費</a>
 
 ### Datové Balíčky
 Slouží pro import do dalších aplikací, například [Lively Wallpaper](https://github.com/KanjiBase/LivelyKanji).
@@ -120,7 +141,13 @@ Slouží pro import do dalších aplikací, například [Lively Wallpaper](https
 
  - <a href="static/1/5/Elementary_3_(321-400).json">Elementary_3_(321-400)</a>
 
- - <a href="static/1/6/Elementary_4_(601-640).json">Elementary_4_(601-640)</a>
+ - <a href="static/1/6/Elementary_3_(401-440).json">Elementary_3_(401-440)</a>
+
+ - <a href="static/1/7/Elementary_4_(441-520).json">Elementary_4_(441-520)</a>
+
+ - <a href="static/1/8/Elementary_4_(421-600).json">Elementary_4_(421-600)</a>
+
+ - <a href="static/1/9/Elementary_4_(601-640).json">Elementary_4_(601-640)</a>
 
 
 
