@@ -42,7 +42,7 @@ DataSet.register_processor("JSON Data Bundle", json.generate)
 def try_read_data(getter, message, output, success_read):
     if not success_read:
         try:
-            print(message)
+            print(message, end="")
             out = getter()
             return out, getter.__name__
         except FileNotFoundError:
@@ -379,12 +379,12 @@ def clean_files(id, item, outdated):
         if outdated:
             # Do not delete source, sources will not be committed in github actions
             delete_filesystem_node(target)
-            print("Removing ", name, source, target)
+            print("Removing", name, source, target)
         else:
             Path(source).glob('**/*')
             merge_trees(source, target)
             delete_filesystem_node(source)
-            print("Moving ", name, source, target)
+            print("Moving", name, source, target)
 
             context = item["context_id"]
             if context is not None:

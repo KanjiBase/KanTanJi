@@ -542,7 +542,7 @@ class DataSet:
     def process(self, metadata, guard: HashGuard, path_getter: callable = None):
         print("Generating:", self.context_name)
         for proc_name, processor in DataSet._processors:
-            print(proc_name, end="... ")
+            print(proc_name, end="...\n")
             self.process_using(processor, metadata, guard, path_getter)
 
     def process_using(self, processor: callable, metadata, guard: HashGuard, path_getter: callable):
@@ -557,9 +557,9 @@ class DataSet:
 
             try:
                 if processor(name, data_spec, metadata, lambda _: output_path, not self._production):
-                    print(f"[○ {name}]", end="  ")
+                    print(f"[○ {name}]", end="")
                 else:
-                    print(f"[🞪 {name}]", end="  ")
+                    print(f"[🞪 {name}]", end="")
                 print()
             except Exception as e:
                 print()

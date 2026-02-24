@@ -51,11 +51,11 @@ def get_word_html(word, start='50', end='100'):
     def get_usage(usage_element):
         if not usage_element:
             return ""
-        parts = str(usage_element).split("。")
+        parts = str(usage_element).rsplit("。", 1)
         if len(parts) == 2:
             return f"""
             <div>
-                <div style="margin-bottom: 5px;"><span lang="JA">{generate_furigana(parts[0])}</span></div>
+                <div style="margin-bottom: 5px;"><span lang="JA">{generate_furigana(parts[0])}。</span></div>
                 <div style="margin-bottom: 5px; color: #666;">{parts[1]}</div>
             </div>
             """

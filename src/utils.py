@@ -183,7 +183,7 @@ def create_dataset_readme(file_list: list, set_name: str, item_name=None):
     :return:
     """
     if not item_name and len(file_list) > 1:
-        return (f"\n#### {set_name} {Path(file_list[0]).parent.name}\n" +
+        return (f"\n#### {set_name}\n" +
                 "  ".join(map(lambda f: f"<a href=\"{f}\">{Path(f).stem}</a>", file_list)))
 
     if len(file_list) > 1:

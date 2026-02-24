@@ -8,7 +8,7 @@ a japanistů na FF MUNI. Cílem je nabídnout různé způsoby učení kanji s k
 informacemi přímo v češtině.
 
 [Vaše zpětná vazba je pro nás cenná! Prosíme, kontaktujte nás na stránce projektu.](https://github.com/KanjiBase/KanTanJi/issues)
-Uvedený odkaz lze použít i pro pispívání do databáze.
+Uvedený odkaz lze použít i pro přispívání do databáze.
 Pokud chcete pomoci s přípravou obsahu a nebo máte jiný nápad, neváhejte nám dát vědět.
 
 Kan<sup>Tan</sup>Ji je open-source projekt, a nemá žádný vztah s existujícími profily na sociálních sítích.
