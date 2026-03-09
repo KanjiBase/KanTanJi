@@ -332,21 +332,21 @@ pořadí a vlastní velikosti sad.
 </details>
 <details>
 <summary>Filtrování karet Anki</summary>
-Karty KanTanJi mohou obsahovat více, než se chcete učit. Karty lze snadno filtrovat pomocí **tagů**. V současnosti jsou k dispozici tagy:
-
- - **KanTanJi_Kanji** (karta s kanji)
- - **KanTanJi_Tango** (slovní zásoba související s kanji)
- - **KanTanJi_Learn_Now** (slovní zásoba obsahující pouze kanji, která již byla naučena)
- - **KanTanJi_Learn_Deck** (slovní zásoba obsahující kanji, která se bude učit v aktuálním balíčku)
- - **KanTanJi_Learn_Future** (slovní zásoba obsahující kanji, která ještě nebyla naučena)
-
+Karty KanTanJi mohou obsahovat více, než se chcete učit. Karty lze snadno filtrovat pomocí <strong>tagů</strong>. V současnosti jsou k dispozici tagy:
+<ul>
+ <li><strong>KanTanJi_Kanji</strong> (karta s kanji)</li>
+ <li><strong>KanTanJi_Tango</strong> (slovní zásoba související s kanji)</li>
+ <li><strong>KanTanJi_Learn_Now</strong> (slovní zásoba obsahující pouze kanji, která již byla naučena)</li>
+ <li><strong>KanTanJi_Learn_Deck</strong> (slovní zásoba obsahující kanji, která se bude učit v aktuálním balíčku)</li>
+ <li><strong>KanTanJi_Learn_Future</strong> (slovní zásoba obsahující kanji, která ještě nebyla naučena)</li>
+</ul>
 Pokud chcete například odstranit všechny karty s kanji a příliš obtížnou slovní zásobu obsahující kanji, 
-která ještě nebyla naučena podle pořadí KanTanJi, můžete **pozastavit** karty s tagy 
+která ještě nebyla naučena podle pořadí KanTanJi, můžete <strong>pozastavit</strong> karty s tagy 
 'KanTanJi_Kanji' a 'KanTanJi_Learn_Future'.
 
-Nejprve v aplikaci Anki **otevřete Prohlížení karet (Browse Cards)**. Poté v možnostech vyberte **filtrovat podle tagu**.
-Když jsou zobrazeny pouze požadované karty, opět v možnostech zvolte **vybrat všechny karty** 
-a nakonec také v možnostech vyberte **pozastavit (suspend)**.
+Nejprve v aplikaci Anki <strong>otevřete Prohlížení karet (Browse Cards)</strong>. Poté v možnostech vyberte <strong>filtrovat podle tagu</strong>.
+Když jsou zobrazeny pouze požadované karty, opět v možnostech zvolte <strong>vybrat všechny karty</strong> 
+a nakonec také v možnostech vyberte <strong>pozastavit (suspend)</strong>.
 
 Doporučujeme slučovat studované sady do jedné velké sady, aby bylo možné využít výhod chytrého opakování v Anki.
 </details>
