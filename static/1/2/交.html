@@ -137,13 +137,6 @@ rt {
   class="flex-1 gap-4"
   style="max-width: 400px;"
 >   
-    <span class="text-xl font-bold text-gray-800 mb-4">Povinná slovíčka</span>
-    
-</div>    
-<div 
-  class="flex-1 gap-4"
-  style="max-width: 400px;"
->   
     <span class="text-xl font-bold text-gray-800 mb-4">Budou v sadě / Rozšiřující</span>
     
     <div class="bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg shadow p-4 flex flex-col my-2">
@@ -253,6 +246,28 @@ rt {
         </div>
     </div>
     
+    <div class="bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg shadow p-4 flex flex-col my-2">
+        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-ff5ac900', this)">
+            <div>
+                <p class="text-lg text-2xl text-gray-800 copyable relative" 
+                onclick="copyText(this)"><ruby>交<rt style="visibility: hidden">こう</rt></ruby><ruby>通<rt style="visibility: hidden">つう</rt></ruby><ruby>機<rt style="visibility: hidden">き</rt></ruby><ruby>関<rt style="visibility: hidden">かん</rt></ruby></p>
+                <p class="text-sm text-gray-600">dopravní prostředek</p>
+            </div>
+            <button class="button-vocab-toggle text-gray-600 hover:text-gray-900 
+            transform transition-transform duration-200 px-2">▼</button>
+        </div>
+        
+        <div id="vocab-ff5ac900" class="button-vocab-example hidden text-gray-700">
+            <div class="mt-2 p-2 rounded bg-white shadow">
+            <div>
+                <div style="margin-bottom: 5px;"><span lang="JA">その<ruby>町<rt style="visibility: hidden">まち</rt></ruby>の<ruby>交<rt style="visibility: hidden">こう</rt></ruby><ruby>通<rt style="visibility: hidden">つう</rt></ruby><ruby>機<rt style="visibility: hidden">き</rt></ruby><ruby>関<rt style="visibility: hidden">かん</rt></ruby>は<ruby>大<rt style="visibility: hidden">たい</rt></ruby><ruby>変<rt style="visibility: hidden">へん</rt></ruby>いいです。</span></div>
+                <div style="margin-bottom: 5px; color: #666;">Veřejná doprava v tom městě je velmi dobrá.</div>
+            </div>
+            </div>
+            
+        </div>
+    </div>
+    
     
     <div class="bg-gradient-to-r from-purple-100 to-purple-300 rounded-lg shadow p-4 flex flex-col my-2">
         <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-09af8f79', this)">
@@ -275,8 +290,8 @@ rt {
         <div id="vocab-09af8f79" class="button-vocab-example hidden text-gray-700">
             <div class="mt-2 p-2 rounded bg-white shadow">
             <div>
-                <div style="margin-bottom: 5px;"><span lang="JA">どこでドルをポンドに<ruby>交<rt style="visibility: hidden">こう</rt></ruby><ruby>換<rt style="visibility: hidden">かん</rt></ruby>できますか。</span></div>
-                <div style="margin-bottom: 5px; color: #666;">Kde si mohu vyměnit dolary za libry?</div>
+                <div style="margin-bottom: 5px;"><span lang="JA"><ruby>意<rt style="visibility: hidden">い</rt></ruby><ruby>見<rt style="visibility: hidden">けん</rt></ruby><ruby>交<rt style="visibility: hidden">こう</rt></ruby><ruby>換<rt style="visibility: hidden">かん</rt></ruby>の<ruby>中<rt style="visibility: hidden">なか</rt></ruby>でご<ruby>紹<rt style="visibility: hidden">しょう</rt></ruby><ruby>介<rt style="visibility: hidden">かい</rt></ruby>させていただくこともございます。</span></div>
+                <div style="margin-bottom: 5px; color: #666;">Můžeme vám to představit během výměny názorů. [keigo]</div>
             </div>
             </div>
             
@@ -299,28 +314,6 @@ rt {
             <div>
                 <div style="margin-bottom: 5px;"><span lang="JA"><ruby>交<rt style="visibility: hidden">こう</rt></ruby><ruby>通<rt style="visibility: hidden">つう</rt></ruby><ruby>事<rt style="visibility: hidden">じ</rt></ruby><ruby>故<rt style="visibility: hidden">こ</rt></ruby>で<ruby>怪<rt style="visibility: hidden">け</rt></ruby><ruby>我<rt style="visibility: hidden">が</rt></ruby>をしました。</span></div>
                 <div style="margin-bottom: 5px; color: #666;">Byl zraněn při dopravní nehodě.</div>
-            </div>
-            </div>
-            
-        </div>
-    </div>
-    
-    <div class="bg-gradient-to-r from-purple-100 to-purple-300 rounded-lg shadow p-4 flex flex-col my-2">
-        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-ff5ac900', this)">
-            <div>
-                <p class="text-lg text-2xl text-gray-800 copyable relative" 
-                onclick="copyText(this)"><ruby>交<rt style="visibility: hidden">こう</rt></ruby><ruby>通<rt style="visibility: hidden">つう</rt></ruby><ruby>機<rt style="visibility: hidden">き</rt></ruby><ruby>関<rt style="visibility: hidden">かん</rt></ruby></p>
-                <p class="text-sm text-gray-600">dopravní prostředek</p>
-            </div>
-            <button class="button-vocab-toggle text-gray-600 hover:text-gray-900 
-            transform transition-transform duration-200 px-2">▼</button>
-        </div>
-        
-        <div id="vocab-ff5ac900" class="button-vocab-example hidden text-gray-700">
-            <div class="mt-2 p-2 rounded bg-white shadow">
-            <div>
-                <div style="margin-bottom: 5px;"><span lang="JA">その<ruby>町<rt style="visibility: hidden">まち</rt></ruby>の<ruby>交<rt style="visibility: hidden">こう</rt></ruby><ruby>通<rt style="visibility: hidden">つう</rt></ruby><ruby>機<rt style="visibility: hidden">き</rt></ruby><ruby>関<rt style="visibility: hidden">かん</rt></ruby>は<ruby>大<rt style="visibility: hidden">たい</rt></ruby><ruby>変<rt style="visibility: hidden">へん</rt></ruby>いいです。</span></div>
-                <div style="margin-bottom: 5px; color: #666;">Veřejná doprava v tom městě je velmi dobrá.</div>
             </div>
             </div>
             

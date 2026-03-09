@@ -219,7 +219,8 @@ rt {
         </div>
     </div>
     
-</div>    
+</div>
+
 <div 
   class="flex-1 gap-4"
   style="max-width: 400px;"
@@ -249,6 +250,28 @@ rt {
     </div>
     
     <div class="bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg shadow p-4 flex flex-col my-2">
+        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-6c25e126', this)">
+            <div>
+                <p class="text-lg text-2xl text-gray-800 copyable relative" 
+                onclick="copyText(this)"><ruby>食<rt style="visibility: hidden">しょく</rt></ruby><ruby>料<rt style="visibility: hidden">りょう</rt></ruby><ruby>品<rt style="visibility: hidden">ひん</rt></ruby></p>
+                <p class="text-sm text-gray-600">potraviny</p>
+            </div>
+            <button class="button-vocab-toggle text-gray-600 hover:text-gray-900 
+            transform transition-transform duration-200 px-2">▼</button>
+        </div>
+        
+        <div id="vocab-6c25e126" class="button-vocab-example hidden text-gray-700">
+            <div class="mt-2 p-2 rounded bg-white shadow">
+            <div>
+                <div style="margin-bottom: 5px;"><span lang="JA"><ruby>食<rt style="visibility: hidden">しょく</rt></ruby><ruby>料<rt style="visibility: hidden">りょう</rt></ruby><ruby>品<rt style="visibility: hidden">ひん</rt></ruby>の<ruby>値<rt style="visibility: hidden">ね</rt></ruby><ruby>段<rt style="visibility: hidden">だん</rt></ruby>はすぐに<ruby>下<rt style="visibility: hidden">さ</rt></ruby>がるでしょうね。</span></div>
+                <div style="margin-bottom: 5px; color: #666;">Ceny potravin brzy klesnou.</div>
+            </div>
+            </div>
+            
+        </div>
+    </div>
+    
+    <div class="bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg shadow p-4 flex flex-col my-2">
         <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-d2c24ed6', this)">
             <div>
                 <p class="text-lg text-2xl text-gray-800 copyable relative" 
@@ -270,28 +293,6 @@ rt {
         </div>
     </div>
     
-    
-    <div class="bg-gradient-to-r from-purple-100 to-purple-300 rounded-lg shadow p-4 flex flex-col my-2">
-        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-6c25e126', this)">
-            <div>
-                <p class="text-lg text-2xl text-gray-800 copyable relative" 
-                onclick="copyText(this)"><ruby>食<rt style="visibility: hidden">しょく</rt></ruby><ruby>料<rt style="visibility: hidden">りょう</rt></ruby><ruby>品<rt style="visibility: hidden">ひん</rt></ruby></p>
-                <p class="text-sm text-gray-600">potraviny</p>
-            </div>
-            <button class="button-vocab-toggle text-gray-600 hover:text-gray-900 
-            transform transition-transform duration-200 px-2">▼</button>
-        </div>
-        
-        <div id="vocab-6c25e126" class="button-vocab-example hidden text-gray-700">
-            <div class="mt-2 p-2 rounded bg-white shadow">
-            <div>
-                <div style="margin-bottom: 5px;"><span lang="JA"><ruby>食<rt style="visibility: hidden">しょく</rt></ruby><ruby>料<rt style="visibility: hidden">りょう</rt></ruby><ruby>品<rt style="visibility: hidden">ひん</rt></ruby>の<ruby>値<rt style="visibility: hidden">ね</rt></ruby><ruby>段<rt style="visibility: hidden">だん</rt></ruby>はすぐに<ruby>下<rt style="visibility: hidden">さ</rt></ruby>がるでしょうね。</span></div>
-                <div style="margin-bottom: 5px; color: #666;">Ceny potravin brzy klesnou.</div>
-            </div>
-            </div>
-            
-        </div>
-    </div>
     
 </div>  
 

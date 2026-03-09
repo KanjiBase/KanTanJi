@@ -275,7 +275,8 @@ rt {
         </div>
     </div>
     
-</div>    
+</div>
+
 <div 
   class="flex-1 gap-4"
   style="max-width: 400px;"
@@ -327,6 +328,28 @@ rt {
     </div>
     
     <div class="bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg shadow p-4 flex flex-col my-2">
+        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-2d27cd18', this)">
+            <div>
+                <p class="text-lg text-2xl text-gray-800 copyable relative" 
+                onclick="copyText(this)"><ruby>地<rt style="visibility: hidden">ち</rt></ruby><ruby>下<rt style="visibility: hidden">か</rt></ruby><ruby>鉄<rt style="visibility: hidden">てつ</rt></ruby></p>
+                <p class="text-sm text-gray-600">metro</p>
+            </div>
+            <button class="button-vocab-toggle text-gray-600 hover:text-gray-900 
+            transform transition-transform duration-200 px-2">▼</button>
+        </div>
+        
+        <div id="vocab-2d27cd18" class="button-vocab-example hidden text-gray-700">
+            <div class="mt-2 p-2 rounded bg-white shadow">
+            <div>
+                <div style="margin-bottom: 5px;"><span lang="JA"><ruby>地<rt style="visibility: hidden">ち</rt></ruby><ruby>下<rt style="visibility: hidden">か</rt></ruby><ruby>鉄<rt style="visibility: hidden">てつ</rt></ruby>に<ruby>乗<rt style="visibility: hidden">の</rt></ruby>りましょう。</span></div>
+                <div style="margin-bottom: 5px; color: #666;">Pojeďme metrem.</div>
+            </div>
+            </div>
+            
+        </div>
+    </div>
+    
+    <div class="bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg shadow p-4 flex flex-col my-2">
         <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-1a20ebe6', this)">
             <div>
                 <p class="text-lg text-2xl text-gray-800 copyable relative" 
@@ -370,28 +393,6 @@ rt {
         </div>
     </div>
     
-    
-    <div class="bg-gradient-to-r from-purple-100 to-purple-300 rounded-lg shadow p-4 flex flex-col my-2">
-        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-2d27cd18', this)">
-            <div>
-                <p class="text-lg text-2xl text-gray-800 copyable relative" 
-                onclick="copyText(this)"><ruby>地<rt style="visibility: hidden">ち</rt></ruby><ruby>下<rt style="visibility: hidden">か</rt></ruby><ruby>鉄<rt style="visibility: hidden">てつ</rt></ruby></p>
-                <p class="text-sm text-gray-600">metro</p>
-            </div>
-            <button class="button-vocab-toggle text-gray-600 hover:text-gray-900 
-            transform transition-transform duration-200 px-2">▼</button>
-        </div>
-        
-        <div id="vocab-2d27cd18" class="button-vocab-example hidden text-gray-700">
-            <div class="mt-2 p-2 rounded bg-white shadow">
-            <div>
-                <div style="margin-bottom: 5px;"><span lang="JA"><ruby>地<rt style="visibility: hidden">ち</rt></ruby><ruby>下<rt style="visibility: hidden">か</rt></ruby><ruby>鉄<rt style="visibility: hidden">てつ</rt></ruby>に<ruby>乗<rt style="visibility: hidden">の</rt></ruby>りましょう。</span></div>
-                <div style="margin-bottom: 5px; color: #666;">Pojeďme metrem.</div>
-            </div>
-            </div>
-            
-        </div>
-    </div>
     
 </div>  
 

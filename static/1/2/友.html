@@ -161,12 +161,35 @@ rt {
         </div>
     </div>
     
-</div>    
+</div>
+
 <div 
   class="flex-1 gap-4"
   style="max-width: 400px;"
 >   
     <span class="text-xl font-bold text-gray-800 mb-4">Budou v sadě / Rozšiřující</span>
+    
+    <div class="bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg shadow p-4 flex flex-col my-2">
+        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-69b94b6b', this)">
+            <div>
+                <p class="text-lg text-2xl text-gray-800 copyable relative" 
+                onclick="copyText(this)"><ruby>友<rt style="visibility: hidden">ゆう</rt></ruby><ruby>好<rt style="visibility: hidden">こう</rt></ruby></p>
+                <p class="text-sm text-gray-600">přátelskost</p>
+            </div>
+            <button class="button-vocab-toggle text-gray-600 hover:text-gray-900 
+            transform transition-transform duration-200 px-2">▼</button>
+        </div>
+        
+        <div id="vocab-69b94b6b" class="button-vocab-example hidden text-gray-700">
+            <div class="mt-2 p-2 rounded bg-white shadow">
+            <div>
+                <div style="margin-bottom: 5px;"><span lang="JA"><ruby>両<rt style="visibility: hidden">りょう</rt></ruby><ruby>国<rt style="visibility: hidden">こく</rt></ruby>は<ruby>友<rt style="visibility: hidden">ゆう</rt></ruby><ruby>好<rt style="visibility: hidden">こう</rt></ruby><ruby>関<rt style="visibility: hidden">かん</rt></ruby><ruby>係<rt style="visibility: hidden">けい</rt></ruby>を<ruby>打<rt style="visibility: hidden">う</rt></ruby>ち<ruby>切<rt style="visibility: hidden">き</rt></ruby>りました。</span></div>
+                <div style="margin-bottom: 5px; color: #666;">Obě země přerušily přátelské vztahy.</div>
+            </div>
+            </div>
+            
+        </div>
+    </div>
     
     
     <div class="bg-gradient-to-r from-purple-100 to-purple-300 rounded-lg shadow p-4 flex flex-col my-2">
@@ -185,28 +208,6 @@ rt {
             <div>
                 <div style="margin-bottom: 5px;"><span lang="JA"><ruby>友<rt style="visibility: hidden">とも</rt></ruby>だちなら<ruby>少<rt style="visibility: hidden">すこ</rt></ruby>しいますよ。</span></div>
                 <div style="margin-bottom: 5px; color: #666;">Mám pár přátel.</div>
-            </div>
-            </div>
-            
-        </div>
-    </div>
-    
-    <div class="bg-gradient-to-r from-purple-100 to-purple-300 rounded-lg shadow p-4 flex flex-col my-2">
-        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-69b94b6b', this)">
-            <div>
-                <p class="text-lg text-2xl text-gray-800 copyable relative" 
-                onclick="copyText(this)"><ruby>友<rt style="visibility: hidden">ゆう</rt></ruby><ruby>好<rt style="visibility: hidden">こう</rt></ruby></p>
-                <p class="text-sm text-gray-600">přátelskost</p>
-            </div>
-            <button class="button-vocab-toggle text-gray-600 hover:text-gray-900 
-            transform transition-transform duration-200 px-2">▼</button>
-        </div>
-        
-        <div id="vocab-69b94b6b" class="button-vocab-example hidden text-gray-700">
-            <div class="mt-2 p-2 rounded bg-white shadow">
-            <div>
-                <div style="margin-bottom: 5px;"><span lang="JA"><ruby>両<rt style="visibility: hidden">りょう</rt></ruby><ruby>国<rt style="visibility: hidden">こく</rt></ruby>は<ruby>友<rt style="visibility: hidden">ゆう</rt></ruby><ruby>好<rt style="visibility: hidden">こう</rt></ruby><ruby>関<rt style="visibility: hidden">かん</rt></ruby><ruby>係<rt style="visibility: hidden">けい</rt></ruby>を<ruby>打<rt style="visibility: hidden">う</rt></ruby>ち<ruby>切<rt style="visibility: hidden">き</rt></ruby>りました。</span></div>
-                <div style="margin-bottom: 5px; color: #666;">Obě země přerušily přátelské vztahy.</div>
             </div>
             </div>
             

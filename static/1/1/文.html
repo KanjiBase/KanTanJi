@@ -161,7 +161,8 @@ rt {
         </div>
     </div>
     
-</div>    
+</div>
+
 <div 
   class="flex-1 gap-4"
   style="max-width: 400px;"
@@ -286,6 +287,35 @@ rt {
     </div>
     
     <div class="bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg shadow p-4 flex flex-col my-2">
+        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-cd1b37df', this)">
+            <div>
+                <p class="text-lg text-2xl text-gray-800 copyable relative" 
+                onclick="copyText(this)"><ruby>文<rt style="visibility: hidden">もん</rt></ruby><ruby>部<rt style="visibility: hidden">ぶ</rt></ruby><ruby>省<rt style="visibility: hidden">しょう</rt></ruby></p>
+                <p class="text-sm text-gray-600">MEXT (Japonské Ministerstvo školství, vědy, kultury a sportu)</p>
+            </div>
+            <button class="button-vocab-toggle text-gray-600 hover:text-gray-900 
+            transform transition-transform duration-200 px-2">▼</button>
+        </div>
+        <div class='my-2 vocab-properties'>
+<span class="property-label" onclick="this.querySelector('span').style.display = (this.querySelector('span').style.display === 'none' || this.querySelector('span').style.display === '') ? 'block' : 'none';" style="display: inline-block; background-color: #E65563; color: white; padding: 4px 8px; border-radius: 12px; font-size: 12px; font-weight: bold; font-family: Arial, sans-serif; cursor: pointer; position: relative; margin-right: 8px;">
+    nepravidelné čtení
+    <span style="display: none; position: absolute; top: 120%; left: 0; background-color: white; color: black; border: 1px solid #E65563; padding: 4px 8px; border-radius: 6px; font-size: 12px; font-family: Arial, sans-serif; z-index: 10; min-width: 150px;">
+        Čtení nelze odvodit ze zápisu kanji.
+    </span>
+</span>    
+</div>
+        <div id="vocab-cd1b37df" class="button-vocab-example hidden text-gray-700">
+            <div class="mt-2 p-2 rounded bg-white shadow">
+            <div>
+                <div style="margin-bottom: 5px;"><span lang="JA">スピーチコンテストは<ruby>文<rt style="visibility: hidden">もん</rt></ruby><ruby>部<rt style="visibility: hidden">ぶ</rt></ruby><ruby>省<rt style="visibility: hidden">しょう</rt></ruby><ruby>後<rt style="visibility: hidden">こう</rt></ruby><ruby>援<rt style="visibility: hidden">えん</rt></ruby>のもとに<ruby>開<rt style="visibility: hidden">かい</rt></ruby><ruby>催<rt style="visibility: hidden">さい</rt></ruby>されました。</span></div>
+                <div style="margin-bottom: 5px; color: #666;">Řečnická soutěž se konala pod záštitou ministerstva školství.</div>
+            </div>
+            </div>
+            
+        </div>
+    </div>
+    
+    <div class="bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg shadow p-4 flex flex-col my-2">
         <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-edf766f4', this)">
             <div>
                 <p class="text-lg text-2xl text-gray-800 copyable relative" 
@@ -331,35 +361,6 @@ rt {
             <div>
                 <div style="margin-bottom: 5px;"><span lang="JA">ヘミングウェイの<ruby>文<rt style="visibility: hidden">ぶん</rt></ruby><ruby>章<rt style="visibility: hidden">しょう</rt></ruby>は<ruby>悪<rt style="visibility: hidden">あく</rt></ruby><ruby>文<rt style="visibility: hidden">ぶん</rt></ruby>でした。</span></div>
                 <div style="margin-bottom: 5px; color: #666;">Hemingway psal špatně.</div>
-            </div>
-            </div>
-            
-        </div>
-    </div>
-    
-    <div class="bg-gradient-to-r from-purple-100 to-purple-300 rounded-lg shadow p-4 flex flex-col my-2">
-        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-cd1b37df', this)">
-            <div>
-                <p class="text-lg text-2xl text-gray-800 copyable relative" 
-                onclick="copyText(this)"><ruby>文<rt style="visibility: hidden">もん</rt></ruby><ruby>部<rt style="visibility: hidden">ぶ</rt></ruby><ruby>省<rt style="visibility: hidden">しょう</rt></ruby></p>
-                <p class="text-sm text-gray-600">MEXT (Japonské Ministerstvo školství, vědy, kultury a sportu)</p>
-            </div>
-            <button class="button-vocab-toggle text-gray-600 hover:text-gray-900 
-            transform transition-transform duration-200 px-2">▼</button>
-        </div>
-        <div class='my-2 vocab-properties'>
-<span class="property-label" onclick="this.querySelector('span').style.display = (this.querySelector('span').style.display === 'none' || this.querySelector('span').style.display === '') ? 'block' : 'none';" style="display: inline-block; background-color: #E65563; color: white; padding: 4px 8px; border-radius: 12px; font-size: 12px; font-weight: bold; font-family: Arial, sans-serif; cursor: pointer; position: relative; margin-right: 8px;">
-    nepravidelné čtení
-    <span style="display: none; position: absolute; top: 120%; left: 0; background-color: white; color: black; border: 1px solid #E65563; padding: 4px 8px; border-radius: 6px; font-size: 12px; font-family: Arial, sans-serif; z-index: 10; min-width: 150px;">
-        Čtení nelze odvodit ze zápisu kanji.
-    </span>
-</span>    
-</div>
-        <div id="vocab-cd1b37df" class="button-vocab-example hidden text-gray-700">
-            <div class="mt-2 p-2 rounded bg-white shadow">
-            <div>
-                <div style="margin-bottom: 5px;"><span lang="JA">スピーチコンテストは<ruby>文<rt style="visibility: hidden">もん</rt></ruby><ruby>部<rt style="visibility: hidden">ぶ</rt></ruby><ruby>省<rt style="visibility: hidden">しょう</rt></ruby><ruby>後<rt style="visibility: hidden">こう</rt></ruby><ruby>援<rt style="visibility: hidden">えん</rt></ruby>のもとに<ruby>開<rt style="visibility: hidden">かい</rt></ruby><ruby>催<rt style="visibility: hidden">さい</rt></ruby>されました。</span></div>
-                <div style="margin-bottom: 5px; color: #666;">Řečnická soutěž se konala pod záštitou ministerstva školství.</div>
             </div>
             </div>
             

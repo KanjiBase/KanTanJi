@@ -204,12 +204,35 @@ rt {
         </div>
     </div>
     
-</div>    
+</div>
+
 <div 
   class="flex-1 gap-4"
   style="max-width: 400px;"
 >   
     <span class="text-xl font-bold text-gray-800 mb-4">Budou v sadě / Rozšiřující</span>
+    
+    <div class="bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg shadow p-4 flex flex-col my-2">
+        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-ed850f71', this)">
+            <div>
+                <p class="text-lg text-2xl text-gray-800 copyable relative" 
+                onclick="copyText(this)"><ruby>目<rt style="visibility: hidden">め</rt></ruby><ruby>玉<rt style="visibility: hidden">だま</rt></ruby><ruby>焼<rt style="visibility: hidden">や</rt></ruby>き</p>
+                <p class="text-sm text-gray-600">volské oko</p>
+            </div>
+            <button class="button-vocab-toggle text-gray-600 hover:text-gray-900 
+            transform transition-transform duration-200 px-2">▼</button>
+        </div>
+        
+        <div id="vocab-ed850f71" class="button-vocab-example hidden text-gray-700">
+            <div class="mt-2 p-2 rounded bg-white shadow">
+            <div>
+                <div style="margin-bottom: 5px;"><span lang="JA"><ruby>目<rt style="visibility: hidden">め</rt></ruby><ruby>玉<rt style="visibility: hidden">だま</rt></ruby><ruby>焼<rt style="visibility: hidden">や</rt></ruby>きとクロワッサンが<ruby>食<rt style="visibility: hidden">た</rt></ruby>べたいです。</span></div>
+                <div style="margin-bottom: 5px; color: #666;">Chtěl bych si dát volské oko a croissant.</div>
+            </div>
+            </div>
+            
+        </div>
+    </div>
     
     
     <div class="bg-gradient-to-r from-purple-100 to-purple-300 rounded-lg shadow p-4 flex flex-col my-2">
@@ -228,28 +251,6 @@ rt {
             <div>
                 <div style="margin-bottom: 5px;"><span lang="JA"><ruby>玉<rt style="visibility: hidden">ぎょく</rt></ruby><ruby>座<rt style="visibility: hidden">ざ</rt></ruby>は<ruby>金<rt style="visibility: hidden">きん</rt></ruby>や<ruby>宝<rt style="visibility: hidden">ほう</rt></ruby><ruby>石<rt style="visibility: hidden">せき</rt></ruby>で<ruby>飾<rt style="visibility: hidden">かざ</rt></ruby>られていました。</span></div>
                 <div style="margin-bottom: 5px; color: #666;">Trůn byl vyzdoben zlatem a drahokamy.</div>
-            </div>
-            </div>
-            
-        </div>
-    </div>
-    
-    <div class="bg-gradient-to-r from-purple-100 to-purple-300 rounded-lg shadow p-4 flex flex-col my-2">
-        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-ed850f71', this)">
-            <div>
-                <p class="text-lg text-2xl text-gray-800 copyable relative" 
-                onclick="copyText(this)"><ruby>目<rt style="visibility: hidden">め</rt></ruby><ruby>玉<rt style="visibility: hidden">だま</rt></ruby><ruby>焼<rt style="visibility: hidden">や</rt></ruby>き</p>
-                <p class="text-sm text-gray-600">volské oko</p>
-            </div>
-            <button class="button-vocab-toggle text-gray-600 hover:text-gray-900 
-            transform transition-transform duration-200 px-2">▼</button>
-        </div>
-        
-        <div id="vocab-ed850f71" class="button-vocab-example hidden text-gray-700">
-            <div class="mt-2 p-2 rounded bg-white shadow">
-            <div>
-                <div style="margin-bottom: 5px;"><span lang="JA"><ruby>目<rt style="visibility: hidden">め</rt></ruby><ruby>玉<rt style="visibility: hidden">だま</rt></ruby><ruby>焼<rt style="visibility: hidden">や</rt></ruby>きとクロワッサンが<ruby>食<rt style="visibility: hidden">た</rt></ruby>べたいです。</span></div>
-                <div style="margin-bottom: 5px; color: #666;">Chtěl bych si dát volské oko a croissant.</div>
             </div>
             </div>
             

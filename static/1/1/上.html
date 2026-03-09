@@ -274,7 +274,8 @@ rt {
         </div>
     </div>
     
-</div>    
+</div>
+
 <div 
   class="flex-1 gap-4"
   style="max-width: 400px;"
@@ -348,6 +349,28 @@ rt {
     </div>
     
     <div class="bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg shadow p-4 flex flex-col my-2">
+        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-aab82ba9', this)">
+            <div>
+                <p class="text-lg text-2xl text-gray-800 copyable relative" 
+                onclick="copyText(this)"><ruby>以<rt style="visibility: hidden">い</rt></ruby><ruby>上<rt style="visibility: hidden">じょう</rt></ruby></p>
+                <p class="text-sm text-gray-600">více než, nad</p>
+            </div>
+            <button class="button-vocab-toggle text-gray-600 hover:text-gray-900 
+            transform transition-transform duration-200 px-2">▼</button>
+        </div>
+        
+        <div id="vocab-aab82ba9" class="button-vocab-example hidden text-gray-700">
+            <div class="mt-2 p-2 rounded bg-white shadow">
+            <div>
+                <div style="margin-bottom: 5px;"><span lang="JA">この<ruby>店<rt style="visibility: hidden">みせ</rt></ruby>に<ruby>行<rt style="visibility: hidden">い</rt></ruby>けるのは、１８<ruby>歳<rt style="visibility: hidden">さい</rt></ruby><ruby>以<rt style="visibility: hidden">い</rt></ruby><ruby>上<rt style="visibility: hidden">じょう</rt></ruby>の<ruby>方<rt style="visibility: hidden">かた</rt></ruby>だけです。</span></div>
+                <div style="margin-bottom: 5px; color: #666;">Do tohoto obchodu mohou jen osoby starší 18 let.</div>
+            </div>
+            </div>
+            
+        </div>
+    </div>
+    
+    <div class="bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg shadow p-4 flex flex-col my-2">
         <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-aea5052f', this)">
             <div>
                 <p class="text-lg text-2xl text-gray-800 copyable relative" 
@@ -398,28 +421,6 @@ rt {
         </div>
     </div>
     
-    
-    <div class="bg-gradient-to-r from-purple-100 to-purple-300 rounded-lg shadow p-4 flex flex-col my-2">
-        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-aab82ba9', this)">
-            <div>
-                <p class="text-lg text-2xl text-gray-800 copyable relative" 
-                onclick="copyText(this)"><ruby>以<rt style="visibility: hidden">い</rt></ruby><ruby>上<rt style="visibility: hidden">じょう</rt></ruby></p>
-                <p class="text-sm text-gray-600">více než, nad</p>
-            </div>
-            <button class="button-vocab-toggle text-gray-600 hover:text-gray-900 
-            transform transition-transform duration-200 px-2">▼</button>
-        </div>
-        
-        <div id="vocab-aab82ba9" class="button-vocab-example hidden text-gray-700">
-            <div class="mt-2 p-2 rounded bg-white shadow">
-            <div>
-                <div style="margin-bottom: 5px;"><span lang="JA">この<ruby>店<rt style="visibility: hidden">みせ</rt></ruby>に<ruby>行<rt style="visibility: hidden">い</rt></ruby>けるのは、１８<ruby>歳<rt style="visibility: hidden">さい</rt></ruby><ruby>以<rt style="visibility: hidden">い</rt></ruby><ruby>上<rt style="visibility: hidden">じょう</rt></ruby>の<ruby>方<rt style="visibility: hidden">かた</rt></ruby>だけです。</span></div>
-                <div style="margin-bottom: 5px; color: #666;">Do tohoto obchodu mohou jen osoby starší 18 let.</div>
-            </div>
-            </div>
-            
-        </div>
-    </div>
     
 </div>  
 

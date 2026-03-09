@@ -274,12 +274,35 @@ rt {
         </div>
     </div>
     
-</div>    
+</div>
+
 <div 
   class="flex-1 gap-4"
   style="max-width: 400px;"
 >   
     <span class="text-xl font-bold text-gray-800 mb-4">Budou v sadě / Rozšiřující</span>
+    
+    <div class="bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg shadow p-4 flex flex-col my-2">
+        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-f2054a96', this)">
+            <div>
+                <p class="text-lg text-2xl text-gray-800 copyable relative" 
+                onclick="copyText(this)"><ruby>銀<rt style="visibility: hidden">ぎん</rt></ruby><ruby>行<rt style="visibility: hidden">こう</rt></ruby></p>
+                <p class="text-sm text-gray-600">banka</p>
+            </div>
+            <button class="button-vocab-toggle text-gray-600 hover:text-gray-900 
+            transform transition-transform duration-200 px-2">▼</button>
+        </div>
+        
+        <div id="vocab-f2054a96" class="button-vocab-example hidden text-gray-700">
+            <div class="mt-2 p-2 rounded bg-white shadow">
+            <div>
+                <div style="margin-bottom: 5px;"><span lang="JA">ジェーンさんはお<ruby>金<rt style="visibility: hidden">かね</rt></ruby>を<ruby>引<rt style="visibility: hidden">ひ</rt></ruby>き<ruby>出<rt style="visibility: hidden">だ</rt></ruby>しに<ruby>銀<rt style="visibility: hidden">ぎん</rt></ruby><ruby>行<rt style="visibility: hidden">こう</rt></ruby>へ<ruby>行<rt style="visibility: hidden">い</rt></ruby>きました。</span></div>
+                <div style="margin-bottom: 5px; color: #666;">Jane si šla do banky vybrat peníze.</div>
+            </div>
+            </div>
+            
+        </div>
+    </div>
     
     <div class="bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg shadow p-4 flex flex-col my-2">
         <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-03bffe2a', this)">
@@ -361,28 +384,6 @@ rt {
         </div>
     </div>
     
-    
-    <div class="bg-gradient-to-r from-purple-100 to-purple-300 rounded-lg shadow p-4 flex flex-col my-2">
-        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-f2054a96', this)">
-            <div>
-                <p class="text-lg text-2xl text-gray-800 copyable relative" 
-                onclick="copyText(this)"><ruby>銀<rt style="visibility: hidden">ぎん</rt></ruby><ruby>行<rt style="visibility: hidden">こう</rt></ruby></p>
-                <p class="text-sm text-gray-600">banka</p>
-            </div>
-            <button class="button-vocab-toggle text-gray-600 hover:text-gray-900 
-            transform transition-transform duration-200 px-2">▼</button>
-        </div>
-        
-        <div id="vocab-f2054a96" class="button-vocab-example hidden text-gray-700">
-            <div class="mt-2 p-2 rounded bg-white shadow">
-            <div>
-                <div style="margin-bottom: 5px;"><span lang="JA">ジェーンさんはお<ruby>金<rt style="visibility: hidden">かね</rt></ruby>を<ruby>引<rt style="visibility: hidden">ひ</rt></ruby>き<ruby>出<rt style="visibility: hidden">だ</rt></ruby>しに<ruby>銀<rt style="visibility: hidden">ぎん</rt></ruby><ruby>行<rt style="visibility: hidden">こう</rt></ruby>へ<ruby>行<rt style="visibility: hidden">い</rt></ruby>きました。</span></div>
-                <div style="margin-bottom: 5px; color: #666;">Jane si šla do banky vybrat peníze.</div>
-            </div>
-            </div>
-            
-        </div>
-    </div>
     
 </div>  
 
