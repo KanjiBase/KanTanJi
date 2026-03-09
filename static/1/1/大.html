@@ -313,6 +313,35 @@ rt {
     </div>
     
     
+    <div class="bg-gradient-to-r from-purple-100 to-purple-300 rounded-lg shadow p-4 flex flex-col my-2">
+        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-ac5e5fd4', this)">
+            <div>
+                <p class="text-lg text-2xl text-gray-800 copyable relative" 
+                onclick="copyText(this)"><ruby>大<rt style="visibility: hidden">だい</rt></ruby><ruby>丈<rt style="visibility: hidden">じょう</rt></ruby><ruby>夫<rt style="visibility: hidden">ぶ</rt></ruby></p>
+                <p class="text-sm text-gray-600">v pořádku</p>
+            </div>
+            <button class="button-vocab-toggle text-gray-600 hover:text-gray-900 
+            transform transition-transform duration-200 px-2">▼</button>
+        </div>
+        <div class='my-2 vocab-properties'>
+<span class="property-label" onclick="this.querySelector('span').style.display = (this.querySelector('span').style.display === 'none' || this.querySelector('span').style.display === '') ? 'block' : 'none';" style="display: inline-block; background-color: #ACA52F; color: white; padding: 4px 8px; border-radius: 12px; font-size: 12px; font-weight: bold; font-family: Arial, sans-serif; cursor: pointer; position: relative; margin-right: 8px;">
+    な - příd. jméno
+    <span style="display: none; position: absolute; top: 120%; left: 0; background-color: white; color: black; border: 1px solid #ACA52F; padding: 4px 8px; border-radius: 6px; font-size: 12px; font-family: Arial, sans-serif; z-index: 10; min-width: 150px;">
+        Většinou koncovka ~な odpadá (např. při použití s 'です'), pokud se neváže na podstatné jméno.
+    </span>
+</span>    
+</div>
+        <div id="vocab-ac5e5fd4" class="button-vocab-example hidden text-gray-700">
+            <div class="mt-2 p-2 rounded bg-white shadow">
+            <div>
+                <div style="margin-bottom: 5px;"><span lang="JA">このクッキーを<ruby>食<rt style="visibility: hidden">た</rt></ruby>べても<ruby>大<rt style="visibility: hidden">だい</rt></ruby><ruby>丈<rt style="visibility: hidden">じょう</rt></ruby><ruby>夫<rt style="visibility: hidden">ぶ</rt></ruby>ですか。</span></div>
+                <div style="margin-bottom: 5px; color: #666;">Je v pořádku, když sním tu sušenku?</div>
+            </div>
+            </div>
+            
+        </div>
+    </div>
+    
 </div>  
 
         <div></div>
