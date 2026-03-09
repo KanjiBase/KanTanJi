@@ -105,7 +105,11 @@ def get_word_html(word, start='50', end='100'):
 
 
 def get_vocab_entries(item):
-    return f"""
+    required = ''
+    extended = ''
+
+    if any(filter(lambda x: x.get_equal('tango', 0), item.vocabulary())):
+        required = f"""
 <div 
   class="flex-1 gap-4"
   style="max-width: 400px;"
@@ -115,7 +119,10 @@ def get_vocab_entries(item):
         lambda x: get_word_html(x, 'from-green-50', 'to-green-100'), 
         filter(lambda y: y.get_equal('tango', 0), item.vocabulary()))
     )}
-</div>    
+</div>
+"""
+    if any(filter(lambda x: x.get_below('tango', 1), item.vocabulary())):
+        extended = f"""
 <div 
   class="flex-1 gap-4"
   style="max-width: 400px;"
@@ -131,7 +138,7 @@ def get_vocab_entries(item):
     )}
 </div>  
 """
-
+    return required + extended
 
 def get_notes_content(item, cls=""):
     if cls:
