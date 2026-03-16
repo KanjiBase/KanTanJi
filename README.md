@@ -583,6 +583,22 @@ Slouží pro import do dalších aplikací, například [Lively Wallpaper](https
 Učte se pořadí kanji, jaký používá školní systém v Japonsku. Pořadí preferuje jednoduché znaky, může tak představovat časté a užitečné (ale složité) znaky později.
 ### PDF Materiály
 PDF Soubory obsahují seznam znaků kanji a přidružených slovíček.
+ - <a href="static/3/7/Semestr 1 - Sada 1.pdf">Semestr 1 - Sada 1</a>
+
+ - <a href="static/3/8/Semestr 2 - Sada 1.pdf">Semestr 2 - Sada 1</a>
+
+ - <a href="static/3/9/Semestr 2 - Sada 2.pdf">Semestr 2 - Sada 2</a>
+
+ - <a href="static/3/10/Semestr 2 - Sada 3.pdf">Semestr 2 - Sada 3</a>
+
+ - <a href="static/3/11/Semestr 2 - Sada 4.pdf">Semestr 2 - Sada 4</a>
+
+ - <a href="static/3/12/Semestr 2 - Sada 5.pdf">Semestr 2 - Sada 5</a>
+
+ - <a href="static/3/13/Semestr 2 - Sada 6.pdf">Semestr 2 - Sada 6</a>
+
+ - <a href="static/3/14/Semestr 2 - Sada 7.pdf">Semestr 2 - Sada 7</a>
+
  - <a href="static/3/1/Semestr 3 - Sada 1.pdf">Semestr 3 - Sada 1</a>
 
  - <a href="static/3/2/Semestr 3 - Sada 2.pdf">Semestr 3 - Sada 2</a>
@@ -602,6 +618,22 @@ a umožňují chytré a interaktivní procvičování kanji. Balíček obsahuje 
 toho, že karta otázky obsahuje link na KanjiAlive), tak slovní zásobu ke kanji.
 Furiganu zobrazíš kliknutím / tapnutím na kartičku.
 
+ - <a href="static/3/7/Semestr_1_-_Sada_1.apkg">Semestr_1_-_Sada_1</a>
+
+ - <a href="static/3/8/Semestr_2_-_Sada_1.apkg">Semestr_2_-_Sada_1</a>
+
+ - <a href="static/3/9/Semestr_2_-_Sada_2.apkg">Semestr_2_-_Sada_2</a>
+
+ - <a href="static/3/10/Semestr_2_-_Sada_3.apkg">Semestr_2_-_Sada_3</a>
+
+ - <a href="static/3/11/Semestr_2_-_Sada_4.apkg">Semestr_2_-_Sada_4</a>
+
+ - <a href="static/3/12/Semestr_2_-_Sada_5.apkg">Semestr_2_-_Sada_5</a>
+
+ - <a href="static/3/13/Semestr_2_-_Sada_6.apkg">Semestr_2_-_Sada_6</a>
+
+ - <a href="static/3/14/Semestr_2_-_Sada_7.apkg">Semestr_2_-_Sada_7</a>
+
  - <a href="static/3/1/Semestr_3_-_Sada_1.apkg">Semestr_3_-_Sada_1</a>
 
  - <a href="static/3/2/Semestr_3_-_Sada_2.apkg">Semestr_3_-_Sada_2</a>
@@ -618,6 +650,30 @@ Furiganu zobrazíš kliknutím / tapnutím na kartičku.
 ### HTML
 HTML Stránky slouží pro vložení interaktivních informací o Kanji do externích webových služeb.
 
+#### Kanji Stránky Semestr 1 - Sada 1
+<a href="static/3/7/二.html">二</a>  <a href="static/3/7/六.html">六</a>  <a href="static/3/7/七.html">七</a>  <a href="static/3/7/一.html">一</a>  <a href="static/3/7/三.html">三</a>  <a href="static/3/7/四.html">四</a>  <a href="static/3/7/九.html">九</a>  <a href="static/3/7/五.html">五</a>  <a href="static/3/7/十.html">十</a>  <a href="static/3/7/八.html">八</a>
+
+#### Kanji Stránky Semestr 2 - Sada 1
+<a href="static/3/8/右.html">右</a>  <a href="static/3/8/上.html">上</a>  <a href="static/3/8/千.html">千</a>  <a href="static/3/8/下.html">下</a>  <a href="static/3/8/小.html">小</a>  <a href="static/3/8/月.html">月</a>  <a href="static/3/8/大.html">大</a>  <a href="static/3/8/左.html">左</a>  <a href="static/3/8/中.html">中</a>  <a href="static/3/8/百.html">百</a>
+
+#### Kanji Stránky Semestr 2 - Sada 2
+<a href="static/3/9/田.html">田</a>  <a href="static/3/9/土.html">土</a>  <a href="static/3/9/川.html">川</a>  <a href="static/3/9/木.html">木</a>  <a href="static/3/9/林.html">林</a>  <a href="static/3/9/山.html">山</a>  <a href="static/3/9/空.html">空</a>  <a href="static/3/9/早.html">早</a>  <a href="static/3/9/日.html">日</a>  <a href="static/3/9/年.html">年</a>
+
+#### Kanji Stránky Semestr 2 - Sada 3
+<a href="static/3/10/草.html">草</a>  <a href="static/3/10/人.html">人</a>  <a href="static/3/10/名.html">名</a>  <a href="static/3/10/生.html">生</a>  <a href="static/3/10/犬.html">犬</a>  <a href="static/3/10/女.html">女</a>  <a href="static/3/10/花.html">花</a>  <a href="static/3/10/天.html">天</a>  <a href="static/3/10/虫.html">虫</a>  <a href="static/3/10/男.html">男</a>
+
+#### Kanji Stránky Semestr 2 - Sada 4
+<a href="static/3/11/子.html">子</a>  <a href="static/3/11/足.html">足</a>  <a href="static/3/11/手.html">手</a>  <a href="static/3/11/見.html">見</a>  <a href="static/3/11/力.html">力</a>  <a href="static/3/11/音.html">音</a>  <a href="static/3/11/目.html">目</a>  <a href="static/3/11/気.html">気</a>  <a href="static/3/11/口.html">口</a>  <a href="static/3/11/耳.html">耳</a>
+
+#### Kanji Stránky Semestr 2 - Sada 5
+<a href="static/3/12/円.html">円</a>  <a href="static/3/12/入.html">入</a>  <a href="static/3/12/立.html">立</a>  <a href="static/3/12/文.html">文</a>  <a href="static/3/12/先.html">先</a>  <a href="static/3/12/出.html">出</a>  <a href="static/3/12/夕.html">夕</a>  <a href="static/3/12/休.html">休</a>  <a href="static/3/12/字.html">字</a>  <a href="static/3/12/本.html">本</a>
+
+#### Kanji Stránky Semestr 2 - Sada 6
+<a href="static/3/13/町.html">町</a>  <a href="static/3/13/玉.html">玉</a>  <a href="static/3/13/校.html">校</a>  <a href="static/3/13/森.html">森</a>  <a href="static/3/13/正.html">正</a>  <a href="static/3/13/学.html">学</a>  <a href="static/3/13/村.html">村</a>  <a href="static/3/13/水.html">水</a>  <a href="static/3/13/火.html">火</a>  <a href="static/3/13/王.html">王</a>
+
+#### Kanji Stránky Semestr 2 - Sada 7
+<a href="static/3/14/竹.html">竹</a>  <a href="static/3/14/車.html">車</a>  <a href="static/3/14/青.html">青</a>  <a href="static/3/14/雨.html">雨</a>  <a href="static/3/14/白.html">白</a>  <a href="static/3/14/金.html">金</a>  <a href="static/3/14/石.html">石</a>  <a href="static/3/14/貝.html">貝</a>  <a href="static/3/14/赤.html">赤</a>  <a href="static/3/14/糸.html">糸</a>
+
 #### Kanji Stránky Semestr 3 - Sada 1
 <a href="static/3/1/少.html">少</a>  <a href="static/3/1/広.html">広</a>  <a href="static/3/1/万.html">万</a>  <a href="static/3/1/長.html">長</a>  <a href="static/3/1/多.html">多</a>  <a href="static/3/1/細.html">細</a>  <a href="static/3/1/数.html">数</a>  <a href="static/3/1/半.html">半</a>  <a href="static/3/1/形.html">形</a>  <a href="static/3/1/太.html">太</a>
 
@@ -628,7 +684,7 @@ HTML Stránky slouží pro vložení interaktivních informací o Kanji do exter
 <a href="static/3/3/強.html">強</a>  <a href="static/3/3/高.html">高</a>  <a href="static/3/3/兄.html">兄</a>  <a href="static/3/3/弟.html">弟</a>  <a href="static/3/3/母.html">母</a>  <a href="static/3/3/父.html">父</a>  <a href="static/3/3/親.html">親</a>  <a href="static/3/3/妹.html">妹</a>  <a href="static/3/3/姉.html">姉</a>  <a href="static/3/3/同.html">同</a>
 
 #### Kanji Stránky Semestr 3 - Sada 4
-<a href="static/3/4/毛.html">毛</a>  <a href="static/3/4/心.html">心</a>  <a href="static/3/4/曜.html">曜</a>  <a href="static/3/4/時.html">時</a>  <a href="static/3/4/頭.html">頭</a>  <a href="static/3/4/顔.html">顔</a>  <a href="static/3/4/体.html">体</a>  <a href="static/3/4/友.html">友</a>  <a href="static/3/4/首.html">首</a>
+<a href="static/3/4/毛.html">毛</a>  <a href="static/3/4/心.html">心</a>  <a href="static/3/4/曜.html">曜</a>  <a href="static/3/4/時.html">時</a>  <a href="static/3/4/頭.html">頭</a>  <a href="static/3/4/顔.html">顔</a>  <a href="static/3/4/自.html">自</a>  <a href="static/3/4/体.html">体</a>  <a href="static/3/4/友.html">友</a>  <a href="static/3/4/首.html">首</a>
 
 #### Kanji Stránky Semestr 3 - Sada 5
 <a href="static/3/5/秋.html">秋</a>  <a href="static/3/5/夏.html">夏</a>  <a href="static/3/5/今.html">今</a>  <a href="static/3/5/昼.html">昼</a>  <a href="static/3/5/春.html">春</a>  <a href="static/3/5/冬.html">冬</a>  <a href="static/3/5/分.html">分</a>  <a href="static/3/5/朝.html">朝</a>  <a href="static/3/5/週.html">週</a>  <a href="static/3/5/夜.html">夜</a>
@@ -638,6 +694,22 @@ HTML Stránky slouží pro vložení interaktivních informací o Kanji do exter
 
 ### Datové Balíčky
 Slouží pro import do dalších aplikací, například [Lively Wallpaper](https://github.com/KanjiBase/LivelyKanji).
+ - <a href="static/3/7/Semestr_1_-_Sada_1.json">Semestr_1_-_Sada_1</a>
+
+ - <a href="static/3/8/Semestr_2_-_Sada_1.json">Semestr_2_-_Sada_1</a>
+
+ - <a href="static/3/9/Semestr_2_-_Sada_2.json">Semestr_2_-_Sada_2</a>
+
+ - <a href="static/3/10/Semestr_2_-_Sada_3.json">Semestr_2_-_Sada_3</a>
+
+ - <a href="static/3/11/Semestr_2_-_Sada_4.json">Semestr_2_-_Sada_4</a>
+
+ - <a href="static/3/12/Semestr_2_-_Sada_5.json">Semestr_2_-_Sada_5</a>
+
+ - <a href="static/3/13/Semestr_2_-_Sada_6.json">Semestr_2_-_Sada_6</a>
+
+ - <a href="static/3/14/Semestr_2_-_Sada_7.json">Semestr_2_-_Sada_7</a>
+
  - <a href="static/3/1/Semestr_3_-_Sada_1.json">Semestr_3_-_Sada_1</a>
 
  - <a href="static/3/2/Semestr_3_-_Sada_2.json">Semestr_3_-_Sada_2</a>
