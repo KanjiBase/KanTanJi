@@ -33,6 +33,10 @@ from utils_html import parse_item_props_html
 # Recommended source for (2): mnako/hanzi-writer-data-ja (AnimCJK -> HanziWriter format)
 # -----------------------------------------------------------------------------
 
+# Stable across releases. Anki merges (does not replace) notetypes by id on
+# import, so changing or renaming any of these once a deck has been shipped
+# pollutes users' collections with ghost templates/fields. See
+# misc/scripts/README.md "Avoiding the next template-pollution incident".
 MODEL_ID = 1607392319
 FIELD_IDS = [1001, 1002, 1003] # Static IDs for UID, Q, A
 TEMPLATE_ID = 2001
@@ -657,7 +661,7 @@ def create_anki_deck(key, reader, filename):
             col.media.add_file(str(HANZIWRITER_LIB_PATH.absolute()))
 
         options = ExportAnkiPackageOptions(
-            with_scheduling=True,
+            with_scheduling=False,
             with_deck_configs=True,
             with_media=True,
             legacy=False
