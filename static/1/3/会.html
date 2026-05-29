@@ -278,6 +278,42 @@ rt {
         </div>
     </div>
     
+    <div class="bg-gradient-to-r from-green-50 to-green-100 rounded-lg shadow p-4 flex flex-col my-2">
+        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-10c7c0ed', this)">
+            <div>
+                <p class="text-lg text-2xl text-gray-800 copyable relative" 
+                onclick="copyText(this)"><ruby>出<rt style="visibility: hidden">で</rt></ruby><ruby>会<rt style="visibility: hidden">あ</rt></ruby>う</p>
+                <p class="text-sm text-gray-600">potkat (náhodou/poprvé)</p>
+            </div>
+            <button class="button-vocab-toggle text-gray-600 hover:text-gray-900 
+            transform transition-transform duration-200 px-2">▼</button>
+        </div>
+        <div class='my-2 vocab-properties'>
+<span class="property-label" onclick="this.querySelector('span').style.display = (this.querySelector('span').style.display === 'none' || this.querySelector('span').style.display === '') ? 'block' : 'none';" style="display: inline-block; background-color: #658B18; color: white; padding: 4px 8px; border-radius: 12px; font-size: 12px; font-weight: bold; font-family: Arial, sans-serif; cursor: pointer; position: relative; margin-right: 8px;">
+    godan (..う)
+    <span style="display: none; position: absolute; top: 120%; left: 0; background-color: white; color: black; border: 1px solid #658B18; padding: 4px 8px; border-radius: 6px; font-size: 12px; font-family: Arial, sans-serif; z-index: 10; min-width: 150px;">
+        Sloveso má pět tvarů jako je pět samohlásek, pro skloňování mají dle typu koncovky různá pravidla.
+    </span>
+</span>    
+
+<span class="property-label" onclick="this.querySelector('span').style.display = (this.querySelector('span').style.display === 'none' || this.querySelector('span').style.display === '') ? 'block' : 'none';" style="display: inline-block; background-color: #28835F; color: white; padding: 4px 8px; border-radius: 12px; font-size: 12px; font-weight: bold; font-family: Arial, sans-serif; cursor: pointer; position: relative; margin-right: 8px;">
+    netranzitivní
+    <span style="display: none; position: absolute; top: 120%; left: 0; background-color: white; color: black; border: 1px solid #28835F; padding: 4px 8px; border-radius: 6px; font-size: 12px; font-family: Arial, sans-serif; z-index: 10; min-width: 150px;">
+        neboli 'じどうし', sloveso popisuje podmět (budova se staví)
+    </span>
+</span>    
+</div>
+        <div id="vocab-10c7c0ed" class="button-vocab-example hidden text-gray-700">
+            <div class="mt-2 p-2 rounded bg-white shadow">
+            <div>
+                <div style="margin-bottom: 5px;"><span lang="JA">そんな <ruby>時<rt style="visibility: hidden">とき</rt></ruby>、たまたま それと <ruby>出<rt style="visibility: hidden">で</rt></ruby><ruby>会<rt style="visibility: hidden">あ</rt></ruby>って、<ruby>勧<rt style="visibility: hidden">すす</rt></ruby>められて やってみました。V té době jsem na to náhodou narazil a bylo mi to doporučeno, tak jsem to zkusil。</span></div>
+                <div style="margin-bottom: 5px; color: #666;"></div>
+            </div>
+            </div>
+            
+        </div>
+    </div>
+    
 </div>
 
 <div 
@@ -334,7 +370,7 @@ rt {
             <div>
                 <p class="text-lg text-2xl text-gray-800 copyable relative" 
                 onclick="copyText(this)"><ruby>協<rt style="visibility: hidden">きょう</rt></ruby><ruby>会<rt style="visibility: hidden">かい</rt></ruby></p>
-                <p class="text-sm text-gray-600">asociace</p>
+                <p class="text-sm text-gray-600">asociace (sdružení)</p>
             </div>
             <button class="button-vocab-toggle text-gray-600 hover:text-gray-900 
             transform transition-transform duration-200 px-2">▼</button>
