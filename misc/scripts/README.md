@@ -161,3 +161,21 @@ later. These rules keep that from happening again:
    GUID-matched re-imports update note *content* without overwriting the
    user's card scheduling. Flipping it back to `True` resets every
    updated card to "new" on every re-import.
+
+### What re-import *does* update
+
+The flip side of the rules above — useful when shipping template fixes
+(HanziWriter tweaks, CSS changes, callback rewrites):
+
+- **Template `qfmt`, `afmt`, and `css` are overwritten** on re-import
+  whenever the imported notetype id matches an existing one (empirically
+  verified with `with_scheduling=False, legacy=False`). This is the
+  intended channel for delivering template-code fixes to users who
+  already imported earlier builds — no hand-editing of the notetype in
+  Anki Desktop required.
+- **Field contents on existing notes are updated by GUID match**
+  (`utils_data_entitites.py:339, 362`); brand-new notes are added.
+- **What stays untouched**: card scheduling on existing cards (because
+  of rule 5), the `MODEL_ID` / `FIELD_IDS` / `TEMPLATE_ID` join keys
+  (because of rule 1), and cards already sitting on the canonical
+  template ord.
