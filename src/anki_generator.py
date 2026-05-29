@@ -33,6 +33,10 @@ from utils_html import parse_item_props_html
 # Recommended source for (2): mnako/hanzi-writer-data-ja (AnimCJK -> HanziWriter format)
 # -----------------------------------------------------------------------------
 
+# Stable across releases. Anki merges (does not replace) notetypes by id on
+# import, so changing or renaming any of these once a deck has been shipped
+# pollutes users' collections with ghost templates/fields. See
+# misc/scripts/README.md "Avoiding the next template-pollution incident".
 MODEL_ID = 1607392319
 FIELD_IDS = [1001, 1002, 1003] # Static IDs for UID, Q, A
 TEMPLATE_ID = 2001
@@ -43,7 +47,14 @@ try:
     _HW_LIB_CODE = HANZIWRITER_LIB_PATH.read_text(encoding="utf-8")
 except Exception:
     _HW_LIB_CODE = ""
-HANZIWRITER_LIB_INLINE = f"<script>{_HW_LIB_CODE}</script>" if _HW_LIB_CODE else ""
+# Idempotency guard: the HanziWriter IIFE assigns window.HanziWriter once.
+# On every Q->A flip AnkiDroid re-parses the page; without the guard the
+# whole ~250 KB library is re-executed each time, causing GC pressure that
+# can stall requestAnimationFrame and freeze the drawing canvas mid-stroke.
+HANZIWRITER_LIB_INLINE = (
+    f"<script>if(!window.HanziWriter){{{_HW_LIB_CODE}}}</script>"
+    if _HW_LIB_CODE else ""
+)
 
 
 def _escape_json_for_html_script(text: str) -> str:
@@ -271,6 +282,7 @@ HANZIWRITER_INIT_JS = r"""
 
    var writer = HanziWriter.create(tid, ch, {
     ...palette,
+    renderer: 'canvas',
     width: 240,
     height: 240,
     padding: 10,
@@ -281,16 +293,32 @@ HANZIWRITER_INIT_JS = r"""
 
    var drawn = [];
    var mistakes = 0;
+   var totalStrokes = (charData && charData.strokes) ? charData.strokes.length : null;
+   var key = 'hw_last_' + ch + '_' + (outline ? 'o' : 'r');
    status.textContent = outline ? 'Napiš dle předlohy.' : 'Napiš z paměti.';
+
+   function saveProgress(complete) {
+    try {
+     localStorage.setItem(key, JSON.stringify({
+      ch: ch,
+      outline: outline,
+      totalMistakes: mistakes,
+      drawn: drawn,
+      totalStrokes: totalStrokes,
+      complete: !!complete
+     }));
+    } catch(e) {}
+   }
 
    writer.quiz({
     showOutline: outline,
     showCharacter: false,
     highlightOnComplete: true,
-    showHintAfterMisses: 1,
+    showHintAfterMisses: 999,
     onMistake: function(strokeData) {
      mistakes = strokeData && typeof strokeData.totalMistakes === 'number' ? strokeData.totalMistakes : (mistakes + 1);
      status.textContent = 'Mistakes: ' + mistakes;
+     saveProgress(false);
     },
     onCorrectStroke: function(strokeData) {
      if (strokeData && strokeData.drawnPath && strokeData.drawnPath.pathString) {
@@ -299,18 +327,16 @@ HANZIWRITER_INIT_JS = r"""
      if (strokeData && typeof strokeData.totalMistakes === 'number') {
       mistakes = strokeData.totalMistakes;
      }
+     saveProgress(false);
     },
     onComplete: function(summary) {
-     var totalMistakes = summary && typeof summary.totalMistakes === 'number' ? summary.totalMistakes : mistakes;
-     status.textContent = 'Hotovo ✓  Chyb: ' + totalMistakes;
-     try {
-      var key = 'hw_last_' + ch + '_' + (outline ? 'o' : 'r');
-      localStorage.setItem(key, JSON.stringify({
-       ch: ch, outline: outline, totalMistakes: totalMistakes, drawn: drawn
-      }));
-     } catch(e) {}
+     if (summary && typeof summary.totalMistakes === 'number') {
+      mistakes = summary.totalMistakes;
+     }
+     status.textContent = 'Hotovo ✓  Chyb: ' + mistakes;
+     saveProgress(true);
     }
-   }); 
+   });
   });
  }
 
@@ -392,11 +418,21 @@ HANZIWRITER_INIT_JS = r"""
     correctRed: "rgb(200, 0, 0)"
    };
 
-   var totalMistakes = saved && typeof saved.totalMistakes === 'number' ? saved.totalMistakes : null;
-   status.textContent = totalMistakes === null ? 'Počet chyb neznámý.' : ('Výsledek ✓  Chyb: ' + totalMistakes);
+   var savedDrawn = (saved && Array.isArray(saved.drawn)) ? saved.drawn : null;
+   var drawnCount = savedDrawn ? savedDrawn.length : 0;
+   if (saved && saved.complete === false) {
+    var total = saved.totalStrokes;
+    status.textContent = total
+     ? ('Nedokončeno: ' + drawnCount + '/' + total + ' tahů')
+     : ('Nedokončeno: ' + drawnCount + ' tahů');
+   } else if (saved && typeof saved.totalMistakes === 'number') {
+    status.textContent = 'Výsledek ✓  Chyb: ' + saved.totalMistakes;
+   } else {
+    status.textContent = 'Počet chyb neznámý.';
+   }
 
-   if (saved && Array.isArray(saved.drawn) && saved.drawn.length > 0) {
-    userEl.innerHTML = renderUserSvg(saved.drawn, palette.userInk);
+   if (drawnCount > 0) {
+    userEl.innerHTML = renderUserSvg(savedDrawn, palette.userInk);
    } else {
     userEl.innerHTML = '<div style="color:gray;font-size:10pt;">Žádná kresba.</div>';
    }
@@ -408,6 +444,7 @@ HANZIWRITER_INIT_JS = r"""
    correctEl.innerHTML = ''; 
    try {
     var w = HanziWriter.create(cid, ch, {
+     renderer: 'canvas',
      width: 240,
      height: 240,
      padding: 10,
@@ -657,7 +694,7 @@ def create_anki_deck(key, reader, filename):
             col.media.add_file(str(HANZIWRITER_LIB_PATH.absolute()))
 
         options = ExportAnkiPackageOptions(
-            with_scheduling=True,
+            with_scheduling=False,
             with_deck_configs=True,
             with_media=True,
             legacy=False
