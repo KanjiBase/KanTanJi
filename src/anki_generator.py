@@ -52,7 +52,7 @@ except Exception:
 # whole ~250 KB library is re-executed each time, causing GC pressure that
 # can stall requestAnimationFrame and freeze the drawing canvas mid-stroke.
 HANZIWRITER_LIB_INLINE = (
-    f"<script>if(!window.HanziWriter){{{_HW_LIB_CODE}}}</script>"
+    f"<script>if(!window.HanziWriter){{\n{_HW_LIB_CODE}\n}}</script>"
     if _HW_LIB_CODE else ""
 )
 
@@ -282,7 +282,6 @@ HANZIWRITER_INIT_JS = r"""
 
    var writer = HanziWriter.create(tid, ch, {
     ...palette,
-    renderer: 'canvas',
     width: 240,
     height: 240,
     padding: 10,
@@ -444,7 +443,6 @@ HANZIWRITER_INIT_JS = r"""
    correctEl.innerHTML = ''; 
    try {
     var w = HanziWriter.create(cid, ch, {
-     renderer: 'canvas',
      width: 240,
      height: 240,
      padding: 10,
