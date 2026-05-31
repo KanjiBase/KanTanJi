@@ -2,6 +2,7 @@ from pathlib import Path
 from collections.abc import Callable
 
 import hashlib
+import json
 import uuid
 import tempfile
 import os
@@ -18,9 +19,53 @@ from anki.import_export_pb2 import (
 import markdown
 
 
+import config
 from utils import generate_furigana, sanitize_filename, create_dataset_readme
 from utils_data_entitites import InputFormat
 from utils_html import parse_item_props_html
+
+# -----------------------------------------------------------------------------
+# Lightweight localization. Every on-card user-facing string is looked up from
+# TRANSLATIONS[config.LANGUAGE]. The JS init block receives the same map as a
+# JSON object named `T` so client-side code can reference T.key. Placeholders
+# {drawn}/{total} are interpolated in JS via .replace().
+# -----------------------------------------------------------------------------
+TRANSLATIONS = {
+    "cs": {
+        "usage_label": "使＜つか＞い方＜かた＞",
+        "correct_label": "Správně",
+        "instruction_outline": "Napiš dle předlohy.",
+        "instruction_recall": "Napiš z paměti.",
+        "mistakes_prefix": "Chyb: ",
+        "done_prefix": "Hotovo ✓  Chyb: ",
+        "result_prefix": "Výsledek ✓  Chyb: ",
+        "unfinished_with_total": "Nedokončeno: {drawn}/{total} tahů",
+        "unfinished_no_total": "Nedokončeno: {drawn} tahů",
+        "mistakes_unknown": "Počet chyb neznámý.",
+        "no_drawing": "Žádná kresba.",
+        "cannot_render": "Nelze vykreslit.",
+        "stroke_data_missing": "Chybí data tahů pro: ",
+        "package_prefix": "Balíček",
+    },
+    "en": {
+        "usage_label": "Usage",
+        "correct_label": "Correct",
+        "instruction_outline": "Trace the outline.",
+        "instruction_recall": "Write from memory.",
+        "mistakes_prefix": "Mistakes: ",
+        "done_prefix": "Done ✓  Mistakes: ",
+        "result_prefix": "Result ✓  Mistakes: ",
+        "unfinished_with_total": "Unfinished: {drawn}/{total} strokes",
+        "unfinished_no_total": "Unfinished: {drawn} strokes",
+        "mistakes_unknown": "Mistakes count unknown.",
+        "no_drawing": "No drawing.",
+        "cannot_render": "Cannot render.",
+        "stroke_data_missing": "Stroke data missing for: ",
+        "package_prefix": "Package",
+    },
+}
+
+_T = TRANSLATIONS.get(getattr(config, "LANGUAGE", "cs"), TRANSLATIONS["cs"])
 
 # -----------------------------------------------------------------------------
 # HanziWriter (offline) integration for Japanese kanji stroke order practice
@@ -73,7 +118,7 @@ def _load_kanji_char_data_ja(ch: str) -> str:
     p = HANZIWRITER_DATA_JA_DIR / f"{ch}.json"
     if not p.exists():
         # Keep it non-fatal; user might still want to export the deck.
-        print(f"W: Missing HanziWriter JA data for '{ch}' at: {p}")
+        print(f"W: {_T['stroke_data_missing']}'{ch}' at: {p}")
         return "{}"
     return p.read_text(encoding="utf-8")
 
@@ -112,7 +157,7 @@ def _hanziwriter_widget_html(ch: str, show_outline: bool, kind: str) -> str:
     <div class="hw-user"></div>
   </div>
   <div class="hw-status" style="margin-top:8px;"></div>
-  <div style="margin-top:6px;font-size:9pt;color:gray;">Správně</div>
+  <div style="margin-top:6px;font-size:9pt;color:gray;">{_T['correct_label']}</div>
   <script type="application/json" class="hw-data">{data_json}</script>
 </div>
 """
@@ -121,17 +166,17 @@ def _hanziwriter_widget_html(ch: str, show_outline: bool, kind: str) -> str:
 def reading_label(value):
     reading = str(value).split('・')
     if len(reading) == 2:
-        return f'<span class="rl">{reading[0]}<span class="rldt">・{reading[1]}</span></span>'
+        return f'<span class="rl copyable">{reading[0]}<span class="rldt">・{reading[1]}</span></span>'
     if len(reading) != 1:
         print('E: reading with multiple separators!', value)
     return f"""
-<span class="rl">{value}</span>    
+<span class="rl copyable">{value}</span>
 """
 
 
 def reading_label_unimportant(value):
     return f"""
-<span class="rl rld">{value}</span>    
+<span class="rl rld copyable">{value}</span>
 """
 
 
@@ -215,14 +260,28 @@ css = """
 }
 .hw-composite .hw-correct { opacity: 1; }
 .hw-composite .hw-user { pointer-events: none; } /* don't block taps */
+
+/* Tap-to-copy (mirrors html_generator.py copyable styles) */
+.copyable { position: relative; cursor: pointer; }
+.copyable::after {
+  content: 'Copied!'; position: absolute; top: -25px; right: -50px;
+  background-color: #d9f9e6; color: #363636; font-size: 12px;
+  padding: 2px 8px; border-radius: 4px;
+  opacity: 0; visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  pointer-events: none;
+}
+.copyable.copied::after { opacity: 1; visibility: visible; }
 """
 
 # Global init for HanziWriter inside Anki card HTML.
 # Works for kanji cards only (cards that include .hw blocks).
 # Vocabulary cards are unchanged and don't include .hw, so they won't run any drawing logic.
-HANZIWRITER_INIT_JS = r"""
-<script>
-(function() {
+HANZIWRITER_INIT_JS = (
+    "\n<script>\n(function() {\n var T = "
+    + _escape_json_for_html_script(json.dumps(_T, ensure_ascii=False))
+    + ";\n"
+    + r"""
  function safeJsonParse(txt) {
   try { return JSON.parse(txt || '{}'); } catch(e) { return {}; }
  }
@@ -244,7 +303,7 @@ HANZIWRITER_INIT_JS = r"""
 
    var charData = safeJsonParse(dataEl.textContent);
    if (!charData || !charData.strokes) {
-    status.textContent = 'Stroke data missing for: ' + ch;
+    status.textContent = T.stroke_data_missing + ch;
     return;
    }
    // Unique target id
@@ -294,7 +353,7 @@ HANZIWRITER_INIT_JS = r"""
    var mistakes = 0;
    var totalStrokes = (charData && charData.strokes) ? charData.strokes.length : null;
    var key = 'hw_last_' + ch + '_' + (outline ? 'o' : 'r');
-   status.textContent = outline ? 'Napiš dle předlohy.' : 'Napiš z paměti.';
+   status.textContent = outline ? T.instruction_outline : T.instruction_recall;
 
    function saveProgress(complete) {
     try {
@@ -313,10 +372,10 @@ HANZIWRITER_INIT_JS = r"""
     showOutline: outline,
     showCharacter: false,
     highlightOnComplete: true,
-    showHintAfterMisses: 999,
+    showHintAfterMisses: 1,
     onMistake: function(strokeData) {
      mistakes = strokeData && typeof strokeData.totalMistakes === 'number' ? strokeData.totalMistakes : (mistakes + 1);
-     status.textContent = 'Mistakes: ' + mistakes;
+     status.textContent = T.mistakes_prefix + mistakes;
      saveProgress(false);
     },
     onCorrectStroke: function(strokeData) {
@@ -332,7 +391,7 @@ HANZIWRITER_INIT_JS = r"""
      if (summary && typeof summary.totalMistakes === 'number') {
       mistakes = summary.totalMistakes;
      }
-     status.textContent = 'Hotovo ✓  Chyb: ' + mistakes;
+     status.textContent = T.done_prefix + mistakes;
      saveProgress(true);
     }
    });
@@ -422,18 +481,18 @@ HANZIWRITER_INIT_JS = r"""
    if (saved && saved.complete === false) {
     var total = saved.totalStrokes;
     status.textContent = total
-     ? ('Nedokončeno: ' + drawnCount + '/' + total + ' tahů')
-     : ('Nedokončeno: ' + drawnCount + ' tahů');
+     ? T.unfinished_with_total.replace('{drawn}', drawnCount).replace('{total}', total)
+     : T.unfinished_no_total.replace('{drawn}', drawnCount);
    } else if (saved && typeof saved.totalMistakes === 'number') {
-    status.textContent = 'Výsledek ✓  Chyb: ' + saved.totalMistakes;
+    status.textContent = T.result_prefix + saved.totalMistakes;
    } else {
-    status.textContent = 'Počet chyb neznámý.';
+    status.textContent = T.mistakes_unknown;
    }
 
    if (drawnCount > 0) {
     userEl.innerHTML = renderUserSvg(savedDrawn, palette.userInk);
    } else {
-    userEl.innerHTML = '<div style="color:gray;font-size:10pt;">Žádná kresba.</div>';
+    userEl.innerHTML = '<div style="color:gray;font-size:10pt;">' + T.no_drawing + '</div>';
    }
 
    try { localStorage.removeItem(key); } catch(e) {}
@@ -456,7 +515,7 @@ HANZIWRITER_INIT_JS = r"""
     });
     if (w && typeof w.showCharacter === 'function') w.showCharacter();
    } catch(e) {
-    correctEl.innerHTML = '<div style="color:gray;font-size:10pt;">Nelze vykreslit.</div>'; 
+    correctEl.innerHTML = '<div style="color:gray;font-size:10pt;">' + T.cannot_render + '</div>';
     console.error(e);
    }
   })(block, 0);
@@ -478,11 +537,89 @@ setTimeout(initAll, 1);
 })();
 </script>
 """
+)
+
+
+# Tap-to-copy delegate. Capture-phase so it coexists with the bubble-phase
+# furigana-toggle handler. Idempotent across Q->A re-parses.
+#
+# AnkiDroid's WebView usually does NOT expose navigator.clipboard (no secure
+# context), so we fall back to a hidden-textarea + document.execCommand('copy').
+COPY_JS = r"""
+<script>
+if(!window.__ktjCopyInit){
+  window.__ktjCopyInit = true;
+  function __ktjExtractText(node){
+    if(node.nodeType===Node.TEXT_NODE) return node.textContent;
+    if(node.nodeType===Node.ELEMENT_NODE && node.tagName!=='RT')
+      return Array.from(node.childNodes).map(__ktjExtractText).join('');
+    return '';
+  }
+  function __ktjCopy(text){
+    // execCommand first: works in Anki Desktop's unfocused WebView (where
+    // navigator.clipboard.writeText rejects with "Document is not focused")
+    // and in AnkiDroid's non-secure WebView (where clipboard API is absent).
+    try {
+      var ta = document.createElement('textarea');
+      ta.value = text;
+      ta.setAttribute('readonly','');
+      ta.style.position = 'fixed';
+      ta.style.top = '0';
+      ta.style.left = '0';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.focus();
+      ta.select();
+      ta.setSelectionRange(0, text.length);
+      var ok = document.execCommand('copy');
+      document.body.removeChild(ta);
+      if(ok) return Promise.resolve();
+    } catch(e) { console.error(e); }
+    if(navigator.clipboard && navigator.clipboard.writeText){
+      try { return navigator.clipboard.writeText(text); } catch(e) { console.error(e); }
+    }
+    return Promise.reject(new Error('copy failed'));
+  }
+  document.addEventListener('click', function(e){
+    var el = e.target.closest && e.target.closest('.copyable');
+    if(!el) return;
+    var txt = __ktjExtractText(el).trim();
+    if(!txt) return;
+    __ktjCopy(txt).then(function(){
+      el.classList.add('copied');
+      setTimeout(function(){ el.classList.remove('copied'); }, 1200);
+    }).catch(console.error);
+  }, true);
+}
+</script>
+"""
+
+
+# Furigana / hidden-label toggle. Each tap flips visibility of `ruby rt` and
+# `.rlbl` so accidentally revealing them can be undone with another tap.
+# The shown-state flag is reset on every card parse (sits outside the init
+# guard) because each Q->A flip rebuilds the DOM with defaults hidden.
+FURIGANA_TOGGLE_JS = r"""
+<script>
+window.__ktjFurShown = false;
+if(!window.__ktjFurInit){
+  window.__ktjFurInit = true;
+  document.addEventListener('click', function(e){
+    if(e.target.closest && e.target.closest('.copyable')) return;
+    window.__ktjFurShown = !window.__ktjFurShown;
+    var v = window.__ktjFurShown ? 'visible' : 'hidden';
+    document.querySelectorAll('ruby rt, .rlbl').forEach(function(x){
+      x.style.visibility = v;
+    });
+  });
+}
+</script>
+"""
 
 
 # Function to read the CSV data
 def read_kanji_csv(key, data):
-    usage_title = f"<b class='t'>{generate_furigana('使＜つか＞い方＜かた＞')}:</b><br>"
+    usage_title = f"<b class='t'>{generate_furigana(_T['usage_label'])}:</b><br>"
 
     output = []
     cards = []
@@ -532,11 +669,11 @@ def read_kanji_csv(key, data):
         hw_recall_result = _hanziwriter_widget_html(item['kanji'], show_outline=False, kind='result')
 
         cards.append([
-            f"<div style=\"font-size: 32pt;\">{item['kanji']}</div>"
+            f"<div style=\"font-size: 32pt;\"><span class=\"copyable\">{item['kanji']}</span></div>"
             f"{hw_outline}",
 
             f"<div>{onyomi + kunyomi}</div>"
-            f"<div style=\"font-size: 26pt;\">{item['imi']}</div>"
+            f"<div style=\"font-size: 26pt;\"><span class=\"copyable\">{item['imi']}</span></div>"
             f"{hw_outline_result}{extra}",
 
             item["guid"], name, "kanji", 0
@@ -544,12 +681,12 @@ def read_kanji_csv(key, data):
 
         # Translation to kanji card (recall / no outline)
         cards_translation.append([
-            f"<div style=\"font-size: 26pt;\">{item['imi']}</div>"
+            f"<div style=\"font-size: 26pt;\"><span class=\"copyable\">{item['imi']}</span></div>"
             f"<div>{onyomi + kunyomi}</div>"
             f"{hw_recall}",
 
             f"{hw_recall_result}<br><br><div>{onyomi + kunyomi}</div><div style=\"font-size: 30pt;\">"
-            f"<div style=\"font-size: 26pt;\">{item['imi']}</div>{extra}",
+            f"<div style=\"font-size: 26pt;\"><span class=\"copyable\">{item['imi']}</span></div>{extra}",
 
             item["guid"] + "-rev", name, "kanji", 0
         ])
@@ -587,7 +724,7 @@ def read_kanji_csv(key, data):
             vocab_def = vocab_item.get('tango')
             vocab_significance = vocab_def.significance
 
-            word = f"<div style=\"font-size: 28pt;\">{generate_furigana(str(vocab_def))}</div>"
+            word = f"<div style=\"font-size: 28pt;\"><span class=\"copyable\">{generate_furigana(str(vocab_def))}</span></div>"
 
             props_html = parse_item_props_html(vocab_item)
 
@@ -596,14 +733,14 @@ def read_kanji_csv(key, data):
                 f"{word}",
 
                 f"<div class=\"rlbl\">{props_html}</div>"
-                f"<div style=\"font-size: 26pt;\">{vocab_item['imi']}</div>{usage_lines}",
+                f"<div style=\"font-size: 26pt;\"><span class=\"copyable\">{vocab_item['imi']}</span></div>{usage_lines}",
 
                 vocab_item["guid"], name, "tango", vocab_significance
             ])
 
             # Translation to word card
             cards_translation.append([
-                f"<div style=\"font-size: 26pt;\">{vocab_item['imi']}</div>",
+                f"<div style=\"font-size: 26pt;\"><span class=\"copyable\">{vocab_item['imi']}</span></div>",
 
                 f"<div class=\"rlbl\">{props_html}</div>{word}{usage_lines}",
 
@@ -650,13 +787,13 @@ def create_anki_deck(key, reader, filename):
         template['ord'] = 0
         template['qfmt'] = (
                 "<div class='c'>{{Q}}</div>"
-                "<script>['click','touchstart'].forEach(event=>document.addEventListener(event,()=>document.querySelectorAll('ruby rt, .rlbl').forEach(x=>x.style.visibility='visible')));</script>"
-                + HANZIWRITER_LIB_INLINE + HANZIWRITER_INIT_JS
+                + FURIGANA_TOGGLE_JS
+                + HANZIWRITER_LIB_INLINE + HANZIWRITER_INIT_JS + COPY_JS
         )
         template['afmt'] = (
                 "<div id='hw-back-marker' style='display:none'></div><div class='c qa'>{{Q}}</div><br><br><div class='c'>{{A}}</div>"
-                "<script>['click','touchstart'].forEach(event=>document.addEventListener(event, ()=>document.querySelectorAll('ruby rt, .rlbl').forEach(x=>x.style.visibility='visible')));</script>"
-                + HANZIWRITER_LIB_INLINE + HANZIWRITER_INIT_JS
+                + FURIGANA_TOGGLE_JS
+                + HANZIWRITER_LIB_INLINE + HANZIWRITER_INIT_JS + COPY_JS
         )
         col.models.add_template(model, template)
         model['css'] = css
@@ -729,5 +866,5 @@ def create_readme_entries(dataset_list: list):
     result = []
     for x in dataset_list:
         files = list(Path(x["path"]).glob('**/*.apkg'))
-        result.append(create_dataset_readme(files, f"Balíček {x['item']['name']}", ""))
+        result.append(create_dataset_readme(files, f"{_T['package_prefix']} {x['item']['name']}", ""))
     return result
