@@ -12,6 +12,8 @@
 !static/
 !assets
 !assets/*
+!data/
+!data/**/*
 !main.py
 !src/static.py
 !*.md
@@ -25,3 +27,4 @@ src/__pycache__/
 !misc/**/*
 # Ignore test guard
 misc/*read_local_data*.json
+misc/scripts/__pycache__/

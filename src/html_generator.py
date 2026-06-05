@@ -6,6 +6,7 @@ import markdown
 from utils import generate_furigana, short_uid, create_dataset_readme
 from utils_data_entitites import InputFormat
 from utils_html import parse_item_props_html, get_reading_html, get_unimportant_reading_html
+from i18n import T
 
 
 def get_reading(item, type):
@@ -114,7 +115,7 @@ def get_vocab_entries(item):
   class="flex-1 gap-4"
   style="max-width: 400px;"
 >   
-    <span class="text-xl font-bold text-gray-800 mb-4">Povinná slovíčka</span>
+    <span class="text-xl font-bold text-gray-800 mb-4">{T['html_generator']['required_vocab']}</span>
     {''.join(map(
         lambda x: get_word_html(x, 'from-green-50', 'to-green-100'), 
         filter(lambda y: y.get_equal('tango', 0), item.vocabulary()))
@@ -127,7 +128,7 @@ def get_vocab_entries(item):
   class="flex-1 gap-4"
   style="max-width: 400px;"
 >   
-    <span class="text-xl font-bold text-gray-800 mb-4">Budou v sadě / Rozšiřující</span>
+    <span class="text-xl font-bold text-gray-800 mb-4">{T['html_generator']['extended_vocab']}</span>
     {''.join(map(
         lambda x: get_word_html(x, 'from-blue-50', 'to-blue-100'), 
         filter(lambda y: y.get_equal('tango', 1), item.vocabulary()))
@@ -161,14 +162,8 @@ def get_notes(item):
     return "<div></div>"
 
 
-def read_kanji_csv(key, data, radicals):
+def read_kanji_csv(key, data, radical_index):
     output = {}
-
-    def find_radical(id):
-        for radical in radicals:
-            if radical["id"] == id:
-                return radical
-        return {}
 
     keys = data["order"]
     content = data["content"]
@@ -179,21 +174,15 @@ def read_kanji_csv(key, data, radicals):
         if item.get("kanji").significance > 0:
             continue
 
-        radical_exists = False
-        radical_html = """
+        kanji_char = str(item["kanji"])
+        rad_value = radical_index.get(kanji_char) if radical_index else None
+        if rad_value:
+            display = rad_value.get("imi") or rad_value.get("meaning_en") or ""
+            radical_html = f"""
         <div>
-            <p class="text-sm text-gray-500">Radikál</p>
+            <p class="text-sm text-gray-500">{T['html_generator']['radical_label']}</p>
             <p class="text-lg font-semibold text-gray-800">
-        """
-        rad_ref = item["references"].get("radical")
-        if rad_ref:
-            for ref in rad_ref:
-                rad_value = find_radical(ref)
-                if rad_value:
-                    radical_html += f"<span>{rad_value.get('radical')} &emsp; {rad_value.get('imi')}</span>"
-                    radical_exists = True
-        if radical_exists:
-            radical_html += """
+                <span>{rad_value.get('radical')} &emsp; {display}</span>
             </p>
         </div>
         """
@@ -213,7 +202,7 @@ def read_kanji_csv(key, data, radicals):
           class="w-5 h-5 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
           onchange="toggleShowFurigana(this.checked)"
         >
-        <span class="text-gray-700 font-medium">Ukazovat furiganu</span>
+        <span class="text-gray-700 font-medium">{T['html_generator']['show_furigana']}</span>
       </label>
       <label for="showSentences" class="flex items-center gap-2">
         <input 
@@ -222,7 +211,7 @@ def read_kanji_csv(key, data, radicals):
           class="w-5 h-5 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
           onchange="showSentences(this.checked)"
         >
-        <span class="text-gray-700 font-medium">Vždy ukazovat věty</span>
+        <span class="text-gray-700 font-medium">{T['html_generator']['always_show_sentences']}</span>
       </label>
       <label for="showVocabProperties" class="flex items-center gap-2">
         <input 
@@ -231,7 +220,7 @@ def read_kanji_csv(key, data, radicals):
           class="w-5 h-5 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
           onchange="showVocabProperties(this.checked)"
         >
-        <span class="text-gray-700 font-medium">Ukazovat vlastnosti slovíček</span>
+        <span class="text-gray-700 font-medium">{T['html_generator']['show_vocab_props']}</span>
       </label>
     </div>
   </div>
@@ -267,7 +256,7 @@ def read_kanji_csv(key, data, radicals):
                 <p class="text-lg font-semibold text-gray-800">{get_reading(item, 'onyomi')}</p>
             </div>
             <div>
-                <p class="text-sm text-gray-500">Význam</p>
+                <p class="text-sm text-gray-500">{T['html_generator']['meaning_label']}</p>
                 <p class="text-lg font-semibold text-gray-800">{item['imi']}</p>
             </div>
             <div>
@@ -390,15 +379,12 @@ import os
 
 
 def generate(key, data, metadata, path_getter, is_debug_run):
-    radicals = metadata.get("radical")
-    if not radicals:
-        print("Warning: Radicals not defined. Skipping HTML outputs!")
+    radicals = metadata.get("radical") or {"content": {}, "modified": False}
+
+    if not data["modified"] and not radicals.get("modified") and not is_debug_run:
         return False
 
-    if not data["modified"] and not radicals["modified"] and not is_debug_run:
-        return False
-
-    output = read_kanji_csv(key, data, radicals["content"])
+    output = read_kanji_csv(key, data, radicals.get("content") or {})
 
     if is_debug_run:
         return True
@@ -459,5 +445,5 @@ def create_readme_entries(dataset_list: list):
     result = []
     for x in dataset_list:
         files = list(Path(x["path"]).glob('**/*.html'))
-        result.append(create_dataset_readme(files, f"Kanji Stránky {x['item']['name']}"))
+        result.append(create_dataset_readme(files, T['html_generator']['kanji_pages_for'].format(name=x['item']['name'])))
     return result

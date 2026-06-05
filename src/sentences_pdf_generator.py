@@ -1,6 +1,7 @@
 from pathlib import Path
 import pdfkit
 from utils import generate_furigana, create_dataset_readme
+from i18n import T
 # If you need any of your other utils (e.g., Value, retrieve_row_kanjialive_url), you can import them too.
 
 # Compact PDF options (allow smart shrinking for tighter packing)
@@ -221,5 +222,5 @@ def create_readme_entries(dataset_list: list):
     result = []
     for x in dataset_list:
         files = list(Path(x["path"]).glob('**/*.pdf'))
-        result.append(create_dataset_readme(files, f"PDF Stránky {x['item']['name']}", ""))
+        result.append(create_dataset_readme(files, T['sentences_pdf_generator']['pdf_pages_for'].format(name=x['item']['name']), ""))
     return result

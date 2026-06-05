@@ -13,6 +13,7 @@ from reportlab.lib import fonts
 from reportlab.platypus import Spacer
 
 from utils import retrieve_row_kanjialive_url, Value, generate_furigana_custom, sanitize_filename, create_dataset_readme
+from i18n import T
 
 
 # Function to create inline furigana using <sup> tags in a Paragraph
@@ -149,5 +150,5 @@ def create_readme_entries(dataset_list: list):
     result = []
     for x in dataset_list:
         files = list(Path(x["path"]).glob('**/*.pdf'))
-        result.append(create_dataset_readme(files, f"PDF Stránky {x['item']['name']}", ""))
+        result.append(create_dataset_readme(files, T['pdf_generator']['pdf_pages_for'].format(name=x['item']['name']), ""))
     return result

@@ -306,7 +306,16 @@ def process_row(row: list):
             item[key].append(Value(value, key_significance, data_format))
         elif key in ['junban']:
             item[key] = Value(int(value), key_significance, data_format)
-        elif key in ['imi', 'tango', 'radical', 'setto', 'kijutsu']:
+        elif key == 'radical':
+            # Radicals are now linked automatically and translated via
+            # data/radicals/kangxi-214.<lang>.json. Any `radical` row in a sheet
+            # is treated as legacy and ignored at dispatch.
+            item["_legacy_radical_row"] = True
+        elif key == 'strokes':
+            # Legacy companion field on old radical rows; harmless if present
+            # elsewhere — route to extra and move on.
+            item["extra"][original_key] = Value(value, key_significance, data_format)
+        elif key in ['imi', 'tango', 'setto', 'kijutsu']:
             item[key] = Value(value, key_significance, data_format)
         else:
             # TODO does not support chaining
@@ -324,8 +333,12 @@ def process_row(row: list):
             # print(" --parse-- WARNING: kanji", item.get("kanji"), "does not specify required field 'imi'")
             item["kanji"].significance += 1
         output = KanjiEntry()
-    elif item.get("radical"):
-        output = RadicalEntry()
+    elif item.get("_legacy_radical_row"):
+        # Bundled Kangxi-214 data + per-language translation files cover
+        # radicals now; sheet-authored radical rows are no longer consumed.
+        print(" --parse-- Ignoring radical row (radicals are auto-linked; "
+              "translate via data/radicals/kangxi-214.<lang>.json):", row)
+        return None
     elif item.get("subid"):
         output = DataSubsetEntry()
     elif item.get('setto'):

@@ -3,6 +3,7 @@ from pathlib import Path
 import markdown
 
 from utils import sanitize_filename, create_dataset_readme
+from i18n import T
 
 import json
 
@@ -54,5 +55,5 @@ def create_readme_entries(dataset_list: list):
     result = []
     for x in dataset_list:
         files = list(Path(x["path"]).glob('**/*.json'))
-        result.append(create_dataset_readme(files, f"JSON Datový Balíček {x['item']['name']}", ""))
+        result.append(create_dataset_readme(files, T['json_generator']['data_pack_for'].format(name=x['item']['name']), ""))
     return result

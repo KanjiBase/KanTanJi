@@ -88,16 +88,24 @@ list of **existing kanji** letters.
 the app also supports arbitrary _metadata_. Each metadata row must be unique ID and type, there can
 be two rows with the same ID if they differ in ``type``.
 
-So, if you want to for example use radicals you can
-define them in the very same way as you would other items, and if your desired generator
-respects this metadata, it will be used along the data to enhance the outputs! Following
-row keys - ``type``s - are supported:
+Other metadata types are supported as raw rows, but **radicals are now fully
+automatic**:
 
- - radical - value of the radical
-   - id - **required**, arbitrary ID to reference radical values later on
-   - imi - **required**, the meaning of the kanji symbol
-   - kunyomi - **optional**
- 
+- Every kanji is linked to its classical (Kangxi) radical via the bundled
+  `data/radicals/kanji-to-radical.json` mapping (derived from KANJIDIC2).
+- The radical's details (character, variants, strokes, readings, English
+  fallback meaning) come from `data/radicals/kangxi-214.json`.
+- Localised meanings live in per-language files: `data/radicals/kangxi-214.<lang>.json`
+  (currently `cs`, `en`). The active language is selected by `LANGUAGE` in
+  `src/config.py`. To translate the radical set to another language, drop in
+  a new `kangxi-214.<lang>.json` file with all 214 entries — no sheet edits.
+
+**Authoring radical rows in sheets is no longer supported.** Any `radical`
+row is ignored at parse time with a one-line notice. Similarly, legacy
+`ref: radical-N` cells on kanji rows are silently ignored — the build emits a
+single summary line counting them so you can clean up at your leisure.
+
+Other metadata types still work as before:
 
 Unlike data, these metadata entries are available across all data items - they can be defined
 once _anywhere_. We recommend therefore defining such data in separate sheets to not
@@ -106,8 +114,9 @@ respect the type as a filename: if you do not put any _data_ rows in some file, 
 will not be treated as a daat source file, and thus it will not generate any direct outputs (pdf learning materials, anki decks...).
 
 ### Referencing Metadata
-Any row can reference another row by the ``type`` and `ID` values. Referencing radical thus works
-like key-value pair: ``ref`` - ``redical-3``, which says that given row references radical with ID 3.
+Other metadata types can be referenced from kanji rows via `ref` (e.g.
+`ref` - `mytype-3` to point at a row with `type=mytype` and `ID=3`).
+Radical refs are the one exception — see above.
 
 ### Furigana
 Firugana is crucial part of learning kanji. Here, any value (except the 'kanji' value itself) and also custom keys support furigana in the following way:

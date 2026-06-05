@@ -1,7 +1,7 @@
 # import random
 # VERSION = str(random.randint(0, 99999))
 
-VERSION = "0.1.0"
+VERSION = "0.2.0"
 OVERRIDE_VOCAB_SIGNIFICANCE = True
 
 # Lightweight localization for generated Anki cards.

@@ -1,4 +1,7 @@
 from utils_data_entitites import Entry, Value
+from i18n import T
+
+_TH = T['utils_html']
 
 ADJECTIVE_TYPE_COLOR = "#ACA52F"
 VERB_TRANSITIVENESS_COLOR = "#28835F"
@@ -34,23 +37,23 @@ def get_unimportant_reading_html(text):
 def vocab_property_html(prop: str | Value, color: str):
     match str(prop):
         case "ichidan":
-            return get_smart_label("ichidan (..る)", "Sloveso má pouze jeden tvar, při skloňování většinou odpadá ~る přípona.", color)
+            return get_smart_label(_TH['ichidan_title'], _TH['ichidan_detail'], color)
         case "godan":
-            return get_smart_label("godan (..う)", "Sloveso má pět tvarů jako je pět samohlásek, pro skloňování mají dle typu koncovky různá pravidla.", color)
+            return get_smart_label(_TH['godan_title'], _TH['godan_detail'], color)
         case "jidoushi":
-            return get_smart_label("netranzitivní", "neboli 'じどうし', sloveso popisuje podmět (budova se staví)", color)
+            return get_smart_label(_TH['jidoushi_title'], _TH['jidoushi_detail'], color)
         case "tadoushi":
-            return get_smart_label("tranzitivní", "neboli 'たどうし', sloveso může popisovat předmět (postavili budovu)", color)
+            return get_smart_label(_TH['tadoushi_title'], _TH['tadoushi_detail'], color)
         case "i":
-            return get_smart_label("い - příd. jméno", "Koncovka ~い buď zůstává, nebo se nahrazuje např. v záporu za ~くない.", color)
+            return get_smart_label(_TH['i_adj_title'], _TH['i_adj_detail'], color)
         case "na":
-            return get_smart_label("な - příd. jméno", "Většinou koncovka ~な odpadá (např. při použití s 'です'), pokud se neváže na podstatné jméno.", color)
+            return get_smart_label(_TH['na_adj_title'], _TH['na_adj_detail'], color)
         case "suru":
-            return get_smart_label("する sloveso","Nepravidelná slovesa se chovají podobně dle する tvaru.", color)
+            return get_smart_label(_TH['suru_title'], _TH['suru_detail'], color)
         case "fukisokuna":
-            return get_smart_label("nepravidelné čtení","Čtení nelze odvodit ze zápisu kanji.", color)
+            return get_smart_label(_TH['fukisokuna_title'], _TH['fukisokuna_detail'], color)
         case "meishi":
-            return get_smart_label("podst. jméno", "Podstatná jména tvoří drtivou většinu japonštiny, label je ukazován jen u slovíček, kde to nemusí být zřejmé.", color)
+            return get_smart_label(_TH['meishi_title'], _TH['meishi_detail'], color)
     raise ValueError(f"Property not allowed: {prop}")
 
 

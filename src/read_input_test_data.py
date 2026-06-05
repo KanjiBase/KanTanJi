@@ -12,15 +12,9 @@ def read_local_data():
             "name": key
         }
 
-    # radicals table
-    with open('misc/test-radicals.json', 'r', encoding='utf-8') as f:
-        data = json.load(f)
-        key = "radical"
-        out[key] = {
-            "data": data,
-            "id": key,
-            "name": key
-        }
+    # Radicals are now auto-linked via data/radicals/ — no separate test
+    # fixture needed. The legacy `misc/test-radicals.json` file is no longer
+    # loaded; any sheet-authored radical rows would be ignored anyway.
 
     # testing complementary datasets
     with open('misc/test-data-set.json', 'r', encoding='utf-8') as f:

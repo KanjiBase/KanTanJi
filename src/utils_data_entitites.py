@@ -365,16 +365,22 @@ class VocabEntry(Entry):
 class RadicalEntry(Entry):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        self._name = "RadicalEntry"
 
     def fill(self, other_dict):
         super().fill(other_dict)
         self["type"] = "radical"
+        self["number"] = other_dict.get("number")
         self["radical"] = other_dict.get("radical")
-        self["id"] = other_dict.get("id")
-        self["imi"] = other_dict.get("imi")
+        self["variants"] = list(other_dict.get("variants", []))
+        self["strokes"] = other_dict.get("strokes")
+        self["meaning_en"] = other_dict.get("meaning_en")
+        # imi (localized meaning) falls back to the bundled English gloss
+        self["imi"] = other_dict.get("imi") or other_dict.get("meaning_en")
+        self["onyomi"] = ValueList(other_dict.get("onyomi", []))
         self["kunyomi"] = ValueList(other_dict.get("kunyomi", []))
 
-        self["guid"] = self["radical"]
+        self["guid"] = f"radical-{self['number']}" if self["number"] is not None else self["radical"]
 
 
 class DatasetEntry(Entry):
