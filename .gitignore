@@ -28,3 +28,5 @@ src/__pycache__/
 # Ignore test guard
 misc/*read_local_data*.json
 misc/scripts/__pycache__/
+# README ordering metadata sits next to generated outputs; don't track it
+**/.file_order.json

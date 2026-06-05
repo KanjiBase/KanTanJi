@@ -3,7 +3,7 @@ from pathlib import Path
 
 import markdown
 
-from utils import generate_furigana, short_uid, create_dataset_readme
+from utils import generate_furigana, short_uid, create_dataset_readme, set_file_order, order_file_list
 from utils_data_entitites import InputFormat
 from utils_html import parse_item_props_html, get_reading_html, get_unimportant_reading_html
 from i18n import T
@@ -391,10 +391,13 @@ def generate(key, data, metadata, path_getter, is_debug_run):
 
     did_save = False
     file_root = path_getter(key)
-    for k, v in output.items():
+    for index, (k, v) in enumerate(output.items()):
         # Create a file name for each HTML file
         file_name = f"{k}.html"
         file_path = os.path.join(file_root, file_name)
+
+        # Record dataset-order index so README listings preserve it (glob is unordered).
+        set_file_order(file_path, index)
 
         # Write the string content to the HTML file
         with open(file_path, 'w', encoding='utf-8') as file:
@@ -444,6 +447,6 @@ rt {{
 def create_readme_entries(dataset_list: list):
     result = []
     for x in dataset_list:
-        files = list(Path(x["path"]).glob('**/*.html'))
+        files = order_file_list(list(Path(x["path"]).glob('**/*.html')))
         result.append(create_dataset_readme(files, T['html_generator']['kanji_pages_for'].format(name=x['item']['name'])))
     return result
