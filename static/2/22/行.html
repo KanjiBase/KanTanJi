@@ -121,7 +121,7 @@ rt {
         <div>
             <p class="text-sm text-gray-500">Radikál</p>
             <p class="text-lg font-semibold text-gray-800">
-        <span>⾏ &emsp; jít</span>
+                <span>行 &emsp; jít, chodit</span>
             </p>
         </div>
         
@@ -212,6 +212,41 @@ rt {
     </div>
     
     <div class="bg-gradient-to-r from-green-50 to-green-100 rounded-lg shadow p-4 flex flex-col my-2">
+        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-f5125f89', this)">
+            <div>
+                <p class="text-lg text-2xl text-gray-800 copyable relative" 
+                onclick="copyText(this)">～<ruby>行<rt style="visibility: hidden">ぎょう</rt></ruby></p>
+                <p class="text-sm text-gray-600">～řada, řádek, linka</p>
+            </div>
+            <button class="button-vocab-toggle text-gray-600 hover:text-gray-900 
+            transform transition-transform duration-200 px-2">▼</button>
+        </div>
+        
+        <div id="vocab-f5125f89" class="button-vocab-example hidden text-gray-700">
+            <div class="mt-2 p-2 rounded bg-white shadow">
+            <div>
+                <div style="margin-bottom: 5px;"><span lang="JA"><ruby>彼<rt style="visibility: hidden">かれ</rt></ruby>は１０<ruby>行<rt style="visibility: hidden">ぎょう</rt></ruby>で１０もの<ruby>間<rt style="visibility: hidden">ま</rt></ruby><ruby>違<rt style="visibility: hidden">ちが</rt></ruby>いをやりました。</span></div>
+                <div style="margin-bottom: 5px; color: #666;">V deseti řádcích udělal deset chyb.</div>
+            </div>
+            
+            <div>
+                <div style="margin-bottom: 5px;"><span lang="JA">2<ruby>行<rt style="visibility: hidden">ぎょう</rt></ruby><ruby>目<rt style="visibility: hidden">め</rt></ruby>から<ruby>下<rt style="visibility: hidden">した</rt></ruby>に<ruby>数<rt style="visibility: hidden">すう</rt></ruby><ruby>字<rt style="visibility: hidden">じ</rt></ruby><ruby>入<rt style="visibility: hidden">にゅう</rt></ruby><ruby>力<rt style="visibility: hidden">りょく</rt></ruby>します。</span></div>
+                <div style="margin-bottom: 5px; color: #666;">Od druhého řádku dolů zadám čísla.</div>
+            </div>
+            </div>
+            
+        </div>
+    </div>
+    
+</div>
+
+<div 
+  class="flex-1 gap-4"
+  style="max-width: 400px;"
+>   
+    <span class="text-xl font-bold text-gray-800 mb-4">Budou v sadě / Rozšiřující</span>
+    
+    <div class="bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg shadow p-4 flex flex-col my-2">
         <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-312a346f', this)">
             <div>
                 <p class="text-lg text-2xl text-gray-800 copyable relative" 
@@ -247,43 +282,7 @@ rt {
         </div>
     </div>
     
-    <div class="bg-gradient-to-r from-green-50 to-green-100 rounded-lg shadow p-4 flex flex-col my-2">
-        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-f5125f89', this)">
-            <div>
-                <p class="text-lg text-2xl text-gray-800 copyable relative" 
-                onclick="copyText(this)">～<ruby>行<rt style="visibility: hidden">ぎょう</rt></ruby></p>
-                <p class="text-sm text-gray-600">～řada, řádek, linka</p>
-            </div>
-            <button class="button-vocab-toggle text-gray-600 hover:text-gray-900 
-            transform transition-transform duration-200 px-2">▼</button>
-        </div>
-        
-        <div id="vocab-f5125f89" class="button-vocab-example hidden text-gray-700">
-            <div class="mt-2 p-2 rounded bg-white shadow">
-            <div>
-                <div style="margin-bottom: 5px;"><span lang="JA"><ruby>彼<rt style="visibility: hidden">かれ</rt></ruby>は１０<ruby>行<rt style="visibility: hidden">ぎょう</rt></ruby>で１０もの<ruby>間<rt style="visibility: hidden">ま</rt></ruby><ruby>違<rt style="visibility: hidden">ちが</rt></ruby>いをやりました。</span></div>
-                <div style="margin-bottom: 5px; color: #666;">V deseti řádcích udělal deset chyb.</div>
-            </div>
-            
-            <div>
-                <div style="margin-bottom: 5px;"><span lang="JA">2<ruby>行<rt style="visibility: hidden">ぎょう</rt></ruby><ruby>目<rt style="visibility: hidden">め</rt></ruby>から<ruby>下<rt style="visibility: hidden">した</rt></ruby>に<ruby>数<rt style="visibility: hidden">すう</rt></ruby><ruby>字<rt style="visibility: hidden">じ</rt></ruby><ruby>入<rt style="visibility: hidden">にゅう</rt></ruby><ruby>力<rt style="visibility: hidden">りょく</rt></ruby>します。</span></div>
-                <div style="margin-bottom: 5px; color: #666;">Od druhého řádku dolů zadám čísla.</div>
-            </div>
-            </div>
-            
-        </div>
-    </div>
-    
-</div>
-
-<div 
-  class="flex-1 gap-4"
-  style="max-width: 400px;"
->   
-    <span class="text-xl font-bold text-gray-800 mb-4">Budou v sadě / Rozšiřující</span>
-    
-    
-    <div class="bg-gradient-to-r from-purple-100 to-purple-300 rounded-lg shadow p-4 flex flex-col my-2">
+    <div class="bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg shadow p-4 flex flex-col my-2">
         <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-f2054a96', this)">
             <div>
                 <p class="text-lg text-2xl text-gray-800 copyable relative" 
@@ -304,6 +303,7 @@ rt {
             
         </div>
     </div>
+    
     
     <div class="bg-gradient-to-r from-purple-100 to-purple-300 rounded-lg shadow p-4 flex flex-col my-2">
         <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-03bffe2a', this)">

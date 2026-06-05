@@ -121,7 +121,7 @@ rt {
         <div>
             <p class="text-sm text-gray-500">Radikál</p>
             <p class="text-lg font-semibold text-gray-800">
-        <span>⼴ &emsp; útes s tečkou</span>
+                <span>广 &emsp; tečkovaný útes, dům</span>
             </p>
         </div>
         
@@ -205,6 +205,28 @@ rt {
 >   
     <span class="text-xl font-bold text-gray-800 mb-4">Budou v sadě / Rozšiřující</span>
     
+    <div class="bg-gradient-to-r from-blue-50 to-blue-100 rounded-lg shadow p-4 flex flex-col my-2">
+        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-7a77df6b', this)">
+            <div>
+                <p class="text-lg text-2xl text-gray-800 copyable relative" 
+                onclick="copyText(this)"><ruby>王<rt style="visibility: hidden">おう</rt></ruby><ruby>座<rt style="visibility: hidden">ざ</rt></ruby></p>
+                <p class="text-sm text-gray-600">trůn</p>
+            </div>
+            <button class="button-vocab-toggle text-gray-600 hover:text-gray-900 
+            transform transition-transform duration-200 px-2">▼</button>
+        </div>
+        
+        <div id="vocab-7a77df6b" class="button-vocab-example hidden text-gray-700">
+            <div class="mt-2 p-2 rounded bg-white shadow">
+            <div>
+                <div style="margin-bottom: 5px;"><span lang="JA"><ruby>彼<rt style="visibility: hidden">かれ</rt></ruby>は<ruby>王<rt style="visibility: hidden">おう</rt></ruby><ruby>座<rt style="visibility: hidden">ざ</rt></ruby>を<ruby>手<rt style="visibility: hidden">て</rt></ruby>に<ruby>入<rt style="visibility: hidden">い</rt></ruby>れました。</span></div>
+                <div style="margin-bottom: 5px; color: #666;">On získal královský trůn.</div>
+            </div>
+            </div>
+            
+        </div>
+    </div>
+    
     
     <div class="bg-gradient-to-r from-purple-100 to-purple-300 rounded-lg shadow p-4 flex flex-col my-2">
         <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-b38d55bf', this)">
@@ -244,28 +266,6 @@ rt {
             <div>
                 <div style="margin-bottom: 5px;"><span lang="JA">ずっと<ruby>正<rt style="visibility: hidden">せい</rt></ruby><ruby>座<rt style="visibility: hidden">ざ</rt></ruby>してたからか、<ruby>足<rt style="visibility: hidden">あし</rt></ruby>がしびれちゃって。</span></div>
                 <div style="margin-bottom: 5px; color: #666;">Ztuhly mi nohy, nejspíš proto, že jsem na nich celou dobu seděla v seize.</div>
-            </div>
-            </div>
-            
-        </div>
-    </div>
-    
-    <div class="bg-gradient-to-r from-purple-100 to-purple-300 rounded-lg shadow p-4 flex flex-col my-2">
-        <div class="flex justify-between items-center cursor-pointer" onclick="toggleExample('vocab-7a77df6b', this)">
-            <div>
-                <p class="text-lg text-2xl text-gray-800 copyable relative" 
-                onclick="copyText(this)"><ruby>王<rt style="visibility: hidden">おう</rt></ruby><ruby>座<rt style="visibility: hidden">ざ</rt></ruby></p>
-                <p class="text-sm text-gray-600">trůn</p>
-            </div>
-            <button class="button-vocab-toggle text-gray-600 hover:text-gray-900 
-            transform transition-transform duration-200 px-2">▼</button>
-        </div>
-        
-        <div id="vocab-7a77df6b" class="button-vocab-example hidden text-gray-700">
-            <div class="mt-2 p-2 rounded bg-white shadow">
-            <div>
-                <div style="margin-bottom: 5px;"><span lang="JA"><ruby>彼<rt style="visibility: hidden">かれ</rt></ruby>は<ruby>王<rt style="visibility: hidden">おう</rt></ruby><ruby>座<rt style="visibility: hidden">ざ</rt></ruby>を<ruby>手<rt style="visibility: hidden">て</rt></ruby>に<ruby>入<rt style="visibility: hidden">い</rt></ruby>れました。</span></div>
-                <div style="margin-bottom: 5px; color: #666;">On získal královský trůn.</div>
             </div>
             </div>
             
