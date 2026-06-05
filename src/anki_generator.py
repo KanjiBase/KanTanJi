@@ -23,49 +23,12 @@ import config
 from utils import generate_furigana, sanitize_filename, create_dataset_readme
 from utils_data_entitites import InputFormat
 from utils_html import parse_item_props_html
+from i18n import T
 
-# -----------------------------------------------------------------------------
-# Lightweight localization. Every on-card user-facing string is looked up from
-# TRANSLATIONS[config.LANGUAGE]. The JS init block receives the same map as a
-# JSON object named `T` so client-side code can reference T.key. Placeholders
-# {drawn}/{total} are interpolated in JS via .replace().
-# -----------------------------------------------------------------------------
-TRANSLATIONS = {
-    "cs": {
-        "usage_label": "使＜つか＞い方＜かた＞",
-        "correct_label": "Správně",
-        "instruction_outline": "Napiš dle předlohy.",
-        "instruction_recall": "Napiš z paměti.",
-        "mistakes_prefix": "Chyb: ",
-        "done_prefix": "Hotovo ✓  Chyb: ",
-        "result_prefix": "Výsledek ✓  Chyb: ",
-        "unfinished_with_total": "Nedokončeno: {drawn}/{total} tahů",
-        "unfinished_no_total": "Nedokončeno: {drawn} tahů",
-        "mistakes_unknown": "Počet chyb neznámý.",
-        "no_drawing": "Žádná kresba.",
-        "cannot_render": "Nelze vykreslit.",
-        "stroke_data_missing": "Chybí data tahů pro: ",
-        "package_prefix": "Balíček",
-    },
-    "en": {
-        "usage_label": "Usage",
-        "correct_label": "Correct",
-        "instruction_outline": "Trace the outline.",
-        "instruction_recall": "Write from memory.",
-        "mistakes_prefix": "Mistakes: ",
-        "done_prefix": "Done ✓  Mistakes: ",
-        "result_prefix": "Result ✓  Mistakes: ",
-        "unfinished_with_total": "Unfinished: {drawn}/{total} strokes",
-        "unfinished_no_total": "Unfinished: {drawn} strokes",
-        "mistakes_unknown": "Mistakes count unknown.",
-        "no_drawing": "No drawing.",
-        "cannot_render": "Cannot render.",
-        "stroke_data_missing": "Stroke data missing for: ",
-        "package_prefix": "Package",
-    },
-}
-
-_T = TRANSLATIONS.get(getattr(config, "LANGUAGE", "cs"), TRANSLATIONS["cs"])
+# On-card user-facing strings live in `src/i18n.py` under the "anki" namespace.
+# The JS init block JSON-dumps `_T` so client-side code can reference T.key;
+# placeholders {drawn}/{total} are interpolated in JS via .replace().
+_T = T['anki']
 
 # -----------------------------------------------------------------------------
 # HanziWriter (offline) integration for Japanese kanji stroke order practice
@@ -855,16 +818,49 @@ def generate(key: str, data: dict, metadata: dict, folder_getter: Callable, is_d
     # Anki packs only read data, so if not modified do not re-generate
     if not data["modified"] and not is_debug_run:
         return False
-    anki = read_kanji_csv(key, data)
+    rows = read_kanji_csv(key, data)
 
-    if not is_debug_run:
-        create_anki_deck(key, anki, f"{folder_getter(key)}/{sanitize_filename(key)}.apkg")
+    # Split into two packs: default = kanji + significance=0 vocab,
+    # advanced add-on = vocab with significance > 0 (Learn_Deck + Learn_Future).
+    default_rows = [r for r in rows if r[4] == "kanji" or r[5] == 0]
+    advanced_rows = [r for r in rows if r[4] == "tango" and r[5] > 0]
+
+    if is_debug_run:
+        return True
+
+    folder = folder_getter(key)
+    base = sanitize_filename(key)
+
+    create_anki_deck(key, default_rows, f"{folder}/{base}.apkg")
+
+    if advanced_rows:
+        create_anki_deck(f"{key}::Advanced", advanced_rows,
+                         f"{folder}/{base}-advanced.apkg")
     return True
 
 
 def create_readme_entries(dataset_list: list):
+    """Render per-subset Anki download blocks.
+
+    One line per subset:
+        - **<subset>**: <basic-link> · <advanced-link>
+
+    Datasets often contain many subsets, so we keep each entry to a single
+    bullet to avoid a vertical wall of text. The basic/advanced split is
+    explained once at the section level (see main.py's README template).
+    """
     result = []
     for x in dataset_list:
         files = list(Path(x["path"]).glob('**/*.apkg'))
-        result.append(create_dataset_readme(files, f"{_T['package_prefix']} {x['item']['name']}", ""))
+        basic = sorted(f for f in files if not f.stem.endswith("-advanced"))
+        advanced = sorted(f for f in files if f.stem.endswith("-advanced"))
+
+        if not basic and not advanced:
+            print("Warning: invalid dataset - no output files!",
+                  f"{_T['package_prefix']} {x['item']['name']}", "")
+            continue
+
+        links = [f"<a href=\"{f}\">{_T['basic_pack_label']}</a>" for f in basic]
+        links += [f"<a href=\"{f}\">{_T['advanced_pack_label']}</a>" for f in advanced]
+        result.append(f" - **{x['item']['name']}**: &nbsp; " + " &nbsp; · &nbsp; ".join(links))
     return result

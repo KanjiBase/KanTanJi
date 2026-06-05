@@ -22,6 +22,7 @@ from src.config import OVERRIDE_VOCAB_SIGNIFICANCE
 from src.utils import process_row, dict_read_create, parse_ids
 from src.read_input_google_api import read_sheets_google_api
 from src.read_input_test_data import read_local_data
+from src.radical_index import build_radical_index, count_legacy_refs
 # For some reason, when src. is added as prefix the code fails to run due mismatches on class types
 from utils_data_entitites import DataSet, KanjiEntry, Value, HashGuard, DataSubsetEntry
 from utils_filesystem import merge_trees, delete_filesystem_node
@@ -30,6 +31,7 @@ import src.anki_generator as anki
 import src.html_pdf_generator as pdf
 import src.html_generator as html
 import src.json_generator as json
+from src.i18n import T, load_template
 
 
 DataSet.set_mode_production(not dry_run)
@@ -149,6 +151,20 @@ for dataset_name in data:
             print(traceback.format_exc())
 
 
+## Build radical index from bundled Kangxi-214 data + per-language translations
+# Drop any legacy `radical` overlay rows that may have slipped through parsing.
+parsed_metadata.pop("radical", None)
+radical_index, radical_stats = build_radical_index(kanji_dictionary)
+legacy_ref_count = count_legacy_refs(kanji_dictionary)
+if legacy_ref_count:
+    print(f" --radicals-- {legacy_ref_count} kanji still carry legacy `ref: radical-N` cells; "
+          f"they are ignored (radicals are now linked automatically). Clean up at your leisure.")
+if radical_stats["missing_kanji"]:
+    sample = radical_stats["missing_kanji"][:10]
+    more = "..." if len(radical_stats["missing_kanji"]) > 10 else ""
+    print(f" --radicals-- {len(radical_stats['missing_kanji'])} kanji not found in KANJIDIC2 "
+          f"(no radical block on their cards): {sample}{more}")
+
 ## First prepare metadata
 metadata = {}
 # Compute guard also for metadata
@@ -160,6 +176,12 @@ for name in parsed_metadata:
         "modified": data_modification_guard.set_record_and_check_if_modified(name, name, metadata_entries)
     }
 del parsed_metadata
+
+metadata["radical"] = {
+    "name": "radical",
+    "content": radical_index,
+    "modified": data_modification_guard.set_record_and_check_if_modified("radical", "radical", radical_index),
+}
 
 
 ## Then debugging info - if requested, exit after generating
@@ -298,59 +320,7 @@ for did in complementary_datasets:
             print(f" --parse dataset-- Error: dataset {subset_name} ignored", e)
 
 
-readme = """
-# Kan<sup>Tan</sup>Ji &nbsp; 漢<sup>単</sup>字
-
-> Simple KanJi training platform for czech audience.
-
-Jednoduchá aplikace na trénování Kanji. Projekt vznikl jako spolupráce dobrovolníků
-a japanistů na FF MUNI. Cílem je nabídnout různé způsoby učení kanji s kompletními
-informacemi přímo v češtině.
-
-[Vaše zpětná vazba je pro nás cenná! Prosíme, kontaktujte nás na stránce projektu.](https://github.com/KanjiBase/KanTanJi/issues)
-Uvedený odkaz lze použít i pro pispívání do databáze.
-Pokud chcete pomoci s přípravou obsahu a nebo máte jiný nápad, neváhejte nám dát vědět.
-
-Kan<sup>Tan</sup>Ji je open-source projekt, a nemá žádný vztah s existujícími profily na sociálních sítích.
-
-### FAQ
-<details>
-<summary>Jaký je stav projektu?</summary>
-Kan<sup>Tan</sup>Ji může obsahovat drobné nedostatky, typicky způsobené lidskou chybou při zadávání tisíců slovíček
-a příkladových vět - dejte nám vědět, pokud nějaké najdete! Japonský školní systém je hotový vždy po poslední sadu, 
-ve které typicky chybí pár znaků, které se v BKB pořadí ještě nevyskytují. BKB pořadí je kompletní dle existující sady.
-V budoucnu plánujeme pokračovat v množství podporovaných kanji.
-</details>
-<details>
-<summary>
-Řazení znaků a velikosti sad
-</summary>
-Řazení a velikosti nejsou zcela vymyšleny tak, aby vyhovovaly všem. Pořadí jsou k dispozici 
-dle níže uvedených kapitol. Ke každému pořadí jsou dostupné všechny typy materiálů (PDF, Anki, HTML stránky, atp.).
-V budoucnu bychom rádi rozšířili počet nánstrojů, které kanji umožňují studovat, a umožnili uživatelům vytvářet vlastní 
-pořadí a vlastní velikosti sad.
-</details>
-<details>
-<summary>Filtrování karet Anki</summary>
-Karty KanTanJi mohou obsahovat více, než se chcete učit. Karty lze snadno filtrovat pomocí <strong>tagů</strong>. V současnosti jsou k dispozici tagy:
-<ul>
- <li><strong>KanTanJi_Kanji</strong> (karta s kanji)</li>
- <li><strong>KanTanJi_Tango</strong> (slovní zásoba související s kanji)</li>
- <li><strong>KanTanJi_Learn_Now</strong> (slovní zásoba obsahující pouze kanji, která již byla naučena)</li>
- <li><strong>KanTanJi_Learn_Deck</strong> (slovní zásoba obsahující kanji, která se bude učit v aktuálním balíčku)</li>
- <li><strong>KanTanJi_Learn_Future</strong> (slovní zásoba obsahující kanji, která ještě nebyla naučena)</li>
-</ul>
-Pokud chcete například odstranit všechny karty s kanji a příliš obtížnou slovní zásobu obsahující kanji, 
-která ještě nebyla naučena podle pořadí KanTanJi, můžete <strong>pozastavit</strong> karty s tagy 
-'KanTanJi_Kanji' a 'KanTanJi_Learn_Future'.
-
-Nejprve v aplikaci Anki <strong>otevřete Prohlížení karet (Browse Cards)</strong>. Poté v možnostech vyberte <strong>filtrovat podle tagu</strong>.
-Když jsou zobrazeny pouze požadované karty, opět v možnostech zvolte <strong>vybrat všechny karty</strong> 
-a nakonec také v možnostech vyberte <strong>pozastavit (suspend)</strong>.
-
-Doporučujeme slučovat studované sady do jedné velké sady, aby bylo možné využít výhod chytrého opakování v Anki.
-</details>
-"""
+readme = load_template("readme")
 
 print()
 print("Processing started...")
@@ -441,29 +411,14 @@ def get_readme_contents():
 
         dataset_title = f"## {dataset_name}" if dataset_name else dataset_id
 
-        output_readme[dataset_id] = f"""
-{dataset_title}
-{dataset.description if dataset.description else ""}
-### PDF Materiály
-PDF Soubory obsahují seznam znaků kanji a přidružených slovíček.
-{pdfs}
-
-### ANKI Balíčky
-Balíčky lze importovat opakovaně do ANKI aplikace. Balíčky se řadí do kolekce 'KanTanJi' 
-a umožňují chytré a interaktivní procvičování kanji. Balíček obsahuje jak kanji (poznáš podle
-toho, že karta otázky obsahuje link na KanjiAlive), tak slovní zásobu ke kanji.
-Furiganu zobrazíš kliknutím / tapnutím na kartičku.
-
-{ankis}
-
-### HTML
-HTML Stránky slouží pro vložení interaktivních informací o Kanji do externích webových služeb.
-{htmls}
-
-### Datové Balíčky
-Slouží pro import do dalších aplikací, například [Lively Wallpaper](https://github.com/KanjiBase/LivelyKanji).
-{jsons}
-"""
+        output_readme[dataset_id] = load_template("dataset_section").format(
+            dataset_title=dataset_title,
+            dataset_description=dataset.description if dataset.description else "",
+            pdfs=pdfs,
+            ankis=ankis,
+            htmls=htmls,
+            jsons=jsons,
+        )
     return output_readme
 
 
@@ -487,9 +442,9 @@ if not uses_test_data and not dry_run:
         readme_output.append(contents[dataset_id])
 
     # if len(readme_output):
-    #     readme_output = "\n\n ## Dostupné Sady \n" + "\n".join(readme_output)
+    #     readme_output = f"\n\n ## {T['main']['available_sets_header']} \n" + "\n".join(readme_output)
     # else:
-    #     readme_output = "Nejsou žádné dostupné sady. Dataset není definován!"
+    #     readme_output = T['main']['no_datasets_defined']
     readme_output = "\n\n\n".join(readme_output)
 
     # Write the README.md with links to the PDF files
@@ -515,9 +470,9 @@ else:
         readme_output.append(f"- <a href=\"{dataset_readme}\">{dataset_name}</a>")
 
     if len(readme_output):
-        readme_output = "\n\n ## Dostupné Sady \n Trénování Kanji\n" + "\n".join(readme_output)
+        readme_output = f"\n\n ## {T['main']['available_sets_header']} \n {T['main']['available_sets_subheader']}\n" + "\n".join(readme_output)
     else:
-        readme_output = "Nejsou žádné dostupné sady. Dataset není definován!"
+        readme_output = T['main']['no_datasets_defined']
 
     # Write the README.md with links to the PDF files
     with open(".TEST-README.md", mode='w+', encoding='utf-8') as file:

@@ -9,7 +9,7 @@ from utils_data_entitites import InputFormat, Value, Version, VocabEntry, Radica
     DatasetEntry, DataSubsetEntry
 
 
-METADATA_FILE = "/misc/.file_order.json"
+METADATA_FILE = ".file_order.json"
 
 
 def short_uid(text: str, length=8):
@@ -36,34 +36,36 @@ def order_file_list(file_list: list):
     return sorted(file_list, key=cached_get_file_order)
 
 
-def set_file_order(filename: str, order: int):
+def set_file_order(filename, order: int):
+    filename = os.fspath(filename)
     directory = os.path.dirname(filename) or '.'
     metadata_path = os.path.join(directory, METADATA_FILE)
+    key = os.path.basename(filename)
 
-    # Load existing metadata
     try:
-        with open(metadata_path, 'r') as f:
+        with open(metadata_path, 'r', encoding='utf-8') as f:
             metadata = json.load(f)
     except (FileNotFoundError, json.JSONDecodeError):
         metadata = {}
 
-    metadata[filename] = order
+    metadata[key] = order
 
-    # Save metadata
-    with open(metadata_path, 'w') as f:
-        json.dump(metadata, f, indent=2)
+    with open(metadata_path, 'w', encoding='utf-8') as f:
+        json.dump(metadata, f, indent=2, ensure_ascii=False)
 
 
-def get_file_order(filename: str):
+def get_file_order(filename):
+    filename = os.fspath(filename)
     directory = os.path.dirname(filename) or '.'
     metadata_path = os.path.join(directory, METADATA_FILE)
+    key = os.path.basename(filename)
 
     try:
-        with open(metadata_path, 'r') as f:
+        with open(metadata_path, 'r', encoding='utf-8') as f:
             metadata = json.load(f)
-        return int(metadata.get(filename, float('inf')))
+        return int(metadata.get(key, float('inf')))
     except (FileNotFoundError, ValueError, json.JSONDecodeError):
-        return float('inf')  # Default high value if missing
+        return float('inf')
 
 
 #### ON MATCHING FURIGANA #########
@@ -306,7 +308,16 @@ def process_row(row: list):
             item[key].append(Value(value, key_significance, data_format))
         elif key in ['junban']:
             item[key] = Value(int(value), key_significance, data_format)
-        elif key in ['imi', 'tango', 'radical', 'setto', 'kijutsu']:
+        elif key == 'radical':
+            # Radicals are now linked automatically and translated via
+            # data/radicals/kangxi-214.<lang>.json. Any `radical` row in a sheet
+            # is treated as legacy and ignored at dispatch.
+            item["_legacy_radical_row"] = True
+        elif key == 'strokes':
+            # Legacy companion field on old radical rows; harmless if present
+            # elsewhere — route to extra and move on.
+            item["extra"][original_key] = Value(value, key_significance, data_format)
+        elif key in ['imi', 'tango', 'setto', 'kijutsu']:
             item[key] = Value(value, key_significance, data_format)
         else:
             # TODO does not support chaining
@@ -324,8 +335,12 @@ def process_row(row: list):
             # print(" --parse-- WARNING: kanji", item.get("kanji"), "does not specify required field 'imi'")
             item["kanji"].significance += 1
         output = KanjiEntry()
-    elif item.get("radical"):
-        output = RadicalEntry()
+    elif item.get("_legacy_radical_row"):
+        # Bundled Kangxi-214 data + per-language translation files cover
+        # radicals now; sheet-authored radical rows are no longer consumed.
+        print(" --parse-- Ignoring radical row (radicals are auto-linked; "
+              "translate via data/radicals/kangxi-214.<lang>.json):", row)
+        return None
     elif item.get("subid"):
         output = DataSubsetEntry()
     elif item.get('setto'):

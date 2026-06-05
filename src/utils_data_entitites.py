@@ -365,16 +365,22 @@ class VocabEntry(Entry):
 class RadicalEntry(Entry):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+        self._name = "RadicalEntry"
 
     def fill(self, other_dict):
         super().fill(other_dict)
         self["type"] = "radical"
+        self["number"] = other_dict.get("number")
         self["radical"] = other_dict.get("radical")
-        self["id"] = other_dict.get("id")
-        self["imi"] = other_dict.get("imi")
+        self["variants"] = list(other_dict.get("variants", []))
+        self["strokes"] = other_dict.get("strokes")
+        self["meaning_en"] = other_dict.get("meaning_en")
+        # imi (localized meaning) falls back to the bundled English gloss
+        self["imi"] = other_dict.get("imi") or other_dict.get("meaning_en")
+        self["onyomi"] = ValueList(other_dict.get("onyomi", []))
         self["kunyomi"] = ValueList(other_dict.get("kunyomi", []))
 
-        self["guid"] = self["radical"]
+        self["guid"] = f"radical-{self['number']}" if self["number"] is not None else self["radical"]
 
 
 class DatasetEntry(Entry):
@@ -466,71 +472,71 @@ class DataSet:
         return self._order
 
     def adjust_vocabulary_significance(self, kanji_dictionary):
-        # Here we deduct significance levels automatically for vocabulary entries, these
-        # are dependent on whether they contain already learnt kanji
-        kanji_regex = r'[\u4e00-\u9faf]|[\u3400-\u4dbf]|[々〆〇]'
+        # Deduct significance levels for vocabulary entries based on which kanji they
+        # contain and where those kanji sit relative to the current subset (pack):
+        #   auto = 0  all contained kanji already learned
+        #   auto = 1  some contained kanji is later but in the SAME subset
+        #   auto = 2  some contained kanji is in a LATER subset, or undefined for this dataset
+        # Final significance = auto + manual_offset, where manual_offset is the
+        # `tango-` trailing-dash count captured at parse time (src/utils.py).
+        kanji_regex = r'[一-龯]|[㐀-䶿]|[々〆〇]'
         logger = get_logger()
 
-        was_significance_test_configured = False
-        per_dataset_id = False
-        last_kanji_id = None
+        # kanji context_id -> subset key (== junban; see DataSet.append).
+        # First-encountered subset in junban order wins for kanji that appear in multiple subsets.
+        kanji_to_subset = {}
+        for ds_id in self.data_range():
+            spec = self.data[ds_id]
+            for k_local_id in spec["content"]:
+                cid = spec["content"][k_local_id].get_context_id(self.parent_context_id)
+                if cid is not None and cid not in kanji_to_subset:
+                    kanji_to_subset[cid] = ds_id
 
         for dataset_id in self.data_range():
             dataset_spec = self.data[dataset_id]
             dataset = dataset_spec["content"]
 
-            # How to setup last_kanji_id: if we have more than 50 kanjis, let's keep it per subset
-            #  else decide globally
-            if not was_significance_test_configured:
-                was_significance_test_configured = True
-                per_dataset_id = len(dataset) < 50
-                if not per_dataset_id:
-                    last_spec = self.data[self.data_range()[-1]]
-                    last_dataset = last_spec["content"]
-                    last_kanji_id = last_dataset[last_spec["order"][-1]].get_context_id(self.parent_context_id)
+            logger.info("Adjust vocabulary: %s (%s) (subset junban: %s)",
+                        dataset_spec["name"], dataset_id, dataset_id)
 
-                    if type(last_kanji_id) != int:
-                        print(f"E: Attempt to derive last kanji for the whole dataset failed: invalid id or type: {last_kanji_id}", last_spec)
-
-
-            logger.info("Adjust vocabulary: %s (%s) (per dataset: %s, last %s)",
-                        dataset_spec["name"], dataset_id, per_dataset_id, last_kanji_id)
-
-            for kanji_id in dataset:
-                kanji = dataset[kanji_id]
-
+            for local_kanji_id in dataset:
+                kanji = dataset[local_kanji_id]
                 kanji_id = kanji.get_context_id(self.parent_context_id)
-                if per_dataset_id:
-                    # Find last in this set
-                    last_kanji_id = dataset[dataset_spec["order"][-1]].get_context_id(self.parent_context_id)
 
                 for vocab in kanji.vocabulary():
                     try:
-                        match_len = 0
                         match = re.findall(kanji_regex, vocab["tango"])
-                        ignore_reason = None
+                        auto = 0
+                        reasons = []
                         for m in match:
                             contains_kanji = kanji_dictionary.get(m)
-                            contains_kanji_id = None if contains_kanji is None \
+                            contains_kanji_id = (
+                                None if contains_kanji is None
                                 else contains_kanji.get_context_id(self.parent_context_id)
+                            )
 
                             if contains_kanji_id is None:
-                                ignore_reason = f"kanji {m} undefined"
-                                break
+                                auto = max(auto, 2)
+                                reasons.append(f"{m} undefined")
+                                continue
                             if contains_kanji_id <= kanji_id:
-                                match_len = match_len + 1
-                            elif contains_kanji_id > last_kanji_id:
-                                ignore_reason = f"kanji {m} in far lesson"
-                                break
+                                continue
 
-                        logger.info("  Tango: %s, matched %s, match length %d (r: %s)",
-                                    vocab["tango"], match, match_len, ignore_reason)
-                        if ignore_reason:
-                            vocab.get("tango").significance = 2
-                        elif match_len == len(match):
-                            vocab.get("tango").significance = 0
-                        else:
-                            vocab.get("tango").significance = 1
+                            other_subset = kanji_to_subset.get(contains_kanji_id)
+                            if other_subset is None or other_subset > dataset_id:
+                                auto = max(auto, 2)
+                                reasons.append(f"{m} in later subset {other_subset}")
+                            else:
+                                auto = max(auto, 1)
+                                reasons.append(f"{m} later within same subset")
+
+                        manual_offset = vocab.get("tango").significance or 0
+                        vocab.get("tango").significance = auto + manual_offset
+
+                        logger.info("  Tango: %s -> auto=%d manual=%d final=%d (%s)",
+                                    vocab["tango"], auto, manual_offset,
+                                    auto + manual_offset,
+                                    "; ".join(reasons) if reasons else "all learned")
 
                     except Exception as e:
                         vocab["_used_kanjis_"] = []

@@ -1,0 +1,2878 @@
+{
+  "1": {
+    "number": 1,
+    "radical": "一",
+    "variants": [],
+    "strokes": 1,
+    "meaning_en": "one",
+    "onyomi": [
+      "イチ"
+    ],
+    "kunyomi": [
+      "いち"
+    ]
+  },
+  "2": {
+    "number": 2,
+    "radical": "丨",
+    "variants": [],
+    "strokes": 1,
+    "meaning_en": "line, vertical stroke",
+    "onyomi": [],
+    "kunyomi": [
+      "たてぼう"
+    ]
+  },
+  "3": {
+    "number": 3,
+    "radical": "丶",
+    "variants": [],
+    "strokes": 1,
+    "meaning_en": "dot",
+    "onyomi": [],
+    "kunyomi": [
+      "てん"
+    ]
+  },
+  "4": {
+    "number": 4,
+    "radical": "丿",
+    "variants": [],
+    "strokes": 1,
+    "meaning_en": "diagonal sweeping stroke",
+    "onyomi": [],
+    "kunyomi": [
+      "の"
+    ]
+  },
+  "5": {
+    "number": 5,
+    "radical": "乙",
+    "variants": [
+      "乚"
+    ],
+    "strokes": 1,
+    "meaning_en": "second, twist",
+    "onyomi": [
+      "オツ"
+    ],
+    "kunyomi": [
+      "おつ"
+    ]
+  },
+  "6": {
+    "number": 6,
+    "radical": "亅",
+    "variants": [],
+    "strokes": 1,
+    "meaning_en": "hook",
+    "onyomi": [],
+    "kunyomi": [
+      "はねぼう"
+    ]
+  },
+  "7": {
+    "number": 7,
+    "radical": "二",
+    "variants": [],
+    "strokes": 2,
+    "meaning_en": "two",
+    "onyomi": [
+      "ニ"
+    ],
+    "kunyomi": [
+      "に"
+    ]
+  },
+  "8": {
+    "number": 8,
+    "radical": "亠",
+    "variants": [],
+    "strokes": 2,
+    "meaning_en": "lid",
+    "onyomi": [],
+    "kunyomi": [
+      "なべぶた",
+      "けいさんかんむり"
+    ]
+  },
+  "9": {
+    "number": 9,
+    "radical": "人",
+    "variants": [
+      "亻"
+    ],
+    "strokes": 2,
+    "meaning_en": "person",
+    "onyomi": [
+      "ジン",
+      "ニン"
+    ],
+    "kunyomi": [
+      "ひと"
+    ]
+  },
+  "10": {
+    "number": 10,
+    "radical": "儿",
+    "variants": [],
+    "strokes": 2,
+    "meaning_en": "legs, human legs",
+    "onyomi": [],
+    "kunyomi": [
+      "にんにょう",
+      "ひとあし"
+    ]
+  },
+  "11": {
+    "number": 11,
+    "radical": "入",
+    "variants": [],
+    "strokes": 2,
+    "meaning_en": "enter",
+    "onyomi": [
+      "ニュウ"
+    ],
+    "kunyomi": [
+      "いる"
+    ]
+  },
+  "12": {
+    "number": 12,
+    "radical": "八",
+    "variants": [],
+    "strokes": 2,
+    "meaning_en": "eight, divide",
+    "onyomi": [
+      "ハチ"
+    ],
+    "kunyomi": [
+      "はち"
+    ]
+  },
+  "13": {
+    "number": 13,
+    "radical": "冂",
+    "variants": [],
+    "strokes": 2,
+    "meaning_en": "open enclosure",
+    "onyomi": [],
+    "kunyomi": [
+      "けいがまえ",
+      "まきがまえ"
+    ]
+  },
+  "14": {
+    "number": 14,
+    "radical": "冖",
+    "variants": [],
+    "strokes": 2,
+    "meaning_en": "cover",
+    "onyomi": [],
+    "kunyomi": [
+      "わかんむり"
+    ]
+  },
+  "15": {
+    "number": 15,
+    "radical": "冫",
+    "variants": [],
+    "strokes": 2,
+    "meaning_en": "ice",
+    "onyomi": [],
+    "kunyomi": [
+      "にすい"
+    ]
+  },
+  "16": {
+    "number": 16,
+    "radical": "几",
+    "variants": [],
+    "strokes": 2,
+    "meaning_en": "table",
+    "onyomi": [
+      "キ"
+    ],
+    "kunyomi": [
+      "つくえ"
+    ]
+  },
+  "17": {
+    "number": 17,
+    "radical": "凵",
+    "variants": [],
+    "strokes": 2,
+    "meaning_en": "open mouth, container",
+    "onyomi": [],
+    "kunyomi": [
+      "うけばこ",
+      "かんにょう"
+    ]
+  },
+  "18": {
+    "number": 18,
+    "radical": "刀",
+    "variants": [
+      "刂"
+    ],
+    "strokes": 2,
+    "meaning_en": "knife, sword",
+    "onyomi": [
+      "トウ"
+    ],
+    "kunyomi": [
+      "かたな",
+      "りっとう"
+    ]
+  },
+  "19": {
+    "number": 19,
+    "radical": "力",
+    "variants": [],
+    "strokes": 2,
+    "meaning_en": "power",
+    "onyomi": [
+      "リョク",
+      "リキ"
+    ],
+    "kunyomi": [
+      "ちから"
+    ]
+  },
+  "20": {
+    "number": 20,
+    "radical": "勹",
+    "variants": [],
+    "strokes": 2,
+    "meaning_en": "wrap",
+    "onyomi": [],
+    "kunyomi": [
+      "つつみがまえ"
+    ]
+  },
+  "21": {
+    "number": 21,
+    "radical": "匕",
+    "variants": [],
+    "strokes": 2,
+    "meaning_en": "spoon",
+    "onyomi": [
+      "ヒ"
+    ],
+    "kunyomi": [
+      "さじ"
+    ]
+  },
+  "22": {
+    "number": 22,
+    "radical": "匚",
+    "variants": [],
+    "strokes": 2,
+    "meaning_en": "right open box",
+    "onyomi": [],
+    "kunyomi": [
+      "はこがまえ"
+    ]
+  },
+  "23": {
+    "number": 23,
+    "radical": "匸",
+    "variants": [],
+    "strokes": 2,
+    "meaning_en": "hiding enclosure",
+    "onyomi": [],
+    "kunyomi": [
+      "かくしがまえ"
+    ]
+  },
+  "24": {
+    "number": 24,
+    "radical": "十",
+    "variants": [],
+    "strokes": 2,
+    "meaning_en": "ten",
+    "onyomi": [
+      "ジュウ"
+    ],
+    "kunyomi": [
+      "じゅう"
+    ]
+  },
+  "25": {
+    "number": 25,
+    "radical": "卜",
+    "variants": [],
+    "strokes": 2,
+    "meaning_en": "divination",
+    "onyomi": [
+      "ボク"
+    ],
+    "kunyomi": [
+      "ぼく",
+      "うらない"
+    ]
+  },
+  "26": {
+    "number": 26,
+    "radical": "卩",
+    "variants": [
+      "㔾"
+    ],
+    "strokes": 2,
+    "meaning_en": "seal",
+    "onyomi": [],
+    "kunyomi": [
+      "ふしづくり"
+    ]
+  },
+  "27": {
+    "number": 27,
+    "radical": "厂",
+    "variants": [],
+    "strokes": 2,
+    "meaning_en": "cliff",
+    "onyomi": [],
+    "kunyomi": [
+      "がんだれ"
+    ]
+  },
+  "28": {
+    "number": 28,
+    "radical": "厶",
+    "variants": [],
+    "strokes": 2,
+    "meaning_en": "private",
+    "onyomi": [
+      "シ"
+    ],
+    "kunyomi": [
+      "む"
+    ]
+  },
+  "29": {
+    "number": 29,
+    "radical": "又",
+    "variants": [],
+    "strokes": 2,
+    "meaning_en": "again, right hand",
+    "onyomi": [
+      "ユウ"
+    ],
+    "kunyomi": [
+      "また"
+    ]
+  },
+  "30": {
+    "number": 30,
+    "radical": "口",
+    "variants": [],
+    "strokes": 3,
+    "meaning_en": "mouth",
+    "onyomi": [
+      "コウ"
+    ],
+    "kunyomi": [
+      "くち"
+    ]
+  },
+  "31": {
+    "number": 31,
+    "radical": "囗",
+    "variants": [],
+    "strokes": 3,
+    "meaning_en": "enclosure",
+    "onyomi": [],
+    "kunyomi": [
+      "くにがまえ"
+    ]
+  },
+  "32": {
+    "number": 32,
+    "radical": "土",
+    "variants": [],
+    "strokes": 3,
+    "meaning_en": "earth",
+    "onyomi": [
+      "ド",
+      "ト"
+    ],
+    "kunyomi": [
+      "つち"
+    ]
+  },
+  "33": {
+    "number": 33,
+    "radical": "士",
+    "variants": [],
+    "strokes": 3,
+    "meaning_en": "scholar, warrior",
+    "onyomi": [
+      "シ"
+    ],
+    "kunyomi": [
+      "さむらい"
+    ]
+  },
+  "34": {
+    "number": 34,
+    "radical": "夂",
+    "variants": [],
+    "strokes": 3,
+    "meaning_en": "go",
+    "onyomi": [],
+    "kunyomi": [
+      "ふゆがしら",
+      "ちかんむり"
+    ]
+  },
+  "35": {
+    "number": 35,
+    "radical": "夊",
+    "variants": [],
+    "strokes": 3,
+    "meaning_en": "go slowly",
+    "onyomi": [],
+    "kunyomi": [
+      "すいにょう"
+    ]
+  },
+  "36": {
+    "number": 36,
+    "radical": "夕",
+    "variants": [],
+    "strokes": 3,
+    "meaning_en": "evening",
+    "onyomi": [
+      "セキ"
+    ],
+    "kunyomi": [
+      "ゆう"
+    ]
+  },
+  "37": {
+    "number": 37,
+    "radical": "大",
+    "variants": [],
+    "strokes": 3,
+    "meaning_en": "big",
+    "onyomi": [
+      "ダイ",
+      "タイ"
+    ],
+    "kunyomi": [
+      "おお"
+    ]
+  },
+  "38": {
+    "number": 38,
+    "radical": "女",
+    "variants": [],
+    "strokes": 3,
+    "meaning_en": "woman",
+    "onyomi": [
+      "ジョ"
+    ],
+    "kunyomi": [
+      "おんな"
+    ]
+  },
+  "39": {
+    "number": 39,
+    "radical": "子",
+    "variants": [],
+    "strokes": 3,
+    "meaning_en": "child",
+    "onyomi": [
+      "シ"
+    ],
+    "kunyomi": [
+      "こ"
+    ]
+  },
+  "40": {
+    "number": 40,
+    "radical": "宀",
+    "variants": [],
+    "strokes": 3,
+    "meaning_en": "roof",
+    "onyomi": [],
+    "kunyomi": [
+      "うかんむり"
+    ]
+  },
+  "41": {
+    "number": 41,
+    "radical": "寸",
+    "variants": [],
+    "strokes": 3,
+    "meaning_en": "inch, thumb",
+    "onyomi": [
+      "スン"
+    ],
+    "kunyomi": [
+      "すん"
+    ]
+  },
+  "42": {
+    "number": 42,
+    "radical": "小",
+    "variants": [
+      "⺌",
+      "⺍"
+    ],
+    "strokes": 3,
+    "meaning_en": "small",
+    "onyomi": [
+      "ショウ"
+    ],
+    "kunyomi": [
+      "ちいさい"
+    ]
+  },
+  "43": {
+    "number": 43,
+    "radical": "尢",
+    "variants": [
+      "尤"
+    ],
+    "strokes": 3,
+    "meaning_en": "lame",
+    "onyomi": [],
+    "kunyomi": [
+      "まげあし"
+    ]
+  },
+  "44": {
+    "number": 44,
+    "radical": "尸",
+    "variants": [],
+    "strokes": 3,
+    "meaning_en": "corpse, flag",
+    "onyomi": [
+      "シ"
+    ],
+    "kunyomi": [
+      "しかばね"
+    ]
+  },
+  "45": {
+    "number": 45,
+    "radical": "屮",
+    "variants": [],
+    "strokes": 3,
+    "meaning_en": "sprout",
+    "onyomi": [],
+    "kunyomi": [
+      "てつ"
+    ]
+  },
+  "46": {
+    "number": 46,
+    "radical": "山",
+    "variants": [],
+    "strokes": 3,
+    "meaning_en": "mountain",
+    "onyomi": [
+      "サン"
+    ],
+    "kunyomi": [
+      "やま"
+    ]
+  },
+  "47": {
+    "number": 47,
+    "radical": "巛",
+    "variants": [
+      "川"
+    ],
+    "strokes": 3,
+    "meaning_en": "river",
+    "onyomi": [],
+    "kunyomi": [
+      "かわ"
+    ]
+  },
+  "48": {
+    "number": 48,
+    "radical": "工",
+    "variants": [],
+    "strokes": 3,
+    "meaning_en": "work",
+    "onyomi": [
+      "コウ"
+    ],
+    "kunyomi": [
+      "たくみ"
+    ]
+  },
+  "49": {
+    "number": 49,
+    "radical": "己",
+    "variants": [
+      "巳",
+      "已"
+    ],
+    "strokes": 3,
+    "meaning_en": "oneself",
+    "onyomi": [
+      "コ",
+      "キ"
+    ],
+    "kunyomi": [
+      "おのれ"
+    ]
+  },
+  "50": {
+    "number": 50,
+    "radical": "巾",
+    "variants": [],
+    "strokes": 3,
+    "meaning_en": "turban, scarf",
+    "onyomi": [
+      "キン"
+    ],
+    "kunyomi": [
+      "はば"
+    ]
+  },
+  "51": {
+    "number": 51,
+    "radical": "干",
+    "variants": [],
+    "strokes": 3,
+    "meaning_en": "dry, shield",
+    "onyomi": [
+      "カン"
+    ],
+    "kunyomi": [
+      "ほす"
+    ]
+  },
+  "52": {
+    "number": 52,
+    "radical": "幺",
+    "variants": [],
+    "strokes": 3,
+    "meaning_en": "short thread",
+    "onyomi": [],
+    "kunyomi": [
+      "いとがしら"
+    ]
+  },
+  "53": {
+    "number": 53,
+    "radical": "广",
+    "variants": [],
+    "strokes": 3,
+    "meaning_en": "dotted cliff, house",
+    "onyomi": [],
+    "kunyomi": [
+      "まだれ"
+    ]
+  },
+  "54": {
+    "number": 54,
+    "radical": "廴",
+    "variants": [],
+    "strokes": 3,
+    "meaning_en": "long stride",
+    "onyomi": [],
+    "kunyomi": [
+      "えんにょう"
+    ]
+  },
+  "55": {
+    "number": 55,
+    "radical": "廾",
+    "variants": [],
+    "strokes": 3,
+    "meaning_en": "two hands, twenty",
+    "onyomi": [],
+    "kunyomi": [
+      "にじゅうあし"
+    ]
+  },
+  "56": {
+    "number": 56,
+    "radical": "弋",
+    "variants": [],
+    "strokes": 3,
+    "meaning_en": "ceremonial lance",
+    "onyomi": [
+      "ヨク"
+    ],
+    "kunyomi": [
+      "しきがまえ"
+    ]
+  },
+  "57": {
+    "number": 57,
+    "radical": "弓",
+    "variants": [],
+    "strokes": 3,
+    "meaning_en": "bow",
+    "onyomi": [
+      "キュウ"
+    ],
+    "kunyomi": [
+      "ゆみ"
+    ]
+  },
+  "58": {
+    "number": 58,
+    "radical": "彐",
+    "variants": [
+      "彑"
+    ],
+    "strokes": 3,
+    "meaning_en": "pig snout, broom",
+    "onyomi": [],
+    "kunyomi": [
+      "けいがしら"
+    ]
+  },
+  "59": {
+    "number": 59,
+    "radical": "彡",
+    "variants": [],
+    "strokes": 3,
+    "meaning_en": "bristle, hair",
+    "onyomi": [],
+    "kunyomi": [
+      "さんづくり"
+    ]
+  },
+  "60": {
+    "number": 60,
+    "radical": "彳",
+    "variants": [],
+    "strokes": 3,
+    "meaning_en": "step",
+    "onyomi": [],
+    "kunyomi": [
+      "ぎょうにんべん"
+    ]
+  },
+  "61": {
+    "number": 61,
+    "radical": "心",
+    "variants": [
+      "忄",
+      "⺗"
+    ],
+    "strokes": 4,
+    "meaning_en": "heart",
+    "onyomi": [
+      "シン"
+    ],
+    "kunyomi": [
+      "こころ",
+      "りっしんべん"
+    ]
+  },
+  "62": {
+    "number": 62,
+    "radical": "戈",
+    "variants": [],
+    "strokes": 4,
+    "meaning_en": "halberd, dart",
+    "onyomi": [
+      "カ"
+    ],
+    "kunyomi": [
+      "ほこ"
+    ]
+  },
+  "63": {
+    "number": 63,
+    "radical": "戶",
+    "variants": [
+      "戸",
+      "户"
+    ],
+    "strokes": 4,
+    "meaning_en": "door, household",
+    "onyomi": [
+      "コ"
+    ],
+    "kunyomi": [
+      "と"
+    ]
+  },
+  "64": {
+    "number": 64,
+    "radical": "手",
+    "variants": [
+      "扌"
+    ],
+    "strokes": 4,
+    "meaning_en": "hand",
+    "onyomi": [
+      "シュ"
+    ],
+    "kunyomi": [
+      "て",
+      "てへん"
+    ]
+  },
+  "65": {
+    "number": 65,
+    "radical": "支",
+    "variants": [],
+    "strokes": 4,
+    "meaning_en": "branch",
+    "onyomi": [
+      "シ"
+    ],
+    "kunyomi": [
+      "しにょう"
+    ]
+  },
+  "66": {
+    "number": 66,
+    "radical": "攴",
+    "variants": [
+      "攵"
+    ],
+    "strokes": 4,
+    "meaning_en": "strike, action",
+    "onyomi": [],
+    "kunyomi": [
+      "ぼくづくり",
+      "のぶん"
+    ]
+  },
+  "67": {
+    "number": 67,
+    "radical": "文",
+    "variants": [],
+    "strokes": 4,
+    "meaning_en": "literature, writing",
+    "onyomi": [
+      "ブン",
+      "モン"
+    ],
+    "kunyomi": [
+      "ふみ"
+    ]
+  },
+  "68": {
+    "number": 68,
+    "radical": "斗",
+    "variants": [],
+    "strokes": 4,
+    "meaning_en": "dipper, measure",
+    "onyomi": [
+      "ト"
+    ],
+    "kunyomi": [
+      "とます"
+    ]
+  },
+  "69": {
+    "number": 69,
+    "radical": "斤",
+    "variants": [],
+    "strokes": 4,
+    "meaning_en": "axe",
+    "onyomi": [
+      "キン"
+    ],
+    "kunyomi": [
+      "おの"
+    ]
+  },
+  "70": {
+    "number": 70,
+    "radical": "方",
+    "variants": [],
+    "strokes": 4,
+    "meaning_en": "square, direction",
+    "onyomi": [
+      "ホウ"
+    ],
+    "kunyomi": [
+      "かた"
+    ]
+  },
+  "71": {
+    "number": 71,
+    "radical": "无",
+    "variants": [
+      "旡"
+    ],
+    "strokes": 4,
+    "meaning_en": "not, do not have",
+    "onyomi": [
+      "ム"
+    ],
+    "kunyomi": [
+      "なし"
+    ]
+  },
+  "72": {
+    "number": 72,
+    "radical": "日",
+    "variants": [],
+    "strokes": 4,
+    "meaning_en": "sun, day",
+    "onyomi": [
+      "ニチ",
+      "ジツ"
+    ],
+    "kunyomi": [
+      "ひ"
+    ]
+  },
+  "73": {
+    "number": 73,
+    "radical": "曰",
+    "variants": [],
+    "strokes": 4,
+    "meaning_en": "say",
+    "onyomi": [
+      "エツ"
+    ],
+    "kunyomi": [
+      "いわく",
+      "ひらび"
+    ]
+  },
+  "74": {
+    "number": 74,
+    "radical": "月",
+    "variants": [],
+    "strokes": 4,
+    "meaning_en": "moon, month",
+    "onyomi": [
+      "ゲツ",
+      "ガツ"
+    ],
+    "kunyomi": [
+      "つき"
+    ]
+  },
+  "75": {
+    "number": 75,
+    "radical": "木",
+    "variants": [],
+    "strokes": 4,
+    "meaning_en": "tree, wood",
+    "onyomi": [
+      "モク",
+      "ボク"
+    ],
+    "kunyomi": [
+      "き"
+    ]
+  },
+  "76": {
+    "number": 76,
+    "radical": "欠",
+    "variants": [],
+    "strokes": 4,
+    "meaning_en": "lack, yawn",
+    "onyomi": [
+      "ケツ"
+    ],
+    "kunyomi": [
+      "あくび",
+      "かける"
+    ]
+  },
+  "77": {
+    "number": 77,
+    "radical": "止",
+    "variants": [],
+    "strokes": 4,
+    "meaning_en": "stop",
+    "onyomi": [
+      "シ"
+    ],
+    "kunyomi": [
+      "とめる"
+    ]
+  },
+  "78": {
+    "number": 78,
+    "radical": "歹",
+    "variants": [
+      "歺"
+    ],
+    "strokes": 4,
+    "meaning_en": "death, bare bone",
+    "onyomi": [
+      "ガツ"
+    ],
+    "kunyomi": [
+      "がつへん",
+      "かばねへん"
+    ]
+  },
+  "79": {
+    "number": 79,
+    "radical": "殳",
+    "variants": [],
+    "strokes": 4,
+    "meaning_en": "weapon, lance",
+    "onyomi": [],
+    "kunyomi": [
+      "ほこづくり",
+      "るまた"
+    ]
+  },
+  "80": {
+    "number": 80,
+    "radical": "毋",
+    "variants": [
+      "母"
+    ],
+    "strokes": 4,
+    "meaning_en": "do not, mother",
+    "onyomi": [
+      "ブ"
+    ],
+    "kunyomi": [
+      "なかれ"
+    ]
+  },
+  "81": {
+    "number": 81,
+    "radical": "比",
+    "variants": [],
+    "strokes": 4,
+    "meaning_en": "compare",
+    "onyomi": [
+      "ヒ"
+    ],
+    "kunyomi": [
+      "くらべる"
+    ]
+  },
+  "82": {
+    "number": 82,
+    "radical": "毛",
+    "variants": [],
+    "strokes": 4,
+    "meaning_en": "fur, hair",
+    "onyomi": [
+      "モウ"
+    ],
+    "kunyomi": [
+      "け"
+    ]
+  },
+  "83": {
+    "number": 83,
+    "radical": "氏",
+    "variants": [],
+    "strokes": 4,
+    "meaning_en": "clan, family",
+    "onyomi": [
+      "シ"
+    ],
+    "kunyomi": [
+      "うじ"
+    ]
+  },
+  "84": {
+    "number": 84,
+    "radical": "气",
+    "variants": [],
+    "strokes": 4,
+    "meaning_en": "steam, breath",
+    "onyomi": [
+      "キ"
+    ],
+    "kunyomi": [
+      "きがまえ"
+    ]
+  },
+  "85": {
+    "number": 85,
+    "radical": "水",
+    "variants": [
+      "氵",
+      "氺"
+    ],
+    "strokes": 4,
+    "meaning_en": "water",
+    "onyomi": [
+      "スイ"
+    ],
+    "kunyomi": [
+      "みず",
+      "さんずい"
+    ]
+  },
+  "86": {
+    "number": 86,
+    "radical": "火",
+    "variants": [
+      "灬"
+    ],
+    "strokes": 4,
+    "meaning_en": "fire",
+    "onyomi": [
+      "カ"
+    ],
+    "kunyomi": [
+      "ひ",
+      "れっか",
+      "れんが"
+    ]
+  },
+  "87": {
+    "number": 87,
+    "radical": "爪",
+    "variants": [
+      "爫"
+    ],
+    "strokes": 4,
+    "meaning_en": "claw",
+    "onyomi": [
+      "ソウ"
+    ],
+    "kunyomi": [
+      "つめ",
+      "つめかんむり"
+    ]
+  },
+  "88": {
+    "number": 88,
+    "radical": "父",
+    "variants": [],
+    "strokes": 4,
+    "meaning_en": "father",
+    "onyomi": [
+      "フ"
+    ],
+    "kunyomi": [
+      "ちち"
+    ]
+  },
+  "89": {
+    "number": 89,
+    "radical": "爻",
+    "variants": [],
+    "strokes": 4,
+    "meaning_en": "lines on a trigram",
+    "onyomi": [
+      "コウ"
+    ],
+    "kunyomi": [
+      "こう"
+    ]
+  },
+  "90": {
+    "number": 90,
+    "radical": "爿",
+    "variants": [
+      "丬"
+    ],
+    "strokes": 4,
+    "meaning_en": "split wood, bed",
+    "onyomi": [],
+    "kunyomi": [
+      "しょうへん"
+    ]
+  },
+  "91": {
+    "number": 91,
+    "radical": "片",
+    "variants": [],
+    "strokes": 4,
+    "meaning_en": "slice, sheet",
+    "onyomi": [
+      "ヘン"
+    ],
+    "kunyomi": [
+      "かた"
+    ]
+  },
+  "92": {
+    "number": 92,
+    "radical": "牙",
+    "variants": [],
+    "strokes": 4,
+    "meaning_en": "tusk, fang",
+    "onyomi": [
+      "ガ"
+    ],
+    "kunyomi": [
+      "きば"
+    ]
+  },
+  "93": {
+    "number": 93,
+    "radical": "牛",
+    "variants": [
+      "牜"
+    ],
+    "strokes": 4,
+    "meaning_en": "cow",
+    "onyomi": [
+      "ギュウ"
+    ],
+    "kunyomi": [
+      "うし"
+    ]
+  },
+  "94": {
+    "number": 94,
+    "radical": "犬",
+    "variants": [
+      "犭"
+    ],
+    "strokes": 4,
+    "meaning_en": "dog",
+    "onyomi": [
+      "ケン"
+    ],
+    "kunyomi": [
+      "いぬ",
+      "けものへん"
+    ]
+  },
+  "95": {
+    "number": 95,
+    "radical": "玄",
+    "variants": [],
+    "strokes": 5,
+    "meaning_en": "profound, dark",
+    "onyomi": [
+      "ゲン"
+    ],
+    "kunyomi": [
+      "げん"
+    ]
+  },
+  "96": {
+    "number": 96,
+    "radical": "玉",
+    "variants": [
+      "王"
+    ],
+    "strokes": 5,
+    "meaning_en": "jade, king",
+    "onyomi": [
+      "ギョク"
+    ],
+    "kunyomi": [
+      "たま",
+      "おう"
+    ]
+  },
+  "97": {
+    "number": 97,
+    "radical": "瓜",
+    "variants": [],
+    "strokes": 5,
+    "meaning_en": "melon",
+    "onyomi": [
+      "カ"
+    ],
+    "kunyomi": [
+      "うり"
+    ]
+  },
+  "98": {
+    "number": 98,
+    "radical": "瓦",
+    "variants": [],
+    "strokes": 5,
+    "meaning_en": "tile",
+    "onyomi": [
+      "ガ"
+    ],
+    "kunyomi": [
+      "かわら"
+    ]
+  },
+  "99": {
+    "number": 99,
+    "radical": "甘",
+    "variants": [],
+    "strokes": 5,
+    "meaning_en": "sweet",
+    "onyomi": [
+      "カン"
+    ],
+    "kunyomi": [
+      "あまい"
+    ]
+  },
+  "100": {
+    "number": 100,
+    "radical": "生",
+    "variants": [],
+    "strokes": 5,
+    "meaning_en": "life, birth",
+    "onyomi": [
+      "セイ"
+    ],
+    "kunyomi": [
+      "うまれる"
+    ]
+  },
+  "101": {
+    "number": 101,
+    "radical": "用",
+    "variants": [],
+    "strokes": 5,
+    "meaning_en": "use",
+    "onyomi": [
+      "ヨウ"
+    ],
+    "kunyomi": [
+      "もちいる"
+    ]
+  },
+  "102": {
+    "number": 102,
+    "radical": "田",
+    "variants": [],
+    "strokes": 5,
+    "meaning_en": "field",
+    "onyomi": [
+      "デン"
+    ],
+    "kunyomi": [
+      "た"
+    ]
+  },
+  "103": {
+    "number": 103,
+    "radical": "疋",
+    "variants": [
+      "⺪"
+    ],
+    "strokes": 5,
+    "meaning_en": "bolt of cloth",
+    "onyomi": [
+      "ヒキ"
+    ],
+    "kunyomi": [
+      "ひき"
+    ]
+  },
+  "104": {
+    "number": 104,
+    "radical": "疒",
+    "variants": [],
+    "strokes": 5,
+    "meaning_en": "sickness",
+    "onyomi": [],
+    "kunyomi": [
+      "やまいだれ"
+    ]
+  },
+  "105": {
+    "number": 105,
+    "radical": "癶",
+    "variants": [],
+    "strokes": 5,
+    "meaning_en": "footsteps",
+    "onyomi": [],
+    "kunyomi": [
+      "はつがしら"
+    ]
+  },
+  "106": {
+    "number": 106,
+    "radical": "白",
+    "variants": [],
+    "strokes": 5,
+    "meaning_en": "white",
+    "onyomi": [
+      "ハク"
+    ],
+    "kunyomi": [
+      "しろ"
+    ]
+  },
+  "107": {
+    "number": 107,
+    "radical": "皮",
+    "variants": [],
+    "strokes": 5,
+    "meaning_en": "skin",
+    "onyomi": [
+      "ヒ"
+    ],
+    "kunyomi": [
+      "けがわ"
+    ]
+  },
+  "108": {
+    "number": 108,
+    "radical": "皿",
+    "variants": [],
+    "strokes": 5,
+    "meaning_en": "dish",
+    "onyomi": [],
+    "kunyomi": [
+      "さら"
+    ]
+  },
+  "109": {
+    "number": 109,
+    "radical": "目",
+    "variants": [],
+    "strokes": 5,
+    "meaning_en": "eye",
+    "onyomi": [
+      "モク"
+    ],
+    "kunyomi": [
+      "め"
+    ]
+  },
+  "110": {
+    "number": 110,
+    "radical": "矛",
+    "variants": [],
+    "strokes": 5,
+    "meaning_en": "spear, lance",
+    "onyomi": [
+      "ム"
+    ],
+    "kunyomi": [
+      "ほこ"
+    ]
+  },
+  "111": {
+    "number": 111,
+    "radical": "矢",
+    "variants": [],
+    "strokes": 5,
+    "meaning_en": "arrow",
+    "onyomi": [
+      "シ"
+    ],
+    "kunyomi": [
+      "や"
+    ]
+  },
+  "112": {
+    "number": 112,
+    "radical": "石",
+    "variants": [],
+    "strokes": 5,
+    "meaning_en": "stone",
+    "onyomi": [
+      "セキ"
+    ],
+    "kunyomi": [
+      "いし"
+    ]
+  },
+  "113": {
+    "number": 113,
+    "radical": "示",
+    "variants": [
+      "礻"
+    ],
+    "strokes": 5,
+    "meaning_en": "spirit, show",
+    "onyomi": [
+      "ジ"
+    ],
+    "kunyomi": [
+      "しめす",
+      "しめすへん"
+    ]
+  },
+  "114": {
+    "number": 114,
+    "radical": "禸",
+    "variants": [],
+    "strokes": 5,
+    "meaning_en": "track",
+    "onyomi": [],
+    "kunyomi": [
+      "じゅう"
+    ]
+  },
+  "115": {
+    "number": 115,
+    "radical": "禾",
+    "variants": [],
+    "strokes": 5,
+    "meaning_en": "grain",
+    "onyomi": [
+      "カ"
+    ],
+    "kunyomi": [
+      "のぎ"
+    ]
+  },
+  "116": {
+    "number": 116,
+    "radical": "穴",
+    "variants": [],
+    "strokes": 5,
+    "meaning_en": "cave, hole",
+    "onyomi": [
+      "ケツ"
+    ],
+    "kunyomi": [
+      "あな"
+    ]
+  },
+  "117": {
+    "number": 117,
+    "radical": "立",
+    "variants": [],
+    "strokes": 5,
+    "meaning_en": "stand",
+    "onyomi": [
+      "リツ"
+    ],
+    "kunyomi": [
+      "たつ"
+    ]
+  },
+  "118": {
+    "number": 118,
+    "radical": "竹",
+    "variants": [
+      "⺮"
+    ],
+    "strokes": 6,
+    "meaning_en": "bamboo",
+    "onyomi": [
+      "チク"
+    ],
+    "kunyomi": [
+      "たけ"
+    ]
+  },
+  "119": {
+    "number": 119,
+    "radical": "米",
+    "variants": [],
+    "strokes": 6,
+    "meaning_en": "rice",
+    "onyomi": [
+      "ベイ",
+      "マイ"
+    ],
+    "kunyomi": [
+      "こめ"
+    ]
+  },
+  "120": {
+    "number": 120,
+    "radical": "糸",
+    "variants": [
+      "糹",
+      "纟"
+    ],
+    "strokes": 6,
+    "meaning_en": "thread, silk",
+    "onyomi": [
+      "シ"
+    ],
+    "kunyomi": [
+      "いと"
+    ]
+  },
+  "121": {
+    "number": 121,
+    "radical": "缶",
+    "variants": [],
+    "strokes": 6,
+    "meaning_en": "jar, can",
+    "onyomi": [
+      "カン"
+    ],
+    "kunyomi": [
+      "ほとぎ",
+      "ふ"
+    ]
+  },
+  "122": {
+    "number": 122,
+    "radical": "网",
+    "variants": [
+      "罒",
+      "⺲",
+      "⺳"
+    ],
+    "strokes": 6,
+    "meaning_en": "net",
+    "onyomi": [],
+    "kunyomi": [
+      "あみがしら",
+      "あみめ"
+    ]
+  },
+  "123": {
+    "number": 123,
+    "radical": "羊",
+    "variants": [
+      "⺶",
+      "⺷"
+    ],
+    "strokes": 6,
+    "meaning_en": "sheep",
+    "onyomi": [
+      "ヨウ"
+    ],
+    "kunyomi": [
+      "ひつじ"
+    ]
+  },
+  "124": {
+    "number": 124,
+    "radical": "羽",
+    "variants": [],
+    "strokes": 6,
+    "meaning_en": "feather",
+    "onyomi": [
+      "ウ"
+    ],
+    "kunyomi": [
+      "はね"
+    ]
+  },
+  "125": {
+    "number": 125,
+    "radical": "老",
+    "variants": [
+      "耂"
+    ],
+    "strokes": 6,
+    "meaning_en": "old",
+    "onyomi": [
+      "ロウ"
+    ],
+    "kunyomi": [
+      "おい",
+      "おいかんむり"
+    ]
+  },
+  "126": {
+    "number": 126,
+    "radical": "而",
+    "variants": [],
+    "strokes": 6,
+    "meaning_en": "and, like",
+    "onyomi": [
+      "ジ"
+    ],
+    "kunyomi": [
+      "しかして"
+    ]
+  },
+  "127": {
+    "number": 127,
+    "radical": "耒",
+    "variants": [],
+    "strokes": 6,
+    "meaning_en": "plow",
+    "onyomi": [
+      "ライ"
+    ],
+    "kunyomi": [
+      "らいすき"
+    ]
+  },
+  "128": {
+    "number": 128,
+    "radical": "耳",
+    "variants": [],
+    "strokes": 6,
+    "meaning_en": "ear",
+    "onyomi": [
+      "ジ"
+    ],
+    "kunyomi": [
+      "みみ"
+    ]
+  },
+  "129": {
+    "number": 129,
+    "radical": "聿",
+    "variants": [
+      "⺺",
+      "⺻"
+    ],
+    "strokes": 6,
+    "meaning_en": "brush",
+    "onyomi": [
+      "イツ"
+    ],
+    "kunyomi": [
+      "ふでづくり"
+    ]
+  },
+  "130": {
+    "number": 130,
+    "radical": "肉",
+    "variants": [
+      "⺼"
+    ],
+    "strokes": 6,
+    "meaning_en": "meat, flesh",
+    "onyomi": [
+      "ニク"
+    ],
+    "kunyomi": [
+      "にく",
+      "にくづき"
+    ]
+  },
+  "131": {
+    "number": 131,
+    "radical": "臣",
+    "variants": [],
+    "strokes": 6,
+    "meaning_en": "minister, retainer",
+    "onyomi": [
+      "シン"
+    ],
+    "kunyomi": [
+      "しん"
+    ]
+  },
+  "132": {
+    "number": 132,
+    "radical": "自",
+    "variants": [],
+    "strokes": 6,
+    "meaning_en": "self",
+    "onyomi": [
+      "ジ"
+    ],
+    "kunyomi": [
+      "みずから"
+    ]
+  },
+  "133": {
+    "number": 133,
+    "radical": "至",
+    "variants": [],
+    "strokes": 6,
+    "meaning_en": "arrive",
+    "onyomi": [
+      "シ"
+    ],
+    "kunyomi": [
+      "いたる"
+    ]
+  },
+  "134": {
+    "number": 134,
+    "radical": "臼",
+    "variants": [],
+    "strokes": 6,
+    "meaning_en": "mortar",
+    "onyomi": [
+      "キュウ"
+    ],
+    "kunyomi": [
+      "うす"
+    ]
+  },
+  "135": {
+    "number": 135,
+    "radical": "舌",
+    "variants": [],
+    "strokes": 6,
+    "meaning_en": "tongue",
+    "onyomi": [
+      "ゼツ"
+    ],
+    "kunyomi": [
+      "した"
+    ]
+  },
+  "136": {
+    "number": 136,
+    "radical": "舛",
+    "variants": [],
+    "strokes": 6,
+    "meaning_en": "opposite",
+    "onyomi": [
+      "セン"
+    ],
+    "kunyomi": [
+      "まいあし"
+    ]
+  },
+  "137": {
+    "number": 137,
+    "radical": "舟",
+    "variants": [],
+    "strokes": 6,
+    "meaning_en": "boat",
+    "onyomi": [
+      "シュウ"
+    ],
+    "kunyomi": [
+      "ふね"
+    ]
+  },
+  "138": {
+    "number": 138,
+    "radical": "艮",
+    "variants": [],
+    "strokes": 6,
+    "meaning_en": "stopping",
+    "onyomi": [
+      "コン"
+    ],
+    "kunyomi": [
+      "うしとら",
+      "ねづくり"
+    ]
+  },
+  "139": {
+    "number": 139,
+    "radical": "色",
+    "variants": [],
+    "strokes": 6,
+    "meaning_en": "colour",
+    "onyomi": [
+      "ショク"
+    ],
+    "kunyomi": [
+      "いろ"
+    ]
+  },
+  "140": {
+    "number": 140,
+    "radical": "艸",
+    "variants": [
+      "艹"
+    ],
+    "strokes": 6,
+    "meaning_en": "grass",
+    "onyomi": [
+      "ソウ"
+    ],
+    "kunyomi": [
+      "くさ",
+      "くさかんむり"
+    ]
+  },
+  "141": {
+    "number": 141,
+    "radical": "虍",
+    "variants": [],
+    "strokes": 6,
+    "meaning_en": "tiger stripes",
+    "onyomi": [
+      "コ"
+    ],
+    "kunyomi": [
+      "とらかんむり"
+    ]
+  },
+  "142": {
+    "number": 142,
+    "radical": "虫",
+    "variants": [],
+    "strokes": 6,
+    "meaning_en": "insect",
+    "onyomi": [
+      "チュウ"
+    ],
+    "kunyomi": [
+      "むし"
+    ]
+  },
+  "143": {
+    "number": 143,
+    "radical": "血",
+    "variants": [],
+    "strokes": 6,
+    "meaning_en": "blood",
+    "onyomi": [
+      "ケツ"
+    ],
+    "kunyomi": [
+      "ち"
+    ]
+  },
+  "144": {
+    "number": 144,
+    "radical": "行",
+    "variants": [],
+    "strokes": 6,
+    "meaning_en": "go, walk",
+    "onyomi": [
+      "コウ"
+    ],
+    "kunyomi": [
+      "いく",
+      "ぎょうがまえ"
+    ]
+  },
+  "145": {
+    "number": 145,
+    "radical": "衣",
+    "variants": [
+      "衤"
+    ],
+    "strokes": 6,
+    "meaning_en": "clothes",
+    "onyomi": [
+      "イ"
+    ],
+    "kunyomi": [
+      "ころも",
+      "ころもへん"
+    ]
+  },
+  "146": {
+    "number": 146,
+    "radical": "襾",
+    "variants": [
+      "西",
+      "覀"
+    ],
+    "strokes": 6,
+    "meaning_en": "cover, west",
+    "onyomi": [
+      "ア"
+    ],
+    "kunyomi": [
+      "おおいかんむり"
+    ]
+  },
+  "147": {
+    "number": 147,
+    "radical": "見",
+    "variants": [],
+    "strokes": 7,
+    "meaning_en": "see",
+    "onyomi": [
+      "ケン"
+    ],
+    "kunyomi": [
+      "みる"
+    ]
+  },
+  "148": {
+    "number": 148,
+    "radical": "角",
+    "variants": [],
+    "strokes": 7,
+    "meaning_en": "horn, corner",
+    "onyomi": [
+      "カク"
+    ],
+    "kunyomi": [
+      "つの"
+    ]
+  },
+  "149": {
+    "number": 149,
+    "radical": "言",
+    "variants": [
+      "訁"
+    ],
+    "strokes": 7,
+    "meaning_en": "speech, word",
+    "onyomi": [
+      "ゲン"
+    ],
+    "kunyomi": [
+      "こと",
+      "ごんべん"
+    ]
+  },
+  "150": {
+    "number": 150,
+    "radical": "谷",
+    "variants": [],
+    "strokes": 7,
+    "meaning_en": "valley",
+    "onyomi": [
+      "コク"
+    ],
+    "kunyomi": [
+      "たに"
+    ]
+  },
+  "151": {
+    "number": 151,
+    "radical": "豆",
+    "variants": [],
+    "strokes": 7,
+    "meaning_en": "bean",
+    "onyomi": [
+      "トウ"
+    ],
+    "kunyomi": [
+      "まめ"
+    ]
+  },
+  "152": {
+    "number": 152,
+    "radical": "豕",
+    "variants": [],
+    "strokes": 7,
+    "meaning_en": "pig",
+    "onyomi": [
+      "シ"
+    ],
+    "kunyomi": [
+      "いのこ"
+    ]
+  },
+  "153": {
+    "number": 153,
+    "radical": "豸",
+    "variants": [],
+    "strokes": 7,
+    "meaning_en": "badger, legless insect",
+    "onyomi": [],
+    "kunyomi": [
+      "むじなへん"
+    ]
+  },
+  "154": {
+    "number": 154,
+    "radical": "貝",
+    "variants": [],
+    "strokes": 7,
+    "meaning_en": "shell, money",
+    "onyomi": [
+      "バイ"
+    ],
+    "kunyomi": [
+      "かい"
+    ]
+  },
+  "155": {
+    "number": 155,
+    "radical": "赤",
+    "variants": [],
+    "strokes": 7,
+    "meaning_en": "red",
+    "onyomi": [
+      "セキ"
+    ],
+    "kunyomi": [
+      "あか"
+    ]
+  },
+  "156": {
+    "number": 156,
+    "radical": "走",
+    "variants": [],
+    "strokes": 7,
+    "meaning_en": "run",
+    "onyomi": [
+      "ソウ"
+    ],
+    "kunyomi": [
+      "はしる",
+      "そうにょう"
+    ]
+  },
+  "157": {
+    "number": 157,
+    "radical": "足",
+    "variants": [
+      "⻊"
+    ],
+    "strokes": 7,
+    "meaning_en": "foot",
+    "onyomi": [
+      "ソク"
+    ],
+    "kunyomi": [
+      "あし",
+      "あしへん"
+    ]
+  },
+  "158": {
+    "number": 158,
+    "radical": "身",
+    "variants": [],
+    "strokes": 7,
+    "meaning_en": "body",
+    "onyomi": [
+      "シン"
+    ],
+    "kunyomi": [
+      "み"
+    ]
+  },
+  "159": {
+    "number": 159,
+    "radical": "車",
+    "variants": [],
+    "strokes": 7,
+    "meaning_en": "cart, car",
+    "onyomi": [
+      "シャ"
+    ],
+    "kunyomi": [
+      "くるま"
+    ]
+  },
+  "160": {
+    "number": 160,
+    "radical": "辛",
+    "variants": [],
+    "strokes": 7,
+    "meaning_en": "bitter",
+    "onyomi": [
+      "シン"
+    ],
+    "kunyomi": [
+      "からい"
+    ]
+  },
+  "161": {
+    "number": 161,
+    "radical": "辰",
+    "variants": [],
+    "strokes": 7,
+    "meaning_en": "morning, dragon",
+    "onyomi": [
+      "シン"
+    ],
+    "kunyomi": [
+      "しんのたつ"
+    ]
+  },
+  "162": {
+    "number": 162,
+    "radical": "辵",
+    "variants": [
+      "辶",
+      "辶"
+    ],
+    "strokes": 7,
+    "meaning_en": "walk, advance",
+    "onyomi": [
+      "チャク"
+    ],
+    "kunyomi": [
+      "しんにょう",
+      "しんにゅう"
+    ]
+  },
+  "163": {
+    "number": 163,
+    "radical": "邑",
+    "variants": [
+      "⻏"
+    ],
+    "strokes": 7,
+    "meaning_en": "city",
+    "onyomi": [
+      "ユウ"
+    ],
+    "kunyomi": [
+      "むら",
+      "おおざと"
+    ]
+  },
+  "164": {
+    "number": 164,
+    "radical": "酉",
+    "variants": [],
+    "strokes": 7,
+    "meaning_en": "wine jar",
+    "onyomi": [
+      "ユウ"
+    ],
+    "kunyomi": [
+      "とり",
+      "ひよみのとり"
+    ]
+  },
+  "165": {
+    "number": 165,
+    "radical": "釆",
+    "variants": [],
+    "strokes": 7,
+    "meaning_en": "distinguish",
+    "onyomi": [
+      "ハン"
+    ],
+    "kunyomi": [
+      "のごめ"
+    ]
+  },
+  "166": {
+    "number": 166,
+    "radical": "里",
+    "variants": [],
+    "strokes": 7,
+    "meaning_en": "village, league",
+    "onyomi": [
+      "リ"
+    ],
+    "kunyomi": [
+      "さと"
+    ]
+  },
+  "167": {
+    "number": 167,
+    "radical": "金",
+    "variants": [
+      "釒",
+      "钅"
+    ],
+    "strokes": 8,
+    "meaning_en": "metal, gold",
+    "onyomi": [
+      "キン",
+      "コン"
+    ],
+    "kunyomi": [
+      "かね",
+      "かねへん"
+    ]
+  },
+  "168": {
+    "number": 168,
+    "radical": "長",
+    "variants": [
+      "镸"
+    ],
+    "strokes": 8,
+    "meaning_en": "long, grow",
+    "onyomi": [
+      "チョウ"
+    ],
+    "kunyomi": [
+      "ながい"
+    ]
+  },
+  "169": {
+    "number": 169,
+    "radical": "門",
+    "variants": [],
+    "strokes": 8,
+    "meaning_en": "gate",
+    "onyomi": [
+      "モン"
+    ],
+    "kunyomi": [
+      "かど",
+      "もんがまえ"
+    ]
+  },
+  "170": {
+    "number": 170,
+    "radical": "阜",
+    "variants": [
+      "⻖"
+    ],
+    "strokes": 8,
+    "meaning_en": "mound, hill",
+    "onyomi": [
+      "フ"
+    ],
+    "kunyomi": [
+      "こざとへん"
+    ]
+  },
+  "171": {
+    "number": 171,
+    "radical": "隶",
+    "variants": [],
+    "strokes": 8,
+    "meaning_en": "subservient",
+    "onyomi": [
+      "タイ"
+    ],
+    "kunyomi": [
+      "れいづくり"
+    ]
+  },
+  "172": {
+    "number": 172,
+    "radical": "隹",
+    "variants": [],
+    "strokes": 8,
+    "meaning_en": "small bird",
+    "onyomi": [
+      "スイ"
+    ],
+    "kunyomi": [
+      "ふるとり"
+    ]
+  },
+  "173": {
+    "number": 173,
+    "radical": "雨",
+    "variants": [],
+    "strokes": 8,
+    "meaning_en": "rain",
+    "onyomi": [
+      "ウ"
+    ],
+    "kunyomi": [
+      "あめ",
+      "あめかんむり"
+    ]
+  },
+  "174": {
+    "number": 174,
+    "radical": "靑",
+    "variants": [
+      "青"
+    ],
+    "strokes": 8,
+    "meaning_en": "blue, green",
+    "onyomi": [
+      "セイ"
+    ],
+    "kunyomi": [
+      "あお"
+    ]
+  },
+  "175": {
+    "number": 175,
+    "radical": "非",
+    "variants": [],
+    "strokes": 8,
+    "meaning_en": "wrong, non-",
+    "onyomi": [
+      "ヒ"
+    ],
+    "kunyomi": [
+      "あらず"
+    ]
+  },
+  "176": {
+    "number": 176,
+    "radical": "面",
+    "variants": [],
+    "strokes": 9,
+    "meaning_en": "face",
+    "onyomi": [
+      "メン"
+    ],
+    "kunyomi": [
+      "めん"
+    ]
+  },
+  "177": {
+    "number": 177,
+    "radical": "革",
+    "variants": [],
+    "strokes": 9,
+    "meaning_en": "leather",
+    "onyomi": [
+      "カク"
+    ],
+    "kunyomi": [
+      "かわ",
+      "つくりがわ"
+    ]
+  },
+  "178": {
+    "number": 178,
+    "radical": "韋",
+    "variants": [
+      "韦"
+    ],
+    "strokes": 9,
+    "meaning_en": "tanned leather",
+    "onyomi": [
+      "イ"
+    ],
+    "kunyomi": [
+      "なめしがわ"
+    ]
+  },
+  "179": {
+    "number": 179,
+    "radical": "韭",
+    "variants": [],
+    "strokes": 9,
+    "meaning_en": "leek",
+    "onyomi": [
+      "キュウ"
+    ],
+    "kunyomi": [
+      "にら"
+    ]
+  },
+  "180": {
+    "number": 180,
+    "radical": "音",
+    "variants": [],
+    "strokes": 9,
+    "meaning_en": "sound",
+    "onyomi": [
+      "オン"
+    ],
+    "kunyomi": [
+      "おと"
+    ]
+  },
+  "181": {
+    "number": 181,
+    "radical": "頁",
+    "variants": [],
+    "strokes": 9,
+    "meaning_en": "head, page",
+    "onyomi": [
+      "ケツ"
+    ],
+    "kunyomi": [
+      "おおがい"
+    ]
+  },
+  "182": {
+    "number": 182,
+    "radical": "風",
+    "variants": [],
+    "strokes": 9,
+    "meaning_en": "wind",
+    "onyomi": [
+      "フウ"
+    ],
+    "kunyomi": [
+      "かぜ"
+    ]
+  },
+  "183": {
+    "number": 183,
+    "radical": "飛",
+    "variants": [],
+    "strokes": 9,
+    "meaning_en": "fly",
+    "onyomi": [
+      "ヒ"
+    ],
+    "kunyomi": [
+      "とぶ"
+    ]
+  },
+  "184": {
+    "number": 184,
+    "radical": "食",
+    "variants": [
+      "飠",
+      "饣"
+    ],
+    "strokes": 9,
+    "meaning_en": "eat, food",
+    "onyomi": [
+      "ショク"
+    ],
+    "kunyomi": [
+      "しょく",
+      "しょくへん"
+    ]
+  },
+  "185": {
+    "number": 185,
+    "radical": "首",
+    "variants": [],
+    "strokes": 9,
+    "meaning_en": "head",
+    "onyomi": [
+      "シュ"
+    ],
+    "kunyomi": [
+      "くび"
+    ]
+  },
+  "186": {
+    "number": 186,
+    "radical": "香",
+    "variants": [],
+    "strokes": 9,
+    "meaning_en": "fragrance",
+    "onyomi": [
+      "コウ"
+    ],
+    "kunyomi": [
+      "かおり"
+    ]
+  },
+  "187": {
+    "number": 187,
+    "radical": "馬",
+    "variants": [],
+    "strokes": 10,
+    "meaning_en": "horse",
+    "onyomi": [
+      "バ"
+    ],
+    "kunyomi": [
+      "うま"
+    ]
+  },
+  "188": {
+    "number": 188,
+    "radical": "骨",
+    "variants": [],
+    "strokes": 10,
+    "meaning_en": "bone",
+    "onyomi": [
+      "コツ"
+    ],
+    "kunyomi": [
+      "ほね"
+    ]
+  },
+  "189": {
+    "number": 189,
+    "radical": "高",
+    "variants": [],
+    "strokes": 10,
+    "meaning_en": "tall, high",
+    "onyomi": [
+      "コウ"
+    ],
+    "kunyomi": [
+      "たかい"
+    ]
+  },
+  "190": {
+    "number": 190,
+    "radical": "髟",
+    "variants": [],
+    "strokes": 10,
+    "meaning_en": "long hair",
+    "onyomi": [],
+    "kunyomi": [
+      "かみがしら"
+    ]
+  },
+  "191": {
+    "number": 191,
+    "radical": "鬥",
+    "variants": [],
+    "strokes": 10,
+    "meaning_en": "fight",
+    "onyomi": [
+      "トウ"
+    ],
+    "kunyomi": [
+      "とうがまえ"
+    ]
+  },
+  "192": {
+    "number": 192,
+    "radical": "鬯",
+    "variants": [],
+    "strokes": 10,
+    "meaning_en": "sacrificial wine",
+    "onyomi": [
+      "チョウ"
+    ],
+    "kunyomi": [
+      "ちょう"
+    ]
+  },
+  "193": {
+    "number": 193,
+    "radical": "鬲",
+    "variants": [],
+    "strokes": 10,
+    "meaning_en": "cauldron",
+    "onyomi": [
+      "レキ"
+    ],
+    "kunyomi": [
+      "かなえ"
+    ]
+  },
+  "194": {
+    "number": 194,
+    "radical": "鬼",
+    "variants": [],
+    "strokes": 10,
+    "meaning_en": "ghost, demon",
+    "onyomi": [
+      "キ"
+    ],
+    "kunyomi": [
+      "おに"
+    ]
+  },
+  "195": {
+    "number": 195,
+    "radical": "魚",
+    "variants": [],
+    "strokes": 11,
+    "meaning_en": "fish",
+    "onyomi": [
+      "ギョ"
+    ],
+    "kunyomi": [
+      "うお",
+      "さかな"
+    ]
+  },
+  "196": {
+    "number": 196,
+    "radical": "鳥",
+    "variants": [],
+    "strokes": 11,
+    "meaning_en": "bird",
+    "onyomi": [
+      "チョウ"
+    ],
+    "kunyomi": [
+      "とり"
+    ]
+  },
+  "197": {
+    "number": 197,
+    "radical": "鹵",
+    "variants": [],
+    "strokes": 11,
+    "meaning_en": "salt",
+    "onyomi": [
+      "ロ"
+    ],
+    "kunyomi": [
+      "ろ",
+      "しお"
+    ]
+  },
+  "198": {
+    "number": 198,
+    "radical": "鹿",
+    "variants": [],
+    "strokes": 11,
+    "meaning_en": "deer",
+    "onyomi": [
+      "ロク"
+    ],
+    "kunyomi": [
+      "しか"
+    ]
+  },
+  "199": {
+    "number": 199,
+    "radical": "麥",
+    "variants": [
+      "麦"
+    ],
+    "strokes": 11,
+    "meaning_en": "wheat",
+    "onyomi": [
+      "バク"
+    ],
+    "kunyomi": [
+      "むぎ"
+    ]
+  },
+  "200": {
+    "number": 200,
+    "radical": "麻",
+    "variants": [],
+    "strokes": 11,
+    "meaning_en": "hemp",
+    "onyomi": [
+      "マ"
+    ],
+    "kunyomi": [
+      "あさ"
+    ]
+  },
+  "201": {
+    "number": 201,
+    "radical": "黃",
+    "variants": [
+      "黄"
+    ],
+    "strokes": 12,
+    "meaning_en": "yellow",
+    "onyomi": [
+      "コウ",
+      "オウ"
+    ],
+    "kunyomi": [
+      "き"
+    ]
+  },
+  "202": {
+    "number": 202,
+    "radical": "黍",
+    "variants": [],
+    "strokes": 12,
+    "meaning_en": "millet",
+    "onyomi": [
+      "ショ"
+    ],
+    "kunyomi": [
+      "きび"
+    ]
+  },
+  "203": {
+    "number": 203,
+    "radical": "黑",
+    "variants": [
+      "黒"
+    ],
+    "strokes": 12,
+    "meaning_en": "black",
+    "onyomi": [
+      "コク"
+    ],
+    "kunyomi": [
+      "くろ"
+    ]
+  },
+  "204": {
+    "number": 204,
+    "radical": "黹",
+    "variants": [],
+    "strokes": 12,
+    "meaning_en": "embroidery",
+    "onyomi": [
+      "チ"
+    ],
+    "kunyomi": [
+      "ぬいとり"
+    ]
+  },
+  "205": {
+    "number": 205,
+    "radical": "黽",
+    "variants": [],
+    "strokes": 13,
+    "meaning_en": "frog",
+    "onyomi": [
+      "ベン"
+    ],
+    "kunyomi": [
+      "べん"
+    ]
+  },
+  "206": {
+    "number": 206,
+    "radical": "鼎",
+    "variants": [],
+    "strokes": 13,
+    "meaning_en": "tripod cauldron",
+    "onyomi": [
+      "テイ"
+    ],
+    "kunyomi": [
+      "かなえ"
+    ]
+  },
+  "207": {
+    "number": 207,
+    "radical": "鼓",
+    "variants": [],
+    "strokes": 13,
+    "meaning_en": "drum",
+    "onyomi": [
+      "コ"
+    ],
+    "kunyomi": [
+      "つづみ"
+    ]
+  },
+  "208": {
+    "number": 208,
+    "radical": "鼠",
+    "variants": [],
+    "strokes": 13,
+    "meaning_en": "rat, mouse",
+    "onyomi": [
+      "ソ"
+    ],
+    "kunyomi": [
+      "ねずみ"
+    ]
+  },
+  "209": {
+    "number": 209,
+    "radical": "鼻",
+    "variants": [],
+    "strokes": 14,
+    "meaning_en": "nose",
+    "onyomi": [
+      "ビ"
+    ],
+    "kunyomi": [
+      "はな"
+    ]
+  },
+  "210": {
+    "number": 210,
+    "radical": "齊",
+    "variants": [
+      "斉"
+    ],
+    "strokes": 14,
+    "meaning_en": "even, uniform",
+    "onyomi": [
+      "セイ"
+    ],
+    "kunyomi": [
+      "せい"
+    ]
+  },
+  "211": {
+    "number": 211,
+    "radical": "齒",
+    "variants": [
+      "歯"
+    ],
+    "strokes": 15,
+    "meaning_en": "tooth",
+    "onyomi": [
+      "シ"
+    ],
+    "kunyomi": [
+      "は"
+    ]
+  },
+  "212": {
+    "number": 212,
+    "radical": "龍",
+    "variants": [
+      "竜"
+    ],
+    "strokes": 16,
+    "meaning_en": "dragon",
+    "onyomi": [
+      "リュウ"
+    ],
+    "kunyomi": [
+      "りゅう"
+    ]
+  },
+  "213": {
+    "number": 213,
+    "radical": "龜",
+    "variants": [
+      "亀"
+    ],
+    "strokes": 16,
+    "meaning_en": "turtle, tortoise",
+    "onyomi": [
+      "キ"
+    ],
+    "kunyomi": [
+      "かめ"
+    ]
+  },
+  "214": {
+    "number": 214,
+    "radical": "龠",
+    "variants": [],
+    "strokes": 17,
+    "meaning_en": "flute",
+    "onyomi": [
+      "ヤク"
+    ],
+    "kunyomi": [
+      "やく"
+    ]
+  }
+}

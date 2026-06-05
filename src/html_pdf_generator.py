@@ -3,6 +3,7 @@ from pathlib import Path
 import pdfkit
 from utils import retrieve_row_kanjialive_url, Value, generate_furigana_custom, generate_furigana, create_dataset_readme
 from utils_html import get_reading_html, get_unimportant_reading_html
+from i18n import T
 
 options = {
     'quiet': False,
@@ -210,5 +211,5 @@ def create_readme_entries(dataset_list: list):
     result = []
     for x in dataset_list:
         files = list(Path(x["path"]).glob('**/*.pdf'))
-        result.append(create_dataset_readme(files, f"PDF Stránky {x['item']['name']}", ""))
+        result.append(create_dataset_readme(files, T['html_pdf_generator']['pdf_pages_for'].format(name=x['item']['name']), ""))
     return result
